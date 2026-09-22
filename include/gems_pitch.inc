@@ -1,0 +1,25 @@
+; GEMS pitch: split channel arrays and four modulation slots. See docs/GEMS_PITCH.md.
+zRamEnvelopeBankLo                 equ $0AA8
+zRamEnvelopeBankHi                 equ $0AAA
+zRamModulationSlots                equ $0EAD
+zRamPitchUpdatePending             equ $0F77
+zRamBasePitchLo                    equ $0F78
+zRamBasePitchHi                    equ $0F88
+zRamModulationPitchLo              equ $0F98
+zRamModulationPitchHi              equ $0FA8
+zRamChannelPitchDirty              equ $0FB8
+zRamResolvedPitchScratch           equ $10A8
+FmSemitoneFNumbers                 equ $116A
+PsgTonePeriods                     equ $1184
+zRamResourceOffsetScratch          equ $1728
+zRamModulationBuffers              equ $1E80
+modCursorLo                        equ $05
+modCursorHi                        equ $09
+modTicksRemaining                  equ $0D
+modDeltaLo                         equ $11
+modDeltaHi                         equ $15
+modBufferOffset                    equ $19
+pitchBaseHi                        equ $10
+pitchModulationLo                  equ $20
+pitchModulationHi                  equ $30
+pitchDirty                         equ $40

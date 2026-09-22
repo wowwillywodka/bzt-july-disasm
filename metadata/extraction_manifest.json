@@ -1,0 +1,3449 @@
+{
+  "format": 1,
+  "rom": {
+    "size": 3145728,
+    "sha256": "8f0af150b642e1e190566a96d19732695164d926244764407560949cee02d8b0"
+  },
+  "resources": [
+    {
+      "start": 0,
+      "end": 256,
+      "kind": "vectors",
+      "source": "src/system/exceptionvectors_000000.asm",
+      "path": "generated/data/000000.bin",
+      "sha256": "8b573447b1d5568cb83f251d0467c40567232f755a424439bed10d619ae82736"
+    },
+    {
+      "start": 256,
+      "end": 512,
+      "kind": "bytes",
+      "source": "src/system/cartridgeheader_000100.asm",
+      "path": "generated/data/000100.bin",
+      "sha256": "a16a451e8e9a1fc62a7fdb85fb0555dd790c0acdbf2c4506000997ddd21badf7"
+    },
+    {
+      "start": 654,
+      "end": 708,
+      "kind": "bytes",
+      "source": "src/system/boothardwaretables_00028e.asm",
+      "path": "generated/data/00028e.bin",
+      "sha256": "e76043f066698719df89745b450c732953c9fd842ef0183e4b3998a6a725723a"
+    },
+    {
+      "start": 746,
+      "end": 762,
+      "kind": "bytes",
+      "source": "src/system/bootvdpcommands_0002ea.asm",
+      "path": "generated/data/0002ea.bin",
+      "sha256": "255a06a1d1bc90e5addde99292144ee9d4ffe72ee36b21da394c58ec7223fe51"
+    },
+    {
+      "start": 1078,
+      "end": 1102,
+      "kind": "bytes",
+      "source": "src/system/regioncompatibilitydata_000436.asm",
+      "path": "generated/data/000436.bin",
+      "sha256": "c4f5262a53624e99d0caadee6230590963bb07a15de435583c4eca601fb33545"
+    },
+    {
+      "start": 1102,
+      "end": 1208,
+      "kind": "text",
+      "source": "src/text/regionwarningstrings_00044e.asm",
+      "path": "generated/data/00044e.bin",
+      "sha256": "11513b7c981f0c9b66c876f4892fb39ae7ebe46d2b28b46628f16927c80df7fe"
+    },
+    {
+      "start": 1208,
+      "end": 1680,
+      "kind": "binary",
+      "source": "src/graphics/regionwarningfont1bpp_0004b8.asm",
+      "path": "generated/data/0004b8.bin",
+      "sha256": "d3f2663eeb49f12f41dfee89ad9c14265363909e646351444d2d9b6d3cd52cc4"
+    },
+    {
+      "start": 1760,
+      "end": 1816,
+      "kind": "bytes",
+      "source": "src/system/legacyboothardwareparameters_0006e0.asm",
+      "path": "generated/data/0006e0.bin",
+      "sha256": "90b4b49b92eec00b71588b5c48832d4ffbb68b4df279f66f2568bda1f3eac5e7"
+    },
+    {
+      "start": 1856,
+      "end": 1860,
+      "kind": "bytes",
+      "source": "src/system/bootlegacytail_000740.asm",
+      "path": "generated/data/000740.bin",
+      "sha256": "c43ae6260ca19c2344ff2ea8b6aae1850f3f8ce694bc7db07315168687d509de"
+    },
+    {
+      "start": 4008,
+      "end": 4048,
+      "kind": "words",
+      "source": "src/game/characterstartingequipment_000fa8.asm",
+      "path": "generated/data/000fa8.bin",
+      "sha256": "01b2ff2aaeb3651b15f79a5bb80d55749cc6941d7561d1d9fcb04b052fabec58"
+    },
+    {
+      "start": 7060,
+      "end": 7088,
+      "kind": "text",
+      "source": "src/text/waitingforpartnerscenetext_001b94.asm",
+      "path": "generated/data/001b94.bin",
+      "sha256": "85d1bb372be175e13dc251cdf2142d4fd1074d002b20b4f178c6837003e51775"
+    },
+    {
+      "start": 8532,
+      "end": 8570,
+      "kind": "words",
+      "source": "src/video/gamevdpregisterpreset_002154.asm",
+      "path": "generated/data/002154.bin",
+      "sha256": "611a5fc63030a223fa4525b109ce5ed84176d85c624643cbbf3a3f30f257c05f"
+    },
+    {
+      "start": 8570,
+      "end": 8608,
+      "kind": "words",
+      "source": "src/video/alternatevdpregisterpreset_00217a.asm",
+      "path": "generated/data/00217a.bin",
+      "sha256": "0a553dea867acb5c2161bc0160cf140901525eb1ea2f66297eccdc891cb32b52"
+    },
+    {
+      "start": 8806,
+      "end": 8870,
+      "kind": "bytes",
+      "source": "src/environment/panoramaanimationoffsets_002266.asm",
+      "path": "generated/data/002266.bin",
+      "sha256": "d1e5c191a401d99657594cd9866e7ca5f760da62d8a4eda2f4d9a8810c4ee3eb"
+    },
+    {
+      "start": 9210,
+      "end": 9450,
+      "kind": "words",
+      "source": "src/video/retainedpanoramaspriterows_0023fa.asm",
+      "path": "generated/data/0023fa.bin",
+      "sha256": "2d7291c15044c02b48d9733e56c7594f9523353893bca8ba0d1a738a24b6aceb"
+    },
+    {
+      "start": 9450,
+      "end": 9544,
+      "kind": "words",
+      "source": "src/video/retainedpanoramatilesequence_0024ea.asm",
+      "path": "generated/data/0024ea.bin",
+      "sha256": "554f417722612c90f6a2270152233dcbe27b02807d39edbf8ae16f7cd1dad153"
+    },
+    {
+      "start": 9544,
+      "end": 9580,
+      "kind": "words",
+      "source": "src/video/retainedpanoramaanimationtiles_002548.asm",
+      "path": "generated/data/002548.bin",
+      "sha256": "10f021d72113393286cee34df6e61c2f50ca14f30ce151ecf2f518760656665a"
+    },
+    {
+      "start": 10340,
+      "end": 10404,
+      "kind": "words",
+      "source": "src/video/retainedeffectspritemappings_002864.asm",
+      "path": "generated/data/002864.bin",
+      "sha256": "408889a10dd53be2d5419e4315e659d43d4c44244e6c819dc8e16fa6dfd11b5d"
+    },
+    {
+      "start": 11156,
+      "end": 11176,
+      "kind": "pointers",
+      "source": "src/ui/characterportraitgraphicspointers_002b94.asm",
+      "path": "generated/data/002b94.bin",
+      "sha256": "7a5f6259145ec81b4ea583304ef7e422460044cee218146f7ff941f456b5f981"
+    },
+    {
+      "start": 11176,
+      "end": 11196,
+      "kind": "pointers",
+      "source": "src/ui/characterportraitpalettepointers_002ba8.asm",
+      "path": "generated/data/002ba8.bin",
+      "sha256": "cbf32d457eaa13d338395f8467adc73e5bc079e6beff94e70ce0c789b7cc67f7"
+    },
+    {
+      "start": 12206,
+      "end": 12218,
+      "kind": "bytes",
+      "source": "src/ui/titlecharacterorder_002fae.asm",
+      "path": "generated/data/002fae.bin",
+      "sha256": "4fee3162f1b22260e64b6356839523cbb18dd4c49aa9816967c83ff568c74552"
+    },
+    {
+      "start": 12218,
+      "end": 12258,
+      "kind": "text",
+      "source": "src/text/twodigitcharacterlabels_002fba.asm",
+      "path": "generated/data/002fba.bin",
+      "sha256": "263e5753d5205085bc3dc027f1b85399b6014881c59ae987e475b780f37b55b9"
+    },
+    {
+      "start": 12258,
+      "end": 12268,
+      "kind": "text",
+      "source": "src/text/percentdisplaytext_002fe2.asm",
+      "path": "generated/data/002fe2.bin",
+      "sha256": "84d89877f0d4041efb6bf91a16f0248f2fd573e6af05c19f96bedb9f882f7882"
+    },
+    {
+      "start": 14628,
+      "end": 14789,
+      "kind": "text",
+      "source": "src/text/levelstatisticsstrings_003924.asm",
+      "path": "generated/data/003924.bin",
+      "sha256": "2648330e932735e6c3f108ba1f56e1639607bdfbd0033eeab0f0e72abe9b94e7"
+    },
+    {
+      "start": 14789,
+      "end": 14811,
+      "kind": "text",
+      "source": "src/text/statisticspasswordlabel_0039c5.asm",
+      "path": "generated/data/0039c5.bin",
+      "sha256": "ec4813073643e124b4d391baeef74cfc638f3c4d8deb20edcfa47cfe06a8fdac"
+    },
+    {
+      "start": 14811,
+      "end": 15516,
+      "kind": "text",
+      "source": "src/text/retainedlegacyfloornames_0039db.asm",
+      "path": "generated/data/0039db.bin",
+      "sha256": "9a40ec1d004187fa2caf33181e9b69e846b959b24cda114daf4c287295224096"
+    },
+    {
+      "start": 15516,
+      "end": 15548,
+      "kind": "pointers",
+      "source": "src/renderer/celltilegraphicspointers_003c9c.asm",
+      "path": "generated/data/003c9c.bin",
+      "sha256": "0af51844d659aa28303101a0f50b4cb3f90a7e78fc4fcc94734988a8afbbbed7"
+    },
+    {
+      "start": 15548,
+      "end": 15712,
+      "kind": "pointers",
+      "source": "src/renderer/wallcolumnscalers_003cbc.asm",
+      "path": "generated/data/003cbc.bin",
+      "sha256": "0b13d38d64bbf284734e72675a020c1718ea5740603f82b252e51d2fdd112f9a"
+    },
+    {
+      "start": 15712,
+      "end": 15876,
+      "kind": "pointers",
+      "source": "src/renderer/alternatewallcolumnscalers_003d60.asm",
+      "path": "generated/data/003d60.bin",
+      "sha256": "7eb95b49daa84fe51bee1e10218921f3f53a6c27752ab24ce424946ab616a1de"
+    },
+    {
+      "start": 15876,
+      "end": 16040,
+      "kind": "pointers",
+      "source": "src/renderer/wallcolumncopytails_003e04.asm",
+      "path": "generated/data/003e04.bin",
+      "sha256": "d0f7d4fe12da6612ede4e448c8a5409fcc1436d90af3ae38fe0a13b80c7cdd68"
+    },
+    {
+      "start": 16040,
+      "end": 16204,
+      "kind": "pointers",
+      "source": "src/renderer/alternatecolumncopytails_003ea8.asm",
+      "path": "generated/data/003ea8.bin",
+      "sha256": "d0f7d4fe12da6612ede4e448c8a5409fcc1436d90af3ae38fe0a13b80c7cdd68"
+    },
+    {
+      "start": 16204,
+      "end": 16528,
+      "kind": "pointers",
+      "source": "src/renderer/shiftedcolumncopytails_003f4c.asm",
+      "path": "generated/data/003f4c.bin",
+      "sha256": "cae46077429ffaf7d5163250c8a9b4e2225d4ce178ca19e801648207c78a303c"
+    },
+    {
+      "start": 31310,
+      "end": 33358,
+      "kind": "words",
+      "source": "src/renderer/anglevectorpairs_007a4e.asm",
+      "path": "generated/data/007a4e.bin",
+      "sha256": "f36d06ec9d98593ebc78704ad507469a50ecb7346e70594abaf0d42328568181"
+    },
+    {
+      "start": 33358,
+      "end": 35406,
+      "kind": "words",
+      "source": "src/renderer/rayslopepairs_00824e.asm",
+      "path": "generated/data/00824e.bin",
+      "sha256": "af65049560e349960269254e08b36578c6a1fae245e825ee54bfcbaf73318692"
+    },
+    {
+      "start": 35406,
+      "end": 35664,
+      "kind": "words",
+      "source": "src/renderer/cameraangleoffsets_008a4e.asm",
+      "path": "generated/data/008a4e.bin",
+      "sha256": "1eae475cb791cfb54b254e4c0b24e3690dba1e1b12c0e55743d4059d2194dd97"
+    },
+    {
+      "start": 35716,
+      "end": 36312,
+      "kind": "pointers",
+      "source": "src/renderer/visiblecellhandlers_008b84.asm",
+      "path": "generated/data/008b84.bin",
+      "sha256": "746fe48853b1151d47dc4a06188d54317f7607c628d507204e47392787405d11"
+    },
+    {
+      "start": 39560,
+      "end": 39800,
+      "kind": "bytes",
+      "source": "src/actors/actorspawncellselectors_009a88.asm",
+      "path": "generated/data/009a88.bin",
+      "sha256": "0d0406c7747e975fa15319a557ee6d03f917184d1188b3842e57ea6e1b8d67fe"
+    },
+    {
+      "start": 39822,
+      "end": 39878,
+      "kind": "pointers",
+      "source": "src/actors/actorspawndefinitionpointers_009b8e.asm",
+      "path": "generated/data/009b8e.bin",
+      "sha256": "8104f8b5b56c0b50c8f2563d3c78579533dd5efc3b66697ae017529ca39f5071"
+    },
+    {
+      "start": 40172,
+      "end": 40428,
+      "kind": "bytes",
+      "source": "src/levels/playercellactionselectors_009cec.asm",
+      "path": "generated/data/009cec.bin",
+      "sha256": "5b5d5f420cd6bd58a3c3e2d5328e65d81ed6930fb7ccb234d6166a104466064c"
+    },
+    {
+      "start": 40428,
+      "end": 40492,
+      "kind": "pointers",
+      "source": "src/levels/playercellactionhandlers_009dec.asm",
+      "path": "generated/data/009dec.bin",
+      "sha256": "e138994b1656417c7b9c0d338bee1d558f8c45414252b76561244d146b011802"
+    },
+    {
+      "start": 41960,
+      "end": 42216,
+      "kind": "bytes",
+      "source": "src/collision/playerinteractioncellclasses_00a3e8.asm",
+      "path": "generated/data/00a3e8.bin",
+      "sha256": "7010d7b05562ae1f347e1004fcd506f32f0bfb077e89b8e98c81af0b05c66e79"
+    },
+    {
+      "start": 42280,
+      "end": 42536,
+      "kind": "bytes",
+      "source": "src/levels/retainedepisodecellremap_00a528.asm",
+      "path": "generated/data/00a528.bin",
+      "sha256": "d47021be13055b8a36df08f672c3951fa24050501e01f8b2cfa100fdec4e0030"
+    },
+    {
+      "start": 42536,
+      "end": 42954,
+      "kind": "actor:38",
+      "source": "src/actors/actordefinitions_00a628.asm",
+      "path": "generated/data/00a628.bin",
+      "sha256": "e491ae8179c89ab53a5aaa792957620f3db5057fa448c899f4ad1bbfb7f53b25"
+    },
+    {
+      "start": 42954,
+      "end": 43240,
+      "kind": "actor:26",
+      "source": "src/actors/actordeathdefinitions_00a7ca.asm",
+      "path": "generated/data/00a7ca.bin",
+      "sha256": "03fdf00aed9b6900d98f85323e725c6425216947dc08a2ea60556a8216d75156"
+    },
+    {
+      "start": 47384,
+      "end": 47632,
+      "kind": "pointers",
+      "source": "src/collision/transitheighthandlers_00b918.asm",
+      "path": "generated/data/00b918.bin",
+      "sha256": "445a21eaf591379790738148636e1cfeb271117f6541c2f532480fa4a9bf79a0"
+    },
+    {
+      "start": 48216,
+      "end": 48254,
+      "kind": "text",
+      "source": "src/text/retainedfloortransitiontext_00bc58.asm",
+      "path": "generated/data/00bc58.bin",
+      "sha256": "b4c9fe10fc041210868bde333ef34ef14d2733e7766390627f984a2fd2148abd"
+    },
+    {
+      "start": 49272,
+      "end": 49292,
+      "kind": "words",
+      "source": "src/levels/floornameoffsets_00c078.asm",
+      "path": "generated/data/00c078.bin",
+      "sha256": "3576e24b31cdae06763874adcb2b891cc308c32f4bf6dbb322aba4d305f134d3"
+    },
+    {
+      "start": 49834,
+      "end": 50090,
+      "kind": "bytes",
+      "source": "src/collision/cameracollisionclasses_00c2aa.asm",
+      "path": "generated/data/00c2aa.bin",
+      "sha256": "991b39d8b8176458aba7b4b0b7cb30d0af0c16fd238345074badc59fd66a9ab3"
+    },
+    {
+      "start": 55450,
+      "end": 55530,
+      "kind": "words",
+      "source": "src/renderer/wallmarkercolumnpixels_00d89a.asm",
+      "path": "generated/data/00d89a.bin",
+      "sha256": "ad5912a700083101940d29c7729063ea456cca1a499214a2c11812c800e27300"
+    },
+    {
+      "start": 57684,
+      "end": 57748,
+      "kind": "words",
+      "source": "src/renderer/playerdamageviewoffsets_00e154.asm",
+      "path": "generated/data/00e154.bin",
+      "sha256": "6100128de2496b7ae578eed59715beca791a7658e0b3d5b5c7ed1a49bc8a0cf0"
+    },
+    {
+      "start": 60524,
+      "end": 60780,
+      "kind": "bytes",
+      "source": "src/collision/playercollisioncellclasses_00ec6c.asm",
+      "path": "generated/data/00ec6c.bin",
+      "sha256": "caf61ad3cf3a900a0990250578772421ab5288e5174dea656a5b06a2315cbdfb"
+    },
+    {
+      "start": 60892,
+      "end": 61488,
+      "kind": "pointers",
+      "source": "src/levels/cellinteractionhandlers_00eddc.asm",
+      "path": "generated/data/00eddc.bin",
+      "sha256": "4a61c127a307c4dcc68deff48458cdf89077bda79f18adcbc2323dd87a7ad1d8"
+    },
+    {
+      "start": 62770,
+      "end": 62802,
+      "kind": "words",
+      "source": "src/environment/wallanimationtiles_00f532.asm",
+      "path": "generated/data/00f532.bin",
+      "sha256": "a83969e6d0e9a46953b859d17642b179eac06826cb7c7807b1ae3dd8ee0f988a"
+    },
+    {
+      "start": 63330,
+      "end": 63346,
+      "kind": "bytes",
+      "source": "src/sound/wallmotionsoundevents_00f762.asm",
+      "path": "generated/data/00f762.bin",
+      "sha256": "9e272fbf69220af09c6fb711170e9c5b3356b9ef989ab001510472fc7b3dc192"
+    },
+    {
+      "start": 63478,
+      "end": 63510,
+      "kind": "words",
+      "source": "src/renderer/viewdirectionsteps_00f7f6.asm",
+      "path": "generated/data/00f7f6.bin",
+      "sha256": "c4f77abf7f31ee3a5be26e177fa9dd04609e05c02bd8a4766642df6d5718337b"
+    },
+    {
+      "start": 64598,
+      "end": 64922,
+      "kind": "pointers",
+      "source": "src/renderer/spritecolumnentrypointers_00fc56.asm",
+      "path": "generated/data/00fc56.bin",
+      "sha256": "765acb4d0df2c35c05325f667d2c5693e65c089c330a06c621e7c09273171c8d"
+    },
+    {
+      "start": 66044,
+      "end": 66368,
+      "kind": "pointers",
+      "source": "src/renderer/spritescalesamplepointers_0101fc.asm",
+      "path": "generated/data/0101fc.bin",
+      "sha256": "791cb113b74c8defc7114517217763fc3354fa7cee1fc1c0375fc075c7784af6"
+    },
+    {
+      "start": 66368,
+      "end": 69610,
+      "kind": "bytes",
+      "source": "src/renderer/spritescalesamplerows_010340.asm",
+      "path": "generated/data/010340.bin",
+      "sha256": "8808918a84e4d9d6877691317058138e01f67c82158a0607ac06d84405e73c75"
+    },
+    {
+      "start": 69610,
+      "end": 70634,
+      "kind": "words",
+      "source": "src/renderer/spritecolumnsourcesteps_010fea.asm",
+      "path": "generated/data/010fea.bin",
+      "sha256": "be667a248df0244fd40e288c5b1bf3ccce6a553e918c10cc5eefb361bc9f40c7"
+    },
+    {
+      "start": 71596,
+      "end": 71652,
+      "kind": "pointers",
+      "source": "src/objects/inventoryiconpointers_0117ac.asm",
+      "path": "generated/data/0117ac.bin",
+      "sha256": "815a19884c2133cd770926a65a01bc03395f8e110f1bb6014bb3bb325e51b5b9"
+    },
+    {
+      "start": 73472,
+      "end": 73508,
+      "kind": "words",
+      "source": "src/objects/itemrefillamounts_011f00.asm",
+      "path": "generated/data/011f00.bin",
+      "sha256": "88a682d189097aa63d2934307d60ee3b755362e0d1edbf324f553d77575ce2ec"
+    },
+    {
+      "start": 73508,
+      "end": 73544,
+      "kind": "words",
+      "source": "src/objects/itemcapacitylimits_011f24.asm",
+      "path": "generated/data/011f24.bin",
+      "sha256": "feb854f4bde23c07ac3c785bf712dd40aba86a46837a2623dbd45b4cdab00888"
+    },
+    {
+      "start": 73966,
+      "end": 74394,
+      "kind": "pointers",
+      "source": "src/renderer/worldobjectdrawhandlers_0120ee.asm",
+      "path": "generated/data/0120ee.bin",
+      "sha256": "3ad7f2264425c732952c2840b8d24f32811373a658ffdf03ed2b13eac3ce63c5"
+    },
+    {
+      "start": 75512,
+      "end": 75580,
+      "kind": "pointers",
+      "source": "src/objects/itemplacementhandlers_0126f8.asm",
+      "path": "generated/data/0126f8.bin",
+      "sha256": "73f399d28abdd36766fd47a50544a224269152949d113b00aac33a38651c18c3"
+    },
+    {
+      "start": 75580,
+      "end": 75732,
+      "kind": "bytes",
+      "source": "src/objects/itemplacementhandlersend_01273c.asm",
+      "path": "generated/data/01273c.bin",
+      "sha256": "2961fc0f61bc0d203f4762aec57d494a04fa71b89e98a3855aec4ec91b75f061"
+    },
+    {
+      "start": 75952,
+      "end": 75990,
+      "kind": "text",
+      "source": "src/text/retainedmedipacktext_0128b0.asm",
+      "path": "generated/data/0128b0.bin",
+      "sha256": "ab1c8a40d30d58f8ac3d6a761b0c7f10316aab3ce9b201ea96013d30d17b5185"
+    },
+    {
+      "start": 76016,
+      "end": 76036,
+      "kind": "bytes",
+      "source": "src/objects/itemselectionremap_0128f0.asm",
+      "path": "generated/data/0128f0.bin",
+      "sha256": "74bbd69a1a43db4bcff134329d7b4b329a6f5226afce11a6efa025a2626bb37a"
+    },
+    {
+      "start": 76246,
+      "end": 76318,
+      "kind": "pointers",
+      "source": "src/weapons/heldweaponframepointers_0129d6.asm",
+      "path": "generated/data/0129d6.bin",
+      "sha256": "3281a7f21ee32318c8bd33f73c9d03ef1ff0311525db014904ac7fee552fbe28"
+    },
+    {
+      "start": 76392,
+      "end": 76464,
+      "kind": "pointers",
+      "source": "src/weapons/heldweapondrawhandlers_012a68.asm",
+      "path": "generated/data/012a68.bin",
+      "sha256": "0e229cd89b523400170465a9db89a65c29511ac2bf14894ce5bfd093d7fd3e39"
+    },
+    {
+      "start": 77518,
+      "end": 77558,
+      "kind": "words",
+      "source": "src/weapons/retainedweaponspritemappings_012ece.asm",
+      "path": "generated/data/012ece.bin",
+      "sha256": "4a7df0759edefb39c270cf036ab68679c0c2d5c456cf888bdc87a55c1fc673fc"
+    },
+    {
+      "start": 78022,
+      "end": 78062,
+      "kind": "words",
+      "source": "src/weapons/weaponspritemappings_0130c6.asm",
+      "path": "generated/data/0130c6.bin",
+      "sha256": "4a7df0759edefb39c270cf036ab68679c0c2d5c456cf888bdc87a55c1fc673fc"
+    },
+    {
+      "start": 79488,
+      "end": 79600,
+      "kind": "words",
+      "source": "src/weapons/weaponanimationspritemappings_013680.asm",
+      "path": "generated/data/013680.bin",
+      "sha256": "0fadf831c841191d344da29bc1e907a9f5941404e6b728b4fb0f2da297fadfac"
+    },
+    {
+      "start": 79600,
+      "end": 79792,
+      "kind": "words",
+      "source": "src/weapons/weaponoverlayspritemappings_0136f0.asm",
+      "path": "generated/data/0136f0.bin",
+      "sha256": "39ec66f844d74e6495611727624e5d7ca71ebd283fe658142db113a79e5c6a94"
+    },
+    {
+      "start": 81712,
+      "end": 81718,
+      "kind": "bytes",
+      "source": "src/weapons/weaponrecoiloffsets_013f30.asm",
+      "path": "generated/data/013f30.bin",
+      "sha256": "5b13593ebc72a7c719f7cddd4995ebb5d235041510a3f4b852e75d4f8920f99c"
+    },
+    {
+      "start": 82340,
+      "end": 82412,
+      "kind": "pointers",
+      "source": "src/weapons/weaponactionhandlers_0141a4.asm",
+      "path": "generated/data/0141a4.bin",
+      "sha256": "a3590bbeac4e966a4dd55a5ed94839950ecf1beeef71ea709cef7a9a42edb5a5"
+    },
+    {
+      "start": 84464,
+      "end": 84496,
+      "kind": "bytes",
+      "source": "src/environment/destructiblewallcellvariants_0149f0.asm",
+      "path": "generated/data/0149f0.bin",
+      "sha256": "2bcbc9972ca5c5a362a79e0407a6d895230a264ccf8df0d5ee6ae815bc85723b"
+    },
+    {
+      "start": 96912,
+      "end": 96936,
+      "kind": "pointers",
+      "source": "src/enemies/inventorychoicerowpointers_017a90.asm",
+      "path": "generated/data/017a90.bin",
+      "sha256": "23f8afb82f6976d4bdabcacbce9e56d7808491252ff9f0a17cbf8a0dd6c611e3"
+    },
+    {
+      "start": 96936,
+      "end": 96976,
+      "kind": "bytes",
+      "source": "src/enemies/inventorychoicerows_017aa8.asm",
+      "path": "generated/data/017aa8.bin",
+      "sha256": "dabde45ac04c95b7f5604783750f0fbc12c5967e37cc4042256253bf8e84bd1e"
+    },
+    {
+      "start": 115234,
+      "end": 115438,
+      "kind": "pointers",
+      "source": "src/link/actorlinkstatehandlers_01c222.asm",
+      "path": "generated/data/01c222.bin",
+      "sha256": "df67e7e22dcc8acd3671affc7f3335eafe3dc1c6490d6d18078d0d9cc112b56f"
+    },
+    {
+      "start": 118130,
+      "end": 118136,
+      "kind": "bytes",
+      "source": "src/weapons/explosionscaleshifts_01cd72.asm",
+      "path": "generated/data/01cd72.bin",
+      "sha256": "65a8e842cea4c5cf1c0d23ca175eba8b3c2a5db8306049f00f4ed5f4931bdd86"
+    },
+    {
+      "start": 120272,
+      "end": 120528,
+      "kind": "bytes",
+      "source": "src/collision/enemywalkabilityclasses_01d5d0.asm",
+      "path": "generated/data/01d5d0.bin",
+      "sha256": "aeab46e17302aadab8f20feca244cdb9494d7661330b637c5701a525a6e7ac23"
+    },
+    {
+      "start": 120528,
+      "end": 120662,
+      "kind": "bytes",
+      "source": "src/collision/enemywalkabilitytrailingzeros_01d6d0.asm",
+      "path": "generated/data/01d6d0.bin",
+      "sha256": "e7e7ba7c94c2574ab9e0d47a90f4660dd0b83d4a935141568c8bfc1024ec87cb"
+    },
+    {
+      "start": 122806,
+      "end": 122812,
+      "kind": "bytes",
+      "source": "src/actors/actorlocalfacingremap_01dfb6.asm",
+      "path": "generated/data/01dfb6.bin",
+      "sha256": "17e88db187afd62c16e5debf3e6527cd006bc012bc90b51a810cd80c2d511f43"
+    },
+    {
+      "start": 125512,
+      "end": 125660,
+      "kind": "pointers",
+      "source": "src/link/actorremoteupdatehandlers_01ea48.asm",
+      "path": "generated/data/01ea48.bin",
+      "sha256": "40fccf52b0444edaebbe3e8e329f54b97efd936aa4a49b00cd2a5a9f57797140"
+    },
+    {
+      "start": 125878,
+      "end": 125884,
+      "kind": "bytes",
+      "source": "src/link/actorremotedirectionremap_01ebb6.asm",
+      "path": "generated/data/01ebb6.bin",
+      "sha256": "65a8e842cea4c5cf1c0d23ca175eba8b3c2a5db8306049f00f4ed5f4931bdd86"
+    },
+    {
+      "start": 126382,
+      "end": 126388,
+      "kind": "bytes",
+      "source": "src/link/actorremotefacingremap_01edae.asm",
+      "path": "generated/data/01edae.bin",
+      "sha256": "17e88db187afd62c16e5debf3e6527cd006bc012bc90b51a810cd80c2d511f43"
+    },
+    {
+      "start": 129832,
+      "end": 130088,
+      "kind": "bytes",
+      "source": "src/actors/actoranimationphaselookup_01fb28.asm",
+      "path": "generated/data/01fb28.bin",
+      "sha256": "7e9e39148b6b487a5a7a6b393abd68a943463ef2da7d90bb362a9194562c353a"
+    },
+    {
+      "start": 131974,
+      "end": 132002,
+      "kind": "bytes",
+      "source": "src/link/linkcommandsizes_020386.asm",
+      "path": "generated/data/020386.bin",
+      "sha256": "731c7d47104088acb739123ce5c0610568c6fefa3a45c6e0f5b2beb437405d4c"
+    },
+    {
+      "start": 132286,
+      "end": 132394,
+      "kind": "pointers",
+      "source": "src/link/linkcommandhandlers_0204be.asm",
+      "path": "generated/data/0204be.bin",
+      "sha256": "1293042cf9f61621301d164b1b51c5b184f9633d0d9f644f3c7f4529585b279e"
+    },
+    {
+      "start": 133692,
+      "end": 133810,
+      "kind": "words",
+      "source": "src/ui/statusmessagetilelookup_020a3c.asm",
+      "path": "generated/data/020a3c.bin",
+      "sha256": "4bde2189ddcaeed17a56c3bbb93be8692caf5e6a0b2ed147cc0e86ccc80b5f7c"
+    },
+    {
+      "start": 134422,
+      "end": 136658,
+      "kind": "text",
+      "source": "src/text/statusmessagerecords_020d16.asm",
+      "path": "generated/data/020d16.bin",
+      "sha256": "3e151fc1a08dcd68f977225282bc1ae21c9638c50ddebc237a3961e950e71c36"
+    },
+    {
+      "start": 136658,
+      "end": 136894,
+      "kind": "pointers",
+      "source": "src/text/retainedstatusmessagepointers_0215d2.asm",
+      "path": "generated/data/0215d2.bin",
+      "sha256": "6076c53eda15237920b1775a17b1b6378806954a5fcffc27fbc6af1d5f09a2d6"
+    },
+    {
+      "start": 136894,
+      "end": 136962,
+      "kind": "pointers",
+      "source": "src/text/itempickupmessagepointers_0216be.asm",
+      "path": "generated/data/0216be.bin",
+      "sha256": "08b06e61ae9819af48727b673f4cb6aa584de01f0e8580b066973bd074fcf44c"
+    },
+    {
+      "start": 140208,
+      "end": 140240,
+      "kind": "words",
+      "source": "src/palettes/intropalettea_0223b0.asm",
+      "path": "generated/data/0223b0.bin",
+      "sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925"
+    },
+    {
+      "start": 140240,
+      "end": 140272,
+      "kind": "words",
+      "source": "src/palettes/intropaletteb_0223d0.asm",
+      "path": "generated/data/0223d0.bin",
+      "sha256": "70fe2e33a1c1038b5f6f279a21faa29caa63e3f7d47a8f63f47a03bd31a44414"
+    },
+    {
+      "start": 140780,
+      "end": 140840,
+      "kind": "text",
+      "source": "src/text/waitingforpartnermenutext_0225ec.asm",
+      "path": "generated/data/0225ec.bin",
+      "sha256": "09eba7f987b032c959a2fc7ec14dda8fedabb2c18ee4da05a18c6626e3691a40"
+    },
+    {
+      "start": 141074,
+      "end": 141202,
+      "kind": "words",
+      "source": "src/palettes/blackfadepalette_022712.asm",
+      "path": "generated/data/022712.bin",
+      "sha256": "38723a2e5e8a17aa7950dc008209944e898f69a7bd10a23c839d341e935fd5ca"
+    },
+    {
+      "start": 141202,
+      "end": 141266,
+      "kind": "words",
+      "source": "src/palettes/retainedpalettepairs_022792.asm",
+      "path": "generated/data/022792.bin",
+      "sha256": "c5d11c62f9e767b5b0d2903d890213bc8a66895d17ded38f8e536b18cd90f0cc"
+    },
+    {
+      "start": 141266,
+      "end": 141330,
+      "kind": "words",
+      "source": "src/palettes/interfacepalettes_0227d2.asm",
+      "path": "generated/data/0227d2.bin",
+      "sha256": "5c5ad598a072dca5b7ffb207479ca9b2a184db6ca678f58f2085b52e40343836"
+    },
+    {
+      "start": 141498,
+      "end": 141696,
+      "kind": "text",
+      "source": "src/text/copyrightscreenstrings_0228ba.asm",
+      "path": "generated/data/0228ba.bin",
+      "sha256": "23dbbbed8cc1dfa2f6698a2ea78d089acbf8a4ce7c1be28a83919f64065a1656"
+    },
+    {
+      "start": 143128,
+      "end": 143160,
+      "kind": "words",
+      "source": "src/ui/titlespritemappings_022f18.asm",
+      "path": "generated/data/022f18.bin",
+      "sha256": "2149a4141681430aa9881de2fd820e4876c68572e8de2705baa08e7607c4e81d"
+    },
+    {
+      "start": 143302,
+      "end": 143332,
+      "kind": "words",
+      "source": "src/ui/titlescrollwordsequences_022fc6.asm",
+      "path": "generated/data/022fc6.bin",
+      "sha256": "e6c2c834747b376e081056d42e3586dad46ae577c37bbc6cd4518e0185cf610e"
+    },
+    {
+      "start": 143332,
+      "end": 143460,
+      "kind": "words",
+      "source": "src/ui/titlestaticspritemappings_022fe4.asm",
+      "path": "generated/data/022fe4.bin",
+      "sha256": "d25e495507bb23dfcecea11a28f8c87cc268a2b9e53389b7b99b7d168c330cdf"
+    },
+    {
+      "start": 143460,
+      "end": 143572,
+      "kind": "words",
+      "source": "src/ui/titleanimatedspritemappings_023064.asm",
+      "path": "generated/data/023064.bin",
+      "sha256": "74f872ca299428740b00dc11da3285f4837971e5fe111cf7ccf33c1a37fb0d13"
+    },
+    {
+      "start": 143572,
+      "end": 143892,
+      "kind": "bytes",
+      "source": "src/ui/titlespriteframeselectors_0230d4.asm",
+      "path": "generated/data/0230d4.bin",
+      "sha256": "9b5eb5255630382ebbbf09c6cb7ec6eaec72ba52c470bfe6a33a2c61430b4b45"
+    },
+    {
+      "start": 144182,
+      "end": 145206,
+      "kind": "bytes",
+      "source": "src/ui/titleanimationcurves_023336.asm",
+      "path": "generated/data/023336.bin",
+      "sha256": "a83bce9eaef19237d9c10f1aa2ee049ac95407648fd284c6fa47c809a8f4bb4f"
+    },
+    {
+      "start": 145206,
+      "end": 145238,
+      "kind": "words",
+      "source": "src/palettes/titlepalette_023736.asm",
+      "path": "generated/data/023736.bin",
+      "sha256": "d82d895fc53c4753081b6e83f064f25ffbdec5ad8a20076f813eb50f5c1971e3"
+    },
+    {
+      "start": 145238,
+      "end": 145276,
+      "kind": "text",
+      "source": "src/text/titlelabels_023756.asm",
+      "path": "generated/data/023756.bin",
+      "sha256": "2dabcc8d19e13e10cbd6bf5292b4d6ddeb82010c46c638bbfe874c47fc226177"
+    },
+    {
+      "start": 145276,
+      "end": 145640,
+      "kind": "words",
+      "source": "src/text/hudscreenglyphpairs_02377c.asm",
+      "path": "generated/data/02377c.bin",
+      "sha256": "9c4b7ba1e699738b4a5cde12d24ce79776eec1426434a0320960ba68fefc68b4"
+    },
+    {
+      "start": 146678,
+      "end": 146708,
+      "kind": "text",
+      "source": "src/text/julybuildandtitlestrings_023cf6.asm",
+      "path": "generated/data/023cf6.bin",
+      "sha256": "1cb0025d7253b85facd21668ddac80953e8cf073e32353b5b87f5570f22ddcfd"
+    },
+    {
+      "start": 146708,
+      "end": 148948,
+      "kind": "words",
+      "source": "src/ui/julytitletilemap_023d14.asm",
+      "path": "generated/data/023d14.bin",
+      "sha256": "fce0c37f02304c97122f7e5c45ca59b73fddeb46277bc3e7c8cae0ba7e7fba68"
+    },
+    {
+      "start": 148948,
+      "end": 165476,
+      "kind": "byte-pair",
+      "source": "src/graphics/julytitlecompressedtiles_0245d4.asm",
+      "path": "generated/data/0245d4.bin",
+      "sha256": "854632b08ac1d0df554d7d05559710797b98a700378e66014b37007fc3af45fd"
+    },
+    {
+      "start": 165476,
+      "end": 165508,
+      "kind": "words",
+      "source": "src/palettes/julytitlepalette_028664.asm",
+      "path": "generated/data/028664.bin",
+      "sha256": "de0c10e28d8bd01e44d93691164295cdeb503ea6ad237d66efffbd85a7c5c022"
+    },
+    {
+      "start": 165508,
+      "end": 165604,
+      "kind": "words",
+      "source": "src/palettes/titlecolorramptables_028684.asm",
+      "path": "generated/data/028684.bin",
+      "sha256": "be33a2387fe3bcf654062fbefbb89271941bb3e61592487ef4e8bdbe39ec5629"
+    },
+    {
+      "start": 165604,
+      "end": 165612,
+      "kind": "words",
+      "source": "src/palettes/retainedscreeneffectbasecolors_0286e4.asm",
+      "path": "generated/data/0286e4.bin",
+      "sha256": "29da493ed8c0ed90e296fc73c0098759838d483be1958cab82664daa8f251a2b"
+    },
+    {
+      "start": 165612,
+      "end": 165680,
+      "kind": "words",
+      "source": "src/palettes/retainedscreeneffectcolorcycle_0286ec.asm",
+      "path": "generated/data/0286ec.bin",
+      "sha256": "e778b3d51b899092e18f02188ddfc7111c8d22c560f8e4f2dde3dec54b1f97f2"
+    },
+    {
+      "start": 165680,
+      "end": 165696,
+      "kind": "words",
+      "source": "src/renderer/retainedscreeneffectcolumnpixels_028730.asm",
+      "path": "generated/data/028730.bin",
+      "sha256": "eaca456e97c11189bd3f3d5f2bad6f36916ecf5b182c7102f9b4f232a0d481ac"
+    },
+    {
+      "start": 166866,
+      "end": 168156,
+      "kind": "text",
+      "source": "src/text/retainedfloorsecuritystrings_028bd2.asm",
+      "path": "generated/data/028bd2.bin",
+      "sha256": "30a92235716b8c88f08681d0c98cf90742af930ae86cfc3bb4cacf1106cf1d87"
+    },
+    {
+      "start": 168210,
+      "end": 168260,
+      "kind": "text",
+      "source": "src/text/episodepasswordlabels_029112.asm",
+      "path": "generated/data/029112.bin",
+      "sha256": "54652983bc8ec12f7d9681cf02acd52c087da3450380b5cdeaf8c14ae471e182"
+    },
+    {
+      "start": 168260,
+      "end": 168624,
+      "kind": "words",
+      "source": "src/text/menutextglyphpairs_029144.asm",
+      "path": "generated/data/029144.bin",
+      "sha256": "8c630fae4aed3a55f02cab86af5f5ea0183c937b3294fa2038e0a4386a0fb224"
+    },
+    {
+      "start": 168878,
+      "end": 168926,
+      "kind": "bytes",
+      "source": "src/text/hudfontremap_0293ae.asm",
+      "path": "generated/data/0293ae.bin",
+      "sha256": "2f610499e73c7983f7d1da0ea30f4ec3e30995a86012f2fd5525bcee99b61522"
+    },
+    {
+      "start": 170412,
+      "end": 170592,
+      "kind": "text",
+      "source": "src/text/passwordmenustrings_0299ac.asm",
+      "path": "generated/data/0299ac.bin",
+      "sha256": "7c8c5a1b5523934c46f0982ce673de63f776c2f9072b4540ccff1119288a9408"
+    },
+    {
+      "start": 170592,
+      "end": 170600,
+      "kind": "bytes",
+      "source": "src/password/passwordactiontablea_029a60.asm",
+      "path": "generated/data/029a60.bin",
+      "sha256": "df9690e91ae109c27fdb1d65c185266add8da8e06149d28d5fa4a4895d10c50d"
+    },
+    {
+      "start": 170600,
+      "end": 170608,
+      "kind": "bytes",
+      "source": "src/password/passwordactiontableb_029a68.asm",
+      "path": "generated/data/029a68.bin",
+      "sha256": "6d771509a41ef23be43c7e90e8981f865e400184bc4bef67e7ffdaba000dfd2c"
+    },
+    {
+      "start": 170608,
+      "end": 170640,
+      "kind": "words",
+      "source": "src/password/passwordcursorcoordinates_029a70.asm",
+      "path": "generated/data/029a70.bin",
+      "sha256": "29b7fed4952106bf0c793bad17ef841eb294ce1caec0be5252aebc2c797eab5a"
+    },
+    {
+      "start": 170640,
+      "end": 170704,
+      "kind": "text",
+      "source": "src/password/passwordkeyboardalphabet_029a90.asm",
+      "path": "generated/data/029a90.bin",
+      "sha256": "559b71ce78fa667ac098ef8891ca4bc92baca7a0500ff2c2cb4a85e8d9f4545a"
+    },
+    {
+      "start": 170704,
+      "end": 170712,
+      "kind": "bytes",
+      "source": "src/password/passwordkeyboardcontrolcodes_029ad0.asm",
+      "path": "generated/data/029ad0.bin",
+      "sha256": "ff7f15cb7fb973c2ab034ca84c2038fc03ec45fad8d7ed8519941c67939c899c"
+    },
+    {
+      "start": 170712,
+      "end": 170776,
+      "kind": "text",
+      "source": "src/password/passwordcodealphabet_029ad8.asm",
+      "path": "generated/data/029ad8.bin",
+      "sha256": "42b1e9b83bf2176a2c9f78c64a48756557d6e744e0a82c38549947449a0d7d93"
+    },
+    {
+      "start": 170776,
+      "end": 170830,
+      "kind": "bytes",
+      "source": "src/password/passwordbitpermutation_029b18.asm",
+      "path": "generated/data/029b18.bin",
+      "sha256": "2c82f2df32751a154091e522b2d3d8e8de70faaf291d7b3d7c0b130a4b95cbc3"
+    },
+    {
+      "start": 173072,
+      "end": 173136,
+      "kind": "bytes",
+      "source": "src/password/passworddecodertable_02a410.asm",
+      "path": "generated/data/02a410.bin",
+      "sha256": "d93a94c00b39107851d6b1dd13b8fa816cc4dc875c5ee9529a3de02520098195"
+    },
+    {
+      "start": 179452,
+      "end": 181688,
+      "kind": "binary",
+      "source": "src/sound/gemspatchbank_02bcfc.asm",
+      "path": "generated/data/02bcfc.bin",
+      "sha256": "bd5c21a38b30e1bd844e19115e42e23aa4865554037d24bd6007623d02416b0f"
+    },
+    {
+      "start": 181688,
+      "end": 181700,
+      "kind": "binary",
+      "source": "src/sound/gemsenvelopebank_02c5b8.asm",
+      "path": "generated/data/02c5b8.bin",
+      "sha256": "2469476bd33baff6512f337e5150a14af71378717a538b359a87b9c61a2d4ec8"
+    },
+    {
+      "start": 181700,
+      "end": 190676,
+      "kind": "binary",
+      "source": "src/sound/gemssequencebank_02c5c4.asm",
+      "path": "generated/data/02c5c4.bin",
+      "sha256": "48eaaaec1aff923bcaad850ae240ec04a74310a2a0e2dac187707eeeb8110b7e"
+    },
+    {
+      "start": 190676,
+      "end": 191456,
+      "kind": "gems-sample-descriptors",
+      "source": "src/sound/gemssampledescriptors_02e8d4.asm",
+      "path": "generated/data/02e8d4.bin",
+      "sha256": "4b9796353e61a4d2f8a3fb6cfbe56fd274124858ab47d56e88a670f78261905a"
+    },
+    {
+      "start": 191456,
+      "end": 195108,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample00_02ebe0.asm",
+      "path": "generated/data/02ebe0.bin",
+      "sha256": "1798fb644ba12a9e935daa62d6fc83ea518e28901dda0ed8a38609cb66e94579"
+    },
+    {
+      "start": 195108,
+      "end": 198749,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample01_02fa24.asm",
+      "path": "generated/data/02fa24.bin",
+      "sha256": "066147641b3a3a1ddc7e9460362a92c8ee51cd2f1d34191fd663cdca47493918"
+    },
+    {
+      "start": 198749,
+      "end": 200049,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample02_03085d.asm",
+      "path": "generated/data/03085d.bin",
+      "sha256": "fb839446f859a87b99792fbf84d48815c69d4427ff48500786939b3eabba05de"
+    },
+    {
+      "start": 200049,
+      "end": 207112,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample03_030d71.asm",
+      "path": "generated/data/030d71.bin",
+      "sha256": "ceecc389d4561f8c89fbe14c562dc07927bab1028fce0acf20d757f9117e1b68"
+    },
+    {
+      "start": 207112,
+      "end": 212798,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample04_032908.asm",
+      "path": "generated/data/032908.bin",
+      "sha256": "accc229e021f5f6fd5e4e880d968fc4efd44274778b040e74525bebc05486a9d"
+    },
+    {
+      "start": 212798,
+      "end": 216439,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample05_033f3e.asm",
+      "path": "generated/data/033f3e.bin",
+      "sha256": "8a3223c3e39ca0832c7b6ad8b87b8a185d187dfaa93147ae6d9b20ee6e395ba1"
+    },
+    {
+      "start": 216439,
+      "end": 221044,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample06_034d77.asm",
+      "path": "generated/data/034d77.bin",
+      "sha256": "f5f2c9a6f42bc42813863a56fffdab38bff0196d63a78d2e8483f3b90b8d83c4"
+    },
+    {
+      "start": 221044,
+      "end": 225225,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample07_035f74.asm",
+      "path": "generated/data/035f74.bin",
+      "sha256": "865ac7c852465f0d8793b67a7739e59210d9c1da62481b539d70cc8a3e1723bc"
+    },
+    {
+      "start": 225225,
+      "end": 228569,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample08_036fc9.asm",
+      "path": "generated/data/036fc9.bin",
+      "sha256": "d84c3649a8a60bf8164c6d4e9612a4b3f26b53ea408c6e02553496d309170c0b"
+    },
+    {
+      "start": 228569,
+      "end": 233174,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample09_037cd9.asm",
+      "path": "generated/data/037cd9.bin",
+      "sha256": "508c364be95ee436f702f94e0b2363ed47406f80134cafa95d7dd90b9949612f"
+    },
+    {
+      "start": 233174,
+      "end": 236910,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample10_038ed6.asm",
+      "path": "generated/data/038ed6.bin",
+      "sha256": "47acfe6898d8fa3d669a90becd0c31d83dab050e6d63bc9f24c6374017f3b472"
+    },
+    {
+      "start": 236910,
+      "end": 242352,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample11_039d6e.asm",
+      "path": "generated/data/039d6e.bin",
+      "sha256": "e23ec0262d9d1b05fe955ad38db86fd410d0c9adb6b68b9321b9347cc84a8b30"
+    },
+    {
+      "start": 242352,
+      "end": 264141,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample12_03b2b0.asm",
+      "path": "generated/data/03b2b0.bin",
+      "sha256": "df53e3b5fa66ef94d029bb7657f934756db736cc6252f282c59ea2bfd89b48e4"
+    },
+    {
+      "start": 264141,
+      "end": 283647,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample13_0407cd.asm",
+      "path": "generated/data/0407cd.bin",
+      "sha256": "c6fb76ea5adfae03c0e34f807919a2965a5c0bfd21f0f35c0e05e92378a9d4be"
+    },
+    {
+      "start": 283647,
+      "end": 289227,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample14_0453ff.asm",
+      "path": "generated/data/0453ff.bin",
+      "sha256": "31128c4fb5e02e8686de93cdf55d8658adb550d7016b0e54709c3311c9ed33cd"
+    },
+    {
+      "start": 289227,
+      "end": 292971,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample15_0469cb.asm",
+      "path": "generated/data/0469cb.bin",
+      "sha256": "b9986a4817f17476e41b7bc9abbcd8af4d8ea814b995aa12e00f07fc49fc9c2b"
+    },
+    {
+      "start": 292971,
+      "end": 296686,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample16_04786b.asm",
+      "path": "generated/data/04786b.bin",
+      "sha256": "6314bc567ee4aa3f06399d38b8676e290e1351587c136e7b08289b070b49f7e6"
+    },
+    {
+      "start": 296686,
+      "end": 300338,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample17_0486ee.asm",
+      "path": "generated/data/0486ee.bin",
+      "sha256": "419aff4874648ed7a790ff8841b8139205a7eac4749dcd8c2ff14a6a57a7d91f"
+    },
+    {
+      "start": 300338,
+      "end": 304032,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample18_049532.asm",
+      "path": "generated/data/049532.bin",
+      "sha256": "07b1330e7bdba0d01a4fcbc30c5e7dc69ed10e3ca9be330bdd39231cd627426a"
+    },
+    {
+      "start": 304032,
+      "end": 307684,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample19_04a3a0.asm",
+      "path": "generated/data/04a3a0.bin",
+      "sha256": "9e6245b8da16a49bf3dd0455d710a6d7eac1cf3540f4850aebef89ed37b53018"
+    },
+    {
+      "start": 307684,
+      "end": 311451,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample20_04b1e4.asm",
+      "path": "generated/data/04b1e4.bin",
+      "sha256": "1039e91397ce1a78f98f56d0e687844d06f82267814a0d6dfa66bfcbe917ac91"
+    },
+    {
+      "start": 311451,
+      "end": 315092,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample21_04c09b.asm",
+      "path": "generated/data/04c09b.bin",
+      "sha256": "a6c2d8e18ab8e85f1b6c4ce0e0dad89646a5961c66813b95d3d1dc4861b62711"
+    },
+    {
+      "start": 315092,
+      "end": 318754,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample22_04ced4.asm",
+      "path": "generated/data/04ced4.bin",
+      "sha256": "8083a34dd00193c98b0ecbc70e6ff33b9bae1cbcde8c8d6868537f8a558c1376"
+    },
+    {
+      "start": 318754,
+      "end": 322416,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample23_04dd22.asm",
+      "path": "generated/data/04dd22.bin",
+      "sha256": "20066fc23f367df53dd8328c6c6d1a49d69a33fe8a0e92c878ca9bc6da8cd3ca"
+    },
+    {
+      "start": 322416,
+      "end": 326078,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample24_04eb70.asm",
+      "path": "generated/data/04eb70.bin",
+      "sha256": "f0c35f2794988f3b0fc2088f0add8294d1e0a585906551e7915eb3be059689cd"
+    },
+    {
+      "start": 326078,
+      "end": 328999,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample25_04f9be.asm",
+      "path": "generated/data/04f9be.bin",
+      "sha256": "263b3d9fbb84235db184e8cf07140097396728f97147c9d294ba153e97d80c46"
+    },
+    {
+      "start": 328999,
+      "end": 332666,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample26_050527.asm",
+      "path": "generated/data/050527.bin",
+      "sha256": "a6a76cc0bee19cbde4575670ab5bb02fff5ef77ab240a36bd41188420ed373cd"
+    },
+    {
+      "start": 332666,
+      "end": 336288,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample27_05137a.asm",
+      "path": "generated/data/05137a.bin",
+      "sha256": "b7c46119a0606755b2f1f4615b0590fc8a6fb65fd22b3f575d41949a34e6ca90"
+    },
+    {
+      "start": 336288,
+      "end": 339950,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample28_0521a0.asm",
+      "path": "generated/data/0521a0.bin",
+      "sha256": "da8eb318e840c90b4493628bd955210e4dc083415ffef1f7350353d49f80e5d1"
+    },
+    {
+      "start": 339950,
+      "end": 343696,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample29_052fee.asm",
+      "path": "generated/data/052fee.bin",
+      "sha256": "3e187879c6fb3d862a65afddf4469485d33209fcc0f02349b6fcec7e347e1d8a"
+    },
+    {
+      "start": 343696,
+      "end": 347348,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample30_053e90.asm",
+      "path": "generated/data/053e90.bin",
+      "sha256": "ba95c53338417bf9fd2c0d19911f49f8e761ab80f68930bfa9e3ea7a672f9729"
+    },
+    {
+      "start": 347348,
+      "end": 348563,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample31_054cd4.asm",
+      "path": "generated/data/054cd4.bin",
+      "sha256": "17d528c9eae76a088b1b8a1559ab2d7c9115bc4ed9e5daeefc58b74e7c846279"
+    },
+    {
+      "start": 348563,
+      "end": 352255,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample32_055193.asm",
+      "path": "generated/data/055193.bin",
+      "sha256": "03d0e3e1533379a1c8b7eba2b37e436313addf4294d4f74be4124bd4d2d207c6"
+    },
+    {
+      "start": 352255,
+      "end": 355860,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample33_055fff.asm",
+      "path": "generated/data/055fff.bin",
+      "sha256": "9197278be57ea309dee2ccdf94b5f6a19d37140ee19ee2b83057873d8d1a9778"
+    },
+    {
+      "start": 355860,
+      "end": 359518,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample34_056e14.asm",
+      "path": "generated/data/056e14.bin",
+      "sha256": "44498dd3fb0ba2dfb0aa1682d93d04f440d67b07a66cb7d8602b7f6037e279fd"
+    },
+    {
+      "start": 359518,
+      "end": 364971,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample35_057c5e.asm",
+      "path": "generated/data/057c5e.bin",
+      "sha256": "a03e4a90f2258e1c717b0ed477f3a2cbab8b4f5b28224a2ee04506aca1baf7f8"
+    },
+    {
+      "start": 364971,
+      "end": 367902,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample36_0591ab.asm",
+      "path": "generated/data/0591ab.bin",
+      "sha256": "a7f9ee0731b65700fe7420dccfb75349c5b4eacc8ee392cd5e7cdd6606685f84"
+    },
+    {
+      "start": 367902,
+      "end": 371564,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample37_059d1e.asm",
+      "path": "generated/data/059d1e.bin",
+      "sha256": "0e77e31fb5219add13a1e1ec8c006c26cd946607466662aa37b5f27a4850dc3d"
+    },
+    {
+      "start": 371564,
+      "end": 375258,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample38_05ab6c.asm",
+      "path": "generated/data/05ab6c.bin",
+      "sha256": "5bc8f28b04f3e13599a1916e96d4a22c52faf552202fc401764c26b65f387940"
+    },
+    {
+      "start": 375258,
+      "end": 378941,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample39_05b9da.asm",
+      "path": "generated/data/05b9da.bin",
+      "sha256": "bd862f76d17d0815a54655ebe32d1eabf868d7baf9e6e27c1f776b5e018f1cfe"
+    },
+    {
+      "start": 378941,
+      "end": 382614,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample40_05c83d.asm",
+      "path": "generated/data/05c83d.bin",
+      "sha256": "b9fb8cddb1513fd9297325cbde02b55e52c1a6c38ee3ff64c496377cc0961508"
+    },
+    {
+      "start": 382614,
+      "end": 386096,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample41_05d696.asm",
+      "path": "generated/data/05d696.bin",
+      "sha256": "422dc58a833c4e1fbdf451fff249384cc44644e82146a2c3381249fff25cd6de"
+    },
+    {
+      "start": 386096,
+      "end": 388784,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample42_05e430.asm",
+      "path": "generated/data/05e430.bin",
+      "sha256": "341a9636e027c846a33bf4090a15744b729da5d9e1c164734c9460576cdb7012"
+    },
+    {
+      "start": 388784,
+      "end": 390616,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample43_05eeb0.asm",
+      "path": "generated/data/05eeb0.bin",
+      "sha256": "a40fedc97c093dc2ab5bc3532edff99f08de61446fbe8620739bc9580f6742a6"
+    },
+    {
+      "start": 390616,
+      "end": 394262,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample44_05f5d8.asm",
+      "path": "generated/data/05f5d8.bin",
+      "sha256": "8ee11a47772647474c446573b50186dc519f623e7c696bdf4713871d8fd437dc"
+    },
+    {
+      "start": 394262,
+      "end": 397903,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample45_060416.asm",
+      "path": "generated/data/060416.bin",
+      "sha256": "4fda3ab34adfb4f84b3b1da320b80a71b799b958eabba00e7994fd1bc8fd2e20"
+    },
+    {
+      "start": 397903,
+      "end": 400050,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample46_06124f.asm",
+      "path": "generated/data/06124f.bin",
+      "sha256": "84011fe4bc3bd0746e9bd692fc2f03513844cfe74a8cdfb553f9bae01c0ceeb7"
+    },
+    {
+      "start": 400050,
+      "end": 403585,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample47_061ab2.asm",
+      "path": "generated/data/061ab2.bin",
+      "sha256": "c277fe49848e761ec56c82ebd1bd0700b83a7af1a23aeb21848b1b815ffc35b3"
+    },
+    {
+      "start": 403585,
+      "end": 407999,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample48_062881.asm",
+      "path": "generated/data/062881.bin",
+      "sha256": "6694d8d10fe33855e46aabd8735c6cb81c1c242d29c13f616a65396f2a41d813"
+    },
+    {
+      "start": 407999,
+      "end": 411672,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample49_0639bf.asm",
+      "path": "generated/data/0639bf.bin",
+      "sha256": "f053de8943368a52bed99b4a4e50ba9f00057ec170135960096183aed28e0620"
+    },
+    {
+      "start": 411672,
+      "end": 415324,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample50_064818.asm",
+      "path": "generated/data/064818.bin",
+      "sha256": "50f3733641ef72a4750a8d58ca5f11fec28f7874319c414f20b8cc477b1688e7"
+    },
+    {
+      "start": 415324,
+      "end": 418976,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample51_06565c.asm",
+      "path": "generated/data/06565c.bin",
+      "sha256": "a64a41054196c6c0361807a4bb6061c72cf56d40767bed5e213c663001b124aa"
+    },
+    {
+      "start": 418976,
+      "end": 439642,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample52_0664a0.asm",
+      "path": "generated/data/0664a0.bin",
+      "sha256": "7baad382b3fb65d0af4295b589acd25363157f44bbf6a41caea639f46ca45955"
+    },
+    {
+      "start": 439642,
+      "end": 443294,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample53_06b55a.asm",
+      "path": "generated/data/06b55a.bin",
+      "sha256": "616bcfcb7dbf7301ae3fb64525b70fea6a12c988488eceeb9425400fbd17a8be"
+    },
+    {
+      "start": 443294,
+      "end": 447475,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample54_06c39e.asm",
+      "path": "generated/data/06c39e.bin",
+      "sha256": "36d0f4fa9295323560d972f621b16e7ef25c3d14490a5c4c379f791e3f55a165"
+    },
+    {
+      "start": 447475,
+      "end": 454856,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample55_06d3f3.asm",
+      "path": "generated/data/06d3f3.bin",
+      "sha256": "f0766e2f90a74a75aec9c1cd92d499e45b4d347514a1564b77d14c36e656aa08"
+    },
+    {
+      "start": 454856,
+      "end": 458508,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample56_06f0c8.asm",
+      "path": "generated/data/06f0c8.bin",
+      "sha256": "d7c15bce1d31c053a6c7c9c3b31138b920b5b82f87e9833014616639a58cc9d6"
+    },
+    {
+      "start": 458508,
+      "end": 462181,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample57_06ff0c.asm",
+      "path": "generated/data/06ff0c.bin",
+      "sha256": "67b534eee6bc5425b4674fe511c6f240228c468f60769ea4c824e7f069a495cd"
+    },
+    {
+      "start": 462181,
+      "end": 465833,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample58_070d65.asm",
+      "path": "generated/data/070d65.bin",
+      "sha256": "4f0f6c05e1c99a213c1f3e5bed7a7bb620d772e4fe6306ce640ff38c42bad979"
+    },
+    {
+      "start": 465833,
+      "end": 473129,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample59_071ba9.asm",
+      "path": "generated/data/071ba9.bin",
+      "sha256": "ec13c3f1af5bebd81bba350c58d4064b0e92003c51cb57668289c8b4dadc8259"
+    },
+    {
+      "start": 473129,
+      "end": 478052,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample60_073829.asm",
+      "path": "generated/data/073829.bin",
+      "sha256": "ced62fc36e7ad8c626bf3ec66153075caa23b8964994b54a5e542aa0ba5010cb"
+    },
+    {
+      "start": 478052,
+      "end": 483414,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample61_074b64.asm",
+      "path": "generated/data/074b64.bin",
+      "sha256": "dd7a5b5bc99cabfa7f274725fefc5363511a36a357bdffaa2e7a6a75ba157872"
+    },
+    {
+      "start": 483414,
+      "end": 488357,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample62_076056.asm",
+      "path": "generated/data/076056.bin",
+      "sha256": "fa054b4f85cd1239161f956df516335ebd1f6b2ddd101bd42fc6308a5f6c2284"
+    },
+    {
+      "start": 488357,
+      "end": 492644,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample63_0773a5.asm",
+      "path": "generated/data/0773a5.bin",
+      "sha256": "fa97a164b3fa2b144f78214d5b1d030226806bf71dc4c6111aae6a0c842a4f42"
+    },
+    {
+      "start": 492644,
+      "end": 501529,
+      "kind": "pcm-u8",
+      "source": "src/sound/gemspcmsample64_078464.asm",
+      "path": "generated/data/078464.bin",
+      "sha256": "2dbd1fa18e087c875adbd167785f29a4896d6d4c5e303351f07322c4c9236221"
+    },
+    {
+      "start": 501529,
+      "end": 501532,
+      "kind": "bytes",
+      "source": "src/sound/gemssamplebankalignment_07a719.asm",
+      "path": "generated/data/07a719.bin",
+      "sha256": "709e80c88487a2411e1ee4dfb9f22a861492d20c4765150c0c794abd70f8147c"
+    },
+    {
+      "start": 502424,
+      "end": 502823,
+      "kind": "bytes",
+      "source": "src/sound/soundeventrecords_07aa98.asm",
+      "path": "generated/data/07aa98.bin",
+      "sha256": "c249b5cedd923aac952ee82aad15aa450059c09fdb2ca13d0ebcc0035bd96728"
+    },
+    {
+      "start": 502823,
+      "end": 502824,
+      "kind": "bytes",
+      "source": "src/sound/soundeventalignment_07ac27.asm",
+      "path": "generated/data/07ac27.bin",
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "start": 502996,
+      "end": 503012,
+      "kind": "bytes",
+      "source": "src/sound/soundchannelconfiguration_07acd4.asm",
+      "path": "generated/data/07acd4.bin",
+      "sha256": "d35691d3f48b73430f9ded591a3df5f45dd105f4e506d0302c7066da336951c8"
+    },
+    {
+      "start": 503516,
+      "end": 503536,
+      "kind": "pointers",
+      "source": "src/ui/charactermenuportraitpointers_07aedc.asm",
+      "path": "generated/data/07aedc.bin",
+      "sha256": "e4d0b18b0019697c41ab384ff8b57f8643ec0e3bc8fc7f8c9f160d86c012b60c"
+    },
+    {
+      "start": 503536,
+      "end": 503556,
+      "kind": "pointers",
+      "source": "src/ui/charactermenuportraitpalettepointers_07aef0.asm",
+      "path": "generated/data/07aef0.bin",
+      "sha256": "eeac0eed127ed4beb57f075e400cf21c50e0790bed9a2d9557325d6211e70beb"
+    },
+    {
+      "start": 503556,
+      "end": 503566,
+      "kind": "words",
+      "source": "src/ui/charactermenuportraittilebases_07af04.asm",
+      "path": "generated/data/07af04.bin",
+      "sha256": "28fb182f465381185065f42b3e2377890c2d06e99e935352d8be2810e413a5af"
+    },
+    {
+      "start": 505280,
+      "end": 505316,
+      "kind": "text",
+      "source": "src/text/charactermenublanktext_07b5c0.asm",
+      "path": "generated/data/07b5c0.bin",
+      "sha256": "50073dba7f0321c14bc72514cf26991127df5ebd7f69e99cd21feb9f1174c8c5"
+    },
+    {
+      "start": 505316,
+      "end": 506948,
+      "kind": "text",
+      "source": "src/text/characterbiographystrings_07b5e4.asm",
+      "path": "generated/data/07b5e4.bin",
+      "sha256": "7c75615574db0e3928541cafd894d71d50704704785b0eaf3185b9ad8a2605ea"
+    },
+    {
+      "start": 506948,
+      "end": 507312,
+      "kind": "words",
+      "source": "src/text/charactermenuglyphpairs_07bc44.asm",
+      "path": "generated/data/07bc44.bin",
+      "sha256": "b18622c717ba13d0c134d539bef131f135460672b5f5ab2c23a07499903a38cf"
+    },
+    {
+      "start": 507312,
+      "end": 507344,
+      "kind": "words",
+      "source": "src/palettes/charactermenutextpalette_07bdb0.asm",
+      "path": "generated/data/07bdb0.bin",
+      "sha256": "4734fb0c8d539db458b0a8cd172fbed43b7c991021e57dc8930b5c2641e12c9b"
+    },
+    {
+      "start": 507344,
+      "end": 507376,
+      "kind": "words",
+      "source": "src/palettes/charactermenuportraitpalette_07bdd0.asm",
+      "path": "generated/data/07bdd0.bin",
+      "sha256": "236312ca6b0adce7f8a3b5cdb33634efd33118141622ed8342d7e71d113e2ffe"
+    },
+    {
+      "start": 507376,
+      "end": 508240,
+      "kind": "binary",
+      "source": "src/graphics/charactermenuframetiles_07bdf0.asm",
+      "path": "generated/data/07bdf0.bin",
+      "sha256": "def641d21f96c8153251041dc8c29d06fbef4f28901047f44b3d4783ae00d0f0"
+    },
+    {
+      "start": 508240,
+      "end": 508320,
+      "kind": "words",
+      "source": "src/ui/charactermenuframerow_07c150.asm",
+      "path": "generated/data/07c150.bin",
+      "sha256": "e11d136b07e7f6b18da5c3c2fcf77b14c982f78a4f1828726c343dffb3dc1f7d"
+    },
+    {
+      "start": 508320,
+      "end": 510240,
+      "kind": "words",
+      "source": "src/ui/charactermenuframetilemap_07c1a0.asm",
+      "path": "generated/data/07c1a0.bin",
+      "sha256": "6efa03590f38de1de4cdb511eed54d185249916a97c71da9fffbd6211262d5bf"
+    },
+    {
+      "start": 510240,
+      "end": 510272,
+      "kind": "words",
+      "source": "src/palettes/charactermenubackgroundpalette_07c920.asm",
+      "path": "generated/data/07c920.bin",
+      "sha256": "6e7baeb4e4d74a51efbae6eea06b5600cd6b543caa4c6c13b35ebb9870da058a"
+    },
+    {
+      "start": 510272,
+      "end": 510368,
+      "kind": "words",
+      "source": "src/palettes/charactermenucolorramps_07c940.asm",
+      "path": "generated/data/07c940.bin",
+      "sha256": "b0a72c2327f99de0364fe016ce4bcaaa581e61205190e9fd69d2503320479524"
+    },
+    {
+      "start": 510368,
+      "end": 519008,
+      "kind": "binary",
+      "source": "src/graphics/charactermenubackgroundtiles_07c9a0.asm",
+      "path": "generated/data/07c9a0.bin",
+      "sha256": "afe3fb39d8170b91f19c6a678fc43b7a3adbc15472483a1f4a133c2030457cc5"
+    },
+    {
+      "start": 519008,
+      "end": 521248,
+      "kind": "words",
+      "source": "src/ui/charactermenubackgroundtilemap_07eb60.asm",
+      "path": "generated/data/07eb60.bin",
+      "sha256": "7f9baa13323e45c099a4687c61414abca58f5d5c589a8bbcb8714c23fed48369"
+    },
+    {
+      "start": 521248,
+      "end": 521280,
+      "kind": "words",
+      "source": "src/palettes/charactermenuaccentpalette_07f420.asm",
+      "path": "generated/data/07f420.bin",
+      "sha256": "47257f88ae18d35673c300303af60e4b9d6829412d0a936ec1ee0e1961f07bdf"
+    },
+    {
+      "start": 521280,
+      "end": 521376,
+      "kind": "words",
+      "source": "src/palettes/charactermenuaccentramp_07f440.asm",
+      "path": "generated/data/07f440.bin",
+      "sha256": "f859f92a4908279864f98dba951b1f39a209e6f8bf831bd65e03f55ecdece85d"
+    },
+    {
+      "start": 521376,
+      "end": 521440,
+      "kind": "binary",
+      "source": "src/graphics/retainedmenutilepixels_07f4a0.asm",
+      "path": "generated/data/07f4a0.bin",
+      "sha256": "aa6c45d022c407001de21b69586600450028f3f9316212d0f65005a2644fa99d"
+    },
+    {
+      "start": 523830,
+      "end": 523854,
+      "kind": "pointers",
+      "source": "src/ui/retainedbriefinghandlers_07fe36.asm",
+      "path": "generated/data/07fe36.bin",
+      "sha256": "c98a383074a60321f5969e98613e218d88733094777e86ea8e9757b0ed77c1e8"
+    },
+    {
+      "start": 523854,
+      "end": 524373,
+      "kind": "text",
+      "source": "src/text/briefingdayonetext_07fe4e.asm",
+      "path": "generated/data/07fe4e.bin",
+      "sha256": "20fe7165523a61ac3623e0682929a76000136bf59cf895fe53dfa2aafca41db2"
+    },
+    {
+      "start": 524373,
+      "end": 524818,
+      "kind": "text",
+      "source": "src/text/briefingstationorderstext_080055.asm",
+      "path": "generated/data/080055.bin",
+      "sha256": "4c1a6dc5f973cfe425c94cfddac7261fe0f30d18822712b8b25559cddb4371a4"
+    },
+    {
+      "start": 524818,
+      "end": 525041,
+      "kind": "text",
+      "source": "src/text/briefingstationfailuretext_080212.asm",
+      "path": "generated/data/080212.bin",
+      "sha256": "276c29844836d2dd026c1d33f5e76ed06ed0e8271bd608b7ed29d6a187336ec7"
+    },
+    {
+      "start": 525041,
+      "end": 525449,
+      "kind": "text",
+      "source": "src/text/briefingstationcompletetext_0802f1.asm",
+      "path": "generated/data/0802f1.bin",
+      "sha256": "9635e1c32a979dfca69c23b0ace49d0d10d18dfa72bf7b1ff1b578287f71a9dd"
+    },
+    {
+      "start": 525449,
+      "end": 525746,
+      "kind": "text",
+      "source": "src/text/briefingheadquartersorderstext_080489.asm",
+      "path": "generated/data/080489.bin",
+      "sha256": "8067e9ef0f283fc311dd2988ff43ea110168b59926e4f2167da14a90f7630526"
+    },
+    {
+      "start": 525746,
+      "end": 525969,
+      "kind": "text",
+      "source": "src/text/briefingheadquartersfailuretext_0805b2.asm",
+      "path": "generated/data/0805b2.bin",
+      "sha256": "3fde2392e365668c500584ddc90b66853f0b99963ec3ef6805c8738c0cf318a6"
+    },
+    {
+      "start": 525969,
+      "end": 526229,
+      "kind": "text",
+      "source": "src/text/briefingbasementorderstext_080691.asm",
+      "path": "generated/data/080691.bin",
+      "sha256": "fa025d7dee7c1e041ff3d0f96df1d0699d3b3542d3607c466e3c1727473c78d7"
+    },
+    {
+      "start": 526229,
+      "end": 530559,
+      "kind": "text",
+      "source": "src/text/briefingendingandcreditstext_080795.asm",
+      "path": "generated/data/080795.bin",
+      "sha256": "09219be95b770f99d559820f403d4220fe2c08de71156b65d75e9e7271ee6ca4"
+    },
+    {
+      "start": 530559,
+      "end": 531152,
+      "kind": "text",
+      "source": "src/text/briefingblankscrolltail_08187f.asm",
+      "path": "generated/data/08187f.bin",
+      "sha256": "490f7c795eefd4b391bd763f2e74ff517212ecb3c4f604e1c4279bfe918c79c7"
+    },
+    {
+      "start": 531152,
+      "end": 531516,
+      "kind": "words",
+      "source": "src/text/briefingglyphpairs_081ad0.asm",
+      "path": "generated/data/081ad0.bin",
+      "sha256": "b18622c717ba13d0c134d539bef131f135460672b5f5ab2c23a07499903a38cf"
+    },
+    {
+      "start": 531516,
+      "end": 531548,
+      "kind": "words",
+      "source": "src/palettes/briefingtextpalette_081c3c.asm",
+      "path": "generated/data/081c3c.bin",
+      "sha256": "6fc9aeb5a873d47fd3c0d41f1de2ae5edaf7d596d7c2113d31bf54c9b15adc5d"
+    },
+    {
+      "start": 533008,
+      "end": 533100,
+      "kind": "text",
+      "source": "src/text/optionsstrings_082210.asm",
+      "path": "generated/data/082210.bin",
+      "sha256": "eff39901d92f36acf67fbb2e06dd6a020d3c2d7e40f1ac0a9d1b444e7b7f6264"
+    },
+    {
+      "start": 533100,
+      "end": 533116,
+      "kind": "text",
+      "source": "src/text/hexadecimaldigits_08226c.asm",
+      "path": "generated/data/08226c.bin",
+      "sha256": "2125b2c332b1113aae9bfc5e9f7e3b4c91d828cb942c2df1eeb02502eccae9e9"
+    },
+    {
+      "start": 533116,
+      "end": 538236,
+      "kind": "words",
+      "source": "src/ui/retainedoptionstilemapwords_08227c.asm",
+      "path": "generated/data/08227c.bin",
+      "sha256": "7a1ebb83342825c446554fc8da8762e8283db5af528df6ada3366246a2c4d3a8"
+    },
+    {
+      "start": 538236,
+      "end": 538300,
+      "kind": "binary",
+      "source": "src/graphics/optionswindowtilepatterns_08367c.asm",
+      "path": "generated/data/08367c.bin",
+      "sha256": "1778dd61e038fc67579469a5e39c7a6cf1e447d95f553aa7ec2b823db127d7da"
+    },
+    {
+      "start": 538300,
+      "end": 538332,
+      "kind": "bytes",
+      "source": "src/graphics/optionsblanktile_0836bc.asm",
+      "path": "generated/data/0836bc.bin",
+      "sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925"
+    },
+    {
+      "start": 538332,
+      "end": 538460,
+      "kind": "words",
+      "source": "src/palettes/optionspalettes_0836dc.asm",
+      "path": "generated/data/0836dc.bin",
+      "sha256": "6c61d46b4e8bdbad5f687a87ae1924aadaa73adedb942e2cae0a6550c3d5a1e2"
+    },
+    {
+      "start": 539726,
+      "end": 539824,
+      "kind": "text",
+      "source": "src/text/registerdumpstrings_083c4e.asm",
+      "path": "generated/data/083c4e.bin",
+      "sha256": "3c61cde99c93e3835d3b37e64ab17d4d76b22919ed799a87d0019750c525f9d9"
+    },
+    {
+      "start": 539824,
+      "end": 539960,
+      "kind": "episode-header",
+      "source": "src/levels/episode1header_083cb0.asm",
+      "path": "generated/data/083cb0.bin",
+      "sha256": "0a90bd4291b6ed4dfd35ac4b8bca24f635dacab2aaf2ffdf01f6a282736d4729"
+    },
+    {
+      "start": 539960,
+      "end": 539964,
+      "kind": "bytes",
+      "source": "src/levels/episode1signature_083d38.asm",
+      "path": "generated/data/083d38.bin",
+      "sha256": "a998e71eca33db286dc8c1a35c0107fbfb4875009d7479e54397119a58fea9ac"
+    },
+    {
+      "start": 539964,
+      "end": 544060,
+      "kind": "wall-textures",
+      "source": "src/levels/episode1texturedefinitions_083d3c.asm",
+      "path": "generated/data/083d3c.bin",
+      "sha256": "33170ce8d75f0dbd89a0e25fac780dd90288cc830b681dc1110e125f61a55f24"
+    },
+    {
+      "start": 544060,
+      "end": 546108,
+      "kind": "cell-textures",
+      "source": "src/levels/episode1textureorder_084d3c.asm",
+      "path": "generated/data/084d3c.bin",
+      "sha256": "06d7303c3b6a62998a3da8bec55c53f3e5c02ab4bda108511d93d0e36d78b1bf"
+    },
+    {
+      "start": 546108,
+      "end": 546364,
+      "kind": "bytes",
+      "source": "src/levels/episode1celltypes_08553c.asm",
+      "path": "generated/data/08553c.bin",
+      "sha256": "79a187346231b9d34018d414f29b7f581d2a04761ec3a143127df8ad28e0a479"
+    },
+    {
+      "start": 546364,
+      "end": 546380,
+      "kind": "bytes",
+      "source": "src/levels/episode1environment_08563c.asm",
+      "path": "generated/data/08563c.bin",
+      "sha256": "4cbbd8ca5215b8d161aec181a74b694f4e24b001d5b081dc0030ed797a8973e0"
+    },
+    {
+      "start": 546380,
+      "end": 546422,
+      "kind": "texture-animation",
+      "source": "src/levels/episode1textureanimation00_08564c.asm",
+      "path": "generated/data/08564c.bin",
+      "sha256": "e00152b2dcf845c6a9376a409e7069c0373a554a298a5530fe2a9293557ebe1f"
+    },
+    {
+      "start": 546422,
+      "end": 546476,
+      "kind": "texture-animation",
+      "source": "src/levels/episode1textureanimation01_085676.asm",
+      "path": "generated/data/085676.bin",
+      "sha256": "2af13f2841fa15a3bedefe863b16d4a8c707903087cc5716a24ab3b3ade693b8"
+    },
+    {
+      "start": 546476,
+      "end": 546542,
+      "kind": "texture-animation",
+      "source": "src/levels/episode1textureanimation02_0856ac.asm",
+      "path": "generated/data/0856ac.bin",
+      "sha256": "69e16a6378140e453790b69103b75652b2773aa73f806b3146cab2066c1fe3f1"
+    },
+    {
+      "start": 546542,
+      "end": 546544,
+      "kind": "words",
+      "source": "src/levels/episode1textureanimationend_0856ee.asm",
+      "path": "generated/data/0856ee.bin",
+      "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+    },
+    {
+      "start": 546544,
+      "end": 548350,
+      "kind": "map-grid:42",
+      "source": "src/levels/episode1floor00cells_0856f0.asm",
+      "path": "generated/data/0856f0.bin",
+      "sha256": "6047c7a1318cf91a127d72ef9e7ff2f7bd3a4e3cc8c442bf87b28cd959d9c5fc"
+    },
+    {
+      "start": 548350,
+      "end": 550042,
+      "kind": "map-grid:36",
+      "source": "src/levels/episode1floor01cells_085dfe.asm",
+      "path": "generated/data/085dfe.bin",
+      "sha256": "953262182f1beb81e2b66972c07960b3c05d836f916fc98afb65fc9449811c54"
+    },
+    {
+      "start": 550042,
+      "end": 551744,
+      "kind": "map-grid:46",
+      "source": "src/levels/episode1floor02cells_08649a.asm",
+      "path": "generated/data/08649a.bin",
+      "sha256": "0b842a45f03e96c114431b1dd24ba8e2e4a726a97a2d3bfc5286467a635cb05b"
+    },
+    {
+      "start": 551744,
+      "end": 552764,
+      "kind": "map-grid:34",
+      "source": "src/levels/episode1floor03cells_086b40.asm",
+      "path": "generated/data/086b40.bin",
+      "sha256": "47408b8f20a265d332080ab3d522bf5b645bfed3f2abc7f6d892834b0500b602"
+    },
+    {
+      "start": 552764,
+      "end": 553604,
+      "kind": "map-grid:30",
+      "source": "src/levels/episode1floor04cells_086f3c.asm",
+      "path": "generated/data/086f3c.bin",
+      "sha256": "815e9cbb244f6cf471039d0b27bd36b03fa84c7eb11f2a4193d45ccfc765446f"
+    },
+    {
+      "start": 553604,
+      "end": 554564,
+      "kind": "map-grid:30",
+      "source": "src/levels/episode1floor05cells_087284.asm",
+      "path": "generated/data/087284.bin",
+      "sha256": "5ed869ace0f41674aa4826d553959ad80bf7cc81e1ed421a835e7ce6f5e642a9"
+    },
+    {
+      "start": 554564,
+      "end": 555544,
+      "kind": "map-grid:28",
+      "source": "src/levels/episode1floor06cells_087644.asm",
+      "path": "generated/data/087644.bin",
+      "sha256": "0ec6fc22a94696a7e4292bee93673106da4389f2d20c8e43c93b6f70c7b12d4a"
+    },
+    {
+      "start": 555544,
+      "end": 557336,
+      "kind": "map-grid:56",
+      "source": "src/levels/episode1floor07cells_087a18.asm",
+      "path": "generated/data/087a18.bin",
+      "sha256": "4e403b8bee4f669f26c7df012a713a8ed939b6cfbdef6b5ac2350753617bc1bf"
+    },
+    {
+      "start": 557336,
+      "end": 557912,
+      "kind": "floor-transitions",
+      "source": "src/levels/episode1floortransitions_088118.asm",
+      "path": "generated/data/088118.bin",
+      "sha256": "8972280190678116092853c4875b6875f736f57bca52cab1806cca69964a7e84"
+    },
+    {
+      "start": 557912,
+      "end": 557964,
+      "kind": "train-routes",
+      "source": "src/levels/episode1trainroutes_088358.asm",
+      "path": "generated/data/088358.bin",
+      "sha256": "2ace9a8597d26218258cee36a1136aca8d8c5adfb25bb8698670bf002221d0b2"
+    },
+    {
+      "start": 557964,
+      "end": 558086,
+      "kind": "actor-markers",
+      "source": "src/levels/episode1actormarkers_08838c.asm",
+      "path": "generated/data/08838c.bin",
+      "sha256": "1171666c3e0af069667251bbb8dbac52aeff187a6866daa07c597c813aa289e0"
+    },
+    {
+      "start": 558086,
+      "end": 558222,
+      "kind": "episode-header",
+      "source": "src/levels/episode2header_088406.asm",
+      "path": "generated/data/088406.bin",
+      "sha256": "3d44a7470f38a804660b5d2ce0f044e257ad5955fe9ae1cadd64203281734557"
+    },
+    {
+      "start": 558222,
+      "end": 558226,
+      "kind": "bytes",
+      "source": "src/levels/episode2signature_08848e.asm",
+      "path": "generated/data/08848e.bin",
+      "sha256": "a998e71eca33db286dc8c1a35c0107fbfb4875009d7479e54397119a58fea9ac"
+    },
+    {
+      "start": 558226,
+      "end": 562322,
+      "kind": "wall-textures",
+      "source": "src/levels/episode2texturedefinitions_088492.asm",
+      "path": "generated/data/088492.bin",
+      "sha256": "b191160e695470d48b28c8b1433b4aef20d2b4cc5bf79d8e043cebac0cf8cc2c"
+    },
+    {
+      "start": 562322,
+      "end": 564370,
+      "kind": "cell-textures",
+      "source": "src/levels/episode2textureorder_089492.asm",
+      "path": "generated/data/089492.bin",
+      "sha256": "337fbc344a7124d820cb3b18ab815837f67e3ad007bd6eb6d892a8a55b84f796"
+    },
+    {
+      "start": 564370,
+      "end": 564626,
+      "kind": "bytes",
+      "source": "src/levels/episode2celltypes_089c92.asm",
+      "path": "generated/data/089c92.bin",
+      "sha256": "a4d4ea3f1181ddbec75b126f753b1d19f2764133882369cba3287688a000a61b"
+    },
+    {
+      "start": 564626,
+      "end": 564642,
+      "kind": "bytes",
+      "source": "src/levels/episode2environment_089d92.asm",
+      "path": "generated/data/089d92.bin",
+      "sha256": "4cbbd8ca5215b8d161aec181a74b694f4e24b001d5b081dc0030ed797a8973e0"
+    },
+    {
+      "start": 564642,
+      "end": 564708,
+      "kind": "texture-animation",
+      "source": "src/levels/episode2textureanimation00_089da2.asm",
+      "path": "generated/data/089da2.bin",
+      "sha256": "56403cfa1e7679c3bf1e60109c5de224797b571a78e46a9158a7f201e1fe00df"
+    },
+    {
+      "start": 564708,
+      "end": 564710,
+      "kind": "words",
+      "source": "src/levels/episode2textureanimationend_089de4.asm",
+      "path": "generated/data/089de4.bin",
+      "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+    },
+    {
+      "start": 564710,
+      "end": 567678,
+      "kind": "map-grid:56",
+      "source": "src/levels/episode2floor00cells_089de6.asm",
+      "path": "generated/data/089de6.bin",
+      "sha256": "fcb5fd0f64863c480b73357cdeb287a9a04f9240179dfc0ae63de4f11fe9cff4"
+    },
+    {
+      "start": 567678,
+      "end": 569350,
+      "kind": "map-grid:38",
+      "source": "src/levels/episode2floor01cells_08a97e.asm",
+      "path": "generated/data/08a97e.bin",
+      "sha256": "0b01cfa8f78fbe448fdf60ab6c726d8f3654808b4c158c91d62b441804f3eded"
+    },
+    {
+      "start": 569350,
+      "end": 570950,
+      "kind": "map-grid:40",
+      "source": "src/levels/episode2floor02cells_08b006.asm",
+      "path": "generated/data/08b006.bin",
+      "sha256": "900c444f57b29a1782a5ee42f6a78e92920d06787270d04d58013011efb4d3bf"
+    },
+    {
+      "start": 570950,
+      "end": 572546,
+      "kind": "map-grid:38",
+      "source": "src/levels/episode2floor03cells_08b646.asm",
+      "path": "generated/data/08b646.bin",
+      "sha256": "84aefba80ad680fdba3049b9da58bee71749325b982e37075c92a1aaf1f72f40"
+    },
+    {
+      "start": 572546,
+      "end": 577186,
+      "kind": "map-grid:80",
+      "source": "src/levels/episode2floor04cells_08bc82.asm",
+      "path": "generated/data/08bc82.bin",
+      "sha256": "b8908f3762023a3e7d508b671b5f2163b4ff698de0188cd3b10dc5a6b5c86686"
+    },
+    {
+      "start": 577186,
+      "end": 577970,
+      "kind": "map-grid:28",
+      "source": "src/levels/episode2floor05cells_08cea2.asm",
+      "path": "generated/data/08cea2.bin",
+      "sha256": "0e8256f90a7645a2265f48d9abf198274201e198db1a475150081c2442f088f1"
+    },
+    {
+      "start": 577970,
+      "end": 578546,
+      "kind": "floor-transitions",
+      "source": "src/levels/episode2floortransitions_08d1b2.asm",
+      "path": "generated/data/08d1b2.bin",
+      "sha256": "b88fcbf4da87f26de6a20141311818cff5c9df6cc5ae3849cf4ce5609825d39d"
+    },
+    {
+      "start": 578546,
+      "end": 578598,
+      "kind": "train-routes",
+      "source": "src/levels/episode2trainroutes_08d3f2.asm",
+      "path": "generated/data/08d3f2.bin",
+      "sha256": "2ace9a8597d26218258cee36a1136aca8d8c5adfb25bb8698670bf002221d0b2"
+    },
+    {
+      "start": 578598,
+      "end": 578720,
+      "kind": "actor-markers",
+      "source": "src/levels/episode2actormarkers_08d426.asm",
+      "path": "generated/data/08d426.bin",
+      "sha256": "1171666c3e0af069667251bbb8dbac52aeff187a6866daa07c597c813aa289e0"
+    },
+    {
+      "start": 578720,
+      "end": 578856,
+      "kind": "episode-header",
+      "source": "src/levels/episode3header_08d4a0.asm",
+      "path": "generated/data/08d4a0.bin",
+      "sha256": "e7578e61192cb0677503592e1bb8f5914f041532711d5e10e8e2e951b3951eee"
+    },
+    {
+      "start": 578856,
+      "end": 578860,
+      "kind": "bytes",
+      "source": "src/levels/episode3signature_08d528.asm",
+      "path": "generated/data/08d528.bin",
+      "sha256": "a998e71eca33db286dc8c1a35c0107fbfb4875009d7479e54397119a58fea9ac"
+    },
+    {
+      "start": 578860,
+      "end": 582956,
+      "kind": "wall-textures",
+      "source": "src/levels/episode3texturedefinitions_08d52c.asm",
+      "path": "generated/data/08d52c.bin",
+      "sha256": "54609cc169490fc9e60dd628f1c166498e3b9b5fb0b243d75b6c8c54425e3fd5"
+    },
+    {
+      "start": 582956,
+      "end": 585004,
+      "kind": "cell-textures",
+      "source": "src/levels/episode3textureorder_08e52c.asm",
+      "path": "generated/data/08e52c.bin",
+      "sha256": "19d383d7f7f5cd827df8c2084f3844281dc50fa6c213c0fb41e7d004544e4311"
+    },
+    {
+      "start": 585004,
+      "end": 585260,
+      "kind": "bytes",
+      "source": "src/levels/episode3celltypes_08ed2c.asm",
+      "path": "generated/data/08ed2c.bin",
+      "sha256": "5e8b19e7d3b3848f2885a0559a1f6e7dfc8ec1d0c92550492aa494f25a307a75"
+    },
+    {
+      "start": 585260,
+      "end": 585276,
+      "kind": "bytes",
+      "source": "src/levels/episode3environment_08ee2c.asm",
+      "path": "generated/data/08ee2c.bin",
+      "sha256": "4cbbd8ca5215b8d161aec181a74b694f4e24b001d5b081dc0030ed797a8973e0"
+    },
+    {
+      "start": 585276,
+      "end": 585390,
+      "kind": "texture-animation",
+      "source": "src/levels/episode3textureanimation00_08ee3c.asm",
+      "path": "generated/data/08ee3c.bin",
+      "sha256": "75f14aeba0ec4f8c4808c8c9988926bc2db7c5a6b7e8bcff32cbff127843de7b"
+    },
+    {
+      "start": 585390,
+      "end": 585612,
+      "kind": "texture-animation",
+      "source": "src/levels/episode3textureanimation01_08eeae.asm",
+      "path": "generated/data/08eeae.bin",
+      "sha256": "6ce4f43194b4e407475ba2819d9eac2996d0e13d1b42feecc675e3a01d0cd3b3"
+    },
+    {
+      "start": 585612,
+      "end": 585810,
+      "kind": "texture-animation",
+      "source": "src/levels/episode3textureanimation02_08ef8c.asm",
+      "path": "generated/data/08ef8c.bin",
+      "sha256": "f8a9d50491612245b68abb1ca5c45c3b6cd67a5d086dbc96788ac86ed00afc91"
+    },
+    {
+      "start": 585810,
+      "end": 585812,
+      "kind": "words",
+      "source": "src/levels/episode3textureanimationend_08f052.asm",
+      "path": "generated/data/08f052.bin",
+      "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+    },
+    {
+      "start": 585812,
+      "end": 587156,
+      "kind": "map-grid:32",
+      "source": "src/levels/episode3floor00cells_08f054.asm",
+      "path": "generated/data/08f054.bin",
+      "sha256": "d6bef1e953341859479f986a01f053544b2a4a8622d6649220bf80eddca2b72d"
+    },
+    {
+      "start": 587156,
+      "end": 588308,
+      "kind": "map-grid:36",
+      "source": "src/levels/episode3floor01cells_08f594.asm",
+      "path": "generated/data/08f594.bin",
+      "sha256": "78e54375b322bd855f45bb8b101a7d8dd9f93a032bc33ceed47ba13bfc116e8b"
+    },
+    {
+      "start": 588308,
+      "end": 589642,
+      "kind": "map-grid:46",
+      "source": "src/levels/episode3floor02cells_08fa14.asm",
+      "path": "generated/data/08fa14.bin",
+      "sha256": "8c8ec25eb51afd3c758c89c6cc8797eb644714757df2a7fc44b89ce69d31a5eb"
+    },
+    {
+      "start": 589642,
+      "end": 590082,
+      "kind": "map-grid:22",
+      "source": "src/levels/episode3floor03cells_08ff4a.asm",
+      "path": "generated/data/08ff4a.bin",
+      "sha256": "6fea2f2a5271a1a5a7b4704d95c5dce92c127db79cf964a0ff91d17e03da96b3"
+    },
+    {
+      "start": 590082,
+      "end": 591202,
+      "kind": "map-grid:40",
+      "source": "src/levels/episode3floor04cells_090102.asm",
+      "path": "generated/data/090102.bin",
+      "sha256": "f50d696e2ac38decc45f7561c31b7d37e13d470f4d0b45864fa7bbd085740f66"
+    },
+    {
+      "start": 591202,
+      "end": 592008,
+      "kind": "map-grid:26",
+      "source": "src/levels/episode3floor05cells_090562.asm",
+      "path": "generated/data/090562.bin",
+      "sha256": "cfc04cedf285b5a9287fb690d0301ca9d73863b6e29e4cbbe95803533e8ece92"
+    },
+    {
+      "start": 592008,
+      "end": 594192,
+      "kind": "map-grid:52",
+      "source": "src/levels/episode3floor06cells_090888.asm",
+      "path": "generated/data/090888.bin",
+      "sha256": "d56b1775d566535212f45cbddcaf5e3c7377553592c5c63ac04ed18ddd7593ff"
+    },
+    {
+      "start": 594192,
+      "end": 594894,
+      "kind": "map-grid:26",
+      "source": "src/levels/episode3floor07cells_091110.asm",
+      "path": "generated/data/091110.bin",
+      "sha256": "a09c208751684049a5efe8b3ae3ba2750b0239d485c7c5b575131337f6fbafaa"
+    },
+    {
+      "start": 594894,
+      "end": 595914,
+      "kind": "map-grid:34",
+      "source": "src/levels/episode3floor08cells_0913ce.asm",
+      "path": "generated/data/0913ce.bin",
+      "sha256": "f9f363086c03240bc736467a986f0f512ea1884c13f427ae9c314dbe7aea6571"
+    },
+    {
+      "start": 595914,
+      "end": 596490,
+      "kind": "floor-transitions",
+      "source": "src/levels/episode3floortransitions_0917ca.asm",
+      "path": "generated/data/0917ca.bin",
+      "sha256": "32039f6f49fb5a3c42e17b7b32c513008c16b51a1ee3d2b6987df5436012d3e4"
+    },
+    {
+      "start": 596490,
+      "end": 596542,
+      "kind": "train-routes",
+      "source": "src/levels/episode3trainroutes_091a0a.asm",
+      "path": "generated/data/091a0a.bin",
+      "sha256": "2ace9a8597d26218258cee36a1136aca8d8c5adfb25bb8698670bf002221d0b2"
+    },
+    {
+      "start": 596542,
+      "end": 596664,
+      "kind": "actor-markers",
+      "source": "src/levels/episode3actormarkers_091a3e.asm",
+      "path": "generated/data/091a3e.bin",
+      "sha256": "1171666c3e0af069667251bbb8dbac52aeff187a6866daa07c597c813aa289e0"
+    },
+    {
+      "start": 596664,
+      "end": 596800,
+      "kind": "episode-header",
+      "source": "src/levels/episode4header_091ab8.asm",
+      "path": "generated/data/091ab8.bin",
+      "sha256": "5203269a5e6495917bc3d8e6bba15a877649df9d30dd344f26de887ec9cdba84"
+    },
+    {
+      "start": 596800,
+      "end": 596804,
+      "kind": "bytes",
+      "source": "src/levels/episode4signature_091b40.asm",
+      "path": "generated/data/091b40.bin",
+      "sha256": "a998e71eca33db286dc8c1a35c0107fbfb4875009d7479e54397119a58fea9ac"
+    },
+    {
+      "start": 596804,
+      "end": 600900,
+      "kind": "wall-textures",
+      "source": "src/levels/episode4texturedefinitions_091b44.asm",
+      "path": "generated/data/091b44.bin",
+      "sha256": "001b85b9a835d4f2c5d5e82702d88c38f9b5863a0764260f1e6263abd1b61fe2"
+    },
+    {
+      "start": 600900,
+      "end": 602948,
+      "kind": "cell-textures",
+      "source": "src/levels/episode4textureorder_092b44.asm",
+      "path": "generated/data/092b44.bin",
+      "sha256": "4f371f2fbf69846fc37cbfab62b5c9f3a72a137498d0f9384d73a3027e23e769"
+    },
+    {
+      "start": 602948,
+      "end": 603204,
+      "kind": "bytes",
+      "source": "src/levels/episode4celltypes_093344.asm",
+      "path": "generated/data/093344.bin",
+      "sha256": "d9080f207290b7dec5eb990e28ecb937adf3fc12c883caa2398604afc2e6ae56"
+    },
+    {
+      "start": 603204,
+      "end": 603220,
+      "kind": "bytes",
+      "source": "src/levels/episode4environment_093444.asm",
+      "path": "generated/data/093444.bin",
+      "sha256": "170e80f9008d44a54126c45e4ec720f71b6ddcef73a2006e2a78ff0e7f64d832"
+    },
+    {
+      "start": 603220,
+      "end": 603350,
+      "kind": "texture-animation",
+      "source": "src/levels/episode4textureanimation00_093454.asm",
+      "path": "generated/data/093454.bin",
+      "sha256": "43650bc00d4b5fc61b5a6ebddf53a9150a8dcd4344e2a0ddae99741838babd52"
+    },
+    {
+      "start": 603350,
+      "end": 603480,
+      "kind": "texture-animation",
+      "source": "src/levels/episode4textureanimation01_0934d6.asm",
+      "path": "generated/data/0934d6.bin",
+      "sha256": "8dfcab30f73a2e1832081323b395020c70470cd3cbac2bc53fcbc300e62599d5"
+    },
+    {
+      "start": 603480,
+      "end": 603610,
+      "kind": "texture-animation",
+      "source": "src/levels/episode4textureanimation02_093558.asm",
+      "path": "generated/data/093558.bin",
+      "sha256": "658d71118e238bcb45b6275f6fb082aca084660ba0bf5121b0b241bee8f2c0bf"
+    },
+    {
+      "start": 603610,
+      "end": 603740,
+      "kind": "texture-animation",
+      "source": "src/levels/episode4textureanimation03_0935da.asm",
+      "path": "generated/data/0935da.bin",
+      "sha256": "9ac6b65a687c66e5d09f5be7ba30be5eff5922a413dd92c74b938f2fb3a1f891"
+    },
+    {
+      "start": 603740,
+      "end": 603934,
+      "kind": "texture-animation",
+      "source": "src/levels/episode4textureanimation04_09365c.asm",
+      "path": "generated/data/09365c.bin",
+      "sha256": "c7a211a41954a08376ae5107e95cf90537f658146559bf981b0240bfe23c946d"
+    },
+    {
+      "start": 603934,
+      "end": 604060,
+      "kind": "texture-animation",
+      "source": "src/levels/episode4textureanimation05_09371e.asm",
+      "path": "generated/data/09371e.bin",
+      "sha256": "6a36b0b92229910e6aa8bf082c032f5dbdc8becd2829741a6b61df7d8444be28"
+    },
+    {
+      "start": 604060,
+      "end": 604174,
+      "kind": "texture-animation",
+      "source": "src/levels/episode4textureanimation06_09379c.asm",
+      "path": "generated/data/09379c.bin",
+      "sha256": "b6a490af2f70eccfaa2ffd02d39fabab28cfe5b0f5fc9bf70acf20ba77149963"
+    },
+    {
+      "start": 604174,
+      "end": 604304,
+      "kind": "texture-animation",
+      "source": "src/levels/episode4textureanimation07_09380e.asm",
+      "path": "generated/data/09380e.bin",
+      "sha256": "90cdf7f25b9218906ecef57090fa0a92c1766b4016a481ccd4f4a77fbc23d8be"
+    },
+    {
+      "start": 604304,
+      "end": 604434,
+      "kind": "texture-animation",
+      "source": "src/levels/episode4textureanimation08_093890.asm",
+      "path": "generated/data/093890.bin",
+      "sha256": "1d10a97aff2a08344a61cd0b4f2c45083ddd48b43bcff809e18c3a542067441e"
+    },
+    {
+      "start": 604434,
+      "end": 604616,
+      "kind": "texture-animation",
+      "source": "src/levels/episode4textureanimation09_093912.asm",
+      "path": "generated/data/093912.bin",
+      "sha256": "dd975d85308fad76899a4c7202c3609c08e842b641531d99b2879776da091d30"
+    },
+    {
+      "start": 604616,
+      "end": 604850,
+      "kind": "texture-animation",
+      "source": "src/levels/episode4textureanimation10_0939c8.asm",
+      "path": "generated/data/0939c8.bin",
+      "sha256": "6b2bcce2ca8b55b5d75238f9b17b17c67964d81cfcf2d4d4c168616187d0a4b7"
+    },
+    {
+      "start": 604850,
+      "end": 604852,
+      "kind": "words",
+      "source": "src/levels/episode4textureanimationend_093ab2.asm",
+      "path": "generated/data/093ab2.bin",
+      "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+    },
+    {
+      "start": 604852,
+      "end": 608448,
+      "kind": "map-grid:58",
+      "source": "src/levels/episode4floor00cells_093ab4.asm",
+      "path": "generated/data/093ab4.bin",
+      "sha256": "9c69c817a94f4dd128405c4887c415a9e0ff582e4fee6bfcefd9fe58e7fc9848"
+    },
+    {
+      "start": 608448,
+      "end": 609664,
+      "kind": "map-grid:38",
+      "source": "src/levels/episode4floor01cells_0948c0.asm",
+      "path": "generated/data/0948c0.bin",
+      "sha256": "bbcd31504703264c176ff4c511bd38c575de36dfbf10866f708a8f7bec2eb59a"
+    },
+    {
+      "start": 609664,
+      "end": 610582,
+      "kind": "map-grid:34",
+      "source": "src/levels/episode4floor02cells_094d80.asm",
+      "path": "generated/data/094d80.bin",
+      "sha256": "6234357a36225de1d9631e016559abd71d693e1b864fda0ec73a2b214afe5591"
+    },
+    {
+      "start": 610582,
+      "end": 611602,
+      "kind": "map-grid:30",
+      "source": "src/levels/episode4floor03cells_095116.asm",
+      "path": "generated/data/095116.bin",
+      "sha256": "6b85a7d9debf88ae37ca8145a7ca698f6c7ba995166ff6d5b8ba1f76239ba7ba"
+    },
+    {
+      "start": 611602,
+      "end": 612690,
+      "kind": "map-grid:34",
+      "source": "src/levels/episode4floor04cells_095512.asm",
+      "path": "generated/data/095512.bin",
+      "sha256": "2f18cfc626411d817803813a55b660d0a7a364f0a4123b52dfb9e79cc1b0fd10"
+    },
+    {
+      "start": 612690,
+      "end": 614022,
+      "kind": "map-grid:36",
+      "source": "src/levels/episode4floor05cells_095952.asm",
+      "path": "generated/data/095952.bin",
+      "sha256": "a05e6b2e9f02ac8e34081e74891725c982d5b6692dac43b75172f4a2bcf654d8"
+    },
+    {
+      "start": 614022,
+      "end": 615534,
+      "kind": "map-grid:42",
+      "source": "src/levels/episode4floor06cells_095e86.asm",
+      "path": "generated/data/095e86.bin",
+      "sha256": "bab314b22583c4600cd71ec06b160ba7b889c607ead6b0fe34227909fec7b136"
+    },
+    {
+      "start": 615534,
+      "end": 616598,
+      "kind": "map-grid:38",
+      "source": "src/levels/episode4floor07cells_09646e.asm",
+      "path": "generated/data/09646e.bin",
+      "sha256": "6c9e164e3ffb9942329e04e743239270609e5d2a0a62baa47383dec9cdd6c8db"
+    },
+    {
+      "start": 616598,
+      "end": 617258,
+      "kind": "map-grid:22",
+      "source": "src/levels/episode4floor08cells_096896.asm",
+      "path": "generated/data/096896.bin",
+      "sha256": "fa1996c490cc780fcaefab3ad405cbf665708bd78bbb43ce20ae0d00b7bc50af"
+    },
+    {
+      "start": 617258,
+      "end": 618154,
+      "kind": "map-grid:28",
+      "source": "src/levels/episode4floor09cells_096b2a.asm",
+      "path": "generated/data/096b2a.bin",
+      "sha256": "1a231e8f017f6525595a705aca3fa07773e5b811e5ccf0a4d0444e182e01760d"
+    },
+    {
+      "start": 618154,
+      "end": 618730,
+      "kind": "floor-transitions",
+      "source": "src/levels/episode4floortransitions_096eaa.asm",
+      "path": "generated/data/096eaa.bin",
+      "sha256": "1e64c90cdb8154ad847b21e334d6f367df2259c4a90dd35f8c63d34e952fc29c"
+    },
+    {
+      "start": 618730,
+      "end": 618782,
+      "kind": "train-routes",
+      "source": "src/levels/episode4trainroutes_0970ea.asm",
+      "path": "generated/data/0970ea.bin",
+      "sha256": "fd40912c252d1b7301fca8c8ceda8687356629b261043ecabd023db580cc6696"
+    },
+    {
+      "start": 618782,
+      "end": 618904,
+      "kind": "actor-markers",
+      "source": "src/levels/episode4actormarkers_09711e.asm",
+      "path": "generated/data/09711e.bin",
+      "sha256": "1171666c3e0af069667251bbb8dbac52aeff187a6866daa07c597c813aa289e0"
+    },
+    {
+      "start": 618904,
+      "end": 618920,
+      "kind": "pointers",
+      "source": "src/levels/episodemappointers_097198.asm",
+      "path": "generated/data/097198.bin",
+      "sha256": "dc5b6633aad21f18b426979c80df20694a4438c6668dcd5cc28255b21442c38d"
+    },
+    {
+      "start": 621120,
+      "end": 621344,
+      "kind": "pointers",
+      "source": "src/levels/zonegraphicsdescriptors_097a40.asm",
+      "path": "generated/data/097a40.bin",
+      "sha256": "76e8830a079d0bb11a2fc4dc8c0a79e7cb4fbc594c0f316f86dbc7212f102b28"
+    },
+    {
+      "start": 621344,
+      "end": 621472,
+      "kind": "bytes",
+      "source": "src/levels/zonedescriptortail_097b20.asm",
+      "path": "generated/data/097b20.bin",
+      "sha256": "6e4eab2b08bec18a99b9408e685453f0782938e4d5629285d7740ea9b30c1030"
+    },
+    {
+      "start": 621472,
+      "end": 621728,
+      "kind": "words",
+      "source": "src/palettes/episode1palettes_097ba0.asm",
+      "path": "generated/data/097ba0.bin",
+      "sha256": "1fc9fbb20002c6250d600076b58ac2567d71964de180e332b41cf386f572f02d"
+    },
+    {
+      "start": 621728,
+      "end": 621984,
+      "kind": "words",
+      "source": "src/palettes/episode2palettes_097ca0.asm",
+      "path": "generated/data/097ca0.bin",
+      "sha256": "f9b8e729c253d47307ce3a8ea61d40f56c89f61868e3e21172f4b8f11a7cf4f3"
+    },
+    {
+      "start": 621984,
+      "end": 622240,
+      "kind": "words",
+      "source": "src/palettes/episode3palettes_097da0.asm",
+      "path": "generated/data/097da0.bin",
+      "sha256": "85454198ae647c90642edb6b156fd3729bb2c556f0b059c48b0d4537b22c3daa"
+    },
+    {
+      "start": 622240,
+      "end": 622368,
+      "kind": "words",
+      "source": "src/palettes/episode4palettes_097ea0.asm",
+      "path": "generated/data/097ea0.bin",
+      "sha256": "888b90635d705f4ea9db6ce27b7f002c860c22d97201e4366648664781eb9376"
+    },
+    {
+      "start": 622368,
+      "end": 622552,
+      "kind": "bytes",
+      "source": "src/train/trainarrivaltextureframes_097f20.asm",
+      "path": "generated/data/097f20.bin",
+      "sha256": "a880bd1667a08a919b3e868f0c5d82cfb955bc679f4842a96fc38d1ae02f6c81"
+    },
+    {
+      "start": 622552,
+      "end": 622736,
+      "kind": "bytes",
+      "source": "src/train/traindeparturetextureframes_097fd8.asm",
+      "path": "generated/data/097fd8.bin",
+      "sha256": "4b950f8ad77a5843ea8daae96bbe41a5633e3be89d73a2070b2601eebe193569"
+    },
+    {
+      "start": 626100,
+      "end": 632244,
+      "kind": "color-remaps",
+      "source": "src/renderer/episode1spritecolorremaps_098db4.asm",
+      "path": "generated/data/098db4.bin",
+      "sha256": "54d3f2cbe13c00436105ae1c93bf0ef3f83f0543c2ddd8f2928065d2d6aa2300"
+    },
+    {
+      "start": 632244,
+      "end": 636340,
+      "kind": "color-remaps",
+      "source": "src/renderer/episode1wallcolorremaps_09a5b4.asm",
+      "path": "generated/data/09a5b4.bin",
+      "sha256": "2536e3120d4ebf098e2d95cff49c9c6e6e48b1208ffa24627563a543b49a9f6a"
+    },
+    {
+      "start": 636340,
+      "end": 636352,
+      "kind": "bytes",
+      "source": "src/levels/episode1floorcolormodes_09b5b4.asm",
+      "path": "generated/data/09b5b4.bin",
+      "sha256": "e91ef8a9ebaf8b1910fb3115acc23667b8318aaff97a0d7ddc82b5af1e764376"
+    },
+    {
+      "start": 636352,
+      "end": 636512,
+      "kind": "background-profile",
+      "source": "src/renderer/episode1backgroundprofile1_09b5c0.asm",
+      "path": "generated/data/09b5c0.bin",
+      "sha256": "ae7ae9e7483455c93be5a511429bdafbf2d55168b69bb55a266006f905f366d2"
+    },
+    {
+      "start": 636512,
+      "end": 636672,
+      "kind": "background-profile",
+      "source": "src/renderer/episode1backgroundprofile2_09b660.asm",
+      "path": "generated/data/09b660.bin",
+      "sha256": "f4c1dca421630fee982c1cfbd83bfdc4f64fdc79dcb9d89755840da240a3005e"
+    },
+    {
+      "start": 636672,
+      "end": 636832,
+      "kind": "background-profile",
+      "source": "src/renderer/episode1backgroundprofile0_09b700.asm",
+      "path": "generated/data/09b700.bin",
+      "sha256": "f3454f799ebc0672f1a4cb55208a2f4094e390d7766b0fe75f96dd73b8cb2fd4"
+    },
+    {
+      "start": 636832,
+      "end": 636992,
+      "kind": "background-profile",
+      "source": "src/renderer/episode1backgroundprofile3_09b7a0.asm",
+      "path": "generated/data/09b7a0.bin",
+      "sha256": "84b2b7ff4fcb553968c486bf8776e4475b4f4ef348fb27504734d0cc6503b6df"
+    },
+    {
+      "start": 636992,
+      "end": 637152,
+      "kind": "background-profile",
+      "source": "src/renderer/episode1backgroundprofile4_09b840.asm",
+      "path": "generated/data/09b840.bin",
+      "sha256": "7ab1a99b2938ebc2eec1913ea0373f40307d8059697d45cee826fb1727b49623"
+    },
+    {
+      "start": 637152,
+      "end": 641016,
+      "kind": "byte-pair",
+      "source": "src/graphics/episode1panoramacompressedtiles_09b8e0.asm",
+      "path": "generated/data/09b8e0.bin",
+      "sha256": "a4ae6556f5071d6ac11c8150f9fce355c520b863a284e3b68c9ecdb103ada713"
+    },
+    {
+      "start": 641016,
+      "end": 645112,
+      "kind": "words",
+      "source": "src/graphics/episode1panoramatilemap_09c7f8.asm",
+      "path": "generated/data/09c7f8.bin",
+      "sha256": "3bc7da6c5b1c5bc08c9d7ecd00568349b771c6636b3f8e51243bdd5590a5aa1a"
+    },
+    {
+      "start": 645112,
+      "end": 679928,
+      "kind": "object-tiles",
+      "source": "src/graphics/episode1objecttiles_09d7f8.asm",
+      "path": "generated/data/09d7f8.bin",
+      "sha256": "19d075e0cfb6fa495729342e2cc36399e63f168b50f2329467b6dbe1b848ad7a"
+    },
+    {
+      "start": 679928,
+      "end": 811000,
+      "kind": "wall-tiles",
+      "source": "src/graphics/episode1walltiles_0a5ff8.asm",
+      "path": "generated/data/0a5ff8.bin",
+      "sha256": "40d82a20c7c96460e2bb3423f15a77c682a8506b48d051243d4592de81199112"
+    },
+    {
+      "start": 811000,
+      "end": 817144,
+      "kind": "color-remaps",
+      "source": "src/renderer/episode2spritecolorremaps_0c5ff8.asm",
+      "path": "generated/data/0c5ff8.bin",
+      "sha256": "d04fa094028a665efee244b204e31c65cb1164283fb1901aa7ebb2bad92e783e"
+    },
+    {
+      "start": 817144,
+      "end": 821240,
+      "kind": "color-remaps",
+      "source": "src/renderer/episode2wallcolorremaps_0c77f8.asm",
+      "path": "generated/data/0c77f8.bin",
+      "sha256": "232a23cd5e449830ad09ad7f16c5bdc068b257ee428997f3410bf7376a3d13fb"
+    },
+    {
+      "start": 821240,
+      "end": 821252,
+      "kind": "bytes",
+      "source": "src/levels/episode2floorcolormodes_0c87f8.asm",
+      "path": "generated/data/0c87f8.bin",
+      "sha256": "35aae31bf5badc9fbf95b885d39c448e4d726cff077a3cd447c0de6275c373c9"
+    },
+    {
+      "start": 821252,
+      "end": 821412,
+      "kind": "background-profile",
+      "source": "src/renderer/episode2backgroundprofile1_0c8804.asm",
+      "path": "generated/data/0c8804.bin",
+      "sha256": "59ce4c4998a7254cb07f116715625e731b62fddf6b97469efdea6a85816e9cd8"
+    },
+    {
+      "start": 821412,
+      "end": 821572,
+      "kind": "background-profile",
+      "source": "src/renderer/episode2backgroundprofile2_0c88a4.asm",
+      "path": "generated/data/0c88a4.bin",
+      "sha256": "55c11ef67c71abae0a33c87eb3012575b44e09499c77f47b791c12ed005533a5"
+    },
+    {
+      "start": 821572,
+      "end": 821732,
+      "kind": "background-profile",
+      "source": "src/renderer/episode2backgroundprofile0_0c8944.asm",
+      "path": "generated/data/0c8944.bin",
+      "sha256": "e4f6dc5e9b5d861e80c59accc72cc44836ac1134f108ee4963e0da49ccb6beb6"
+    },
+    {
+      "start": 821732,
+      "end": 821892,
+      "kind": "background-profile",
+      "source": "src/renderer/episode2backgroundprofile3_0c89e4.asm",
+      "path": "generated/data/0c89e4.bin",
+      "sha256": "3c3240da85d51f2583a1f1c3adcc1f883b3ae360b06a175feeb5bacc3e26c968"
+    },
+    {
+      "start": 821892,
+      "end": 822052,
+      "kind": "background-profile",
+      "source": "src/renderer/episode2backgroundprofile4_0c8a84.asm",
+      "path": "generated/data/0c8a84.bin",
+      "sha256": "34ab8cec516c4e2cc2f753c9bd3415f672103ca2ea54e2df85632c94431ffb25"
+    },
+    {
+      "start": 822052,
+      "end": 830268,
+      "kind": "byte-pair",
+      "source": "src/graphics/episode2panoramacompressedtiles_0c8b24.asm",
+      "path": "generated/data/0c8b24.bin",
+      "sha256": "8e2907ddbb40e758b94bac0191b73567dd516d0e212d7ce5d83a6898061a069c"
+    },
+    {
+      "start": 830268,
+      "end": 834364,
+      "kind": "words",
+      "source": "src/graphics/episode2panoramatilemap_0cab3c.asm",
+      "path": "generated/data/0cab3c.bin",
+      "sha256": "345d062a4a5fb46d8a6c98ac0c3876047d2b19c361de45c33d12ba9b0a011889"
+    },
+    {
+      "start": 834364,
+      "end": 869180,
+      "kind": "object-tiles",
+      "source": "src/graphics/episode2objecttiles_0cbb3c.asm",
+      "path": "generated/data/0cbb3c.bin",
+      "sha256": "d6dc2e98987accc5c947d4af0782917f173ff0fd27476b3509d967743dc94bea"
+    },
+    {
+      "start": 869180,
+      "end": 996156,
+      "kind": "wall-tiles",
+      "source": "src/graphics/episode2walltiles_0d433c.asm",
+      "path": "generated/data/0d433c.bin",
+      "sha256": "3a1846d61baa90c60c547ed51732f3d5d9c66da6640481dc3c82ec1ee4ecf020"
+    },
+    {
+      "start": 996156,
+      "end": 1002300,
+      "kind": "color-remaps",
+      "source": "src/renderer/episode3spritecolorremaps_0f333c.asm",
+      "path": "generated/data/0f333c.bin",
+      "sha256": "9f6d2174331abbd178cf2cd36461abf22a06966e914aceaaa2f4e2e14fed9b7a"
+    },
+    {
+      "start": 1002300,
+      "end": 1006396,
+      "kind": "color-remaps",
+      "source": "src/renderer/episode3wallcolorremaps_0f4b3c.asm",
+      "path": "generated/data/0f4b3c.bin",
+      "sha256": "1016bb346664059422b7db0d283d58f04989a97620f59de3a358546f931bce7d"
+    },
+    {
+      "start": 1006396,
+      "end": 1006408,
+      "kind": "bytes",
+      "source": "src/levels/episode3floorcolormodes_0f5b3c.asm",
+      "path": "generated/data/0f5b3c.bin",
+      "sha256": "35aae31bf5badc9fbf95b885d39c448e4d726cff077a3cd447c0de6275c373c9"
+    },
+    {
+      "start": 1006408,
+      "end": 1006568,
+      "kind": "background-profile",
+      "source": "src/renderer/episode3backgroundprofile1_0f5b48.asm",
+      "path": "generated/data/0f5b48.bin",
+      "sha256": "a5ec195d4480675933fe3f02ccc41cf9c4f403ad7c22fc513266a6bbf8d96b1c"
+    },
+    {
+      "start": 1006568,
+      "end": 1006728,
+      "kind": "background-profile",
+      "source": "src/renderer/episode3backgroundprofile2_0f5be8.asm",
+      "path": "generated/data/0f5be8.bin",
+      "sha256": "2cb74d2d3fad301d3ef2c30751b30471f52223b8e1fb689f513fb25db3b698d1"
+    },
+    {
+      "start": 1006728,
+      "end": 1006888,
+      "kind": "background-profile",
+      "source": "src/renderer/episode3backgroundprofile0_0f5c88.asm",
+      "path": "generated/data/0f5c88.bin",
+      "sha256": "e225b45243855d7879f56fff41003f93b60ca02862eddf8587e53eba93cb2841"
+    },
+    {
+      "start": 1006888,
+      "end": 1007048,
+      "kind": "background-profile",
+      "source": "src/renderer/episode3backgroundprofile3_0f5d28.asm",
+      "path": "generated/data/0f5d28.bin",
+      "sha256": "81a00902d994706cbe313fc677bf3493176aa10d7a4db4702d28076cb00cbcdc"
+    },
+    {
+      "start": 1007048,
+      "end": 1007208,
+      "kind": "background-profile",
+      "source": "src/renderer/episode3backgroundprofile4_0f5dc8.asm",
+      "path": "generated/data/0f5dc8.bin",
+      "sha256": "eeb0aa3c7aa335f29c419fdf5c2f0d1b2799dbb7f0acd46fd21e9d26a8556040"
+    },
+    {
+      "start": 1007208,
+      "end": 1013348,
+      "kind": "byte-pair",
+      "source": "src/graphics/episode3panoramacompressedtiles_0f5e68.asm",
+      "path": "generated/data/0f5e68.bin",
+      "sha256": "d159d5af8bcd51b7caa0a16319678f467931a4d83aaa6a9380537db2d92e4aa7"
+    },
+    {
+      "start": 1013348,
+      "end": 1017444,
+      "kind": "words",
+      "source": "src/graphics/episode3panoramatilemap_0f7664.asm",
+      "path": "generated/data/0f7664.bin",
+      "sha256": "6500be4566f1eb8023fff688ae674cfe6ee314317f4792e54f31d70ef3cfe3c9"
+    },
+    {
+      "start": 1017444,
+      "end": 1052260,
+      "kind": "object-tiles",
+      "source": "src/graphics/episode3objecttiles_0f8664.asm",
+      "path": "generated/data/0f8664.bin",
+      "sha256": "84c8e93d81d43577142ff05c54019b272f4d4a14e901de1321f666f0c0152ade"
+    },
+    {
+      "start": 1052260,
+      "end": 1179236,
+      "kind": "wall-tiles",
+      "source": "src/graphics/episode3walltiles_100e64.asm",
+      "path": "generated/data/100e64.bin",
+      "sha256": "7a8b29167951254a13d3c61b8edd474bfa4c18d5aa177d90c5bafaa1b165766c"
+    },
+    {
+      "start": 1179236,
+      "end": 1185380,
+      "kind": "color-remaps",
+      "source": "src/renderer/episode4spritecolorremaps_11fe64.asm",
+      "path": "generated/data/11fe64.bin",
+      "sha256": "7a2f5dfe77903232ada4fd20aafb0bef56bf84309242c264fde9f37181461a92"
+    },
+    {
+      "start": 1185380,
+      "end": 1189476,
+      "kind": "color-remaps",
+      "source": "src/renderer/episode4wallcolorremaps_121664.asm",
+      "path": "generated/data/121664.bin",
+      "sha256": "1b6d77b1675eda9529d8399e37afe059db8e1937e9905df5c667baf0e4b071a1"
+    },
+    {
+      "start": 1189476,
+      "end": 1189488,
+      "kind": "bytes",
+      "source": "src/levels/episode4floorcolormodes_122664.asm",
+      "path": "generated/data/122664.bin",
+      "sha256": "35aae31bf5badc9fbf95b885d39c448e4d726cff077a3cd447c0de6275c373c9"
+    },
+    {
+      "start": 1189488,
+      "end": 1189648,
+      "kind": "background-profile",
+      "source": "src/renderer/episode4backgroundprofile1_122670.asm",
+      "path": "generated/data/122670.bin",
+      "sha256": "a5ec195d4480675933fe3f02ccc41cf9c4f403ad7c22fc513266a6bbf8d96b1c"
+    },
+    {
+      "start": 1189648,
+      "end": 1189808,
+      "kind": "background-profile",
+      "source": "src/renderer/episode4backgroundprofile2_122710.asm",
+      "path": "generated/data/122710.bin",
+      "sha256": "2cb74d2d3fad301d3ef2c30751b30471f52223b8e1fb689f513fb25db3b698d1"
+    },
+    {
+      "start": 1189808,
+      "end": 1189968,
+      "kind": "background-profile",
+      "source": "src/renderer/episode4backgroundprofile0_1227b0.asm",
+      "path": "generated/data/1227b0.bin",
+      "sha256": "e225b45243855d7879f56fff41003f93b60ca02862eddf8587e53eba93cb2841"
+    },
+    {
+      "start": 1189968,
+      "end": 1190128,
+      "kind": "background-profile",
+      "source": "src/renderer/episode4backgroundprofile3_122850.asm",
+      "path": "generated/data/122850.bin",
+      "sha256": "83c4c8e4a5728b5efdd9a68c0a5471b65be7ceedd90202f28a705535c72d6e84"
+    },
+    {
+      "start": 1190128,
+      "end": 1190288,
+      "kind": "background-profile",
+      "source": "src/renderer/episode4backgroundprofile4_1228f0.asm",
+      "path": "generated/data/1228f0.bin",
+      "sha256": "eeb0aa3c7aa335f29c419fdf5c2f0d1b2799dbb7f0acd46fd21e9d26a8556040"
+    },
+    {
+      "start": 1190288,
+      "end": 1197304,
+      "kind": "byte-pair",
+      "source": "src/graphics/episode4panoramacompressedtiles_122990.asm",
+      "path": "generated/data/122990.bin",
+      "sha256": "498c26cb603ab8dfbc6450e7a7d2e789d8ef4677319b7d1b1fbdd96299e29542"
+    },
+    {
+      "start": 1197304,
+      "end": 1201400,
+      "kind": "words",
+      "source": "src/graphics/episode4panoramatilemap_1244f8.asm",
+      "path": "generated/data/1244f8.bin",
+      "sha256": "5dac6307ac6a47d9cfa4981fcbce0e1b17abc35ee1752a784593a92443685315"
+    },
+    {
+      "start": 1201400,
+      "end": 1236216,
+      "kind": "object-tiles",
+      "source": "src/graphics/episode4objecttiles_1254f8.asm",
+      "path": "generated/data/1254f8.bin",
+      "sha256": "d62e7ad1499f1739681d0af443889f4ad0a5c77f4054bebc78e2c66716c9e360"
+    },
+    {
+      "start": 1236216,
+      "end": 1363192,
+      "kind": "wall-tiles",
+      "source": "src/graphics/episode4walltiles_12dcf8.asm",
+      "path": "generated/data/12dcf8.bin",
+      "sha256": "e9c571152ad4cc897e607712b3ce90e2b5753f0e2601760570a8ae408ad16fe9"
+    },
+    {
+      "start": 1363192,
+      "end": 1364024,
+      "kind": "vdp-tiles",
+      "source": "src/graphics/retainedtitleglyphtiles_14ccf8.asm",
+      "path": "generated/data/14ccf8.bin",
+      "sha256": "c9a4f511e5f13ed6de4d0dd243704d6e87e847e04538ae0a23eb7815f906df14"
+    },
+    {
+      "start": 1364024,
+      "end": 1365648,
+      "kind": "byte-pair",
+      "source": "src/graphics/commoninterfacecompressedtiles_14d038.asm",
+      "path": "generated/data/14d038.bin",
+      "sha256": "6e83e206b08ae507c5d9daed5281be10b2956907cbf25ec131f60b9d346afdb1"
+    },
+    {
+      "start": 1365648,
+      "end": 1430616,
+      "kind": "binary",
+      "source": "src/graphics/interfacegraphicsaftercompressedtiles_14d690.asm",
+      "path": "generated/data/14d690.bin",
+      "sha256": "36ee3c68acebc064efaf48d39fb65294f793e97a9a9bfb72d227308f75dcd8ce"
+    },
+    {
+      "start": 1430616,
+      "end": 1439160,
+      "kind": "binary",
+      "source": "src/graphics/heldweapongraphics_15d458.asm",
+      "path": "generated/data/15d458.bin",
+      "sha256": "7b8beade5354ddde2a083eb63589cb920ae97b8217ae8383607782f14591157d"
+    },
+    {
+      "start": 1439160,
+      "end": 1442140,
+      "kind": "byte-pair",
+      "source": "src/graphics/gameplayframecompressedtiles_15f5b8.asm",
+      "path": "generated/data/15f5b8.bin",
+      "sha256": "52ce6ed7c186d69041972486288a39a945b0ba365124d6cb5485386e13f3a85d"
+    },
+    {
+      "start": 1442140,
+      "end": 1444380,
+      "kind": "words",
+      "source": "src/graphics/gameplayframetilemap_16015c.asm",
+      "path": "generated/data/16015c.bin",
+      "sha256": "10890ce76c458053ee666bd2a7e52e076b582b62be48ac20793f396f7e69cd36"
+    },
+    {
+      "start": 1444380,
+      "end": 1445244,
+      "kind": "binary",
+      "source": "src/graphics/gameplayframeauxiliarydata_160a1c.asm",
+      "path": "generated/data/160a1c.bin",
+      "sha256": "7056f14a3a6e0926f9403697b3f9b816bf616046c32ece50f6d3287aebfdb2d0"
+    },
+    {
+      "start": 1445244,
+      "end": 1448968,
+      "kind": "byte-pair",
+      "source": "src/graphics/pausemapframecompressedtiles_160d7c.asm",
+      "path": "generated/data/160d7c.bin",
+      "sha256": "59ec7996674e6eb35ed114a92d377d8b59cc5dc8088d6dbbdac856b12e8d4b42"
+    },
+    {
+      "start": 1448968,
+      "end": 1451208,
+      "kind": "words",
+      "source": "src/graphics/pausemapframetilemap_161c08.asm",
+      "path": "generated/data/161c08.bin",
+      "sha256": "ac43ef650f2ccba11756b43a5ae81b9f2b762d2ef41b5fc0958d6caf571604d4"
+    },
+    {
+      "start": 1451208,
+      "end": 1451336,
+      "kind": "words",
+      "source": "src/palettes/inventoryiconpalettes_1624c8.asm",
+      "path": "generated/data/1624c8.bin",
+      "sha256": "84867cd11c6056e3aea58b56ef781cccc109a4d2fbff34d9534297ba9b19ddc0"
+    },
+    {
+      "start": 1451336,
+      "end": 1458504,
+      "kind": "binary",
+      "source": "src/graphics/inventoryicongraphics_162548.asm",
+      "path": "generated/data/162548.bin",
+      "sha256": "74611b7a20ce901d80e0690506a47025d61bf1b66d93eec3f0f9f8bff9ad9165"
+    },
+    {
+      "start": 1458504,
+      "end": 1460256,
+      "kind": "binary",
+      "source": "src/graphics/inventoryiconbanktail_164148.asm",
+      "path": "generated/data/164148.bin",
+      "sha256": "6aef1c1525e3ddb0a0c16d10e42e08341563898316acfdf253221f696c863731"
+    },
+    {
+      "start": 1460256,
+      "end": 1463522,
+      "kind": "sprite-descriptors",
+      "source": "src/graphics/bloodbodyspritebank_164820.asm",
+      "path": "generated/data/164820.bin",
+      "sha256": "ad1fcfdf38257500587063f49623c4303428a1656bb9f4472392b6f742f2303a"
+    },
+    {
+      "start": 1463522,
+      "end": 1591522,
+      "kind": "binary",
+      "source": "src/graphics/bloodbodyspritebank_tiles_1654e2.asm",
+      "path": "generated/data/1654e2.bin",
+      "sha256": "dd1640e51df8a1da7e5cc490a175549d636f8ae27518a0e3c73a8e70a5a7b3ac"
+    },
+    {
+      "start": 1591522,
+      "end": 1594788,
+      "kind": "sprite-descriptors",
+      "source": "src/graphics/stananspritebank_1848e2.asm",
+      "path": "generated/data/1848e2.bin",
+      "sha256": "8ada1ed002f89b2e7e1f652775844f4e05a52a2531209b3d555b9d8ed984e78e"
+    },
+    {
+      "start": 1594788,
+      "end": 1717668,
+      "kind": "binary",
+      "source": "src/graphics/stananspritebank_tiles_1855a4.asm",
+      "path": "generated/data/1855a4.bin",
+      "sha256": "ce87fadac26f024ff693dc0edfe71b972c6b1ad0d89e62aefc651074c2fe4522"
+    },
+    {
+      "start": 1717668,
+      "end": 1720694,
+      "kind": "sprite-descriptors",
+      "source": "src/graphics/gunnerspritebank_1a35a4.asm",
+      "path": "generated/data/1a35a4.bin",
+      "sha256": "02650f83aaf93e459af601d150a5820aedea6d16320916bc66a7966535cee07f"
+    },
+    {
+      "start": 1720694,
+      "end": 1852790,
+      "kind": "binary",
+      "source": "src/graphics/gunnerspritebank_tiles_1a4176.asm",
+      "path": "generated/data/1a4176.bin",
+      "sha256": "b3b0556c920264fda00ab131f8f3db3bae8acf01170b273a333a984b46c54fb1"
+    },
+    {
+      "start": 1852790,
+      "end": 1856272,
+      "kind": "sprite-descriptors",
+      "source": "src/graphics/greydummyspritebank_1c4576.asm",
+      "path": "generated/data/1c4576.bin",
+      "sha256": "ea8ca6120174550e8c1ef0e61b3e83bfd9312fa29414f1d3dd9e57d5786db88a"
+    },
+    {
+      "start": 1856272,
+      "end": 1972496,
+      "kind": "binary",
+      "source": "src/graphics/greydummyspritebank_tiles_1c5310.asm",
+      "path": "generated/data/1c5310.bin",
+      "sha256": "42f91a6c61b8244d8a86661b835edc0bee8f9693f8d358a149ec49bc0035d58c"
+    },
+    {
+      "start": 1972496,
+      "end": 1975978,
+      "kind": "sprite-descriptors",
+      "source": "src/graphics/greendummyspritebank_1e1910.asm",
+      "path": "generated/data/1e1910.bin",
+      "sha256": "ea8ca6120174550e8c1ef0e61b3e83bfd9312fa29414f1d3dd9e57d5786db88a"
+    },
+    {
+      "start": 1975978,
+      "end": 2092202,
+      "kind": "binary",
+      "source": "src/graphics/greendummyspritebank_tiles_1e26aa.asm",
+      "path": "generated/data/1e26aa.bin",
+      "sha256": "6956e5935901e26a2bd041fd3b60e407e37cc7010233c2aa1330d6ff764617b5"
+    },
+    {
+      "start": 2092202,
+      "end": 2095792,
+      "kind": "sprite-descriptors",
+      "source": "src/graphics/beatressspritebank_1fecaa.asm",
+      "path": "generated/data/1fecaa.bin",
+      "sha256": "54d0e684b29104b8297f7658b5dbc7b654cceaca14133466328707a63881fbc1"
+    },
+    {
+      "start": 2095792,
+      "end": 2233520,
+      "kind": "binary",
+      "source": "src/graphics/beatressspritebank_tiles_1ffab0.asm",
+      "path": "generated/data/1ffab0.bin",
+      "sha256": "7fc87bc98611701ba98ea3a4aeb63e67605e71d1eda8a7e1b50c72fe0bf8a4c7"
+    },
+    {
+      "start": 2233520,
+      "end": 2237002,
+      "kind": "sprite-descriptors",
+      "source": "src/graphics/whitedummyspritebank_2214b0.asm",
+      "path": "generated/data/2214b0.bin",
+      "sha256": "ea8ca6120174550e8c1ef0e61b3e83bfd9312fa29414f1d3dd9e57d5786db88a"
+    },
+    {
+      "start": 2237002,
+      "end": 2353226,
+      "kind": "binary",
+      "source": "src/graphics/whitedummyspritebank_tiles_22224a.asm",
+      "path": "generated/data/22224a.bin",
+      "sha256": "ddadb2fa3d080f790e5e12ac411afa7344c180dcfa7bb347e18048bbefccb81e"
+    },
+    {
+      "start": 2353226,
+      "end": 2355820,
+      "kind": "sprite-descriptors",
+      "source": "src/graphics/denpyderspritebank_23e84a.asm",
+      "path": "generated/data/23e84a.bin",
+      "sha256": "80eab5932b69d4a7f84c823e41880e7934d8c12ec466300f389dc0fd177a10d9"
+    },
+    {
+      "start": 2355820,
+      "end": 2450028,
+      "kind": "binary",
+      "source": "src/graphics/denpyderspritebank_tiles_23f26c.asm",
+      "path": "generated/data/23f26c.bin",
+      "sha256": "55ec9b5c26169a7e593a67af896216c28366918094d14eaa9fcbfe3cf0950374"
+    },
+    {
+      "start": 2450028,
+      "end": 2453340,
+      "kind": "sprite-descriptors",
+      "source": "src/graphics/larvacreaturespritebank_25626c.asm",
+      "path": "generated/data/25626c.bin",
+      "sha256": "e557940308276b2ae7866103fb8426dc6d213002b425d97a4f1d441c20d36b97"
+    },
+    {
+      "start": 2453340,
+      "end": 2611548,
+      "kind": "binary",
+      "source": "src/graphics/larvacreaturespritebank_tiles_256f5c.asm",
+      "path": "generated/data/256f5c.bin",
+      "sha256": "a25ffe82f284a20577917bde4de9b740189a360c2545d8e9b4cc604b23f87650"
+    },
+    {
+      "start": 2611548,
+      "end": 2615030,
+      "kind": "sprite-descriptors",
+      "source": "src/graphics/bluedummyspritebank_27d95c.asm",
+      "path": "generated/data/27d95c.bin",
+      "sha256": "ea8ca6120174550e8c1ef0e61b3e83bfd9312fa29414f1d3dd9e57d5786db88a"
+    },
+    {
+      "start": 2615030,
+      "end": 2731254,
+      "kind": "binary",
+      "source": "src/graphics/bluedummyspritebank_tiles_27e6f6.asm",
+      "path": "generated/data/27e6f6.bin",
+      "sha256": "f7defb510d02f4e2d7532d3b90dfd4af4b7891d594f4a86052d93a3e4be5f7a7"
+    },
+    {
+      "start": 2731254,
+      "end": 2734304,
+      "kind": "sprite-descriptors",
+      "source": "src/graphics/dogspritebank_29acf6.asm",
+      "path": "generated/data/29acf6.bin",
+      "sha256": "9b5fbfae3487e7fda0c1fe094a51a83a1e18eba31d41e251caf9241b1d26b17c"
+    },
+    {
+      "start": 2734304,
+      "end": 2840800,
+      "kind": "binary",
+      "source": "src/graphics/dogspritebank_tiles_29b8e0.asm",
+      "path": "generated/data/29b8e0.bin",
+      "sha256": "bbd4223470c9c6b5e37e5d0cc72ce970dc052c03530337a244dabc18c9d39184"
+    },
+    {
+      "start": 2840800,
+      "end": 2841002,
+      "kind": "sprite-descriptors",
+      "source": "src/graphics/legacydeatheffectspritebank_2b58e0.asm",
+      "path": "generated/data/2b58e0.bin",
+      "sha256": "a1c0b8962d332b212af08e0f5bd1e3299e12a5d4fdaf3d659e834f37b7c61253"
+    },
+    {
+      "start": 2841002,
+      "end": 2842538,
+      "kind": "binary",
+      "source": "src/graphics/legacydeatheffectspritebank_tiles_2b59aa.asm",
+      "path": "generated/data/2b59aa.bin",
+      "sha256": "a75e80b7d4576dd68c13edb2c79e7ae1a9fcb4281af365b8b24a640eae4ca92e"
+    },
+    {
+      "start": 2842538,
+      "end": 2843310,
+      "kind": "sprite-descriptors",
+      "source": "src/graphics/unassignedlegacyspritebank_2b5faa.asm",
+      "path": "generated/data/2b5faa.bin",
+      "sha256": "d5e5ec32f40fe5e8beb549d94b5eb710b32cb89eda332a1bc0e32dbaf62b5f9a"
+    },
+    {
+      "start": 2843310,
+      "end": 2855598,
+      "kind": "binary",
+      "source": "src/graphics/unassignedlegacyspritebank_tiles_2b62ae.asm",
+      "path": "generated/data/2b62ae.bin",
+      "sha256": "99351de5fd2ce41bf26826a6efe8bf3c5cd273936dd5a15bb28b4af4bd8ae68c"
+    },
+    {
+      "start": 2855598,
+      "end": 2855806,
+      "kind": "demo-input",
+      "source": "src/input/demoinputrecording1_2b92ae.asm",
+      "path": "generated/data/2b92ae.bin",
+      "sha256": "16b3d1898149c42be9bded143c7f8feda15cd90c1235012a7cb323f804220919"
+    },
+    {
+      "start": 2855806,
+      "end": 2856014,
+      "kind": "demo-input",
+      "source": "src/input/demoinputrecording2_2b937e.asm",
+      "path": "generated/data/2b937e.bin",
+      "sha256": "175519775eda7adc2e0fc10ef6622692fb1a6d62ccc82eae4a067ad6142fafe1"
+    },
+    {
+      "start": 2856014,
+      "end": 2856222,
+      "kind": "demo-input",
+      "source": "src/input/demoinputrecording3_2b944e.asm",
+      "path": "generated/data/2b944e.bin",
+      "sha256": "ceec3106607e6a1be2f7fee1de54be6517a5ffc72099bf9721ce5d3a49fdf95c"
+    },
+    {
+      "start": 2856304,
+      "end": 3145728,
+      "kind": "zero-fill",
+      "source": "src/system/romzerofill_2b9570.asm",
+      "path": "generated/data/2b9570.bin",
+      "sha256": "220fc6521e3d595e3665ee9145c7ffab70b427371d820e4e1fd9dcaa7f601c89"
+    }
+  ]
+}

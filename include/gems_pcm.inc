@@ -1,0 +1,27 @@
+; GEMS PCM/copy state. Z80 addresses; see docs/GEMS_PCM.md.
+zRamCommandWriteIndex              equ $0036
+zRamCommandReadIndex               equ $0037
+zRamRomCopySourceLo                equ $01F7
+zRamRomCopySourceHi                equ $01F8
+zRamSavedDacEntry                  equ $02B3
+zRamSavedDacEntryDisp              equ $02B4
+zRamSavedDacFormat                 equ $02B5
+zRamDacWriteHalf                   equ $02FB
+zRamDacSourceLo                    equ $02FC
+zRamDacSourceHi                    equ $02FE
+zRamDacRemaining                   equ $02FF
+zRamDacStreamMode                  equ $0301
+zRamSampleBankLo                   equ $0AAE
+zRamSampleBankHi                   equ $0AB0
+zRamDacDescriptorFlags             equ $1423
+zRamDacDescriptorOffsetLo          equ $1424
+zRamDacDescriptorOffsetHi          equ $1426
+zRamDacDescriptorSkip              equ $1427
+zRamDacDescriptorLength            equ $1429
+zRamDacDescriptorLoopLength        equ $142B
+zRamFmFrequencyScratch             equ $142F
+zRamDacDescriptorUnusedEnd         equ $142D
+zRamRomBusRequest                  equ $1B20
+zRamRomCopyActive                  equ $1B21
+zRamCommandRing                    equ $1B40
+zRamDacBuffer                      equ $1F00

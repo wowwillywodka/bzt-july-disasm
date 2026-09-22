@@ -1,0 +1,91 @@
+; $164820..$1654E1 | sprite-descriptors
+; ROM-derived payload. Run `make extract ROM=/path/to/prototype.bin`.
+        ifne *-$164820
+        fail "ROM start moved"
+        endif
+
+BloodBodySpriteBank equ $164820
+BloodBodySpriteBank_OffsetBase equ $164822
+BloodBodySpriteBank_Animation00 equ $164834
+BloodBodySpriteBank_Animation00_View00 equ $16483E
+BloodBodySpriteBank_Animation00_View00_Frame00 equ $164840
+BloodBodySpriteBank_Animation00_View00_Frame01 equ $164876
+BloodBodySpriteBank_Animation00_View00_Frame02 equ $1648AC
+BloodBodySpriteBank_Animation00_View00_Frame03 equ $1648E2
+BloodBodySpriteBank_Animation00_View00_Frame04 equ $164918
+BloodBodySpriteBank_Animation00_View00_Frame05 equ $16494E
+BloodBodySpriteBank_Animation00_View00_Frame06 equ $164984
+BloodBodySpriteBank_Animation00_View00_Frame07 equ $1649BA
+BloodBodySpriteBank_Animation00_View01 equ $1649F0
+BloodBodySpriteBank_Animation00_View01_Frame00 equ $1649F2
+BloodBodySpriteBank_Animation00_View01_Frame01 equ $164A28
+BloodBodySpriteBank_Animation00_View01_Frame02 equ $164A5E
+BloodBodySpriteBank_Animation00_View01_Frame03 equ $164A94
+BloodBodySpriteBank_Animation00_View01_Frame04 equ $164ACA
+BloodBodySpriteBank_Animation00_View01_Frame05 equ $164B00
+BloodBodySpriteBank_Animation00_View01_Frame06 equ $164B36
+BloodBodySpriteBank_Animation00_View01_Frame07 equ $164B6C
+BloodBodySpriteBank_Animation00_View02 equ $164BA2
+BloodBodySpriteBank_Animation00_View02_Frame00 equ $164BA4
+BloodBodySpriteBank_Animation00_View02_Frame01 equ $164BDA
+BloodBodySpriteBank_Animation00_View02_Frame02 equ $164C10
+BloodBodySpriteBank_Animation00_View02_Frame03 equ $164C46
+BloodBodySpriteBank_Animation00_View02_Frame04 equ $164C7C
+BloodBodySpriteBank_Animation00_View02_Frame05 equ $164CB2
+BloodBodySpriteBank_Animation00_View02_Frame06 equ $164CE8
+BloodBodySpriteBank_Animation00_View02_Frame07 equ $164D1E
+BloodBodySpriteBank_Animation00_View03 equ $164D54
+BloodBodySpriteBank_Animation00_View03_Frame00 equ $164D56
+BloodBodySpriteBank_Animation00_View03_Frame01 equ $164D8C
+BloodBodySpriteBank_Animation00_View03_Frame02 equ $164DC2
+BloodBodySpriteBank_Animation00_View03_Frame03 equ $164DF8
+BloodBodySpriteBank_Animation00_View03_Frame04 equ $164E2E
+BloodBodySpriteBank_Animation00_View03_Frame05 equ $164E64
+BloodBodySpriteBank_Animation00_View03_Frame06 equ $164E9A
+BloodBodySpriteBank_Animation00_View03_Frame07 equ $164ED0
+BloodBodySpriteBank_Animation01 equ $164F06
+BloodBodySpriteBank_Animation01_View00 equ $164F0A
+BloodBodySpriteBank_Animation01_View00_Frame00 equ $164F0C
+BloodBodySpriteBank_Animation01_View00_Frame01 equ $164F42
+BloodBodySpriteBank_Animation02 equ $164F78
+BloodBodySpriteBank_Animation02_View00 equ $164F7C
+BloodBodySpriteBank_Animation02_View00_Frame00 equ $164F7E
+BloodBodySpriteBank_Animation02_View00_Frame01 equ $164FB4
+BloodBodySpriteBank_Animation02_View00_Frame02 equ $164FEA
+BloodBodySpriteBank_Animation02_View00_Frame03 equ $165020
+BloodBodySpriteBank_Animation03 equ $165056
+BloodBodySpriteBank_Animation03_View00 equ $16505A
+BloodBodySpriteBank_Animation03_View00_Frame00 equ $16505C
+BloodBodySpriteBank_Animation03_View00_Frame01 equ $165092
+BloodBodySpriteBank_Animation03_View00_Frame02 equ $1650C8
+BloodBodySpriteBank_Animation03_View00_Frame03 equ $1650FE
+BloodBodySpriteBank_Animation03_View00_Frame04 equ $165134
+BloodBodySpriteBank_Animation03_View00_Frame05 equ $16516A
+BloodBodySpriteBank_Animation04 equ $1651A0
+BloodBodySpriteBank_Animation04_View00 equ $1651A4
+BloodBodySpriteBank_Animation04_View00_Frame00 equ $1651A6
+BloodBodySpriteBank_Animation04_View00_Frame01 equ $1651DC
+BloodBodySpriteBank_Animation04_View00_Frame02 equ $165212
+BloodBodySpriteBank_Animation05 equ $165248
+BloodBodySpriteBank_Animation05_View00 equ $16524C
+BloodBodySpriteBank_Animation05_View00_Frame00 equ $16524E
+BloodBodySpriteBank_Animation05_View00_Frame01 equ $165284
+BloodBodySpriteBank_Animation05_View00_Frame02 equ $1652BA
+BloodBodySpriteBank_Animation05_View00_Frame03 equ $1652F0
+BloodBodySpriteBank_Animation06 equ $165326
+BloodBodySpriteBank_Animation06_View00 equ $16532A
+BloodBodySpriteBank_Animation06_View00_Frame00 equ $16532C
+BloodBodySpriteBank_Animation06_View00_Frame01 equ $165362
+BloodBodySpriteBank_Animation06_View00_Frame02 equ $165398
+BloodBodySpriteBank_Animation06_View00_Frame03 equ $1653CE
+BloodBodySpriteBank_Animation06_View00_Frame04 equ $165404
+BloodBodySpriteBank_Animation06_View00_Frame05 equ $16543A
+BloodBodySpriteBank_Animation07 equ $165470
+BloodBodySpriteBank_Animation07_View00 equ $165474
+BloodBodySpriteBank_Animation07_View00_Frame00 equ $165476
+BloodBodySpriteBank_Animation07_View00_Frame01 equ $1654AC
+
+        incbin "generated/data/164820.bin"
+        ifne *-$1654E2
+        fail "ROM end moved"
+        endif

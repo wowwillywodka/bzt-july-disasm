@@ -1,0 +1,90 @@
+; $25626C..$256F5B | sprite-descriptors
+; ROM-derived payload. Run `make extract ROM=/path/to/prototype.bin`.
+        ifne *-$25626C
+        fail "ROM start moved"
+        endif
+
+LarvaCreatureSpriteBank equ $25626C
+LarvaCreatureSpriteBank_OffsetBase equ $25626E
+LarvaCreatureSpriteBank_Animation00 equ $25627C
+LarvaCreatureSpriteBank_Animation00_View00 equ $25628A
+LarvaCreatureSpriteBank_Animation00_View00_Frame00 equ $25628C
+LarvaCreatureSpriteBank_Animation00_View00_Frame01 equ $2562C2
+LarvaCreatureSpriteBank_Animation00_View00_Frame02 equ $2562F8
+LarvaCreatureSpriteBank_Animation00_View00_Frame03 equ $25632E
+LarvaCreatureSpriteBank_Animation00_View00_Frame04 equ $256364
+LarvaCreatureSpriteBank_Animation00_View00_Frame05 equ $25639A
+LarvaCreatureSpriteBank_Animation00_View00_Frame06 equ $2563D0
+LarvaCreatureSpriteBank_Animation00_View01 equ $256406
+LarvaCreatureSpriteBank_Animation00_View01_Frame00 equ $256408
+LarvaCreatureSpriteBank_Animation00_View01_Frame01 equ $25643E
+LarvaCreatureSpriteBank_Animation00_View01_Frame02 equ $256474
+LarvaCreatureSpriteBank_Animation00_View01_Frame03 equ $2564AA
+LarvaCreatureSpriteBank_Animation00_View01_Frame04 equ $2564E0
+LarvaCreatureSpriteBank_Animation00_View01_Frame05 equ $256516
+LarvaCreatureSpriteBank_Animation00_View01_Frame06 equ $25654C
+LarvaCreatureSpriteBank_Animation00_View02 equ $256582
+LarvaCreatureSpriteBank_Animation00_View02_Frame00 equ $256584
+LarvaCreatureSpriteBank_Animation00_View02_Frame01 equ $2565BA
+LarvaCreatureSpriteBank_Animation00_View02_Frame02 equ $2565F0
+LarvaCreatureSpriteBank_Animation00_View02_Frame03 equ $256626
+LarvaCreatureSpriteBank_Animation00_View02_Frame04 equ $25665C
+LarvaCreatureSpriteBank_Animation00_View02_Frame05 equ $256692
+LarvaCreatureSpriteBank_Animation00_View02_Frame06 equ $2566C8
+LarvaCreatureSpriteBank_Animation00_View03 equ $2566FE
+LarvaCreatureSpriteBank_Animation00_View03_Frame00 equ $256700
+LarvaCreatureSpriteBank_Animation00_View03_Frame01 equ $256736
+LarvaCreatureSpriteBank_Animation00_View03_Frame02 equ $25676C
+LarvaCreatureSpriteBank_Animation00_View03_Frame03 equ $2567A2
+LarvaCreatureSpriteBank_Animation00_View03_Frame04 equ $2567D8
+LarvaCreatureSpriteBank_Animation00_View03_Frame05 equ $25680E
+LarvaCreatureSpriteBank_Animation00_View03_Frame06 equ $256844
+LarvaCreatureSpriteBank_Animation00_View04 equ $25687A
+LarvaCreatureSpriteBank_Animation00_View04_Frame00 equ $25687C
+LarvaCreatureSpriteBank_Animation00_View04_Frame01 equ $2568B2
+LarvaCreatureSpriteBank_Animation00_View04_Frame02 equ $2568E8
+LarvaCreatureSpriteBank_Animation00_View04_Frame03 equ $25691E
+LarvaCreatureSpriteBank_Animation00_View04_Frame04 equ $256954
+LarvaCreatureSpriteBank_Animation00_View04_Frame05 equ $25698A
+LarvaCreatureSpriteBank_Animation00_View04_Frame06 equ $2569C0
+LarvaCreatureSpriteBank_Animation00_View05 equ $2569F6
+LarvaCreatureSpriteBank_Animation00_View05_Frame00 equ $2569F8
+LarvaCreatureSpriteBank_Animation00_View05_Frame01 equ $256A2E
+LarvaCreatureSpriteBank_Animation00_View05_Frame02 equ $256A64
+LarvaCreatureSpriteBank_Animation00_View05_Frame03 equ $256A9A
+LarvaCreatureSpriteBank_Animation00_View05_Frame04 equ $256AD0
+LarvaCreatureSpriteBank_Animation00_View05_Frame05 equ $256B06
+LarvaCreatureSpriteBank_Animation00_View05_Frame06 equ $256B3C
+LarvaCreatureSpriteBank_Animation01 equ $256B72
+LarvaCreatureSpriteBank_Animation01_View00 equ $256B76
+LarvaCreatureSpriteBank_Animation01_View00_Frame00 equ $256B78
+LarvaCreatureSpriteBank_Animation01_View00_Frame01 equ $256BAE
+LarvaCreatureSpriteBank_Animation01_View00_Frame02 equ $256BE4
+LarvaCreatureSpriteBank_Animation01_View00_Frame03 equ $256C1A
+LarvaCreatureSpriteBank_Animation02 equ $256C50
+LarvaCreatureSpriteBank_Animation02_View00 equ $256C54
+LarvaCreatureSpriteBank_Animation02_View00_Frame00 equ $256C56
+LarvaCreatureSpriteBank_Animation02_View00_Frame01 equ $256C8C
+LarvaCreatureSpriteBank_Animation03 equ $256CC2
+LarvaCreatureSpriteBank_Animation03_View00 equ $256CC6
+LarvaCreatureSpriteBank_Animation03_View00_Frame00 equ $256CC8
+LarvaCreatureSpriteBank_Animation03_View00_Frame01 equ $256CFE
+LarvaCreatureSpriteBank_Animation03_View00_Frame02 equ $256D34
+LarvaCreatureSpriteBank_Animation03_View00_Frame03 equ $256D6A
+LarvaCreatureSpriteBank_Animation04 equ $256DA0
+LarvaCreatureSpriteBank_Animation04_View00 equ $256DA4
+LarvaCreatureSpriteBank_Animation04_View00_Frame00 equ $256DA6
+LarvaCreatureSpriteBank_Animation04_View00_Frame01 equ $256DDC
+LarvaCreatureSpriteBank_Animation04_View00_Frame02 equ $256E12
+LarvaCreatureSpriteBank_Animation04_View00_Frame03 equ $256E48
+LarvaCreatureSpriteBank_Animation05 equ $256E7E
+LarvaCreatureSpriteBank_Animation05_View00 equ $256E82
+LarvaCreatureSpriteBank_Animation05_View00_Frame00 equ $256E84
+LarvaCreatureSpriteBank_Animation05_View00_Frame01 equ $256EBA
+LarvaCreatureSpriteBank_Animation05_View00_Frame02 equ $256EF0
+LarvaCreatureSpriteBank_Animation05_View00_Frame03 equ $256F26
+
+        incbin "generated/data/25626c.bin"
+        ifne *-$256F5C
+        fail "ROM end moved"
+        endif

@@ -1,0 +1,95 @@
+; $1C4576..$1C530F | sprite-descriptors
+; ROM-derived payload. Run `make extract ROM=/path/to/prototype.bin`.
+        ifne *-$1C4576
+        fail "ROM start moved"
+        endif
+
+GreyDummySpriteBank equ $1C4576
+GreyDummySpriteBank_OffsetBase equ $1C4578
+GreyDummySpriteBank_Animation00 equ $1C4588
+GreyDummySpriteBank_Animation00_View00 equ $1C4596
+GreyDummySpriteBank_Animation00_View00_Frame00 equ $1C4598
+GreyDummySpriteBank_Animation00_View00_Frame01 equ $1C45CE
+GreyDummySpriteBank_Animation00_View00_Frame02 equ $1C4604
+GreyDummySpriteBank_Animation00_View00_Frame03 equ $1C463A
+GreyDummySpriteBank_Animation00_View00_Frame04 equ $1C4670
+GreyDummySpriteBank_Animation00_View00_Frame05 equ $1C46A6
+GreyDummySpriteBank_Animation00_View00_Frame06 equ $1C46DC
+GreyDummySpriteBank_Animation00_View01 equ $1C4712
+GreyDummySpriteBank_Animation00_View01_Frame00 equ $1C4714
+GreyDummySpriteBank_Animation00_View01_Frame01 equ $1C474A
+GreyDummySpriteBank_Animation00_View01_Frame02 equ $1C4780
+GreyDummySpriteBank_Animation00_View01_Frame03 equ $1C47B6
+GreyDummySpriteBank_Animation00_View01_Frame04 equ $1C47EC
+GreyDummySpriteBank_Animation00_View01_Frame05 equ $1C4822
+GreyDummySpriteBank_Animation00_View01_Frame06 equ $1C4858
+GreyDummySpriteBank_Animation00_View02 equ $1C488E
+GreyDummySpriteBank_Animation00_View02_Frame00 equ $1C4890
+GreyDummySpriteBank_Animation00_View02_Frame01 equ $1C48C6
+GreyDummySpriteBank_Animation00_View02_Frame02 equ $1C48FC
+GreyDummySpriteBank_Animation00_View02_Frame03 equ $1C4932
+GreyDummySpriteBank_Animation00_View02_Frame04 equ $1C4968
+GreyDummySpriteBank_Animation00_View02_Frame05 equ $1C499E
+GreyDummySpriteBank_Animation00_View02_Frame06 equ $1C49D4
+GreyDummySpriteBank_Animation00_View03 equ $1C4A0A
+GreyDummySpriteBank_Animation00_View03_Frame00 equ $1C4A0C
+GreyDummySpriteBank_Animation00_View03_Frame01 equ $1C4A42
+GreyDummySpriteBank_Animation00_View03_Frame02 equ $1C4A78
+GreyDummySpriteBank_Animation00_View03_Frame03 equ $1C4AAE
+GreyDummySpriteBank_Animation00_View03_Frame04 equ $1C4AE4
+GreyDummySpriteBank_Animation00_View03_Frame05 equ $1C4B1A
+GreyDummySpriteBank_Animation00_View03_Frame06 equ $1C4B50
+GreyDummySpriteBank_Animation00_View04 equ $1C4B86
+GreyDummySpriteBank_Animation00_View04_Frame00 equ $1C4B88
+GreyDummySpriteBank_Animation00_View04_Frame01 equ $1C4BBE
+GreyDummySpriteBank_Animation00_View04_Frame02 equ $1C4BF4
+GreyDummySpriteBank_Animation00_View04_Frame03 equ $1C4C2A
+GreyDummySpriteBank_Animation00_View04_Frame04 equ $1C4C60
+GreyDummySpriteBank_Animation00_View04_Frame05 equ $1C4C96
+GreyDummySpriteBank_Animation00_View04_Frame06 equ $1C4CCC
+GreyDummySpriteBank_Animation00_View05 equ $1C4D02
+GreyDummySpriteBank_Animation00_View05_Frame00 equ $1C4D04
+GreyDummySpriteBank_Animation00_View05_Frame01 equ $1C4D3A
+GreyDummySpriteBank_Animation00_View05_Frame02 equ $1C4D70
+GreyDummySpriteBank_Animation00_View05_Frame03 equ $1C4DA6
+GreyDummySpriteBank_Animation00_View05_Frame04 equ $1C4DDC
+GreyDummySpriteBank_Animation00_View05_Frame05 equ $1C4E12
+GreyDummySpriteBank_Animation00_View05_Frame06 equ $1C4E48
+GreyDummySpriteBank_Animation01 equ $1C4E7E
+GreyDummySpriteBank_Animation01_View00 equ $1C4E82
+GreyDummySpriteBank_Animation01_View00_Frame00 equ $1C4E84
+GreyDummySpriteBank_Animation01_View00_Frame01 equ $1C4EBA
+GreyDummySpriteBank_Animation01_View00_Frame02 equ $1C4EF0
+GreyDummySpriteBank_Animation01_View00_Frame03 equ $1C4F26
+GreyDummySpriteBank_Animation02 equ $1C4F5C
+GreyDummySpriteBank_Animation02_View00 equ $1C4F60
+GreyDummySpriteBank_Animation02_View00_Frame00 equ $1C4F62
+GreyDummySpriteBank_Animation02_View00_Frame01 equ $1C4F98
+GreyDummySpriteBank_Animation02_View00_Frame02 equ $1C4FCE
+GreyDummySpriteBank_Animation03 equ $1C5004
+GreyDummySpriteBank_Animation03_View00 equ $1C5008
+GreyDummySpriteBank_Animation03_View00_Frame00 equ $1C500A
+GreyDummySpriteBank_Animation03_View00_Frame01 equ $1C5040
+GreyDummySpriteBank_Animation03_View00_Frame02 equ $1C5076
+GreyDummySpriteBank_Animation03_View00_Frame03 equ $1C50AC
+GreyDummySpriteBank_Animation04 equ $1C50E2
+GreyDummySpriteBank_Animation04_View00 equ $1C50E6
+GreyDummySpriteBank_Animation04_View00_Frame00 equ $1C50E8
+GreyDummySpriteBank_Animation04_View00_Frame01 equ $1C511E
+GreyDummySpriteBank_Animation04_View00_Frame02 equ $1C5154
+GreyDummySpriteBank_Animation04_View00_Frame03 equ $1C518A
+GreyDummySpriteBank_Animation04_View00_Frame04 equ $1C51C0
+GreyDummySpriteBank_Animation04_View00_Frame05 equ $1C51F6
+GreyDummySpriteBank_Animation05 equ $1C522C
+GreyDummySpriteBank_Animation05_View00 equ $1C5230
+GreyDummySpriteBank_Animation05_View00_Frame00 equ $1C5232
+GreyDummySpriteBank_Animation05_View00_Frame01 equ $1C5268
+GreyDummySpriteBank_Animation06 equ $1C529E
+GreyDummySpriteBank_Animation06_View00 equ $1C52A2
+GreyDummySpriteBank_Animation06_View00_Frame00 equ $1C52A4
+GreyDummySpriteBank_Animation06_View00_Frame01 equ $1C52DA
+
+        incbin "generated/data/1c4576.bin"
+        ifne *-$1C5310
+        fail "ROM end moved"
+        endif

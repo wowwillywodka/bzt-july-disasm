@@ -1,0 +1,73 @@
+; $23E84A..$23F26B | sprite-descriptors
+; ROM-derived payload. Run `make extract ROM=/path/to/prototype.bin`.
+        ifne *-$23E84A
+        fail "ROM start moved"
+        endif
+
+DenpyderSpriteBank equ $23E84A
+DenpyderSpriteBank_OffsetBase equ $23E84C
+DenpyderSpriteBank_Animation00 equ $23E858
+DenpyderSpriteBank_Animation00_View00 equ $23E862
+DenpyderSpriteBank_Animation00_View00_Frame00 equ $23E864
+DenpyderSpriteBank_Animation00_View00_Frame01 equ $23E89A
+DenpyderSpriteBank_Animation00_View00_Frame02 equ $23E8D0
+DenpyderSpriteBank_Animation00_View00_Frame03 equ $23E906
+DenpyderSpriteBank_Animation00_View00_Frame04 equ $23E93C
+DenpyderSpriteBank_Animation00_View00_Frame05 equ $23E972
+DenpyderSpriteBank_Animation00_View00_Frame06 equ $23E9A8
+DenpyderSpriteBank_Animation00_View01 equ $23E9DE
+DenpyderSpriteBank_Animation00_View01_Frame00 equ $23E9E0
+DenpyderSpriteBank_Animation00_View01_Frame01 equ $23EA16
+DenpyderSpriteBank_Animation00_View01_Frame02 equ $23EA4C
+DenpyderSpriteBank_Animation00_View01_Frame03 equ $23EA82
+DenpyderSpriteBank_Animation00_View01_Frame04 equ $23EAB8
+DenpyderSpriteBank_Animation00_View01_Frame05 equ $23EAEE
+DenpyderSpriteBank_Animation00_View01_Frame06 equ $23EB24
+DenpyderSpriteBank_Animation00_View02 equ $23EB5A
+DenpyderSpriteBank_Animation00_View02_Frame00 equ $23EB5C
+DenpyderSpriteBank_Animation00_View02_Frame01 equ $23EB92
+DenpyderSpriteBank_Animation00_View02_Frame02 equ $23EBC8
+DenpyderSpriteBank_Animation00_View02_Frame03 equ $23EBFE
+DenpyderSpriteBank_Animation00_View02_Frame04 equ $23EC34
+DenpyderSpriteBank_Animation00_View02_Frame05 equ $23EC6A
+DenpyderSpriteBank_Animation00_View02_Frame06 equ $23ECA0
+DenpyderSpriteBank_Animation00_View03 equ $23ECD6
+DenpyderSpriteBank_Animation00_View03_Frame00 equ $23ECD8
+DenpyderSpriteBank_Animation00_View03_Frame01 equ $23ED0E
+DenpyderSpriteBank_Animation00_View03_Frame02 equ $23ED44
+DenpyderSpriteBank_Animation00_View03_Frame03 equ $23ED7A
+DenpyderSpriteBank_Animation00_View03_Frame04 equ $23EDB0
+DenpyderSpriteBank_Animation00_View03_Frame05 equ $23EDE6
+DenpyderSpriteBank_Animation00_View03_Frame06 equ $23EE1C
+DenpyderSpriteBank_Animation01 equ $23EE52
+DenpyderSpriteBank_Animation01_View00 equ $23EE56
+DenpyderSpriteBank_Animation01_View00_Frame00 equ $23EE58
+DenpyderSpriteBank_Animation01_View00_Frame01 equ $23EE8E
+DenpyderSpriteBank_Animation01_View00_Frame02 equ $23EEC4
+DenpyderSpriteBank_Animation01_View00_Frame03 equ $23EEFA
+DenpyderSpriteBank_Animation02 equ $23EF30
+DenpyderSpriteBank_Animation02_View00 equ $23EF34
+DenpyderSpriteBank_Animation02_View00_Frame00 equ $23EF36
+DenpyderSpriteBank_Animation02_View00_Frame01 equ $23EF6C
+DenpyderSpriteBank_Animation03 equ $23EFA2
+DenpyderSpriteBank_Animation03_View00 equ $23EFA6
+DenpyderSpriteBank_Animation03_View00_Frame00 equ $23EFA8
+DenpyderSpriteBank_Animation03_View00_Frame01 equ $23EFDE
+DenpyderSpriteBank_Animation03_View00_Frame02 equ $23F014
+DenpyderSpriteBank_Animation03_View00_Frame03 equ $23F04A
+DenpyderSpriteBank_Animation03_View00_Frame04 equ $23F080
+DenpyderSpriteBank_Animation04 equ $23F0B6
+DenpyderSpriteBank_Animation04_View00 equ $23F0BA
+DenpyderSpriteBank_Animation04_View00_Frame00 equ $23F0BC
+DenpyderSpriteBank_Animation04_View00_Frame01 equ $23F0F2
+DenpyderSpriteBank_Animation04_View00_Frame02 equ $23F128
+DenpyderSpriteBank_Animation04_View00_Frame03 equ $23F15E
+DenpyderSpriteBank_Animation04_View00_Frame04 equ $23F194
+DenpyderSpriteBank_Animation04_View00_Frame05 equ $23F1CA
+DenpyderSpriteBank_Animation04_View00_Frame06 equ $23F200
+DenpyderSpriteBank_Animation04_View00_Frame07 equ $23F236
+
+        incbin "generated/data/23e84a.bin"
+        ifne *-$23F26C
+        fail "ROM end moved"
+        endif

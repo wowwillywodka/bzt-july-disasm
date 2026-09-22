@@ -1,0 +1,97 @@
+; $1FECAA..$1FFAAF | sprite-descriptors
+; ROM-derived payload. Run `make extract ROM=/path/to/prototype.bin`.
+        ifne *-$1FECAA
+        fail "ROM start moved"
+        endif
+
+BeatressSpriteBank equ $1FECAA
+BeatressSpriteBank_OffsetBase equ $1FECAC
+BeatressSpriteBank_Animation00 equ $1FECBC
+BeatressSpriteBank_Animation00_View00 equ $1FECCA
+BeatressSpriteBank_Animation00_View00_Frame00 equ $1FECCC
+BeatressSpriteBank_Animation00_View00_Frame01 equ $1FED02
+BeatressSpriteBank_Animation00_View00_Frame02 equ $1FED38
+BeatressSpriteBank_Animation00_View00_Frame03 equ $1FED6E
+BeatressSpriteBank_Animation00_View00_Frame04 equ $1FEDA4
+BeatressSpriteBank_Animation00_View00_Frame05 equ $1FEDDA
+BeatressSpriteBank_Animation00_View00_Frame06 equ $1FEE10
+BeatressSpriteBank_Animation00_View01 equ $1FEE46
+BeatressSpriteBank_Animation00_View01_Frame00 equ $1FEE48
+BeatressSpriteBank_Animation00_View01_Frame01 equ $1FEE7E
+BeatressSpriteBank_Animation00_View01_Frame02 equ $1FEEB4
+BeatressSpriteBank_Animation00_View01_Frame03 equ $1FEEEA
+BeatressSpriteBank_Animation00_View01_Frame04 equ $1FEF20
+BeatressSpriteBank_Animation00_View01_Frame05 equ $1FEF56
+BeatressSpriteBank_Animation00_View01_Frame06 equ $1FEF8C
+BeatressSpriteBank_Animation00_View02 equ $1FEFC2
+BeatressSpriteBank_Animation00_View02_Frame00 equ $1FEFC4
+BeatressSpriteBank_Animation00_View02_Frame01 equ $1FEFFA
+BeatressSpriteBank_Animation00_View02_Frame02 equ $1FF030
+BeatressSpriteBank_Animation00_View02_Frame03 equ $1FF066
+BeatressSpriteBank_Animation00_View02_Frame04 equ $1FF09C
+BeatressSpriteBank_Animation00_View02_Frame05 equ $1FF0D2
+BeatressSpriteBank_Animation00_View02_Frame06 equ $1FF108
+BeatressSpriteBank_Animation00_View03 equ $1FF13E
+BeatressSpriteBank_Animation00_View03_Frame00 equ $1FF140
+BeatressSpriteBank_Animation00_View03_Frame01 equ $1FF176
+BeatressSpriteBank_Animation00_View03_Frame02 equ $1FF1AC
+BeatressSpriteBank_Animation00_View03_Frame03 equ $1FF1E2
+BeatressSpriteBank_Animation00_View03_Frame04 equ $1FF218
+BeatressSpriteBank_Animation00_View03_Frame05 equ $1FF24E
+BeatressSpriteBank_Animation00_View03_Frame06 equ $1FF284
+BeatressSpriteBank_Animation00_View04 equ $1FF2BA
+BeatressSpriteBank_Animation00_View04_Frame00 equ $1FF2BC
+BeatressSpriteBank_Animation00_View04_Frame01 equ $1FF2F2
+BeatressSpriteBank_Animation00_View04_Frame02 equ $1FF328
+BeatressSpriteBank_Animation00_View04_Frame03 equ $1FF35E
+BeatressSpriteBank_Animation00_View04_Frame04 equ $1FF394
+BeatressSpriteBank_Animation00_View04_Frame05 equ $1FF3CA
+BeatressSpriteBank_Animation00_View04_Frame06 equ $1FF400
+BeatressSpriteBank_Animation00_View05 equ $1FF436
+BeatressSpriteBank_Animation00_View05_Frame00 equ $1FF438
+BeatressSpriteBank_Animation00_View05_Frame01 equ $1FF46E
+BeatressSpriteBank_Animation00_View05_Frame02 equ $1FF4A4
+BeatressSpriteBank_Animation00_View05_Frame03 equ $1FF4DA
+BeatressSpriteBank_Animation00_View05_Frame04 equ $1FF510
+BeatressSpriteBank_Animation00_View05_Frame05 equ $1FF546
+BeatressSpriteBank_Animation00_View05_Frame06 equ $1FF57C
+BeatressSpriteBank_Animation01 equ $1FF5B2
+BeatressSpriteBank_Animation01_View00 equ $1FF5B6
+BeatressSpriteBank_Animation01_View00_Frame00 equ $1FF5B8
+BeatressSpriteBank_Animation01_View00_Frame01 equ $1FF5EE
+BeatressSpriteBank_Animation01_View00_Frame02 equ $1FF624
+BeatressSpriteBank_Animation01_View00_Frame03 equ $1FF65A
+BeatressSpriteBank_Animation01_View00_Frame04 equ $1FF690
+BeatressSpriteBank_Animation01_View00_Frame05 equ $1FF6C6
+BeatressSpriteBank_Animation02 equ $1FF6FC
+BeatressSpriteBank_Animation02_View00 equ $1FF700
+BeatressSpriteBank_Animation02_View00_Frame00 equ $1FF702
+BeatressSpriteBank_Animation02_View00_Frame01 equ $1FF738
+BeatressSpriteBank_Animation02_View00_Frame02 equ $1FF76E
+BeatressSpriteBank_Animation02_View00_Frame03 equ $1FF7A4
+BeatressSpriteBank_Animation03 equ $1FF7DA
+BeatressSpriteBank_Animation03_View00 equ $1FF7DE
+BeatressSpriteBank_Animation03_View00_Frame00 equ $1FF7E0
+BeatressSpriteBank_Animation03_View00_Frame01 equ $1FF816
+BeatressSpriteBank_Animation03_View00_Frame02 equ $1FF84C
+BeatressSpriteBank_Animation03_View00_Frame03 equ $1FF882
+BeatressSpriteBank_Animation04 equ $1FF8B8
+BeatressSpriteBank_Animation04_View00 equ $1FF8BC
+BeatressSpriteBank_Animation04_View00_Frame00 equ $1FF8BE
+BeatressSpriteBank_Animation04_View00_Frame01 equ $1FF8F4
+BeatressSpriteBank_Animation04_View00_Frame02 equ $1FF92A
+BeatressSpriteBank_Animation04_View00_Frame03 equ $1FF960
+BeatressSpriteBank_Animation04_View00_Frame04 equ $1FF996
+BeatressSpriteBank_Animation05 equ $1FF9CC
+BeatressSpriteBank_Animation05_View00 equ $1FF9D0
+BeatressSpriteBank_Animation05_View00_Frame00 equ $1FF9D2
+BeatressSpriteBank_Animation05_View00_Frame01 equ $1FFA08
+BeatressSpriteBank_Animation06 equ $1FFA3E
+BeatressSpriteBank_Animation06_View00 equ $1FFA42
+BeatressSpriteBank_Animation06_View00_Frame00 equ $1FFA44
+BeatressSpriteBank_Animation06_View00_Frame01 equ $1FFA7A
+
+        incbin "generated/data/1fecaa.bin"
+        ifne *-$1FFAB0
+        fail "ROM end moved"
+        endif

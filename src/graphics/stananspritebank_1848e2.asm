@@ -1,0 +1,91 @@
+; $1848E2..$1855A3 | sprite-descriptors
+; ROM-derived payload. Run `make extract ROM=/path/to/prototype.bin`.
+        ifne *-$1848E2
+        fail "ROM start moved"
+        endif
+
+StananSpriteBank equ $1848E2
+StananSpriteBank_OffsetBase equ $1848E4
+StananSpriteBank_Animation00 equ $1848F6
+StananSpriteBank_Animation00_View00 equ $184900
+StananSpriteBank_Animation00_View00_Frame00 equ $184902
+StananSpriteBank_Animation00_View00_Frame01 equ $184938
+StananSpriteBank_Animation00_View00_Frame02 equ $18496E
+StananSpriteBank_Animation00_View00_Frame03 equ $1849A4
+StananSpriteBank_Animation00_View00_Frame04 equ $1849DA
+StananSpriteBank_Animation00_View00_Frame05 equ $184A10
+StananSpriteBank_Animation00_View00_Frame06 equ $184A46
+StananSpriteBank_Animation00_View00_Frame07 equ $184A7C
+StananSpriteBank_Animation00_View01 equ $184AB2
+StananSpriteBank_Animation00_View01_Frame00 equ $184AB4
+StananSpriteBank_Animation00_View01_Frame01 equ $184AEA
+StananSpriteBank_Animation00_View01_Frame02 equ $184B20
+StananSpriteBank_Animation00_View01_Frame03 equ $184B56
+StananSpriteBank_Animation00_View01_Frame04 equ $184B8C
+StananSpriteBank_Animation00_View01_Frame05 equ $184BC2
+StananSpriteBank_Animation00_View01_Frame06 equ $184BF8
+StananSpriteBank_Animation00_View01_Frame07 equ $184C2E
+StananSpriteBank_Animation00_View02 equ $184C64
+StananSpriteBank_Animation00_View02_Frame00 equ $184C66
+StananSpriteBank_Animation00_View02_Frame01 equ $184C9C
+StananSpriteBank_Animation00_View02_Frame02 equ $184CD2
+StananSpriteBank_Animation00_View02_Frame03 equ $184D08
+StananSpriteBank_Animation00_View02_Frame04 equ $184D3E
+StananSpriteBank_Animation00_View02_Frame05 equ $184D74
+StananSpriteBank_Animation00_View02_Frame06 equ $184DAA
+StananSpriteBank_Animation00_View02_Frame07 equ $184DE0
+StananSpriteBank_Animation00_View03 equ $184E16
+StananSpriteBank_Animation00_View03_Frame00 equ $184E18
+StananSpriteBank_Animation00_View03_Frame01 equ $184E4E
+StananSpriteBank_Animation00_View03_Frame02 equ $184E84
+StananSpriteBank_Animation00_View03_Frame03 equ $184EBA
+StananSpriteBank_Animation00_View03_Frame04 equ $184EF0
+StananSpriteBank_Animation00_View03_Frame05 equ $184F26
+StananSpriteBank_Animation00_View03_Frame06 equ $184F5C
+StananSpriteBank_Animation00_View03_Frame07 equ $184F92
+StananSpriteBank_Animation01 equ $184FC8
+StananSpriteBank_Animation01_View00 equ $184FCC
+StananSpriteBank_Animation01_View00_Frame00 equ $184FCE
+StananSpriteBank_Animation01_View00_Frame01 equ $185004
+StananSpriteBank_Animation02 equ $18503A
+StananSpriteBank_Animation02_View00 equ $18503E
+StananSpriteBank_Animation02_View00_Frame00 equ $185040
+StananSpriteBank_Animation02_View00_Frame01 equ $185076
+StananSpriteBank_Animation02_View00_Frame02 equ $1850AC
+StananSpriteBank_Animation02_View00_Frame03 equ $1850E2
+StananSpriteBank_Animation03 equ $185118
+StananSpriteBank_Animation03_View00 equ $18511C
+StananSpriteBank_Animation03_View00_Frame00 equ $18511E
+StananSpriteBank_Animation03_View00_Frame01 equ $185154
+StananSpriteBank_Animation03_View00_Frame02 equ $18518A
+StananSpriteBank_Animation03_View00_Frame03 equ $1851C0
+StananSpriteBank_Animation03_View00_Frame04 equ $1851F6
+StananSpriteBank_Animation03_View00_Frame05 equ $18522C
+StananSpriteBank_Animation04 equ $185262
+StananSpriteBank_Animation04_View00 equ $185266
+StananSpriteBank_Animation04_View00_Frame00 equ $185268
+StananSpriteBank_Animation04_View00_Frame01 equ $18529E
+StananSpriteBank_Animation04_View00_Frame02 equ $1852D4
+StananSpriteBank_Animation05 equ $18530A
+StananSpriteBank_Animation05_View00 equ $18530E
+StananSpriteBank_Animation05_View00_Frame00 equ $185310
+StananSpriteBank_Animation05_View00_Frame01 equ $185346
+StananSpriteBank_Animation05_View00_Frame02 equ $18537C
+StananSpriteBank_Animation05_View00_Frame03 equ $1853B2
+StananSpriteBank_Animation06 equ $1853E8
+StananSpriteBank_Animation06_View00 equ $1853EC
+StananSpriteBank_Animation06_View00_Frame00 equ $1853EE
+StananSpriteBank_Animation06_View00_Frame01 equ $185424
+StananSpriteBank_Animation06_View00_Frame02 equ $18545A
+StananSpriteBank_Animation06_View00_Frame03 equ $185490
+StananSpriteBank_Animation06_View00_Frame04 equ $1854C6
+StananSpriteBank_Animation06_View00_Frame05 equ $1854FC
+StananSpriteBank_Animation07 equ $185532
+StananSpriteBank_Animation07_View00 equ $185536
+StananSpriteBank_Animation07_View00_Frame00 equ $185538
+StananSpriteBank_Animation07_View00_Frame01 equ $18556E
+
+        incbin "generated/data/1848e2.bin"
+        ifne *-$1855A4
+        fail "ROM end moved"
+        endif

@@ -1,0 +1,95 @@
+; $2214B0..$222249 | sprite-descriptors
+; ROM-derived payload. Run `make extract ROM=/path/to/prototype.bin`.
+        ifne *-$2214B0
+        fail "ROM start moved"
+        endif
+
+WhiteDummySpriteBank equ $2214B0
+WhiteDummySpriteBank_OffsetBase equ $2214B2
+WhiteDummySpriteBank_Animation00 equ $2214C2
+WhiteDummySpriteBank_Animation00_View00 equ $2214D0
+WhiteDummySpriteBank_Animation00_View00_Frame00 equ $2214D2
+WhiteDummySpriteBank_Animation00_View00_Frame01 equ $221508
+WhiteDummySpriteBank_Animation00_View00_Frame02 equ $22153E
+WhiteDummySpriteBank_Animation00_View00_Frame03 equ $221574
+WhiteDummySpriteBank_Animation00_View00_Frame04 equ $2215AA
+WhiteDummySpriteBank_Animation00_View00_Frame05 equ $2215E0
+WhiteDummySpriteBank_Animation00_View00_Frame06 equ $221616
+WhiteDummySpriteBank_Animation00_View01 equ $22164C
+WhiteDummySpriteBank_Animation00_View01_Frame00 equ $22164E
+WhiteDummySpriteBank_Animation00_View01_Frame01 equ $221684
+WhiteDummySpriteBank_Animation00_View01_Frame02 equ $2216BA
+WhiteDummySpriteBank_Animation00_View01_Frame03 equ $2216F0
+WhiteDummySpriteBank_Animation00_View01_Frame04 equ $221726
+WhiteDummySpriteBank_Animation00_View01_Frame05 equ $22175C
+WhiteDummySpriteBank_Animation00_View01_Frame06 equ $221792
+WhiteDummySpriteBank_Animation00_View02 equ $2217C8
+WhiteDummySpriteBank_Animation00_View02_Frame00 equ $2217CA
+WhiteDummySpriteBank_Animation00_View02_Frame01 equ $221800
+WhiteDummySpriteBank_Animation00_View02_Frame02 equ $221836
+WhiteDummySpriteBank_Animation00_View02_Frame03 equ $22186C
+WhiteDummySpriteBank_Animation00_View02_Frame04 equ $2218A2
+WhiteDummySpriteBank_Animation00_View02_Frame05 equ $2218D8
+WhiteDummySpriteBank_Animation00_View02_Frame06 equ $22190E
+WhiteDummySpriteBank_Animation00_View03 equ $221944
+WhiteDummySpriteBank_Animation00_View03_Frame00 equ $221946
+WhiteDummySpriteBank_Animation00_View03_Frame01 equ $22197C
+WhiteDummySpriteBank_Animation00_View03_Frame02 equ $2219B2
+WhiteDummySpriteBank_Animation00_View03_Frame03 equ $2219E8
+WhiteDummySpriteBank_Animation00_View03_Frame04 equ $221A1E
+WhiteDummySpriteBank_Animation00_View03_Frame05 equ $221A54
+WhiteDummySpriteBank_Animation00_View03_Frame06 equ $221A8A
+WhiteDummySpriteBank_Animation00_View04 equ $221AC0
+WhiteDummySpriteBank_Animation00_View04_Frame00 equ $221AC2
+WhiteDummySpriteBank_Animation00_View04_Frame01 equ $221AF8
+WhiteDummySpriteBank_Animation00_View04_Frame02 equ $221B2E
+WhiteDummySpriteBank_Animation00_View04_Frame03 equ $221B64
+WhiteDummySpriteBank_Animation00_View04_Frame04 equ $221B9A
+WhiteDummySpriteBank_Animation00_View04_Frame05 equ $221BD0
+WhiteDummySpriteBank_Animation00_View04_Frame06 equ $221C06
+WhiteDummySpriteBank_Animation00_View05 equ $221C3C
+WhiteDummySpriteBank_Animation00_View05_Frame00 equ $221C3E
+WhiteDummySpriteBank_Animation00_View05_Frame01 equ $221C74
+WhiteDummySpriteBank_Animation00_View05_Frame02 equ $221CAA
+WhiteDummySpriteBank_Animation00_View05_Frame03 equ $221CE0
+WhiteDummySpriteBank_Animation00_View05_Frame04 equ $221D16
+WhiteDummySpriteBank_Animation00_View05_Frame05 equ $221D4C
+WhiteDummySpriteBank_Animation00_View05_Frame06 equ $221D82
+WhiteDummySpriteBank_Animation01 equ $221DB8
+WhiteDummySpriteBank_Animation01_View00 equ $221DBC
+WhiteDummySpriteBank_Animation01_View00_Frame00 equ $221DBE
+WhiteDummySpriteBank_Animation01_View00_Frame01 equ $221DF4
+WhiteDummySpriteBank_Animation01_View00_Frame02 equ $221E2A
+WhiteDummySpriteBank_Animation01_View00_Frame03 equ $221E60
+WhiteDummySpriteBank_Animation02 equ $221E96
+WhiteDummySpriteBank_Animation02_View00 equ $221E9A
+WhiteDummySpriteBank_Animation02_View00_Frame00 equ $221E9C
+WhiteDummySpriteBank_Animation02_View00_Frame01 equ $221ED2
+WhiteDummySpriteBank_Animation02_View00_Frame02 equ $221F08
+WhiteDummySpriteBank_Animation03 equ $221F3E
+WhiteDummySpriteBank_Animation03_View00 equ $221F42
+WhiteDummySpriteBank_Animation03_View00_Frame00 equ $221F44
+WhiteDummySpriteBank_Animation03_View00_Frame01 equ $221F7A
+WhiteDummySpriteBank_Animation03_View00_Frame02 equ $221FB0
+WhiteDummySpriteBank_Animation03_View00_Frame03 equ $221FE6
+WhiteDummySpriteBank_Animation04 equ $22201C
+WhiteDummySpriteBank_Animation04_View00 equ $222020
+WhiteDummySpriteBank_Animation04_View00_Frame00 equ $222022
+WhiteDummySpriteBank_Animation04_View00_Frame01 equ $222058
+WhiteDummySpriteBank_Animation04_View00_Frame02 equ $22208E
+WhiteDummySpriteBank_Animation04_View00_Frame03 equ $2220C4
+WhiteDummySpriteBank_Animation04_View00_Frame04 equ $2220FA
+WhiteDummySpriteBank_Animation04_View00_Frame05 equ $222130
+WhiteDummySpriteBank_Animation05 equ $222166
+WhiteDummySpriteBank_Animation05_View00 equ $22216A
+WhiteDummySpriteBank_Animation05_View00_Frame00 equ $22216C
+WhiteDummySpriteBank_Animation05_View00_Frame01 equ $2221A2
+WhiteDummySpriteBank_Animation06 equ $2221D8
+WhiteDummySpriteBank_Animation06_View00 equ $2221DC
+WhiteDummySpriteBank_Animation06_View00_Frame00 equ $2221DE
+WhiteDummySpriteBank_Animation06_View00_Frame01 equ $222214
+
+        incbin "generated/data/2214b0.bin"
+        ifne *-$22224A
+        fail "ROM end moved"
+        endif

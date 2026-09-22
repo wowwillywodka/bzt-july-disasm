@@ -1,0 +1,81 @@
+; $1A35A4..$1A4175 | sprite-descriptors
+; ROM-derived payload. Run `make extract ROM=/path/to/prototype.bin`.
+        ifne *-$1A35A4
+        fail "ROM start moved"
+        endif
+
+GunnerSpriteBank equ $1A35A4
+GunnerSpriteBank_OffsetBase equ $1A35A6
+GunnerSpriteBank_Animation00 equ $1A35B0
+GunnerSpriteBank_Animation00_View00 equ $1A35BE
+GunnerSpriteBank_Animation00_View00_Frame00 equ $1A35C0
+GunnerSpriteBank_Animation00_View00_Frame01 equ $1A35F6
+GunnerSpriteBank_Animation00_View00_Frame02 equ $1A362C
+GunnerSpriteBank_Animation00_View00_Frame03 equ $1A3662
+GunnerSpriteBank_Animation00_View00_Frame04 equ $1A3698
+GunnerSpriteBank_Animation00_View00_Frame05 equ $1A36CE
+GunnerSpriteBank_Animation00_View00_Frame06 equ $1A3704
+GunnerSpriteBank_Animation00_View01 equ $1A373A
+GunnerSpriteBank_Animation00_View01_Frame00 equ $1A373C
+GunnerSpriteBank_Animation00_View01_Frame01 equ $1A3772
+GunnerSpriteBank_Animation00_View01_Frame02 equ $1A37A8
+GunnerSpriteBank_Animation00_View01_Frame03 equ $1A37DE
+GunnerSpriteBank_Animation00_View01_Frame04 equ $1A3814
+GunnerSpriteBank_Animation00_View01_Frame05 equ $1A384A
+GunnerSpriteBank_Animation00_View01_Frame06 equ $1A3880
+GunnerSpriteBank_Animation00_View02 equ $1A38B6
+GunnerSpriteBank_Animation00_View02_Frame00 equ $1A38B8
+GunnerSpriteBank_Animation00_View02_Frame01 equ $1A38EE
+GunnerSpriteBank_Animation00_View02_Frame02 equ $1A3924
+GunnerSpriteBank_Animation00_View02_Frame03 equ $1A395A
+GunnerSpriteBank_Animation00_View02_Frame04 equ $1A3990
+GunnerSpriteBank_Animation00_View02_Frame05 equ $1A39C6
+GunnerSpriteBank_Animation00_View02_Frame06 equ $1A39FC
+GunnerSpriteBank_Animation00_View03 equ $1A3A32
+GunnerSpriteBank_Animation00_View03_Frame00 equ $1A3A34
+GunnerSpriteBank_Animation00_View03_Frame01 equ $1A3A6A
+GunnerSpriteBank_Animation00_View03_Frame02 equ $1A3AA0
+GunnerSpriteBank_Animation00_View03_Frame03 equ $1A3AD6
+GunnerSpriteBank_Animation00_View03_Frame04 equ $1A3B0C
+GunnerSpriteBank_Animation00_View03_Frame05 equ $1A3B42
+GunnerSpriteBank_Animation00_View03_Frame06 equ $1A3B78
+GunnerSpriteBank_Animation00_View04 equ $1A3BAE
+GunnerSpriteBank_Animation00_View04_Frame00 equ $1A3BB0
+GunnerSpriteBank_Animation00_View04_Frame01 equ $1A3BE6
+GunnerSpriteBank_Animation00_View04_Frame02 equ $1A3C1C
+GunnerSpriteBank_Animation00_View04_Frame03 equ $1A3C52
+GunnerSpriteBank_Animation00_View04_Frame04 equ $1A3C88
+GunnerSpriteBank_Animation00_View04_Frame05 equ $1A3CBE
+GunnerSpriteBank_Animation00_View04_Frame06 equ $1A3CF4
+GunnerSpriteBank_Animation00_View05 equ $1A3D2A
+GunnerSpriteBank_Animation00_View05_Frame00 equ $1A3D2C
+GunnerSpriteBank_Animation00_View05_Frame01 equ $1A3D62
+GunnerSpriteBank_Animation00_View05_Frame02 equ $1A3D98
+GunnerSpriteBank_Animation00_View05_Frame03 equ $1A3DCE
+GunnerSpriteBank_Animation00_View05_Frame04 equ $1A3E04
+GunnerSpriteBank_Animation00_View05_Frame05 equ $1A3E3A
+GunnerSpriteBank_Animation00_View05_Frame06 equ $1A3E70
+GunnerSpriteBank_Animation01 equ $1A3EA6
+GunnerSpriteBank_Animation01_View00 equ $1A3EAA
+GunnerSpriteBank_Animation01_View00_Frame00 equ $1A3EAC
+GunnerSpriteBank_Animation01_View00_Frame01 equ $1A3EE2
+GunnerSpriteBank_Animation01_View00_Frame02 equ $1A3F18
+GunnerSpriteBank_Animation01_View00_Frame03 equ $1A3F4E
+GunnerSpriteBank_Animation02 equ $1A3F84
+GunnerSpriteBank_Animation02_View00 equ $1A3F88
+GunnerSpriteBank_Animation02_View00_Frame00 equ $1A3F8A
+GunnerSpriteBank_Animation02_View00_Frame01 equ $1A3FC0
+GunnerSpriteBank_Animation03 equ $1A3FF6
+GunnerSpriteBank_Animation03_View00 equ $1A3FFA
+GunnerSpriteBank_Animation03_View00_Frame00 equ $1A3FFC
+GunnerSpriteBank_Animation03_View00_Frame01 equ $1A4032
+GunnerSpriteBank_Animation03_View00_Frame02 equ $1A4068
+GunnerSpriteBank_Animation03_View00_Frame03 equ $1A409E
+GunnerSpriteBank_Animation03_View00_Frame04 equ $1A40D4
+GunnerSpriteBank_Animation03_View00_Frame05 equ $1A410A
+GunnerSpriteBank_Animation03_View00_Frame06 equ $1A4140
+
+        incbin "generated/data/1a35a4.bin"
+        ifne *-$1A4176
+        fail "ROM end moved"
+        endif
