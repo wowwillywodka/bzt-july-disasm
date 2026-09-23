@@ -60,7 +60,7 @@
 Нужны Python 3 и VASM для `m68k/mot` и `z80/oldstyle`.
 
 ```sh
-git clone <URL_ЭТОГО_РЕПОЗИТОРИЯ> bztjuly-public
+git clone [<URL_ЭТОГО_РЕПОЗИТОРИЯ>](https://github.com/wowwillywodka/bzt-july-disasm.git) bztjuly-public
 cd bztjuly-public
 make extract ROM="/путь/к/Beyond Zero Tolerance (Prototype).bin"
 make check
