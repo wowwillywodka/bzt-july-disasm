@@ -1,7 +1,9 @@
 ; $029BA2..$029BC9 | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; RESEARCH NOTE (July; semantic claims still require local review):
-; Чтение 56-битного (0x38) упакованного поля из PC-таблицы через бит-распак/упак (0x29b78/0x29b4e), затем 7× XOR-расшифровка (0x29bca) с ключом 0x56ca2d69 — декод кода ID-карты/пароля
+; JULY LOCAL REVIEW: Permutes 54 meaningful bits into a 7-byte buffer and
+; XORs all seven bytes. The 56-iteration loop overreads the 54-byte table;
+; its two extra writes use bit indexes $48 and $A7 outside that buffer.
+; The $A7 write targets bit 7 of LinkPortStatusShadow ($FF2C66).
         ifne *-$29BA2
         fail "ROM start moved"
         endif

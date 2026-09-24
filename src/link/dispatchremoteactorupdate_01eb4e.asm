@@ -13,10 +13,10 @@ DispatchRemoteActorUpdate:
         jmp          (a1)                                          ; $01EB5E
 
 loc_01EB60:
-        move.w       d5, -$6f26(a6)                                ; $01EB60
+        move.w       d5, rSoftwareSpriteProjectionScale(a6)                                ; $01EB60
         move.w       d5, d2                                        ; $01EB64
-        move.w       -$71d8(a6), d3                                ; $01EB66
-        sub.w        -$6e4c(a6), d3                                ; $01EB6A
+        move.w       rPlayerViewOffsetZ(a6), d3                                ; $01EB66
+        sub.w        rTransitHeightOffset(a6), d3                                ; $01EB6A
         sub.w        ActorZ(a0), d3                                ; $01EB6E
         muls.w       d3, d2                                        ; $01EB72
         asr.l        #$6, d2                                       ; $01EB74
@@ -25,7 +25,7 @@ loc_01EB60:
         adda.w       #ObjectTileOffset01_FireEffect, a1            ; $01EB7E
         move.w       rGameTick(a6), d0                             ; $01EB82
         andi.w       #$1, d0                                       ; $01EB86
-        move.w       d0, -$6f32(a6)                                ; $01EB8A
+        move.w       d0, rSoftwareSpriteMirrorFlag(a6)                                ; $01EB8A
         clr.w        d0                                            ; $01EB8E
         move.b       ActorRemoteFrame(a0), d0                      ; $01EB90
         move.b       ActorRemoteDirectionRemap(pc, d0.w), d4       ; $01EB94

@@ -10,8 +10,8 @@ ReturnPositiveCellResult:
         rts                                                        ; $008DE6
 
 loc_008DE8:
-        move.l       a0, -$42a2(a6)                                ; $008DE8
-        bsr.w        EnvironmentRoutine_00D166                     ; $008DEC
+        move.l       a0, rCellRenderStateSourcePointer(a6)                                ; $008DE8
+        bsr.w        MarkCellRenderStateAfterHit                     ; $008DEC
         move.w       #$1, d3                                       ; $008DF0
         rts                                                        ; $008DF4
         ifne *-$8DF6

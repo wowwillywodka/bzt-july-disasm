@@ -1,0 +1,36 @@
+{
+  "ok": true,
+  "errors": [],
+  "rom_sha256": "8f0af150b642e1e190566a96d19732695164d926244764407560949cee02d8b0",
+  "background_safe_input_range": [
+    -32,
+    32
+  ],
+  "ordinary_view_model": {
+    "reachable_state_count": 70,
+    "unswayed_range": [
+      -31,
+      25
+    ],
+    "sway_range": [
+      -1,
+      1
+    ],
+    "render_range": [
+      -32,
+      26
+    ]
+  },
+  "background_first_outside_writes": {
+    "-33": [
+      "FF8B49"
+    ],
+    "33": [
+      "FF8BEA"
+    ]
+  },
+  "background_offsets_executed": 65,
+  "sprite_cases_executed": 16,
+  "wall_column_cases_executed": 180,
+  "scope": "Original 68000 instructions on the pinned July ROM, with a synthetic nontransparent tile/LUT in memory for sprite and wall cases. Representative clipping cases; not exhaustive for arbitrary new assets."
+}

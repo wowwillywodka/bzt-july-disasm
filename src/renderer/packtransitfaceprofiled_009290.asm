@@ -19,7 +19,7 @@ PackTransitFaceProfileD:
         addq.b       #$1, d3                                       ; $0092A2
         lsl.w        #$8, d3                                       ; $0092A4
         move.b       d1, d3                                        ; $0092A6
-        bsr.w        EnemiesRoutine_0096CC                         ; $0092A8
+        bsr.w        QueueBackgroundFilledWallMarker                         ; $0092A8
 
 loc_0092AC:
         clr.w        d3                                            ; $0092AC
@@ -36,7 +36,7 @@ loc_0092B0:
         move.b       d0, d3                                        ; $0092BE
         lsl.w        #$8, d3                                       ; $0092C0
         move.b       d1, d3                                        ; $0092C2
-        bsr.w        RendererRoutine_0096D4                        ; $0092C4
+        bsr.w        QueueUniqueWallMarker                        ; $0092C4
 
 loc_0092C8:
         clr.w        d3                                            ; $0092C8
@@ -55,7 +55,7 @@ loc_0092CC:
         lsl.w        #$8, d3                                       ; $0092DE
         move.b       d1, d3                                        ; $0092E0
         addq.b       #$1, d3                                       ; $0092E2
-        bsr.w        RendererRoutine_0096D4                        ; $0092E4
+        bsr.w        QueueUniqueWallMarker                        ; $0092E4
 
 loc_0092E8:
         clr.w        d3                                            ; $0092E8
@@ -74,7 +74,7 @@ loc_0092EC:
         addq.b       #$1, d3                                       ; $0092FE
         lsl.w        #$8, d3                                       ; $009300
         move.b       d1, d3                                        ; $009302
-        bsr.w        RendererRoutine_0096D4                        ; $009304
+        bsr.w        QueueUniqueWallMarker                        ; $009304
 
 loc_009308:
         clr.w        d3                                            ; $009308

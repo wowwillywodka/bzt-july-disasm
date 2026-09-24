@@ -1,7 +1,11 @@
 ; $0041D2..$0078BB | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; RESEARCH NOTE (July; semantic claims still require local review):
-; Вход скейлера колонки с 2 сэмплами: movea.l (4,SP),A3+jsr (A3) — диспетч, A3=LUT (-0x7130,A6); читает texel-индексы (0x10,A1)/(0x10,A2), move.b (A3,D0.w),(A0) — выборка через шейдинг/палитру в фреймбуфер, addq #4,A0, lea (2,A5),A5, jmp по (8,SP)
+; JULY LOCAL REVIEW:
+; This partition contains unrolled scaler entries for indices 1..40 of the
+; normal table and the direct-byte alternatives for indices 1..23. A compact
+; entry calls the background-copy suffix at 4(SP), writes 2*n wall bytes,
+; advances A5 by 2*n, then jumps to the suffix at 8(SP). Indices 38..40
+; instead write all 80 output positions directly. See docs/WALL_SCALERS.md.
         ifne *-$41D2
         fail "ROM start moved"
         endif

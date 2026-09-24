@@ -6,7 +6,7 @@
         endif
 
 RetainedWallRendererScreenEffect:
-        clr.w        -$7ffe(a6)                                    ; $028740
+        clr.w        rVBlankTransferPhasesRemaining(a6)                                    ; $028740
         jsr          ClearVramLongs.l                              ; $028744
         jsr          ClearVideoMemory.l                            ; $02874A
         movea.l      #VDP_DATA, a4                                 ; $028750
@@ -30,7 +30,7 @@ loc_028786:
         move.l       d6, (a4)                                      ; $02878A
         move.l       d6, (a4)                                      ; $02878C
         dbra         d7, loc_028786                                ; $02878E
-        lea.l        -$1db6(a6), a0                                ; $028792
+        lea.l        rSoftwareFrameBuffer(a6), a0                                ; $028792
         move.w       #$27f, d7                                     ; $028796
 
 loc_02879A:
@@ -64,18 +64,18 @@ loc_0287BA:
         dbra         d3, loc_0287BA                                ; $0287E8
         addq.l       #$2, d1                                       ; $0287EC
         dbra         d2, loc_0287B4                                ; $0287EE
-        move.w       #$20, -$718c(a6)                              ; $0287F2
-        move.w       #$40, -$718e(a6)                              ; $0287F8
-        move.w       #$5f, -$717c(a6)                              ; $0287FE
-        move.w       #$40, -$717e(a6)                              ; $028804
-        lea.l        -$7abc(a6), a0                                ; $02880A
+        move.w       #$20, rWallEndpointBScreenX(a6)                              ; $0287F2
+        move.w       #$40, rWallEndpointBInverseDepth(a6)                              ; $0287F8
+        move.w       #$5f, rWallEndpointAScreenX(a6)                              ; $0287FE
+        move.w       #$40, rWallEndpointAInverseDepth(a6)                              ; $028804
+        lea.l        rVramDmaCommandQueue(a6), a0                                ; $02880A
         move.l       #$ffffffff, (a0)                              ; $02880E
         move.l       a0, rDmaQueueTail(a6)                         ; $028814
-        clr.w        -$778a(a6)                                    ; $028818
-        move.w       #$e00, -$7788(a6)                             ; $02881C
+        clr.w        rRetainedWallEffectOffset(a6)                                    ; $028818
+        move.w       #$e00, rRetainedWallEffectScale(a6)                             ; $02881C
 
 loc_028822:
-        move.w       #$2, -$7ffe(a6)                               ; $028822
+        move.w       #$2, rVBlankTransferPhasesRemaining(a6)                               ; $028822
         jsr          WaitForVBlank.l                               ; $028828
         movea.l      #VDP_DATA, a4                                 ; $02882E
         move.l       #$c0080000, VDP_CONTROL.l                     ; $028834
@@ -96,8 +96,8 @@ loc_028852:
         move.l       (a0)+, (a4)                                   ; $028860
         move.l       (a0)+, (a4)                                   ; $028862
         move.l       (a0)+, (a4)                                   ; $028864
-        subq.w       #$8, -$778a(a6)                               ; $028866
-        move.w       -$7788(a6), d0                                ; $02886A
+        subq.w       #$8, rRetainedWallEffectOffset(a6)                               ; $028866
+        move.w       rRetainedWallEffectScale(a6), d0                                ; $02886A
         subi.w       #$2b5, d0                                     ; $02886E
         asr.w        #$4, d0                                       ; $028872
         cmpi.w       #$18, d0                                      ; $028874
@@ -106,14 +106,14 @@ loc_028852:
 
 loc_02887E:
         neg.w        d0                                            ; $02887E
-        add.w        -$7788(a6), d0                                ; $028880
+        add.w        rRetainedWallEffectScale(a6), d0                                ; $028880
         cmpi.w       #$2b5, d0                                     ; $028884
         bcc.b        loc_02888E                                    ; $028888
         move.w       #$2b5, d0                                     ; $02888A
 
 loc_02888E:
-        move.w       d0, -$7788(a6)                                ; $02888E
-        lea.l        $a4a(a6), a0                                  ; $028892
+        move.w       d0, rRetainedWallEffectScale(a6)                                ; $02888E
+        lea.l        rScreenColumnDepthWords(a6), a0                                  ; $028892
         move.w       #$3f, d7                                      ; $028896
 
 loc_02889A:
@@ -121,9 +121,9 @@ loc_02889A:
         dbra         d7, loc_02889A                                ; $02889C
 
 loc_0288A0:
-        tst.w        -$7ffe(a6)                                    ; $0288A0
+        tst.w        rVBlankTransferPhasesRemaining(a6)                                    ; $0288A0
         bne.b        loc_0288A0                                    ; $0288A4
-        lea.l        -$1db6(a6), a0                                ; $0288A6
+        lea.l        rSoftwareFrameBuffer(a6), a0                                ; $0288A6
         move.w       #$13f, d7                                     ; $0288AA
 
 loc_0288AE:
@@ -136,19 +136,19 @@ loc_0288AE:
         clr.l        (a0)+                                         ; $0288BA
         clr.l        (a0)+                                         ; $0288BC
         dbra         d7, loc_0288AE                                ; $0288BE
-        lea.l        -$719a(a6), a2                                ; $0288C2
-        lea.l        -$718a(a6), a3                                ; $0288C6
-        move.w       -$778a(a6), d0                                ; $0288CA
+        lea.l        rWallEndpointBRecord(a6), a2                                ; $0288C2
+        lea.l        rWallEndpointARecord(a6), a3                                ; $0288C6
+        move.w       rRetainedWallEffectOffset(a6), d0                                ; $0288CA
         addi.w       #$c0, d0                                      ; $0288CE
         andi.w       #$7f, d0                                      ; $0288D2
         subi.w       #$c0, d0                                      ; $0288D6
-        move.w       d0, -$778a(a6)                                ; $0288DA
+        move.w       d0, rRetainedWallEffectOffset(a6)                                ; $0288DA
         movea.l      #AngleVectorPairs, a0                         ; $0288DE
         andi.w       #$1ff, d0                                     ; $0288E4
         lsl.w        #$2, d0                                       ; $0288E8
         adda.w       d0, a0                                        ; $0288EA
         move.w       $2(a0), d3                                    ; $0288EC
-        add.w        -$7788(a6), d3                                ; $0288F0
+        add.w        rRetainedWallEffectScale(a6), d3                                ; $0288F0
         move.w       (a0), d0                                      ; $0288F4
         ext.l        d0                                            ; $0288F6
         lsl.l        #$8, d0                                       ; $0288F8
@@ -161,14 +161,14 @@ loc_0288AE:
         move.l       #$8000, d0                                    ; $02890C
         divs.w       d3, d0                                        ; $028912
         move.w       d0, $c(a2)                                    ; $028914
-        move.w       -$778a(a6), d0                                ; $028918
+        move.w       rRetainedWallEffectOffset(a6), d0                                ; $028918
         addi.w       #$80, d0                                      ; $02891C
         movea.l      #AngleVectorPairs, a0                         ; $028920
         andi.w       #$1ff, d0                                     ; $028926
         lsl.w        #$2, d0                                       ; $02892A
         adda.w       d0, a0                                        ; $02892C
         move.w       $2(a0), d3                                    ; $02892E
-        add.w        -$7788(a6), d3                                ; $028932
+        add.w        rRetainedWallEffectScale(a6), d3                                ; $028932
         move.w       (a0), d0                                      ; $028936
         ext.l        d0                                            ; $028938
         lsl.l        #$8, d0                                       ; $02893A
@@ -181,9 +181,9 @@ loc_0288AE:
         move.l       #$8000, d0                                    ; $02894E
         divs.w       d3, d0                                        ; $028954
         move.w       d0, $c(a3)                                    ; $028956
-        clr.w        -$717a(a6)                                    ; $02895A
-        move.w       #$ff, -$7178(a6)                              ; $02895E
-        move.l       #AlternateWallColumnScalers, rWallColumnScalerTable(a6) ; $028964
+        clr.w        rWallTextureUStart(a6)                                    ; $02895A
+        move.w       #$ff, rWallTextureUEnd(a6)                              ; $02895E
+        move.l       #DirectWallColumnScalers, rWallColumnScalerTable(a6) ; $028964
         move.l       rZoneBackgroundProfile0(a6), rActiveSceneBackgroundProfile(a6) ; $02896C
         lea.l        rActiveSpriteColorRemaps(a6), a0              ; $028972
         move.l       rZoneSpriteColorRemaps(a6), d1                ; $028976
@@ -192,23 +192,23 @@ loc_0288AE:
         move.l       d1, (a0)+                                     ; $02897E
         move.l       d1, (a0)+                                     ; $028980
         move.l       d1, (a0)                                      ; $028982
-        clr.l        -$6e46(a6)                                    ; $028984
-        clr.l        -$6e42(a6)                                    ; $028988
-        clr.w        -$6e48(a6)                                    ; $02898C
-        clr.w        -$6f6c(a6)                                    ; $028990
-        clr.w        -$6f6a(a6)                                    ; $028994
+        clr.l        rWallFaceHeightProfile0(a6)                                    ; $028984
+        clr.l        rWallFaceHeightProfile2(a6)                                    ; $028988
+        clr.w        rCurrentWallFaceHeightProfile(a6)                                    ; $02898C
+        clr.w        rNightVisionInventorySlotIndex(a6)                                    ; $028990
+        clr.w        rFlashlightInventorySlotIndex(a6)                                    ; $028994
         move.l       #RetainedScreenEffectColumnPixels, rCurrentWallTilePair(a6) ; $028998
         jsr          DrawWallTextureSpan.l                         ; $0289A0
-        lea.l        -$719a(a6), a2                                ; $0289A6
-        lea.l        -$718a(a6), a3                                ; $0289AA
-        move.w       -$778a(a6), d0                                ; $0289AE
+        lea.l        rWallEndpointBRecord(a6), a2                                ; $0289A6
+        lea.l        rWallEndpointARecord(a6), a3                                ; $0289AA
+        move.w       rRetainedWallEffectOffset(a6), d0                                ; $0289AE
         addi.w       #$80, d0                                      ; $0289B2
         movea.l      #AngleVectorPairs, a0                         ; $0289B6
         andi.w       #$1ff, d0                                     ; $0289BC
         lsl.w        #$2, d0                                       ; $0289C0
         adda.w       d0, a0                                        ; $0289C2
         move.w       $2(a0), d3                                    ; $0289C4
-        add.w        -$7788(a6), d3                                ; $0289C8
+        add.w        rRetainedWallEffectScale(a6), d3                                ; $0289C8
         move.w       (a0), d0                                      ; $0289CC
         ext.l        d0                                            ; $0289CE
         lsl.l        #$8, d0                                       ; $0289D0
@@ -221,14 +221,14 @@ loc_0288AE:
         move.l       #$8000, d0                                    ; $0289E4
         divs.w       d3, d0                                        ; $0289EA
         move.w       d0, $c(a2)                                    ; $0289EC
-        move.w       -$778a(a6), d0                                ; $0289F0
+        move.w       rRetainedWallEffectOffset(a6), d0                                ; $0289F0
         addi.w       #$100, d0                                     ; $0289F4
         movea.l      #AngleVectorPairs, a0                         ; $0289F8
         andi.w       #$1ff, d0                                     ; $0289FE
         lsl.w        #$2, d0                                       ; $028A02
         adda.w       d0, a0                                        ; $028A04
         move.w       $2(a0), d3                                    ; $028A06
-        add.w        -$7788(a6), d3                                ; $028A0A
+        add.w        rRetainedWallEffectScale(a6), d3                                ; $028A0A
         move.w       (a0), d0                                      ; $028A0E
         ext.l        d0                                            ; $028A10
         lsl.l        #$8, d0                                       ; $028A12
@@ -241,9 +241,9 @@ loc_0288AE:
         move.l       #$8000, d0                                    ; $028A26
         divs.w       d3, d0                                        ; $028A2C
         move.w       d0, $c(a3)                                    ; $028A2E
-        clr.w        -$717a(a6)                                    ; $028A32
-        move.w       #$ff, -$7178(a6)                              ; $028A36
-        move.l       #AlternateWallColumnScalers, rWallColumnScalerTable(a6) ; $028A3C
+        clr.w        rWallTextureUStart(a6)                                    ; $028A32
+        move.w       #$ff, rWallTextureUEnd(a6)                              ; $028A36
+        move.l       #DirectWallColumnScalers, rWallColumnScalerTable(a6) ; $028A3C
         move.l       rZoneBackgroundProfile0(a6), rActiveSceneBackgroundProfile(a6) ; $028A44
         lea.l        rActiveSpriteColorRemaps(a6), a0              ; $028A4A
         move.l       rZoneSpriteColorRemaps(a6), d1                ; $028A4E
@@ -252,22 +252,22 @@ loc_0288AE:
         move.l       d1, (a0)+                                     ; $028A56
         move.l       d1, (a0)+                                     ; $028A58
         move.l       d1, (a0)                                      ; $028A5A
-        clr.l        -$6e46(a6)                                    ; $028A5C
-        clr.l        -$6e42(a6)                                    ; $028A60
-        clr.w        -$6e48(a6)                                    ; $028A64
-        clr.w        -$6f6c(a6)                                    ; $028A68
-        clr.w        -$6f6a(a6)                                    ; $028A6C
+        clr.l        rWallFaceHeightProfile0(a6)                                    ; $028A5C
+        clr.l        rWallFaceHeightProfile2(a6)                                    ; $028A60
+        clr.w        rCurrentWallFaceHeightProfile(a6)                                    ; $028A64
+        clr.w        rNightVisionInventorySlotIndex(a6)                                    ; $028A68
+        clr.w        rFlashlightInventorySlotIndex(a6)                                    ; $028A6C
         move.l       #RetainedScreenEffectColumnPixels, rCurrentWallTilePair(a6) ; $028A70
         jsr          DrawWallTextureSpan.l                         ; $028A78
-        cmpi.w       #$2b5, -$7788(a6)                             ; $028A7E
+        cmpi.w       #$2b5, rRetainedWallEffectScale(a6)                             ; $028A7E
         bne.w        loc_028822                                    ; $028A84
-        cmpi.w       #$ff40, -$778a(a6)                            ; $028A88
+        cmpi.w       #$ff40, rRetainedWallEffectOffset(a6)                            ; $028A88
         bne.w        loc_028822                                    ; $028A8E
         move.w       #$f, d7                                       ; $028A92
 
 loc_028A96:
         move.w       d7, -(a7)                                     ; $028A96
-        move.w       #$2, -$7ffe(a6)                               ; $028A98
+        move.w       #$2, rVBlankTransferPhasesRemaining(a6)                               ; $028A98
         jsr          WaitForVBlank.l                               ; $028A9E
         movea.l      #VDP_DATA, a4                                 ; $028AA4
         move.l       #$c0080000, VDP_CONTROL.l                     ; $028AAA
@@ -288,7 +288,7 @@ loc_028AC8:
         move.l       (a0)+, (a4)                                   ; $028AD6
         move.l       (a0)+, (a4)                                   ; $028AD8
         move.l       (a0)+, (a4)                                   ; $028ADA
-        lea.l        $a4a(a6), a0                                  ; $028ADC
+        lea.l        rScreenColumnDepthWords(a6), a0                                  ; $028ADC
         move.w       #$3f, d7                                      ; $028AE0
 
 loc_028AE4:
@@ -296,9 +296,9 @@ loc_028AE4:
         dbra         d7, loc_028AE4                                ; $028AE6
 
 loc_028AEA:
-        tst.w        -$7ffe(a6)                                    ; $028AEA
+        tst.w        rVBlankTransferPhasesRemaining(a6)                                    ; $028AEA
         bne.b        loc_028AEA                                    ; $028AEE
-        lea.l        -$1db6(a6), a0                                ; $028AF0
+        lea.l        rSoftwareFrameBuffer(a6), a0                                ; $028AF0
         move.w       #$13f, d7                                     ; $028AF4
 
 loc_028AF8:
@@ -311,15 +311,15 @@ loc_028AF8:
         clr.l        (a0)+                                         ; $028B04
         clr.l        (a0)+                                         ; $028B06
         dbra         d7, loc_028AF8                                ; $028B08
-        lea.l        -$719a(a6), a2                                ; $028B0C
-        lea.l        -$718a(a6), a3                                ; $028B10
+        lea.l        rWallEndpointBRecord(a6), a2                                ; $028B0C
+        lea.l        rWallEndpointARecord(a6), a3                                ; $028B10
         move.w       #$20, $e(a2)                                  ; $028B14
         move.w       #$40, $c(a2)                                  ; $028B1A
         move.w       #$5f, $e(a3)                                  ; $028B20
         move.w       #$40, $c(a3)                                  ; $028B26
-        clr.w        -$717a(a6)                                    ; $028B2C
-        move.w       #$ff, -$7178(a6)                              ; $028B30
-        move.l       #AlternateWallColumnScalers, rWallColumnScalerTable(a6) ; $028B36
+        clr.w        rWallTextureUStart(a6)                                    ; $028B2C
+        move.w       #$ff, rWallTextureUEnd(a6)                              ; $028B30
+        move.l       #DirectWallColumnScalers, rWallColumnScalerTable(a6) ; $028B36
         move.l       rZoneBackgroundProfile0(a6), rActiveSceneBackgroundProfile(a6) ; $028B3E
         lea.l        rActiveSpriteColorRemaps(a6), a0              ; $028B44
         move.l       rZoneSpriteColorRemaps(a6), d1                ; $028B48
@@ -328,11 +328,11 @@ loc_028AF8:
         move.l       d1, (a0)+                                     ; $028B50
         move.l       d1, (a0)+                                     ; $028B52
         move.l       d1, (a0)                                      ; $028B54
-        clr.l        -$6e46(a6)                                    ; $028B56
-        clr.l        -$6e42(a6)                                    ; $028B5A
-        clr.w        -$6e48(a6)                                    ; $028B5E
-        clr.w        -$6f6c(a6)                                    ; $028B62
-        clr.w        -$6f6a(a6)                                    ; $028B66
+        clr.l        rWallFaceHeightProfile0(a6)                                    ; $028B56
+        clr.l        rWallFaceHeightProfile2(a6)                                    ; $028B5A
+        clr.w        rCurrentWallFaceHeightProfile(a6)                                    ; $028B5E
+        clr.w        rNightVisionInventorySlotIndex(a6)                                    ; $028B62
+        clr.w        rFlashlightInventorySlotIndex(a6)                                    ; $028B66
         move.l       #RetainedScreenEffectColumnPixels, rCurrentWallTilePair(a6) ; $028B6A
         jsr          DrawWallTextureSpan.l                         ; $028B72
         move.w       (a7)+, d7                                     ; $028B78

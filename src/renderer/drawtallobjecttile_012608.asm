@@ -15,7 +15,7 @@ DrawTallObjectTile:
         move.w       d4, d3                                        ; $012610
         asr.w        #$1, d3                                       ; $012612
         sub.w        d3, d1                                        ; $012614
-        clr.w        -$6f32(a6)                                    ; $012616
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $012616
         bra.w        ScaleAndDrawSoftwareSpriteTile                ; $01261A
         ifne *-$1261E
         fail "ROM end moved"

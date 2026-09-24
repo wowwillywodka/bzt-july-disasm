@@ -6,14 +6,14 @@
         endif
 
 RetainedSendActorCommand0E:
-        lea.l        -$6fdc(a6), a1                                ; $01EF46
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01EF46
         move.b       #$e, (a1)+                                    ; $01EF4A
         move.b       ActorLinkId(a0), (a1)+                        ; $01EF4E
         move.w       ActorX(a0), (a1)+                             ; $01EF52
         move.w       ActorY(a0), (a1)+                             ; $01EF56
         move.b       ActorZLow(a0), (a1)+                          ; $01EF5A
         move.b       #$6, (a1)+                                    ; $01EF5E
-        lea.l        -$6fdc(a6), a0                                ; $01EF62
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $01EF62
         jmp          QueueLinkCommand.l                            ; $01EF66
         move.b       #$e, d0                                       ; $01EF6C
         bra.b        loc_01EFAC                                    ; $01EF70
@@ -38,14 +38,14 @@ RetainedSendActorCommand0E:
         move.b       #$22, d0                                      ; $01EFA8
 
 loc_01EFAC:
-        lea.l        -$6fdc(a6), a1                                ; $01EFAC
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01EFAC
         move.b       #$11, (a1)+                                   ; $01EFB0
         move.b       ActorLinkId(a0), (a1)+                        ; $01EFB4
         move.w       ActorX(a0), (a1)+                             ; $01EFB8
         move.w       ActorY(a0), (a1)+                             ; $01EFBC
         move.b       ActorStateCounter(a0), (a1)+                  ; $01EFC0
         move.b       d0, (a1)+                                     ; $01EFC4
-        lea.l        -$6fdc(a6), a0                                ; $01EFC6
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $01EFC6
         jmp          QueueLinkCommand.l                            ; $01EFCA
         ifne *-$1EFD0
         fail "ROM end moved"

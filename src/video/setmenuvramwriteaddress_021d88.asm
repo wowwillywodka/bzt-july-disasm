@@ -18,7 +18,7 @@ SetMenuVramWriteAddress:
         asr.l        d3, d2                                        ; $021DA4
         add.l        d1, d0                                        ; $021DA6
         add.l        d2, d0                                        ; $021DA8
-        move.l       d0, -$790c(a6)                                ; $021DAA
+        move.l       d0, rMenuVramWriteAddressOffset(a6)                                ; $021DAA
         rts                                                        ; $021DAE
         ifne *-$21DB0
         fail "ROM end moved"

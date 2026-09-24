@@ -20,7 +20,7 @@ loc_01A9A4:
         rts                                                        ; $01A9A4
 
 loc_01A9A6:
-        addq.w       #$1, -$71c2(a6)                               ; $01A9A6
+        addq.w       #$1, rEnemyHitCallbacksRecorded(a6)                               ; $01A9A6
         clr.b        ActorStateCounter(a0)                         ; $01A9AA
         clr.w        ActorMotionX(a0)                              ; $01A9AE
         clr.w        ActorMotionY(a0)                              ; $01A9B2
@@ -44,7 +44,7 @@ loc_01A9D6:
         sub.w        (a7)+, d0                                     ; $01A9DA
         bmi.b        loc_01AA10                                    ; $01A9DC
         sub.w        d0, ActorHealth(a0)                           ; $01A9DE
-        bsr.w        ActorsRoutine_01D92C                          ; $01A9E2
+        bsr.w        SpawnHitParticles                          ; $01A9E2
         asr.w        #$3, d0                                       ; $01A9E6
         muls.w       d0, d3                                        ; $01A9E8
         muls.w       d0, d4                                        ; $01A9EA

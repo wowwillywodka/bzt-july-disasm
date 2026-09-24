@@ -8,11 +8,11 @@
 
 PrintFirstSceneLabel:
 ; Copy the first 9 bytes of the scene-label buffer, append NUL in RAM, then call PrintCenteredText. Does not select a retained ROM floor-name string.
-        lea.l        -$6fdc(a6), a0                                ; $028B98
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $028B98
         move.w       d1, -(a7)                                     ; $028B9C
         bsr.w        CopyFirstSceneLabel                           ; $028B9E
         clr.b        (a0)+                                         ; $028BA2
-        lea.l        -$6fdc(a6), a0                                ; $028BA4
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $028BA4
         move.w       #$eb00, d0                                    ; $028BA8
         jsr          PrintCenteredText.l                           ; $028BAC
         move.w       (a7)+, d1                                     ; $028BB2

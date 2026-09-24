@@ -11,10 +11,10 @@ DrawActorAnimationFrame:
         mulu.w       #$36, d1                                      ; $01FC28
         adda.l       d1, a1                                        ; $01FC2C
         movem.w      (a7)+, d1/d5                                  ; $01FC2E
-        move.w       d5, -$6f26(a6)                                ; $01FC32
+        move.w       d5, rSoftwareSpriteProjectionScale(a6)                                ; $01FC32
         move.w       d5, d2                                        ; $01FC36
-        move.w       -$71d8(a6), d3                                ; $01FC38
-        sub.w        -$6e4c(a6), d3                                ; $01FC3C
+        move.w       rPlayerViewOffsetZ(a6), d3                                ; $01FC38
+        sub.w        rTransitHeightOffset(a6), d3                                ; $01FC3C
         sub.w        ActorZ(a0), d3                                ; $01FC40
         muls.w       d3, d2                                        ; $01FC44
         asr.l        #$6, d2                                       ; $01FC46
@@ -57,7 +57,7 @@ loc_01FC94:
         sub.w        d3, d2                                        ; $01FC96
 
 loc_01FC98:
-        clr.w        -$6f32(a6)                                    ; $01FC98
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $01FC98
         movea.l      a1, a3                                        ; $01FC9C
         addq.w       #$6, a3                                       ; $01FC9E
         movea.l      a3, a4                                        ; $01FCA0
@@ -76,7 +76,7 @@ loc_01FCB4:
 
 loc_01FCC0:
         movea.l      a2, a1                                        ; $01FCC0
-        move.b       (a3), -$6f31(a6)                              ; $01FCC2
+        move.b       (a3), rSoftwareSpriteMirrorFlagLow(a6)                              ; $01FCC2
         clr.l        d3                                            ; $01FCC6
 ; Tile address = pixel base + (sign_extend_16(index << 1) << 8). Valid present July tile indices are below $4000.
         move.w       (a4), d3                                      ; $01FCC8

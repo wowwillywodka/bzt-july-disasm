@@ -8,8 +8,8 @@
 
 QueueLinkCommand:
         move.l       a2, -(a7)                                     ; $01FFCC
-        lea.l        -$4b90(a6), a1                                ; $01FFCE
-        move.w       -$5392(a6), d0                                ; $01FFD2
+        lea.l        rLinkTransmitRing(a6), a1                                ; $01FFCE
+        move.w       rLinkTransmitWriteOffset(a6), d0                                ; $01FFD2
         clr.w        d1                                            ; $01FFD6
         move.b       (a0), d1                                      ; $01FFD8
         move.w       (a0)+, (a1, d0.w)                             ; $01FFDA
@@ -20,7 +20,7 @@ QueueLinkCommand:
 loc_01FFE8:
         addq.w       #$2, d0                                       ; $01FFE8
         andi.w       #$7ff, d0                                     ; $01FFEA
-        cmp.w        -$5394(a6), d0                                ; $01FFEE
+        cmp.w        rLinkTransmitReadOffset(a6), d0                                ; $01FFEE
         beq.b        loc_02000C                                    ; $01FFF2
         move.w       (a0)+, (a1, d0.w)                             ; $01FFF4
         dbra         d1, loc_01FFE8                                ; $01FFF8
@@ -28,9 +28,9 @@ loc_01FFE8:
 loc_01FFFC:
         addq.w       #$2, d0                                       ; $01FFFC
         andi.w       #$7ff, d0                                     ; $01FFFE
-        cmp.w        -$5394(a6), d0                                ; $020002
+        cmp.w        rLinkTransmitReadOffset(a6), d0                                ; $020002
         beq.b        loc_02000C                                    ; $020006
-        move.w       d0, -$5392(a6)                                ; $020008
+        move.w       d0, rLinkTransmitWriteOffset(a6)                                ; $020008
 
 loc_02000C:
         movea.l      (a7)+, a2                                     ; $02000C

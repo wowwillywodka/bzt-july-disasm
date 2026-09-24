@@ -77,21 +77,21 @@ loc_098A00:
         sub.w        d0, d3                                        ; $098A04
         andi.w       #$ff, d4                                      ; $098A06
         neg.b        d4                                            ; $098A0A
-        addi.w       #$100, -$71ee(a6)                             ; $098A0C
+        addi.w       #$100, rPlayerFacingAngle(a6)                             ; $098A0C
         bra.w        loc_098A70                                    ; $098A12
 
 loc_098A16:
         move.w       #$2000, d3                                    ; $098A16
         sub.w        d1, d3                                        ; $098A1A
         andi.w       #$ff, d4                                      ; $098A1C
-        addi.w       #$80, -$71ee(a6)                              ; $098A20
+        addi.w       #$80, rPlayerFacingAngle(a6)                              ; $098A20
         bra.w        loc_098A70                                    ; $098A26
 
 loc_098A2A:
         andi.w       #$ff, d3                                      ; $098A2A
         move.w       #$2000, d4                                    ; $098A2E
         sub.w        d0, d4                                        ; $098A32
-        addi.w       #$80, -$71ee(a6)                              ; $098A34
+        addi.w       #$80, rPlayerFacingAngle(a6)                              ; $098A34
         bra.w        loc_098A70                                    ; $098A3A
 
 loc_098A3E:
@@ -99,19 +99,19 @@ loc_098A3E:
         neg.b        d3                                            ; $098A42
         move.w       #$2000, d4                                    ; $098A44
         sub.w        d1, d4                                        ; $098A48
-        addi.w       #$100, -$71ee(a6)                             ; $098A4A
+        addi.w       #$100, rPlayerFacingAngle(a6)                             ; $098A4A
         bra.w        loc_098A70                                    ; $098A50
 
 loc_098A54:
         move.w       d1, d3                                        ; $098A54
         andi.w       #$ff, d4                                      ; $098A56
-        subi.w       #$80, -$71ee(a6)                              ; $098A5A
+        subi.w       #$80, rPlayerFacingAngle(a6)                              ; $098A5A
         bra.w        loc_098A70                                    ; $098A60
 
 loc_098A64:
         andi.w       #$ff, d3                                      ; $098A64
         move.w       d0, d4                                        ; $098A68
-        subi.w       #$80, -$71ee(a6)                              ; $098A6A
+        subi.w       #$80, rPlayerFacingAngle(a6)                              ; $098A6A
 
 loc_098A70:
         move.b       TrainOriginX(a0), d0                          ; $098A70
@@ -120,12 +120,12 @@ loc_098A70:
         lsl.w        #$8, d1                                       ; $098A7A
         add.w        d0, d3                                        ; $098A7C
         add.w        d1, d4                                        ; $098A7E
-        andi.w       #$1ff, -$71ee(a6)                             ; $098A80
+        andi.w       #$1ff, rPlayerFacingAngle(a6)                             ; $098A80
         lea.l        AngleVectorPairs.w, a1                        ; $098A86
-        move.w       -$71ee(a6), d0                                ; $098A8A
+        move.w       rPlayerFacingAngle(a6), d0                                ; $098A8A
         lsl.w        #$2, d0                                       ; $098A8E
-        move.w       (a1, d0.w), -$71f2(a6)                        ; $098A90
-        move.w       $2(a1, d0.w), -$71f0(a6)                      ; $098A96
+        move.w       (a1, d0.w), rPlayerFacingVectorX(a6)                        ; $098A90
+        move.w       $2(a1, d0.w), rPlayerFacingVectorY(a6)                      ; $098A96
         rts                                                        ; $098A9C
         ifne *-$98A9E
         fail "ROM end moved"

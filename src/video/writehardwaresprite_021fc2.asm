@@ -10,7 +10,7 @@ WriteHardwareSprite:
         swap         d0                                            ; $021FC2
         clr.w        d0                                            ; $021FC4
         asl.l        #$3, d0                                       ; $021FC6
-        add.l        -$790c(a6), d0                                ; $021FC8
+        add.l        rMenuVramWriteAddressOffset(a6), d0                                ; $021FC8
         move.l       d0, VDP_CONTROL.l                             ; $021FCC
 
 loc_021FD2:

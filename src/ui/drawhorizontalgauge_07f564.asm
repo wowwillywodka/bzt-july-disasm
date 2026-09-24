@@ -31,19 +31,19 @@ loc_07F584:
 
 loc_07F592:
         move.w       #$41, d0                                      ; $07F592
-        jsr          loc_07ACE4(pc)                                ; $07F596
-        lea.l        loc_081C5C.l, a0                              ; $07F59A
+        jsr          StoreCurrentSoundSequenceAndPlayEvent(pc)                                ; $07F596
+        lea.l        RunOptionsScreen.l, a0                              ; $07F59A
         move.w       #$1, d0                                       ; $07F5A0
         move.w       #$3aa, d1                                     ; $07F5A4
         jsr          UploadTiles.l                                 ; $07F5A8
-        lea.l        loc_081C5C.l, a0                              ; $07F5AE
+        lea.l        RunOptionsScreen.l, a0                              ; $07F5AE
         movea.w      #$0, a1                                       ; $07F5B4
         move.w       #$28, d0                                      ; $07F5B8
         move.w       #$1c, d1                                      ; $07F5BC
         move.w       #$80, d2                                      ; $07F5C0
         move.w       #$1, d3                                       ; $07F5C4
-        jsr          loc_021EFA.l                                  ; $07F5C8
-        lea.l        loc_081C5C.l, a0                              ; $07F5CE
+        jsr          UploadAttributedTilemapAtE000Offset.l                                  ; $07F5C8
+        lea.l        RunOptionsScreen.l, a0                              ; $07F5CE
         lea.l        $ff0778.l, a1                                 ; $07F5D4
         jsr          CopyOneTile.l                                 ; $07F5DA
         lea.l        InterfacePalettes.l, a0                       ; $07F5E0
@@ -51,7 +51,7 @@ loc_07F592:
         jsr          CopyOneTile.l                                 ; $07F5EC
         lea.l        $ff0778.l, a0                                 ; $07F5F2
         move.w       #$4, d1                                       ; $07F5F8
-        jsr          loc_022010.l                                  ; $07F5FC
+        jsr          FadeAll64PaletteColorsFromBlack.l                                  ; $07F5FC
         lea.l        BriefingDayOneText.l, a0                      ; $07F602
         jsr          RunBriefingTextLoop.l                         ; $07F608
         bra.w        loc_07F6A2                                    ; $07F60E

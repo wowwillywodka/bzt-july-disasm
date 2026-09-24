@@ -10,11 +10,11 @@ FireLaserAimedGun:
 ; Laser Aimed Gun initial shot: lowering guard only, consume$100; linear distance parameter, character0 halves, unsigned word threshold<$400. Continuation in draw uses another formula.
         tst.w        rWeaponLoweringOffset(a6)                     ; $0146EC
         bne.w        loc_0147A0                                    ; $0146F0
-        clr.w        -$55a0(a6)                                    ; $0146F4
-        clr.w        -$559e(a6)                                    ; $0146F8
+        clr.w        rStatusSoundScriptActive(a6)                                    ; $0146F4
+        clr.w        rSoundEffectCooldown(a6)                                    ; $0146F8
         move.w       #$1e, d0                                      ; $0146FC
-        jsr          SoundRoutine_00DF84.l                         ; $014700
-        move.w       #$f, -$559e(a6)                               ; $014706
+        jsr          PlaySoundEventAndMaybeSendLink.l                         ; $014700
+        move.w       #$f, rSoundEffectCooldown(a6)                               ; $014706
         move.w       #$1, rWeaponActionPhase(a6)                   ; $01470C
         bsr.w        ConsumeSelectedItemAndUpdateHud               ; $014712
         move.l       d0, -(a7)                                     ; $014716
@@ -29,7 +29,7 @@ FireLaserAimedGun:
         move.w       #$c, d1                                       ; $014736
 
 loc_01473A:
-        move.w       -$71b0(a6), d2                                ; $01473A
+        move.w       rViewSwayAngleOffset(a6), d2                                ; $01473A
         addi.w       #$40, d2                                      ; $01473E
         jsr          SelectPlayerWeaponAimTarget.l                 ; $014742
         cmpa.l       #$0, a1                                       ; $014748
@@ -56,7 +56,7 @@ loc_014770:
         bra.b        loc_0147A0                                    ; $01478C
 
 loc_01478E:
-        jsr          ObjectsRoutine_00A3D2.l                       ; $01478E
+        jsr          ClassifyPlayerCellForWeapon.l                       ; $01478E
         bne.b        loc_01479A                                    ; $014794
         bsr.w        TraceMissedShotAndSpawnImpact                 ; $014796
 

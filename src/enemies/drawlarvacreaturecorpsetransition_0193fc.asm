@@ -15,7 +15,7 @@ DrawLarvaCreatureCorpseTransition:
         cmpi.b       #$2, ActorStateCounter(a0)                    ; $01940C
         beq.b        loc_019430                                    ; $019412
         cmpi.b       #$1, ActorStateCounter(a0)                    ; $019414
-        beq.b        EnemiesRoutine_019442                         ; $01941A
+        beq.b        DrawLarvaCreatureCorpseFinalFrame                         ; $01941A
         rts                                                        ; $01941C
 
 loc_01941E:

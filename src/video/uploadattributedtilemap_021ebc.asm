@@ -30,11 +30,13 @@ loc_021EDE:
         dbra         d1, loc_021EC2                                ; $021EEC
         rts                                                        ; $021EF0
 
-loc_021EF2:
+; Reviewed call entry (wrapper): Adds $C000 to A1 and branches into UploadAttributedTilemap.
+UploadAttributedTilemapAtC000Offset:
         adda.l       #$c000, a1                                    ; $021EF2
         bra.b        UploadAttributedTilemap                       ; $021EF8
 
-loc_021EFA:
+; Reviewed call entry (wrapper): Adds $E000 to A1 and branches into UploadAttributedTilemap.
+UploadAttributedTilemapAtE000Offset:
         adda.l       #$e000, a1                                    ; $021EFA
         bra.b        UploadAttributedTilemap                       ; $021F00
         ifne *-$21F02

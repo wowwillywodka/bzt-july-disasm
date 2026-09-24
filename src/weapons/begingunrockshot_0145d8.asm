@@ -12,11 +12,11 @@ BeginGunrockShot:
         bne.b        loc_014606                                    ; $0145DC
         tst.w        rWeaponLoweringOffset(a6)                     ; $0145DE
         bne.b        loc_014606                                    ; $0145E2
-        clr.w        -$55a0(a6)                                    ; $0145E4
-        clr.w        -$559e(a6)                                    ; $0145E8
+        clr.w        rStatusSoundScriptActive(a6)                                    ; $0145E4
+        clr.w        rSoundEffectCooldown(a6)                                    ; $0145E8
         move.w       #$2a, d0                                      ; $0145EC
-        jsr          SoundRoutine_00DF84.l                         ; $0145F0
-        move.w       #$f, -$559e(a6)                               ; $0145F6
+        jsr          PlaySoundEventAndMaybeSendLink.l                         ; $0145F0
+        move.w       #$f, rSoundEffectCooldown(a6)                               ; $0145F6
         move.w       #$1, rWeaponActionPhase(a6)                   ; $0145FC
         bsr.w        ConsumeSelectedItemAndUpdateHud               ; $014602
 

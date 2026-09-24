@@ -8,7 +8,7 @@
 
 SendBlueDummyState:
 ; Command0D: ID/XY/MotionXY only, animation registers not serialized.
-        lea.l        -$6fdc(a6), a1                                ; $01F6A6
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01F6A6
         move.b       #$d, (a1)+                                    ; $01F6AA
         move.b       ActorLinkId(a0), (a1)+                        ; $01F6AE
         move.w       ActorX(a0), (a1)+                             ; $01F6B2
@@ -41,13 +41,13 @@ loc_01F6DE:
         cmpi.b       #$1, d7                                       ; $01F6F4
         beq.b        loc_01F71A                                    ; $01F6F8
         cmpi.b       #$7, d7                                       ; $01F6FA
-        beq.b        ActorsRoutine_01F724                          ; $01F6FE
+        beq.b        QueueBlueDummyStatePacketVariantB                          ; $01F6FE
         cmpi.b       #$6, d7                                       ; $01F700
-        beq.b        ActorsRoutine_01F724                          ; $01F704
+        beq.b        QueueBlueDummyStatePacketVariantB                          ; $01F704
         cmpi.b       #$4, d7                                       ; $01F706
-        beq.b        ActorsRoutine_01F724                          ; $01F70A
+        beq.b        QueueBlueDummyStatePacketVariantB                          ; $01F70A
         cmpi.b       #$3, d7                                       ; $01F70C
-        beq.b        ActorsRoutine_01F724                          ; $01F710
+        beq.b        QueueBlueDummyStatePacketVariantB                          ; $01F710
         cmpi.b       #$5, d7                                       ; $01F712
         beq.b        loc_01F72E                                    ; $01F716
         rts                                                        ; $01F718

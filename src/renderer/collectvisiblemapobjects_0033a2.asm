@@ -9,9 +9,9 @@
 CollectVisibleMapObjects:
         lea.l        rEpisodeMapCells(a6), a0                      ; $0033A2
         adda.w       rCurrentFloorMapOffset(a6), a0                ; $0033A6
-        lea.l        -$429e(a6), a1                                ; $0033AA
+        lea.l        rVisibleMapObjectCoordinates(a6), a1                                ; $0033AA
         move.w       rCurrentFloorHeight(a6), d7                   ; $0033AE
-        move.b       -$790e(a6), d4                                ; $0033B2
+        move.b       rVisibleObjectCellTypeIndex(a6), d4                                ; $0033B2
         subq.w       #$1, d7                                       ; $0033B6
         clr.w        d1                                            ; $0033B8
 

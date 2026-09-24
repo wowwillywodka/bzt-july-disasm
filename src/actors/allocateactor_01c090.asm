@@ -33,7 +33,8 @@ loc_01C0B0:
         move.l       #ActorNoOp, ActorLinkCallback(a0)             ; $01C0D0
         move.l       #RemoveActor, ActorExitCallback(a0)           ; $01C0D8
         move.l       #ActorNoOp, ActorDrawCallback(a0)             ; $01C0E0
-; Partial initialization only: untouched coordinates, counters and type-specific bytes may be stale.
+; Partial initialization only: ActorTarget (+$06) is not reset; a creator or later selector must set it before dereference.
+; Untouched coordinates, counters and type-specific bytes may be stale.
 ; Clear alternate-death byte on reused non-head slot. State/counter/marker bytes are not a full reset. No nonzero literal writer of byte34 found in decoded July instructions.
         clr.b        ActorAlternateDeathSignal(a0)                 ; $01C0E8
         clr.b        ActorUpdateDelay(a0)                          ; $01C0EC

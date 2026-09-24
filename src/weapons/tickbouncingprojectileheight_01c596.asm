@@ -34,7 +34,7 @@ loc_01C5CC:
         move.w       d0, ActorVelocityZ(a0)                        ; $01C5CC
         move.w       #$63, d0                                      ; $01C5D0
         move.l       a0, -(a7)                                     ; $01C5D4
-        jsr          SoundRoutine_00DF64.l                         ; $01C5D6
+        jsr          RouteSoundEventByActorFloor.l                         ; $01C5D6
         movea.l      (a7)+, a0                                     ; $01C5DC
 
 DampGroundedProjectileMotion:

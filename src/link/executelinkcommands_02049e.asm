@@ -7,8 +7,8 @@
         endif
 
 ExecuteLinkCommands:
-        lea.l        -$6fdc(a6), a0                                ; $02049E
-        bsr.w        InputRoutine_020010                           ; $0204A2
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $02049E
+        bsr.w        DequeueLinkCommand                           ; $0204A2
         bne.b        loc_0204AA                                    ; $0204A6
         rts                                                        ; $0204A8
 

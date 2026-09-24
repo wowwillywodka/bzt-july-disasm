@@ -9,7 +9,7 @@
 InitializeVdpRegisters:
         lea.l        VDP_CONTROL.l, a0                             ; $000C08
         lea.l        AlternateVdpRegisterPreset(pc), a2            ; $000C0E
-        cmpi.w       #$2100, $ff2c66.l                             ; $000C12
+        cmpi.w       #$2100, ramLinkPortStatusShadow.l                             ; $000C12
         beq.b        loc_000C20                                    ; $000C1A
         lea.l        GameVdpRegisterPreset(pc), a2                 ; $000C1C
 

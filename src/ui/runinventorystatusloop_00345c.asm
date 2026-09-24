@@ -8,7 +8,7 @@
 
 RunInventoryStatusLoop:
 ; Inventory/status modal, also called during episode exit. It encodes a progress snapshot at $003488; D0 is not preserved as an episode argument.
-        clr.w        -$7ffe(a6)                                    ; $00345C
+        clr.w        rVBlankTransferPhasesRemaining(a6)                                    ; $00345C
         bsr.w        WaitForVBlank                                 ; $003460
         move.w       #$8124, VDP_CONTROL.l                         ; $003464
         bsr.w        ResetVerticalScroll                           ; $00346C
@@ -25,7 +25,7 @@ RunInventoryStatusLoop:
         move.w       #$287, d0                                     ; $0034AC
         jsr          DecompressBytePairToVramLong.l                ; $0034B0
         move.l       #$63a00001, VDP_CONTROL.l                     ; $0034B6
-        lea.l        Data_15CCD8.l, a0                             ; $0034C0
+        lea.l        InventoryStatusTiles.l, a0                             ; $0034C0
         move.w       #$11f, d7                                     ; $0034C6
 
 loc_0034CA:
@@ -53,25 +53,25 @@ loc_0034CA:
         move.l       (a0)+, (a4)                                   ; $003516
         move.l       (a0)+, (a4)                                   ; $003518
         move.l       (a0)+, (a4)                                   ; $00351A
-        lea.l        -$7abc(a6), a0                                ; $00351C
+        lea.l        rVramDmaCommandQueue(a6), a0                                ; $00351C
         move.l       #$ffffffff, (a0)                              ; $003520
         move.l       a0, rDmaQueueTail(a6)                         ; $003526
-        move.w       #$1, -$7fbe(a6)                               ; $00352A
-        move.l       #$ff0044, -$7fc2(a6)                          ; $003530
-        clr.w        -$6faa(a6)                                    ; $003538
+        move.w       #$1, rSpriteAttributeNextLink(a6)                               ; $00352A
+        move.l       #ramSpriteAttributeTable, rSpriteAttributeTableWritePointer(a6)                          ; $003530
+        clr.w        rUiRepeatRightTicks(a6)                                    ; $003538
         lea.l        Data_003978(pc), a0                           ; $00353C
         move.w       #$c204, d0                                    ; $003540
         jsr          PrintCenteredAlternateFont.l                  ; $003544
         move.l       rAmmoUsageFixedCounter(a6), d0                ; $00354A
         lsr.l        #$8, d0                                       ; $00354E
         bsr.w        FormatDecimalNumber                           ; $003550
-        lea.l        -$6fdc(a6), a0                                ; $003554
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $003554
         move.w       #$c22e, d0                                    ; $003558
         jsr          PrintCenteredAlternateFont.l                  ; $00355C
         lea.l        LevelStatisticsStrings(pc), a0                ; $003562
         move.w       #$c384, d0                                    ; $003566
         jsr          PrintCenteredAlternateFont.l                  ; $00356A
-        move.w       -$71ca(a6), d0                                ; $003570
+        move.w       rObjectiveProgressCount(a6), d0                                ; $003570
         tst.w        d0                                            ; $003574
         bne.b        loc_00358A                                    ; $003576
         lea.l        Data_0039AE(pc), a0                           ; $003578
@@ -81,12 +81,12 @@ loc_0034CA:
 
 loc_00358A:
         bsr.w        FormatDecimalNumber                           ; $00358A
-        lea.l        -$6fdc(a6), a0                                ; $00358E
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $00358E
         move.w       #$c3ae, d0                                    ; $003592
         move.w       d0, -(a7)                                     ; $003596
         jsr          PrintCenteredAlternateFont.l                  ; $003598
         clr.w        d1                                            ; $00359E
-        lea.l        -$6fdc(a6), a0                                ; $0035A0
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $0035A0
 
 loc_0035A4:
         tst.b        (a0)+                                         ; $0035A4
@@ -100,8 +100,8 @@ loc_0035AC:
         add.w        d1, d0                                        ; $0035B2
         move.w       d0, -(a7)                                     ; $0035B4
         jsr          PrintCenteredAlternateFont.l                  ; $0035B6
-        move.w       -$71c0(a6), d0                                ; $0035BC
-        cmp.w        -$71ca(a6), d0                                ; $0035C0
+        move.w       rEpisodeObjectiveCellTotal(a6), d0                                ; $0035BC
+        cmp.w        rObjectiveProgressCount(a6), d0                                ; $0035C0
         bne.b        loc_0035D8                                    ; $0035C4
         move.w       (a7)+, d0                                     ; $0035C6
         lea.l        Data_0039B3(pc), a0                           ; $0035C8
@@ -111,7 +111,7 @@ loc_0035AC:
 
 loc_0035D8:
         bsr.w        FormatDecimalNumber                           ; $0035D8
-        lea.l        -$6fdc(a6), a0                                ; $0035DC
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $0035DC
         move.w       (a7)+, d0                                     ; $0035E0
         addq.w       #$8, d0                                       ; $0035E2
         jsr          PrintCenteredAlternateFont.l                  ; $0035E4
@@ -120,7 +120,7 @@ loc_0035EA:
         lea.l        Data_003939(pc), a0                           ; $0035EA
         move.w       #$c504, d0                                    ; $0035EE
         jsr          PrintCenteredAlternateFont.l                  ; $0035F2
-        move.w       -$71c8(a6), d0                                ; $0035F8
+        move.w       rEnemyDeathsRecorded(a6), d0                                ; $0035F8
         cmpi.w       #$0, d0                                       ; $0035FC
         bne.b        loc_003614                                    ; $003600
         lea.l        Data_0039AE(pc), a0                           ; $003602
@@ -130,12 +130,12 @@ loc_0035EA:
 
 loc_003614:
         bsr.w        FormatDecimalNumber                           ; $003614
-        lea.l        -$6fdc(a6), a0                                ; $003618
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $003618
         move.w       #$c52e, d0                                    ; $00361C
         move.w       d0, -(a7)                                     ; $003620
         jsr          PrintCenteredAlternateFont.l                  ; $003622
         clr.w        d1                                            ; $003628
-        lea.l        -$6fdc(a6), a0                                ; $00362A
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $00362A
 
 loc_00362E:
         tst.b        (a0)+                                         ; $00362E
@@ -149,8 +149,8 @@ loc_003636:
         add.w        d1, d0                                        ; $00363C
         move.w       d0, -(a7)                                     ; $00363E
         jsr          PrintCenteredAlternateFont.l                  ; $003640
-        move.w       -$71be(a6), d0                                ; $003646
-        cmp.w        -$71c8(a6), d0                                ; $00364A
+        move.w       rEpisodeEnemyTotalForStats(a6), d0                                ; $003646
+        cmp.w        rEnemyDeathsRecorded(a6), d0                                ; $00364A
         bne.b        loc_003662                                    ; $00364E
         move.w       (a7)+, d0                                     ; $003650
         lea.l        Data_0039B3(pc), a0                           ; $003652
@@ -160,7 +160,7 @@ loc_003636:
 
 loc_003662:
         bsr.w        FormatDecimalNumber                           ; $003662
-        lea.l        -$6fdc(a6), a0                                ; $003666
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $003666
         move.w       (a7)+, d0                                     ; $00366A
         addq.w       #$8, d0                                       ; $00366C
         jsr          PrintCenteredAlternateFont.l                  ; $00366E
@@ -170,7 +170,7 @@ loc_003674:
         move.w       #$c684, d0                                    ; $003678
         jsr          PrintCenteredAlternateFont.l                  ; $00367C
         clr.l        d0                                            ; $003682
-        move.w       -$71c2(a6), d0                                ; $003684
+        move.w       rEnemyHitCallbacksRecorded(a6), d0                                ; $003684
         mulu.w       #$64, d0                                      ; $003688
         move.l       rAmmoUsageFixedCounter(a6), d1                ; $00368C
         lsr.l        #$8, d1                                       ; $003690
@@ -186,7 +186,7 @@ loc_003674:
 
 loc_0036A8:
         bsr.w        FormatDecimalNumber                           ; $0036A8
-        lea.l        -$6fdc(a6), a0                                ; $0036AC
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $0036AC
 
 loc_0036B0:
         move.w       #$c6ae, d0                                    ; $0036B0
@@ -194,7 +194,7 @@ loc_0036B0:
         lea.l        Data_00398D(pc), a0                           ; $0036BA
         move.w       #$c804, d0                                    ; $0036BE
         jsr          PrintCenteredAlternateFont.l                  ; $0036C2
-        move.w       -$71bc(a6), d0                                ; $0036C8
+        move.w       rMedipacksCollectedCount(a6), d0                                ; $0036C8
         cmpi.w       #$0, d0                                       ; $0036CC
         bne.b        loc_0036E4                                    ; $0036D0
         lea.l        Data_0039AE(pc), a0                           ; $0036D2
@@ -204,12 +204,12 @@ loc_0036B0:
 
 loc_0036E4:
         bsr.w        FormatDecimalNumber                           ; $0036E4
-        lea.l        -$6fdc(a6), a0                                ; $0036E8
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $0036E8
         move.w       #$c82e, d0                                    ; $0036EC
         move.w       d0, -(a7)                                     ; $0036F0
         jsr          PrintCenteredAlternateFont.l                  ; $0036F2
         clr.w        d1                                            ; $0036F8
-        lea.l        -$6fdc(a6), a0                                ; $0036FA
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $0036FA
 
 loc_0036FE:
         tst.b        (a0)+                                         ; $0036FE
@@ -223,8 +223,8 @@ loc_003706:
         add.w        d1, d0                                        ; $00370C
         move.w       d0, -(a7)                                     ; $00370E
         jsr          PrintCenteredAlternateFont.l                  ; $003710
-        move.w       -$71ba(a6), d0                                ; $003716
-        cmp.w        -$71bc(a6), d0                                ; $00371A
+        move.w       rEpisodeMedipackCellTotal(a6), d0                                ; $003716
+        cmp.w        rMedipacksCollectedCount(a6), d0                                ; $00371A
         bne.b        loc_003732                                    ; $00371E
         move.w       (a7)+, d0                                     ; $003720
         lea.l        Data_0039B3(pc), a0                           ; $003722
@@ -234,7 +234,7 @@ loc_003706:
 
 loc_003732:
         bsr.w        FormatDecimalNumber                           ; $003732
-        lea.l        -$6fdc(a6), a0                                ; $003736
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $003736
         move.w       (a7)+, d0                                     ; $00373A
         addq.w       #$8, d0                                       ; $00373C
         jsr          PrintCenteredAlternateFont.l                  ; $00373E
@@ -244,9 +244,9 @@ loc_003744:
         move.w       #$c984, d0                                    ; $003748
         jsr          PrintCenteredAlternateFont.l                  ; $00374C
         clr.w        d0                                            ; $003752
-        move.b       -$71b3(a6), d0                                ; $003754
+        move.b       rGameClockHours(a6), d0                                ; $003754
         bsr.w        FormatDecimalNumber                           ; $003758
-        lea.l        -$6fdc(a6), a0                                ; $00375C
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $00375C
         tst.b        $1(a0)                                        ; $003760
         bne.b        loc_003772                                    ; $003764
         move.b       (a0), $1(a0)                                  ; $003766
@@ -263,9 +263,9 @@ loc_003772:
         move.w       d0, -(a7)                                     ; $003786
         jsr          PrintCenteredAlternateFont.l                  ; $003788
         clr.w        d0                                            ; $00378E
-        move.b       -$71b4(a6), d0                                ; $003790
+        move.b       rGameClockMinutes(a6), d0                                ; $003790
         bsr.w        FormatDecimalNumber                           ; $003794
-        lea.l        -$6fdc(a6), a0                                ; $003798
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $003798
         tst.b        $1(a0)                                        ; $00379C
         bne.b        loc_0037AE                                    ; $0037A0
         move.b       (a0), $1(a0)                                  ; $0037A2
@@ -283,9 +283,9 @@ loc_0037AE:
         move.w       d0, -(a7)                                     ; $0037C2
         jsr          PrintCenteredAlternateFont.l                  ; $0037C4
         clr.w        d0                                            ; $0037CA
-        move.b       -$71b5(a6), d0                                ; $0037CC
+        move.b       rGameClockSeconds(a6), d0                                ; $0037CC
         bsr.w        FormatDecimalNumber                           ; $0037D0
-        lea.l        -$6fdc(a6), a0                                ; $0037D4
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $0037D4
         tst.b        $1(a0)                                        ; $0037D8
         bne.b        loc_0037EA                                    ; $0037DC
         move.b       (a0), $1(a0)                                  ; $0037DE
@@ -301,11 +301,11 @@ loc_0037EA:
         lea.l        StatisticsPasswordLabel(pc), a0               ; $0037FA
         move.w       #$cb04, d0                                    ; $0037FE
         jsr          PrintCenteredAlternateFont.l                  ; $003802
-        move.w       #$0, -$6fac(a6)                               ; $003808
-        lea.l        -$6fdc(a6), a0                                ; $00380E
+        move.w       #$0, rPauseMapFloorLabelIndex(a6)                               ; $003808
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $00380E
         jsr          CopyFirstSceneLabel.l                         ; $003812
         clr.b        (a0)+                                         ; $003818
-        lea.l        -$6fdc(a6), a0                                ; $00381A
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $00381A
         move.w       #$cb2e, d0                                    ; $00381E
         jsr          PrintCenteredAlternateFont.l                  ; $003822
 
@@ -317,8 +317,8 @@ loc_003834:
         bsr.w        WaitForVBlank                                 ; $003834
         bsr.w        FlushDmaQueue                                 ; $003838
         bsr.w        UpdateDemoInput                               ; $00383C
-        move.w       #$1, -$7fbe(a6)                               ; $003840
-        move.l       #$ff0044, -$7fc2(a6)                          ; $003846
+        move.w       #$1, rSpriteAttributeNextLink(a6)                               ; $003840
+        move.l       #ramSpriteAttributeTable, rSpriteAttributeTableWritePointer(a6)                          ; $003846
         movea.l      rDmaQueueTail(a6), a0                         ; $00384E
         move.l       #$ffffffff, (a0)                              ; $003852
         jsr          UploadSpriteTable.l                           ; $003858
@@ -339,7 +339,7 @@ loc_003878:
         btst.b       #$7, rPreviousControllerState(a6)             ; $003888
         bne.b        loc_0038A4                                    ; $00388E
         bclr.b       #$0, rPauseFlags(a6)                          ; $003890
-        lea.l        -$6fdc(a6), a0                                ; $003896
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $003896
         move.b       #$15, (a0)                                    ; $00389A
         jsr          QueueLinkCommand.l                            ; $00389E
 

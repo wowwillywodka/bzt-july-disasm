@@ -55,14 +55,14 @@ loc_018606:
         jsr          (a1)                                          ; $01862E
         movea.l      (a7)+, a3                                     ; $018630
         movea.l      (a7)+, a0                                     ; $018632
-        cmpa.l       #$ff11e2, a3                                  ; $018634
+        cmpa.l       #ramPlayerActorProxy, a3                                  ; $018634
         bne.b        loc_018644                                    ; $01863A
-        asl.w        -$7202(a6)                                    ; $01863C
-        asl.w        -$7200(a6)                                    ; $018640
+        asl.w        rPlayerHitImpulseX(a6)                                    ; $01863C
+        asl.w        rPlayerHitImpulseY(a6)                                    ; $018640
 
 loc_018644:
         move.w       #$2a, d0                                      ; $018644
-        jmp          SoundRoutine_00DF64.l                         ; $018648
+        jmp          RouteSoundEventByActorFloor.l                         ; $018648
 
 loc_01864E:
         rts                                                        ; $01864E

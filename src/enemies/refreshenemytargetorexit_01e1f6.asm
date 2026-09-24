@@ -16,12 +16,13 @@ RefreshEnemyTargetOrExit:
         move.l       a1, ActorTarget(a0)                           ; $01E208
         beq.b        loc_01E230                                    ; $01E20C
 
+; Between modulo-8 reselections the cached pointer is used without a live-slot check.
 loc_01E20E:
         movea.l      ActorTarget(a0), a1                           ; $01E20E
         move.w       ActorX(a0), d0                                ; $01E212
         move.w       ActorY(a0), d1                                ; $01E216
-        sub.w        $24(a1), d0                                   ; $01E21A
-        sub.w        $26(a1), d1                                   ; $01E21E
+        sub.w        ActorX(a1), d0                                   ; $01E21A
+        sub.w        ActorY(a1), d1                                   ; $01E21E
         jsr          OctagonalDistance.l                           ; $01E222
         cmpi.w       #$a00, d0                                     ; $01E228
         bcc.b        loc_01E230                                    ; $01E22C

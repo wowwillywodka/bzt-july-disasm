@@ -25,11 +25,11 @@ loc_0127EE:
 loc_0127F2:
         lsr.w        #$2, d0                                       ; $0127F2
         movem.l      d0/a0, -(a7)                                  ; $0127F4
-        bsr.w        UiRoutine_011C78                              ; $0127F8
+        bsr.w        GrantInventoryItem                              ; $0127F8
         movem.l      (a7)+, d0/a0                                  ; $0127FC
         tst.w        d7                                            ; $012800
         bne.b        loc_012846                                    ; $012802
-        addq.w       #$1, -$71cc(a6)                               ; $012804
+        addq.w       #$1, rItemsCollectedCount(a6)                               ; $012804
         cmpa.l       #$ffa5fa, a0                                  ; $012808
         bcs.b        loc_012818                                    ; $01280E
         cmpa.l       #$ffe5fa, a0                                  ; $012810
@@ -43,7 +43,7 @@ loc_01281E:
         jsr          CommitMapCellAndSendLink.l                    ; $012820
         move.w       d0, -(a7)                                     ; $012826
         move.w       #$60, d0                                      ; $012828
-        jsr          SoundRoutine_00DF84.l                         ; $01282C
+        jsr          PlaySoundEventAndMaybeSendLink.l                         ; $01282C
         move.w       (a7)+, d0                                     ; $012832
 ; Pickup message table indexed by actual item slot. Slot 4 says GUNROCK, slot 5 SNOWMAN; do not relabel their pixels from ZT editor names.
         movea.l      #ItemPickupMessagePointers, a0                ; $012834
@@ -70,22 +70,22 @@ loc_012866:
         clr.b        (a0)                                          ; $012866
         jsr          CommitMapCellAndSendLink.l                    ; $012868
         move.w       #$61, d0                                      ; $01286E
-        jsr          SoundRoutine_00DF84.l                         ; $012872
-        addq.w       #$1, -$71cc(a6)                               ; $012878
-        addq.w       #$1, -$71bc(a6)                               ; $01287C
+        jsr          PlaySoundEventAndMaybeSendLink.l                         ; $012872
+        addq.w       #$1, rItemsCollectedCount(a6)                               ; $012878
+        addq.w       #$1, rMedipacksCollectedCount(a6)                               ; $01287C
         movea.l      #StatusMessageMedipackCollected, a0           ; $012880
         jsr          QueueStatusMessage.l                          ; $012886
         cmpi.w       #$2, rSelectedCharacter(a6)                   ; $01288C
         beq.b        loc_0128A2                                    ; $012892
         addi.w       #$14, rPlayerHealth(a6)                       ; $012894
-        jmp          UiRoutine_00E1E2.l                            ; $01289A
+        jmp          UpdatePlayerHealthHudDigits.l                            ; $01289A
 
 loc_0128A0:
         rts                                                        ; $0128A0
 
 loc_0128A2:
         addi.w       #$28, rPlayerHealth(a6)                       ; $0128A2
-        jmp          UiRoutine_00E1E2.l                            ; $0128A8
+        jmp          UpdatePlayerHealthHudDigits.l                            ; $0128A8
         ifne *-$128AE
         fail "ROM end moved"
         endif

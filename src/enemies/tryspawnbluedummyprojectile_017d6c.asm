@@ -17,7 +17,7 @@ TrySpawnBlueDummyProjectile:
         bne.b        loc_017D28                                    ; $017D84
         movea.l      a0, a3                                        ; $017D86
         move.w       #$2a, d0                                      ; $017D88
-        jsr          SoundRoutine_00DF64.l                         ; $017D8C
+        jsr          RouteSoundEventByActorFloor.l                         ; $017D8C
         bsr.w        AllocateActor                                 ; $017D92
         beq.w        loc_017E58                                    ; $017D96
         clr.w        ActorGoalAngle(a0)                            ; $017D9A
@@ -25,7 +25,7 @@ TrySpawnBlueDummyProjectile:
         move.l       #UpdateBouncingProjectile, ActorUpdateCallback(a0) ; $017DA2
         move.l       #DrawGunrockProjectileTile, ActorDrawCallback(a0) ; $017DAA
         move.l       #ExplodeProjectileOnNearHit, ActorHitCallback(a0) ; $017DB2
-        ori.w        #$c8, ActorFlags(a0)                          ; $017DBA
+        ori.w        #ActorFlagAimAnyView, ActorFlags(a0)                          ; $017DBA
 ; State50 is assigned to the NEW projectile in A0 after AllocateActor; it is not a Blue Dummy AI state.
         move.b       #$32, ActorState(a0)                          ; $017DC0
         movea.l      ActorTarget(a3), a2                           ; $017DC6
@@ -52,8 +52,8 @@ TrySpawnBlueDummyProjectile:
 ; Link command04 uses generic projectile payload and subtype0. Owner/target and update callback are not serialized; receiver must be reviewed separately.
         tst.w        rLinkRole(a6)                                 ; $017E0E
         beq.b        loc_017E58                                    ; $017E12
-        move.l       #SoundRoutine_01EDB4, ActorLinkCallback(a0)   ; $017E14
-        lea.l        -$6fdc(a6), a1                                ; $017E1C
+        move.l       #QueueActorPositionLinkCommand, ActorLinkCallback(a0)   ; $017E14
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $017E1C
         move.b       #$4, (a1)+                                    ; $017E20
         move.b       ActorLinkId(a0), (a1)+                        ; $017E24
         move.w       ActorX(a0), (a1)+                             ; $017E28
@@ -66,7 +66,7 @@ TrySpawnBlueDummyProjectile:
         move.b       #$0, (a1)+                                    ; $017E42
         move.w       ActorMotionX(a0), (a1)+                       ; $017E46
         move.w       ActorMotionY(a0), (a1)+                       ; $017E4A
-        lea.l        -$6fdc(a6), a0                                ; $017E4E
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $017E4E
         jmp          QueueLinkCommand.l                            ; $017E52
 
 loc_017E58:

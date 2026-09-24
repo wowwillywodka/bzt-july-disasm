@@ -49,7 +49,7 @@ loc_0182C0:
         bra.b        loc_0182DE                                    ; $0182D8
 
 loc_0182DA:
-        bra.w        EnemiesRoutine_01E25A                         ; $0182DA
+        bra.w        SteerEnemyMotionAtNearbyWall                         ; $0182DA
 
 loc_0182DE:
         movea.l      ActorTarget(a0), a3                           ; $0182DE
@@ -62,7 +62,7 @@ loc_0182DE:
         jsr          OctagonalDistance.l                           ; $0182F6
         cmpi.w       #$60, d0                                      ; $0182FC
         bcs.b        loc_018306                                    ; $018300
-        bra.w        EnemiesRoutine_01E25A                         ; $018302
+        bra.w        SteerEnemyMotionAtNearbyWall                         ; $018302
 
 loc_018306:
         tst.b        ActorMarkerTracked(a0)                        ; $018306
@@ -73,29 +73,29 @@ loc_018306:
 loc_018316:
         cmpi.b       #$3, ActorState(a0)                           ; $018316
         bne.b        loc_018398                                    ; $01831C
-        cmpa.l       #$ff11e2, a3                                  ; $01831E
+        cmpa.l       #ramPlayerActorProxy, a3                                  ; $01831E
         bne.b        loc_01836C                                    ; $018324
         jsr          NextRandom.l                                  ; $018326
         asr.w        #$8, d2                                       ; $01832C
         andi.w       #$1, d2                                       ; $01832E
         addq.w       #$2, d2                                       ; $018332
         lsl.w        #$8, d2                                       ; $018334
-        move.w       d2, -$6fa2(a6)                                ; $018336
+        move.w       d2, rItemGrantAmountOverride(a6)                                ; $018336
         move.w       #$c, d0                                       ; $01833A
         move.l       a0, -(a7)                                     ; $01833E
-        jsr          UiRoutine_011C78(pc)                          ; $018340
+        jsr          GrantInventoryItem(pc)                          ; $018340
         movea.l      (a7)+, a0                                     ; $018344
-        clr.w        -$6fa2(a6)                                    ; $018346
+        clr.w        rItemGrantAmountOverride(a6)                                    ; $018346
         cmpi.w       #$ffff, d7                                    ; $01834A
         beq.b        loc_018398                                    ; $01834E
         move.b       #$4, ActorState(a0)                           ; $018350
         move.w       #$60, d0                                      ; $018356
-        jsr          SoundRoutine_00DF64.l                         ; $01835A
+        jsr          RouteSoundEventByActorFloor.l                         ; $01835A
         movea.l      #StatusMessageBuligunCollected, a0            ; $018360
         jmp          QueueStatusMessage.l                          ; $018366
 
 loc_01836C:
-        lea.l        -$6fdc(a6), a1                                ; $01836C
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01836C
         move.b       #$4, ActorState(a0)                           ; $018370
         move.b       #$13, (a1)+                                   ; $018376
         move.b       #$8, (a1)+                                    ; $01837A
@@ -104,7 +104,7 @@ loc_01836C:
         andi.w       #$1, d2                                       ; $018386
         addq.w       #$2, d2                                       ; $01838A
         move.b       d2, (a1)+                                     ; $01838C
-        lea.l        -$6fdc(a6), a0                                ; $01838E
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $01838E
         jmp          QueueLinkCommand.l                            ; $018392
 
 loc_018398:

@@ -25,8 +25,8 @@ UpdateSnowmanParticle:
         beq.w        loc_01D126                                    ; $01CFD0
 
 loc_01CFD4:
-        move.b       #$1, -$55be(a6)                               ; $01CFD4
-        move.b       #$1, -$55bd(a6)                               ; $01CFDA
+        move.b       #$1, rRemoteHitCommandVariant(a6)                               ; $01CFD4
+        move.b       #$1, rRemoteHitCommandSpecial(a6)                               ; $01CFDA
         move.w       ActorX(a0), d0                                ; $01CFE0
         move.w       ActorY(a0), d1                                ; $01CFE4
         clr.w        d5                                            ; $01CFE8
@@ -41,7 +41,7 @@ loc_01CFFC:
         movem.w      d0-d1/d5/d7, -(a7)                            ; $01CFFC
         move.l       (a0), -(a7)                                   ; $01D000
         move.w       ActorFlags(a0), d3                            ; $01D002
-        andi.w       #$c8, d3                                      ; $01D006
+        andi.w       #ActorFlagAimAnyView, d3                                      ; $01D006
         beq.b        loc_01D066                                    ; $01D00A
         cmp.b        ActorFloor(a0), d5                            ; $01D00C
         bne.b        loc_01D066                                    ; $01D010
@@ -64,10 +64,10 @@ loc_01D02A:
         bcc.b        loc_01D066                                    ; $01D044
         movea.l      ActorHitCallback(a0), a1                      ; $01D046
         move.l       a0, -(a7)                                     ; $01D04A
-        move.w       -$6fe0(a6), -(a7)                             ; $01D04C
-        move.w       #$10, -$6fe0(a6)                              ; $01D050
+        move.w       rHitParticleCount(a6), -(a7)                             ; $01D04C
+        move.w       #$10, rHitParticleCount(a6)                              ; $01D050
         jsr          (a1)                                          ; $01D056
-        move.w       (a7)+, -$6fe0(a6)                             ; $01D058
+        move.w       (a7)+, rHitParticleCount(a6)                             ; $01D058
         movea.l      (a7)+, a0                                     ; $01D05C
         clr.w        ActorMotionX(a0)                              ; $01D05E
         clr.w        ActorMotionY(a0)                              ; $01D062
@@ -97,13 +97,13 @@ loc_01D08E:
         jsr          OctagonalDistance.l                           ; $01D09E
         cmpi.w       #$30, d0                                      ; $01D0A4
         bcc.w        loc_01D0B2                                    ; $01D0A8
-        jsr          UiRoutine_00E000.l                            ; $01D0AC
+        jsr          ResolvePlayerHitOrConsumeAlternateSlot.l                            ; $01D0AC
 
 loc_01D0B2:
-        clr.b        -$55be(a6)                                    ; $01D0B2
-        clr.b        -$55bd(a6)                                    ; $01D0B6
+        clr.b        rRemoteHitCommandVariant(a6)                                    ; $01D0B2
+        clr.b        rRemoteHitCommandSpecial(a6)                                    ; $01D0B6
         move.w       #$38, d0                                      ; $01D0BA
-        jsr          SoundRoutine_00DF64.l                         ; $01D0BE
+        jsr          RouteSoundEventByActorFloor.l                         ; $01D0BE
         movea.l      (a7)+, a0                                     ; $01D0C4
         clr.b        ActorUpdateDelay(a0)                          ; $01D0C6
         clr.b        ActorEffectCounter(a0)                        ; $01D0CA
@@ -118,15 +118,15 @@ loc_01D0B2:
         rts                                                        ; $01D0F8
 
 loc_01D0FA:
-        move.l       #$1ee78, ActorLinkCallback(a0)                ; $01D0FA
-        lea.l        -$6fdc(a6), a1                                ; $01D102
+        move.l       #QueueActorLinkCommand11EffectCounter05, ActorLinkCallback(a0)                ; $01D0FA
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01D102
         move.b       #$12, (a1)+                                   ; $01D106
         move.b       ActorLinkId(a0), (a1)+                        ; $01D10A
         move.w       ActorFlags(a0), d0                            ; $01D10E
         ori.w        #$20, d0                                      ; $01D112
         move.b       d0, (a1)+                                     ; $01D116
         move.b       ActorFloor(a0), (a1)+                         ; $01D118
-        lea.l        -$6fdc(a6), a0                                ; $01D11C
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $01D11C
         jmp          QueueLinkCommand.l                            ; $01D120
 
 loc_01D126:

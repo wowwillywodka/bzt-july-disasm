@@ -12,11 +12,11 @@ BeginHandGrenadeThrow:
         bne.b        loc_0145D6                                    ; $0145AC
         tst.w        rWeaponLoweringOffset(a6)                     ; $0145AE
         bne.b        loc_0145D6                                    ; $0145B2
-        clr.w        -$55a0(a6)                                    ; $0145B4
-        clr.w        -$559e(a6)                                    ; $0145B8
+        clr.w        rStatusSoundScriptActive(a6)                                    ; $0145B4
+        clr.w        rSoundEffectCooldown(a6)                                    ; $0145B8
         move.w       #$2a, d0                                      ; $0145BC
-        jsr          SoundRoutine_00DF84.l                         ; $0145C0
-        move.w       #$f, -$559e(a6)                               ; $0145C6
+        jsr          PlaySoundEventAndMaybeSendLink.l                         ; $0145C0
+        move.w       #$f, rSoundEffectCooldown(a6)                               ; $0145C6
         move.w       #$1, rWeaponActionPhase(a6)                   ; $0145CC
         bsr.w        ConsumeSelectedItemAndUpdateHud               ; $0145D2
 

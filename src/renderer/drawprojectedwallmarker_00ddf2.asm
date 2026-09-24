@@ -5,50 +5,50 @@
         endif
 
 DrawProjectedWallMarker:
-        move.w       $c(a2), -$7170(a6)                            ; $00DDF2
+        move.w       $c(a2), rWallSpanStartInverseDepth(a6)                            ; $00DDF2
         bpl.b        loc_00DDFC                                    ; $00DDF8
 
 loc_00DDFA:
         rts                                                        ; $00DDFA
 
 loc_00DDFC:
-        move.w       $c(a3), -$716c(a6)                            ; $00DDFC
+        move.w       $c(a3), rWallSpanEndInverseDepth(a6)                            ; $00DDFC
         bmi.b        loc_00DDFA                                    ; $00DE02
-        move.w       $e(a3), -$716e(a6)                            ; $00DE04
+        move.w       $e(a3), rWallSpanEndColumn(a6)                            ; $00DE04
         bmi.b        loc_00DDFA                                    ; $00DE0A
-        move.w       $e(a2), -$7172(a6)                            ; $00DE0C
+        move.w       $e(a2), rWallSpanStartColumn(a6)                            ; $00DE0C
         bpl.b        loc_00DE18                                    ; $00DE12
-        clr.w        -$7172(a6)                                    ; $00DE14
+        clr.w        rWallSpanStartColumn(a6)                                    ; $00DE14
 
 loc_00DE18:
-        cmpi.w       #$80, -$7172(a6)                              ; $00DE18
+        cmpi.w       #$80, rWallSpanStartColumn(a6)                              ; $00DE18
         bge.b        loc_00DDFA                                    ; $00DE1E
-        cmpi.w       #$80, -$716e(a6)                              ; $00DE20
+        cmpi.w       #$80, rWallSpanEndColumn(a6)                              ; $00DE20
         blt.b        loc_00DE2E                                    ; $00DE26
-        move.w       #$7f, -$716e(a6)                              ; $00DE28
+        move.w       #$7f, rWallSpanEndColumn(a6)                              ; $00DE28
 
 loc_00DE2E:
-        tst.w        -$7ffe(a6)                                    ; $00DE2E
+        tst.w        rVBlankTransferPhasesRemaining(a6)                                    ; $00DE2E
         beq.b        loc_00DE42                                    ; $00DE32
-        cmpi.w       #$40, -$716e(a6)                              ; $00DE34
+        cmpi.w       #$40, rWallSpanEndColumn(a6)                              ; $00DE34
         bcs.b        loc_00DE42                                    ; $00DE3A
 
 loc_00DE3C:
-        tst.w        -$7ffe(a6)                                    ; $00DE3C
+        tst.w        rVBlankTransferPhasesRemaining(a6)                                    ; $00DE3C
         bne.b        loc_00DE3C                                    ; $00DE40
 
 loc_00DE42:
-        move.w       -$6e20(a6), d6                                ; $00DE42
-        lea.l        -$1db6(a6), a0                                ; $00DE46
-        move.w       -$7172(a6), d0                                ; $00DE4A
-        lea.l        $a4a(a6), a4                                  ; $00DE4E
+        move.w       rCurrentWallMarkerFillMode(a6), d6                                ; $00DE42
+        lea.l        rSoftwareFrameBuffer(a6), a0                                ; $00DE46
+        move.w       rWallSpanStartColumn(a6), d0                                ; $00DE4A
+        lea.l        rScreenColumnDepthWords(a6), a4                                  ; $00DE4E
         adda.w       d0, a4                                        ; $00DE52
         adda.w       d0, a4                                        ; $00DE54
         movea.l      #WallMarkerColumnPixels, a5                   ; $00DE56
         tst.w        d6                                            ; $00DE5C
         beq.b        loc_00DE70                                    ; $00DE5E
         move.w       #$50, d6                                      ; $00DE60
-        lea.l        $b4a(a6), a5                                  ; $00DE64
+        lea.l        rSceneBackgroundColumns(a6), a5                                  ; $00DE64
         btst.l       #$0, d0                                       ; $00DE68
         bne.b        loc_00DE70                                    ; $00DE6C
         adda.w       d6, a5                                        ; $00DE6E
@@ -65,14 +65,14 @@ loc_00DE70:
         adda.l       d1, a0                                        ; $00DE84
         lsl.l        #$2, d1                                       ; $00DE86
         adda.l       d1, a0                                        ; $00DE88
-        move.w       -$716e(a6), d5                                ; $00DE8A
-        sub.w        -$7172(a6), d5                                ; $00DE8E
+        move.w       rWallSpanEndColumn(a6), d5                                ; $00DE8A
+        sub.w        rWallSpanStartColumn(a6), d5                                ; $00DE8E
         addq.w       #$1, d5                                       ; $00DE92
         ble.w        loc_00DDFA                                    ; $00DE94
-        move.w       -$716c(a6), d1                                ; $00DE98
+        move.w       rWallSpanEndInverseDepth(a6), d1                                ; $00DE98
         ext.l        d1                                            ; $00DE9C
         lsl.l        #$8, d1                                       ; $00DE9E
-        move.w       -$7170(a6), d2                                ; $00DEA0
+        move.w       rWallSpanStartInverseDepth(a6), d2                                ; $00DEA0
         ext.l        d2                                            ; $00DEA4
         lsl.l        #$8, d2                                       ; $00DEA6
         sub.l        d2, d1                                        ; $00DEA8
@@ -81,7 +81,7 @@ loc_00DE70:
 
 loc_00DEAE:
         suba.w       #$a0, a5                                      ; $00DEAE
-        cmpa.l       #$ff8b4a, a5                                  ; $00DEB2
+        cmpa.l       #ramSceneBackgroundColumns, a5                                  ; $00DEB2
         beq.b        loc_00DEBE                                    ; $00DEB8
         adda.w       #$a0, a5                                      ; $00DEBA
 
@@ -92,7 +92,7 @@ loc_00DEBE:
         cmp.w        (a4)+, d0                                     ; $00DEC6
         bcs.w        loc_00DF40                                    ; $00DEC8
         move.w       d0, d3                                        ; $00DECC
-        muls.w       -$71d8(a6), d3                                ; $00DECE
+        muls.w       rPlayerViewOffsetZ(a6), d3                                ; $00DECE
         asr.l        #$6, d3                                       ; $00DED2
         move.w       #$50, d4                                      ; $00DED4
         sub.w        d0, d4                                        ; $00DED8

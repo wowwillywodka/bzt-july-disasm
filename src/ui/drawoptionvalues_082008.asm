@@ -8,7 +8,7 @@
 
 DrawOptionValues:
         move.w       #$c328, d0                                    ; $082008
-        lea.l        $ff000a.l, a0                                 ; $08200C
+        lea.l        ramPasswordSavedText.l, a0                                 ; $08200C
         jsr          PrintCharacterMenuText(pc)                    ; $082012
         lea.l        Data_08223D.l, a0                             ; $082016
         cmpi.w       #$0, ramGameOptions.l                         ; $08201C

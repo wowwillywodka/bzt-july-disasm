@@ -64,7 +64,7 @@ GreenDummyChooseRandomOffsetGoal:
         clr.l        d0                                            ; $017202
         clr.l        d1                                            ; $017204
         lea.l        AngleVectorPairs.w, a4                        ; $017206
-        move.w       -$71ee(a6), d0                                ; $01720A
+        move.w       rPlayerFacingAngle(a6), d0                                ; $01720A
         add.w        d2, d0                                        ; $01720E
         andi.w       #$1ff, d0                                     ; $017210
         lsl.w        #$2, d0                                       ; $017214

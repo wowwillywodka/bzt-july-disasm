@@ -5,6 +5,7 @@
         endif
 
 ShiftedColumnCopyTails equ $003F4C
+ShiftedColumnCopyTailCenter equ ShiftedColumnCopyTails+$A0
 
         incbin "generated/data/003f4c.bin"
         ifne *-$4090

@@ -1,7 +1,12 @@
 ; $00D276..$00D4E3 | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; RESEARCH NOTE (July; semantic claims still require local review):
-; Настройка растеризатора грани: перспективное деление камера-координат (divs.w по глубине>>6, 0x10000/z для обратной глубины), клип ребра по ближней плоскости, вычисление экранных краёв/наклонов; A5←адрес span-функции, jmp в d4e4
+; JULY LOCAL REVIEW:
+; Project two 16-byte camera-space endpoint records. A2 is endpoint B and A3
+; is endpoint A; compare depth with +/-lateral to clip against the left/right
+; screen edges. No-clipped, left-clipped, right-clipped and both-clipped paths
+; produce screen X, inverse depth and U endpoints before tail-calling the span
+; callback in A5. Zero denominators and DIVS overflow abandon the face.
+; See docs/WALL_PROJECTION.md.
         ifne *-$D276
         fail "ROM start moved"
         endif
@@ -10,8 +15,9 @@ ProjectAndDrawWallFace:
         lea.l        DrawWallTextureSpan(pc), a5                   ; $00D276
 
 loc_00D27A:
-        lea.l        -$719a(a6), a2                                ; $00D27A
-        lea.l        -$718a(a6), a3                                ; $00D27E
+; Both the textured face and the marker entry at $D268 join here.
+        lea.l        rWallEndpointBRecord(a6), a2                                ; $00D27A
+        lea.l        rWallEndpointARecord(a6), a3                                ; $00D27E
         move.l       $8(a2), d0                                    ; $00D282
         neg.l        d0                                            ; $00D286
         cmp.l        $4(a2), d0                                    ; $00D288
@@ -49,12 +55,13 @@ loc_00D2CC:
         divs.w       d0, d1                                        ; $00D2F0
         bvs.w        loc_00D4E2                                    ; $00D2F2
         move.w       d1, $c(a3)                                    ; $00D2F6
-        clr.w        -$717a(a6)                                    ; $00D2FA
-        move.w       #$ff, -$7178(a6)                              ; $00D2FE
+        clr.w        rWallTextureUStart(a6)                                    ; $00D2FA
+        move.w       #$ff, rWallTextureUEnd(a6)                              ; $00D2FE
 ; A5 continuation selected at $D268/$D26E/$D276: draw marker, return, or draw face.
         jmp          (a5)                                          ; $00D304
 
 loc_00D306:
+; Endpoint A lies past the right frustum edge: clamp its screen X to 127.
         move.l       #$ffffffff, (a3)                              ; $00D306
         move.l       $4(a2), d0                                    ; $00D30C
         sub.l        $8(a2), d0                                    ; $00D310
@@ -98,11 +105,12 @@ loc_00D360:
         divs.w       d0, d1                                        ; $00D386
         bvs.w        loc_00D4E2                                    ; $00D388
         move.w       d1, $c(a3)                                    ; $00D38C
-        clr.w        -$717a(a6)                                    ; $00D390
-        move.w       d6, -$7178(a6)                                ; $00D394
+        clr.w        rWallTextureUStart(a6)                                    ; $00D390
+        move.w       d6, rWallTextureUEnd(a6)                                ; $00D394
         jmp          (a5)                                          ; $00D398
 
 loc_00D39A:
+; Endpoint B lies past the left frustum edge: clamp its screen X to zero.
         move.l       $8(a3), d0                                    ; $00D39A
         cmp.l        $4(a3), d0                                    ; $00D39E
         bge.w        loc_00D430                                    ; $00D3A2
@@ -144,11 +152,12 @@ loc_00D39A:
         divs.w       d0, d1                                        ; $00D41A
         bvs.w        loc_00D4E2                                    ; $00D41C
         move.w       d1, $c(a3)                                    ; $00D420
-        move.w       #$ff, -$7178(a6)                              ; $00D424
-        move.w       d6, -$717a(a6)                                ; $00D42A
+        move.w       #$ff, rWallTextureUEnd(a6)                              ; $00D424
+        move.w       d6, rWallTextureUStart(a6)                                ; $00D42A
         jmp          (a5)                                          ; $00D42E
 
 loc_00D430:
+; Both endpoints lie outside opposite horizontal frustum edges.
         move.l       #$ffffffff, (a3)                              ; $00D430
         move.l       $4(a2), d0                                    ; $00D436
         add.l        $8(a2), d0                                    ; $00D43A
@@ -200,8 +209,8 @@ loc_00D430:
         divs.w       d0, d1                                        ; $00D4CE
         bvs.w        loc_00D4E2                                    ; $00D4D0
         move.w       d1, $c(a3)                                    ; $00D4D4
-        move.w       d6, -$717a(a6)                                ; $00D4D8
-        move.w       d5, -$7178(a6)                                ; $00D4DC
+        move.w       d6, rWallTextureUStart(a6)                                ; $00D4D8
+        move.w       d5, rWallTextureUEnd(a6)                                ; $00D4DC
         jmp          (a5)                                          ; $00D4E0
 
 loc_00D4E2:

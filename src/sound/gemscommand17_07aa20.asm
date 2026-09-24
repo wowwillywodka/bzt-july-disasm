@@ -7,7 +7,7 @@
 GemsCommand17:
         jsr          BeginGemsCommand(pc)                          ; $07AA20
         moveq        #$17, d0                                      ; $07AA24
-        jsr          SoundRoutine_07A8C8(pc)                       ; $07AA26
+        jsr          WriteGemsCommandPrefixAndOpcode(pc)                       ; $07AA26
         move.l       $8(a6), d0                                    ; $07AA2A
         jsr          WriteGemsCommandByte(pc)                      ; $07AA2E
         move.l       $c(a6), d0                                    ; $07AA32
@@ -17,7 +17,7 @@ GemsCommand17:
         jmp          EndGemsCommand(pc)                            ; $07AA42
         jsr          BeginGemsCommand(pc)                          ; $07AA46
         moveq        #$1b, d0                                      ; $07AA4A
-        bra.w        loc_07A9B4                                    ; $07AA4C
+        bra.w        WriteGemsTwoArgumentCommand                                    ; $07AA4C
         ifne *-$7AA50
         fail "ROM end moved"
         endif

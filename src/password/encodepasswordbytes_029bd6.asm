@@ -1,7 +1,8 @@
 ; $029BD6..$029C01 | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; RESEARCH NOTE (July; semantic claims still require local review):
-; Обратное кодирование 56-битного поля: 7× XOR-шифр (0x29c02) буфера (A2) ключом 0x56ca2d69, затем бит-упаковка 56 бит обратно в PC-таблицу — энкод кода ID-карты/пароля
+; JULY LOCAL REVIEW: XORs seven encoded bytes and inverts the 54 meaningful
+; permutation positions. The 56-iteration loop reads two extra indexes from
+; the following opcode bytes, then writes only the plain buffer's padding bits.
         ifne *-$29BD6
         fail "ROM start moved"
         endif

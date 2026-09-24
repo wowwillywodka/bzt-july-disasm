@@ -43,8 +43,8 @@ loc_015D48:
         sub.w        (a7)+, d0                                     ; $015D4C
         bmi.b        loc_015D86                                    ; $015D4E
         sub.w        d0, ActorHealth(a0)                           ; $015D50
-        addq.w       #$1, -$71c2(a6)                               ; $015D54
-        bsr.w        ActorsRoutine_01D92C                          ; $015D58
+        addq.w       #$1, rEnemyHitCallbacksRecorded(a6)                               ; $015D54
+        bsr.w        SpawnHitParticles                          ; $015D58
         asr.w        #$3, d0                                       ; $015D5C
         muls.w       d0, d3                                        ; $015D5E
         muls.w       d0, d4                                        ; $015D60

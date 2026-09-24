@@ -7,20 +7,20 @@
         endif
 
 RunMissionSelection:
-        cmpi.w       #$41, -$55ae(a6)                              ; $0223F0
+        cmpi.w       #$41, rCurrentSoundSequenceId(a6)                              ; $0223F0
         beq.b        loc_022402                                    ; $0223F6
         move.w       #$41, d0                                      ; $0223F8
-        jsr          loc_07ACE4.l                                  ; $0223FC
+        jsr          StoreCurrentSoundSequenceAndPlayEvent.l                                  ; $0223FC
 
 loc_022402:
         jsr          RunSelectionMenu.l                            ; $022402
-        cmpi.w       #$2, -$778c(a6)                               ; $022408
+        cmpi.w       #$2, rTitleScrollState(a6)                               ; $022408
         beq.b        loc_022452                                    ; $02240E
         move.w       rGameOptions(a6), rLinkRole(a6)               ; $022410
         tst.w        rDemoMode(a6)                                 ; $022416
         bne.w        loc_022448                                    ; $02241A
         clr.b        rRequestedStartSelection(a6)                  ; $02241E
-        lea.l        -$7ff6(a6), a0                                ; $022422
+        lea.l        rPasswordSavedText(a6), a0                                ; $022422
         jsr          ValidatePasswordAndCheats.l                   ; $022426
         cmpi.w       #$ffff, d7                                    ; $02242C
         beq.b        loc_022438                                    ; $022430
@@ -38,7 +38,7 @@ loc_022448:
         rts                                                        ; $022450
 
 loc_022452:
-        jsr          loc_081C5C.l                                  ; $022452
+        jsr          RunOptionsScreen.l                                  ; $022452
         bra.b        RunMissionSelection                           ; $022458
 
 loc_02245A:
@@ -71,7 +71,7 @@ loc_0224A8:
 loc_0224BC:
         move.l       d6, (a4)                                      ; $0224BC
         dbra         d7, loc_0224BC                                ; $0224BE
-        lea.l        -$7abc(a6), a0                                ; $0224C2
+        lea.l        rVramDmaCommandQueue(a6), a0                                ; $0224C2
         move.l       #$ffffffff, (a0)                              ; $0224C6
         move.l       a0, rDmaQueueTail(a6)                         ; $0224CC
         lea.l        WaitingForPartnerMenuText(pc), a0             ; $0224D0
@@ -91,33 +91,33 @@ loc_0224BC:
         move.l       (a0)+, (a4)                                   ; $022508
         move.l       (a0)+, (a4)                                   ; $02250A
         move.l       (a0)+, (a4)                                   ; $02250C
-        jsr          InputRoutine_01FF82(pc)                       ; $02250E
-        lea.l        -$6fdc(a6), a0                                ; $022512
+        jsr          ResetLinkReceiverPortAndQueues(pc)                       ; $02250E
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $022512
         move.b       #$1, (a0)                                     ; $022516
         move.b       rRequestedStartSelection(a6), $1(a0)          ; $02251A
         jsr          QueueLinkCommand(pc)                          ; $022520
-        move.w       -$539e(a6), -(a7)                             ; $022524
-        move.w       -$539c(a6), -(a7)                             ; $022528
-        clr.w        -$539e(a6)                                    ; $02252C
-        move.w       #$2000, -$539c(a6)                            ; $022530
+        move.w       rLinkRetryDelay(a6), -(a7)                             ; $022524
+        move.w       rLinkTransferModeShadow(a6), -(a7)                             ; $022528
+        clr.w        rLinkRetryDelay(a6)                                    ; $02252C
+        move.w       #$2000, rLinkTransferModeShadow(a6)                            ; $022530
         jsr          TransmitLinkCommands(pc)                      ; $022536
-        move.w       (a7)+, -$539c(a6)                             ; $02253A
-        move.w       (a7)+, -$539e(a6)                             ; $02253E
+        move.w       (a7)+, rLinkTransferModeShadow(a6)                             ; $02253A
+        move.w       (a7)+, rLinkRetryDelay(a6)                             ; $02253E
 
 loc_022542:
-        lea.l        -$6fdc(a6), a0                                ; $022542
-        jsr          InputRoutine_020010(pc)                       ; $022546
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $022542
+        jsr          DequeueLinkCommand(pc)                       ; $022546
         beq.b        loc_022556                                    ; $02254A
         cmpi.b       #$2, (a0)                                     ; $02254C
         bne.b        loc_022542                                    ; $022550
         bra.w        loc_0225A0                                    ; $022552
 
 loc_022556:
-        lea.l        -$6fdc(a6), a0                                ; $022556
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $022556
         move.b       #$2, (a0)                                     ; $02255A
         move.b       rRequestedStartSelection(a6), $1(a0)          ; $02255E
         jsr          QueueLinkCommand(pc)                          ; $022564
-        jsr          InputRoutine_01FF4E(pc)                       ; $022568
+        jsr          ConfigureLinkInitiatorPort(pc)                       ; $022568
 
 loc_02256C:
         jsr          WaitForVBlank.l                               ; $02256C
@@ -128,8 +128,8 @@ loc_02256C:
         beq.w        loc_0225E0                                    ; $022586
 
 loc_02258A:
-        lea.l        -$6fdc(a6), a0                                ; $02258A
-        jsr          InputRoutine_020010(pc)                       ; $02258E
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $02258A
+        jsr          DequeueLinkCommand(pc)                       ; $02258E
         beq.b        loc_02259E                                    ; $022592
         cmpi.b       #$1, (a0)                                     ; $022594
         beq.w        loc_0225CA                                    ; $022598
@@ -146,7 +146,7 @@ loc_0225A0:
 
 loc_0225AE:
         move.w       #$1, rLinkRole(a6)                            ; $0225AE
-        lea.l        -$6fdc(a6), a0                                ; $0225B4
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $0225B4
         move.b       #$1, (a0)                                     ; $0225B8
         move.b       rRequestedStartSelection(a6), $1(a0)          ; $0225BC
         jsr          QueueLinkCommand(pc)                          ; $0225C2
@@ -163,7 +163,7 @@ loc_0225D8:
         rts                                                        ; $0225DE
 
 loc_0225E0:
-        jsr          InputRoutine_01FF82(pc)                       ; $0225E0
+        jsr          ResetLinkReceiverPortAndQueues(pc)                       ; $0225E0
         clr.w        rLinkRole(a6)                                 ; $0225E4
         bra.w        RunMissionSelection                           ; $0225E8
         ifne *-$225EC

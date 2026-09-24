@@ -7,11 +7,11 @@
         endif
 
 loc_00A8E8:
-        move.l       a0, -$42a2(a6)                                ; $00A8E8
-        bsr.w        RendererRoutine_00D122                        ; $00A8EC
-        st.b         -$715a(a6)                                    ; $00A8F0
-        lea.l        -$7008(a6), a3                                ; $00A8F4
-        cmpa.l       -$7118(a6), a3                                ; $00A8F8
+        move.l       a0, rCellRenderStateSourcePointer(a6)                                ; $00A8E8
+        bsr.w        RecordVisibleCellRenderState                        ; $00A8EC
+        st.b         rCellSideEffectsSuppressed(a6)                                    ; $00A8F0
+        lea.l        rVisibleWallYCache(a6), a3                                ; $00A8F4
+        cmpa.l       rVisibleWallYCacheEnd(a6), a3                                ; $00A8F8
         beq.b        loc_00A90A                                    ; $00A8FC
 
 loc_00A8FE:

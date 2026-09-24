@@ -40,9 +40,9 @@ loc_016332:
 
 loc_01634C:
         move.w       #$5f, d0                                      ; $01634C
-        jsr          SoundRoutine_00DF64.l                         ; $016350
+        jsr          RouteSoundEventByActorFloor.l                         ; $016350
         move.w       #$83, d0                                      ; $016356
-        jmp          SoundRoutine_00DF64.l                         ; $01635A
+        jmp          RouteSoundEventByActorFloor.l                         ; $01635A
 
 StananTryHitTarget:
         movea.l      ActorTarget(a0), a3                           ; $016360
@@ -53,7 +53,7 @@ StananTryHitTarget:
         jsr          TraceFiveRayObstructionInActiveWindow.l       ; $016374
         bne.b        StananResumeMovement                          ; $01637A
         move.w       #$400, d3                                     ; $01637C
-        tst.w        -$71d8(a6)                                    ; $016380
+        tst.w        rPlayerViewOffsetZ(a6)                                    ; $016380
         bpl.b        loc_016396                                    ; $016384
         move.w       #$200, d3                                     ; $016386
         tst.w        rSceneColorMode(a6)                           ; $01638A
@@ -96,9 +96,9 @@ loc_0163B0:
 
 loc_0163EA:
         move.w       #$5f, d0                                      ; $0163EA
-        jsr          SoundRoutine_00DF64.l                         ; $0163EE
+        jsr          RouteSoundEventByActorFloor.l                         ; $0163EE
         move.w       #$83, d0                                      ; $0163F4
-        jsr          SoundRoutine_00DF64.l                         ; $0163F8
+        jsr          RouteSoundEventByActorFloor.l                         ; $0163F8
 
 loc_0163FE:
         rts                                                        ; $0163FE
@@ -107,19 +107,19 @@ StananEnterDeath:
 ; Death sound $3A. Normal death callbacks install state3; HP death checks signed <0. AlternateDeathSignal still branches to the shared unresolved $1AA76 path.
         move.l       a0, -(a7)                                     ; $016400
         move.w       #$3a, d0                                      ; $016402
-        jsr          SoundRoutine_00DF64.l                         ; $016406
+        jsr          RouteSoundEventByActorFloor.l                         ; $016406
         movea.l      (a7)+, a0                                     ; $01640C
         tst.b        ActorAlternateDeathSignal(a0)                 ; $01640E
         bne.w        EnterLegacyEnemyDeathEffect                   ; $016412
         andi.w       #$ff2f, ActorFlags(a0)                        ; $016416
         move.l       #UpdateStananCorpse, ActorUpdateCallback(a0)  ; $01641C
-        addq.w       #$1, -$71c8(a6)                               ; $016424
+        addq.w       #$1, rEnemyDeathsRecorded(a6)                               ; $016424
         clr.b        ActorUpdateDelay(a0)                          ; $016428
         move.l       #HitStananCorpse, ActorHitCallback(a0)        ; $01642C
-        move.l       #EnvironmentRoutine_01D130, ActorExitCallback(a0) ; $016434
+        move.l       #PlaceCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $016434
         tst.b        ActorMarkerTracked(a0)                        ; $01643C
         beq.b        loc_01644A                                    ; $016440
-        move.l       #EnvironmentRoutine_097964, ActorExitCallback(a0) ; $016442
+        move.l       #WriteTrackedCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $016442
 
 loc_01644A:
         move.l       #DrawStananCorpse, ActorDrawCallback(a0)      ; $01644A
@@ -140,14 +140,14 @@ loc_01647A:
 
 loc_016488:
         move.l       #$1ef72, ActorLinkCallback(a0)                ; $016488
-        lea.l        -$6fdc(a6), a1                                ; $016490
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $016490
         move.b       #$12, (a1)+                                   ; $016494
         move.b       ActorLinkId(a0), (a1)+                        ; $016498
         move.w       ActorFlags(a0), d0                            ; $01649C
         ori.w        #$20, d0                                      ; $0164A0
         move.b       d0, (a1)+                                     ; $0164A4
         move.b       ActorFloor(a0), (a1)+                         ; $0164A6
-        lea.l        -$6fdc(a6), a0                                ; $0164AA
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $0164AA
         jmp          QueueLinkCommand.l                            ; $0164AE
 
 StananTickWeapon0DDeath:

@@ -52,7 +52,7 @@ loc_01C6AE:
         beq.b        loc_01C684                                    ; $01C6B8
         cmpi.b       #$a3, d3                                      ; $01C6BA
         beq.b        loc_01C684                                    ; $01C6BE
-        tst.w        -$71d8(a6)                                    ; $01C6C0
+        tst.w        rPlayerViewOffsetZ(a6)                                    ; $01C6C0
         bmi.b        loc_01C67A                                    ; $01C6C4
         cmpi.b       #$3, d3                                       ; $01C6C6
         beq.b        loc_01C684                                    ; $01C6CA

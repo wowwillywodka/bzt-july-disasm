@@ -5,10 +5,10 @@
         endif
 
 loc_01EBBC:
-        move.w       d5, -$6f26(a6)                                ; $01EBBC
+        move.w       d5, rSoftwareSpriteProjectionScale(a6)                                ; $01EBBC
         move.w       d5, d2                                        ; $01EBC0
-        move.w       -$71d8(a6), d3                                ; $01EBC2
-        sub.w        -$6e4c(a6), d3                                ; $01EBC6
+        move.w       rPlayerViewOffsetZ(a6), d3                                ; $01EBC2
+        sub.w        rTransitHeightOffset(a6), d3                                ; $01EBC6
         addi.w       #$20, d3                                      ; $01EBCA
         muls.w       d3, d2                                        ; $01EBCE
         asr.l        #$6, d2                                       ; $01EBD0
@@ -16,7 +16,7 @@ loc_01EBBC:
         movea.l      rZoneObjectTiles(a6), a1                      ; $01EBD6
         move.w       rGameTick(a6), d0                             ; $01EBDA
         andi.w       #$1, d0                                       ; $01EBDE
-        move.w       d0, -$6f32(a6)                                ; $01EBE2
+        move.w       d0, rSoftwareSpriteMirrorFlag(a6)                                ; $01EBE2
         clr.w        d0                                            ; $01EBE6
         move.b       ActorRemoteFrame(a0), d0                      ; $01EBE8
         neg.w        d0                                            ; $01EBEC
@@ -36,10 +36,10 @@ loc_01EBBC:
         rts                                                        ; $01EC0E
 
 loc_01EC10:
-        move.w       d5, -$6f26(a6)                                ; $01EC10
+        move.w       d5, rSoftwareSpriteProjectionScale(a6)                                ; $01EC10
         move.w       d5, d2                                        ; $01EC14
-        move.w       -$71d8(a6), d3                                ; $01EC16
-        sub.w        -$6e4c(a6), d3                                ; $01EC1A
+        move.w       rPlayerViewOffsetZ(a6), d3                                ; $01EC16
+        sub.w        rTransitHeightOffset(a6), d3                                ; $01EC1A
         sub.w        ActorZ(a0), d3                                ; $01EC1E
         muls.w       d3, d2                                        ; $01EC22
         asr.l        #$6, d2                                       ; $01EC24
@@ -51,7 +51,7 @@ loc_01EC10:
         adda.w       #ObjectTileOffset62_ProjectilePhases12, a1    ; $01EC36
         move.b       ActorLinkId(a0), d0                           ; $01EC3A
         andi.w       #$1, d0                                       ; $01EC3E
-        move.w       d0, -$6f32(a6)                                ; $01EC42
+        move.w       d0, rSoftwareSpriteMirrorFlag(a6)                                ; $01EC42
         move.w       d5, d0                                        ; $01EC46
         move.w       d5, d4                                        ; $01EC48
         addi.w       #$100, d7                                     ; $01EC4A
@@ -69,10 +69,10 @@ loc_01EC10:
         jmp          ScaleAndDrawSoftwareSpriteTile.l              ; $01EC66
 
 loc_01EC6C:
-        move.w       d5, -$6f26(a6)                                ; $01EC6C
+        move.w       d5, rSoftwareSpriteProjectionScale(a6)                                ; $01EC6C
         move.w       d5, d2                                        ; $01EC70
-        move.w       -$71d8(a6), d3                                ; $01EC72
-        sub.w        -$6e4c(a6), d3                                ; $01EC76
+        move.w       rPlayerViewOffsetZ(a6), d3                                ; $01EC72
+        sub.w        rTransitHeightOffset(a6), d3                                ; $01EC76
         sub.w        ActorZ(a0), d3                                ; $01EC7A
         muls.w       d3, d2                                        ; $01EC7E
         asr.l        #$6, d2                                       ; $01EC80
@@ -84,7 +84,7 @@ loc_01EC6C:
         adda.w       #ObjectTileOffset62_ProjectilePhases12, a1    ; $01EC92
         move.b       ActorLinkId(a0), d0                           ; $01EC96
         andi.w       #$1, d0                                       ; $01EC9A
-        move.w       d0, -$6f32(a6)                                ; $01EC9E
+        move.w       d0, rSoftwareSpriteMirrorFlag(a6)                                ; $01EC9E
         move.w       d5, d0                                        ; $01ECA2
         move.w       d5, d4                                        ; $01ECA4
         addi.w       #$80, d7                                      ; $01ECA6
@@ -105,10 +105,10 @@ loc_01EC6C:
         jmp          ScaleAndDrawSoftwareSpriteTile.l              ; $01ECC8
 
 loc_01ECCE:
-        move.w       d5, -$6f26(a6)                                ; $01ECCE
+        move.w       d5, rSoftwareSpriteProjectionScale(a6)                                ; $01ECCE
         move.w       d5, d2                                        ; $01ECD2
-        move.w       -$71d8(a6), d3                                ; $01ECD4
-        sub.w        -$6e4c(a6), d3                                ; $01ECD8
+        move.w       rPlayerViewOffsetZ(a6), d3                                ; $01ECD4
+        sub.w        rTransitHeightOffset(a6), d3                                ; $01ECD8
         sub.w        ActorZ(a0), d3                                ; $01ECDC
         muls.w       d3, d2                                        ; $01ECE0
         asr.l        #$6, d2                                       ; $01ECE2
@@ -117,7 +117,7 @@ loc_01ECCE:
         adda.w       #ObjectTileOffset61_ProjectilePhase0, a1      ; $01ECEC
         move.b       ActorLinkId(a0), d0                           ; $01ECF0
         andi.w       #$1, d0                                       ; $01ECF4
-        move.w       d0, -$6f32(a6)                                ; $01ECF8
+        move.w       d0, rSoftwareSpriteMirrorFlag(a6)                                ; $01ECF8
         move.w       d5, d0                                        ; $01ECFC
         asr.w        #$2, d0                                       ; $01ECFE
         move.w       d0, d4                                        ; $01ED00
@@ -129,10 +129,10 @@ loc_01ECCE:
         jmp          ScaleAndDrawSoftwareSpriteTile.l              ; $01ED0C
 
 loc_01ED12:
-        move.w       d5, -$6f26(a6)                                ; $01ED12
+        move.w       d5, rSoftwareSpriteProjectionScale(a6)                                ; $01ED12
         move.w       d5, d2                                        ; $01ED16
-        move.w       -$71d8(a6), d3                                ; $01ED18
-        sub.w        -$6e4c(a6), d3                                ; $01ED1C
+        move.w       rPlayerViewOffsetZ(a6), d3                                ; $01ED18
+        sub.w        rTransitHeightOffset(a6), d3                                ; $01ED1C
         sub.w        ActorZ(a0), d3                                ; $01ED20
         muls.w       d3, d2                                        ; $01ED24
         asr.l        #$6, d2                                       ; $01ED26
@@ -148,7 +148,7 @@ loc_01ED12:
         adda.w       d0, a1                                        ; $01ED42
 
 loc_01ED44:
-        clr.w        -$6f32(a6)                                    ; $01ED44
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $01ED44
         move.w       d5, d0                                        ; $01ED48
         asr.w        #$2, d0                                       ; $01ED4A
         move.w       d0, d4                                        ; $01ED4C
@@ -160,10 +160,10 @@ loc_01ED44:
         jmp          ScaleAndDrawSoftwareSpriteTile.l              ; $01ED58
 
 loc_01ED5E:
-        move.w       d5, -$6f26(a6)                                ; $01ED5E
+        move.w       d5, rSoftwareSpriteProjectionScale(a6)                                ; $01ED5E
         move.w       d5, d2                                        ; $01ED62
-        move.w       -$71d8(a6), d3                                ; $01ED64
-        sub.w        -$6e4c(a6), d3                                ; $01ED68
+        move.w       rPlayerViewOffsetZ(a6), d3                                ; $01ED64
+        sub.w        rTransitHeightOffset(a6), d3                                ; $01ED68
         sub.w        ActorZ(a0), d3                                ; $01ED6C
         muls.w       d3, d2                                        ; $01ED70
         asr.l        #$6, d2                                       ; $01ED72
@@ -182,7 +182,7 @@ loc_01ED5E:
         sub.w        d3, d1                                        ; $01ED92
         move.w       rGameTick(a6), d3                             ; $01ED94
         andi.w       #$1, d3                                       ; $01ED98
-        move.w       d3, -$6f32(a6)                                ; $01ED9C
+        move.w       d3, rSoftwareSpriteMirrorFlag(a6)                                ; $01ED9C
         movea.l      rZoneObjectTiles(a6), a1                      ; $01EDA0
         adda.w       #ObjectTileOffset01_FireEffect, a1            ; $01EDA4
         jmp          ScaleAndDrawSoftwareSpriteTile.l              ; $01EDA8

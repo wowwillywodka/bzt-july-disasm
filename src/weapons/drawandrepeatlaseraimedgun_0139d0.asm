@@ -28,14 +28,14 @@ DrawAndRepeatLaserAimedGun:
         bne.w        loc_013B3A                                    ; $013A0C
         btst.b       #$4, rControllerState(a6)                     ; $013A10
         beq.w        loc_013B3A                                    ; $013A16
-        clr.w        -$55a0(a6)                                    ; $013A1A
-        clr.w        -$559e(a6)                                    ; $013A1E
+        clr.w        rStatusSoundScriptActive(a6)                                    ; $013A1A
+        clr.w        rSoundEffectCooldown(a6)                                    ; $013A1E
         move.w       #$1e, d0                                      ; $013A22
-        jsr          SoundRoutine_00DF84.l                         ; $013A26
-        move.w       #$f, -$559e(a6)                               ; $013A2C
+        jsr          PlaySoundEventAndMaybeSendLink.l                         ; $013A26
+        move.w       #$f, rSoundEffectCooldown(a6)                               ; $013A2C
 
 loc_013A32:
-        tst.w        -$7ffe(a6)                                    ; $013A32
+        tst.w        rVBlankTransferPhasesRemaining(a6)                                    ; $013A32
         bne.b        loc_013A32                                    ; $013A36
         clr.w        d0                                            ; $013A38
         move.b       rSelectedInventorySlot(a6), d0                ; $013A3A
@@ -77,14 +77,14 @@ loc_013A7E:
         subq.w       #$1, d0                                       ; $013AB0
         lsr.w        #$8, d0                                       ; $013AB2
         addq.w       #$1, d0                                       ; $013AB4
-        jsr          UiRoutine_020944.l                            ; $013AB6
+        jsr          DrawInventoryQuantityDigits.l                            ; $013AB6
         move.w       #$3, d1                                       ; $013ABC
         cmpi.w       #$0, rSelectedCharacter(a6)                   ; $013AC0
         bne.b        loc_013ACC                                    ; $013AC6
         move.w       #$5, d1                                       ; $013AC8
 
 loc_013ACC:
-        move.w       -$71b0(a6), d2                                ; $013ACC
+        move.w       rViewSwayAngleOffset(a6), d2                                ; $013ACC
         lsl.w        #$1, d2                                       ; $013AD0
         addi.w       #$40, d2                                      ; $013AD2
         jsr          SelectPlayerWeaponAimTarget.l                 ; $013AD6
@@ -115,7 +115,7 @@ loc_013B0A:
         bra.b        loc_013B3A                                    ; $013B26
 
 loc_013B28:
-        jsr          ObjectsRoutine_00A3D2.l                       ; $013B28
+        jsr          ClassifyPlayerCellForWeapon.l                       ; $013B28
         bne.b        loc_013B34                                    ; $013B2E
         bsr.w        TraceMissedShotAndSpawnImpact                 ; $013B30
 
@@ -129,30 +129,30 @@ loc_013B3A:
         clr.w        rWeaponActionPhase(a6)                        ; $013B46
 
 loc_013B4A:
-        movea.l      -$7fc2(a6), a2                                ; $013B4A
+        movea.l      rSpriteAttributeTableWritePointer(a6), a2                                ; $013B4A
         move.w       d0, (a2)+                                     ; $013B4E
-        move.w       -$7fbe(a6), d2                                ; $013B50
+        move.w       rSpriteAttributeNextLink(a6), d2                                ; $013B50
         ori.w        #$b00, d2                                     ; $013B54
-        addq.w       #$1, -$7fbe(a6)                               ; $013B58
+        addq.w       #$1, rSpriteAttributeNextLink(a6)                               ; $013B58
         move.w       d2, (a2)+                                     ; $013B5C
         move.w       #$a4ef, (a2)+                                 ; $013B5E
         subq.w       #$3, d1                                       ; $013B62
         move.w       d1, (a2)+                                     ; $013B64
-        move.l       a2, -$7fc2(a6)                                ; $013B66
+        move.l       a2, rSpriteAttributeTableWritePointer(a6)                                ; $013B66
         addq.w       #$3, d1                                       ; $013B6A
         cmpi.w       #$2, rWeaponActionPhase(a6)                   ; $013B6C
         bne.b        loc_013B96                                    ; $013B72
         subq.w       #$5, d1                                       ; $013B74
         subq.w       #$7, d0                                       ; $013B76
-        movea.l      -$7fc2(a6), a2                                ; $013B78
+        movea.l      rSpriteAttributeTableWritePointer(a6), a2                                ; $013B78
         move.w       d0, (a2)+                                     ; $013B7C
-        move.w       -$7fbe(a6), d2                                ; $013B7E
+        move.w       rSpriteAttributeNextLink(a6), d2                                ; $013B7E
         ori.w        #$a00, d2                                     ; $013B82
-        addq.w       #$1, -$7fbe(a6)                               ; $013B86
+        addq.w       #$1, rSpriteAttributeNextLink(a6)                               ; $013B86
         move.w       d2, (a2)+                                     ; $013B8A
         move.w       #$a4fb, (a2)+                                 ; $013B8C
         move.w       d1, (a2)+                                     ; $013B90
-        move.l       a2, -$7fc2(a6)                                ; $013B92
+        move.l       a2, rSpriteAttributeTableWritePointer(a6)                                ; $013B92
 
 loc_013B96:
         move.w       (a7)+, d1                                     ; $013B96
@@ -161,19 +161,19 @@ loc_013B96:
         move.w       d4, d2                                        ; $013B9E
         subi.w       #$ce, d2                                      ; $013BA0
         lsl.w        #$2, d2                                       ; $013BA4
-        lea.l        -$916(a6), a0                                 ; $013BA6
+        lea.l        rLaserReticleFrameSampleBase(a6), a0                                 ; $013BA6
         tst.b        (a0, d2.w)                                    ; $013BAA
         beq.b        loc_013BF2                                    ; $013BAE
-        movea.l      -$7fc2(a6), a2                                ; $013BB0
+        movea.l      rSpriteAttributeTableWritePointer(a6), a2                                ; $013BB0
         move.w       d4, (a2)+                                     ; $013BB4
-        move.w       -$7fbe(a6), d0                                ; $013BB6
+        move.w       rSpriteAttributeNextLink(a6), d0                                ; $013BB6
         ori.w        #$0, d0                                       ; $013BBA
-        addq.w       #$1, -$7fbe(a6)                               ; $013BBE
+        addq.w       #$1, rSpriteAttributeNextLink(a6)                               ; $013BBE
         move.w       d0, (a2)+                                     ; $013BC2
         move.w       d1, d0                                        ; $013BC4
         subi.w       #$11e, d0                                     ; $013BC6
         bclr.l       #$0, d0                                       ; $013BCA
-        lea.l        $aca(a6), a0                                  ; $013BCE
+        lea.l        rCenterScreenColumnDepthWord(a6), a0                                  ; $013BCE
         move.w       (a0, d0.w), d0                                ; $013BD2
         lsr.w        #$4, d0                                       ; $013BD6
         cmpi.w       #$4, d0                                       ; $013BD8
@@ -185,7 +185,7 @@ loc_013BE2:
         move.w       d0, (a2)+                                     ; $013BE6
         subq.w       #$1, d1                                       ; $013BE8
         move.w       d1, (a2)+                                     ; $013BEA
-        move.l       a2, -$7fc2(a6)                                ; $013BEC
+        move.l       a2, rSpriteAttributeTableWritePointer(a6)                                ; $013BEC
         addq.w       #$1, d1                                       ; $013BF0
 
 loc_013BF2:

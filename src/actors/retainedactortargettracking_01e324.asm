@@ -18,8 +18,8 @@ loc_01E33E:
         movea.l      ActorTarget(a0), a1                           ; $01E33E
         move.w       ActorX(a0), d0                                ; $01E342
         move.w       ActorY(a0), d1                                ; $01E346
-        sub.w        $24(a1), d0                                   ; $01E34A
-        sub.w        $26(a1), d1                                   ; $01E34E
+        sub.w        ActorX(a1), d0                                   ; $01E34A
+        sub.w        ActorY(a1), d1                                   ; $01E34E
         jsr          OctagonalDistance.l                           ; $01E352
         cmpi.w       #$600, d0                                     ; $01E358
         bcc.w        loc_01E3F6                                    ; $01E35C
@@ -51,31 +51,31 @@ loc_01E3A8:
         rts                                                        ; $01E3A8
 
 loc_01E3AA:
-        move.b       $27(a6), d0                                   ; $01E3AA
+        move.b       rFrameBufferByteAtFF8027(a6), d0                                   ; $01E3AA
         bmi.b        loc_01E3C0                                    ; $01E3AE
         cmpi.b       #$20, d0                                      ; $01E3B0
         bls.b        loc_01E3A8                                    ; $01E3B4
-        move.b       #$20, $27(a6)                                 ; $01E3B6
+        move.b       #$20, rFrameBufferByteAtFF8027(a6)                                 ; $01E3B6
         bra.w        loc_01E3FC                                    ; $01E3BC
 
 loc_01E3C0:
         cmpi.b       #$e0, d0                                      ; $01E3C0
         bcc.b        loc_01E3A8                                    ; $01E3C4
-        move.b       #$e0, $27(a6)                                 ; $01E3C6
+        move.b       #$e0, rFrameBufferByteAtFF8027(a6)                                 ; $01E3C6
         bra.w        loc_01E3FC                                    ; $01E3CC
 
 loc_01E3D0:
-        move.b       $25(a6), d0                                   ; $01E3D0
+        move.b       rFrameBufferByteAtFF8025(a6), d0                                   ; $01E3D0
         bmi.b        loc_01E3E6                                    ; $01E3D4
         cmpi.b       #$20, d0                                      ; $01E3D6
         bls.b        loc_01E3A8                                    ; $01E3DA
-        move.b       #$20, $25(a6)                                 ; $01E3DC
+        move.b       #$20, rFrameBufferByteAtFF8025(a6)                                 ; $01E3DC
         bra.w        loc_01E3FC                                    ; $01E3E2
 
 loc_01E3E6:
         cmpi.b       #$e0, d0                                      ; $01E3E6
         bcc.b        loc_01E3A8                                    ; $01E3EA
-        move.b       #$e0, $25(a6)                                 ; $01E3EC
+        move.b       #$e0, rFrameBufferByteAtFF8025(a6)                                 ; $01E3EC
         bra.w        loc_01E3FC                                    ; $01E3F2
 
 loc_01E3F6:
@@ -84,7 +84,7 @@ loc_01E3F6:
 
 loc_01E3FC:
         move.w       #$3, d0                                       ; $01E3FC
-        jmp          SoundRoutine_00DF64.l                         ; $01E400
+        jmp          RouteSoundEventByActorFloor.l                         ; $01E400
         ifne *-$1E406
         fail "ROM end moved"
         endif

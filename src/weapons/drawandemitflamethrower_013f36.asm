@@ -23,15 +23,15 @@ DrawAndEmitFlamethrower:
         clr.w        rWeaponActionPhase(a6)                        ; $013F60
 
 loc_013F64:
-        movea.l      -$7fc2(a6), a2                                ; $013F64
+        movea.l      rSpriteAttributeTableWritePointer(a6), a2                                ; $013F64
         move.w       d0, (a2)+                                     ; $013F68
-        move.w       -$7fbe(a6), d2                                ; $013F6A
+        move.w       rSpriteAttributeNextLink(a6), d2                                ; $013F6A
         ori.w        #$b00, d2                                     ; $013F6E
-        addq.w       #$1, -$7fbe(a6)                               ; $013F72
+        addq.w       #$1, rSpriteAttributeNextLink(a6)                               ; $013F72
         move.w       d2, (a2)+                                     ; $013F76
         move.w       #$a4ef, (a2)+                                 ; $013F78
         move.w       d1, (a2)+                                     ; $013F7C
-        move.l       a2, -$7fc2(a6)                                ; $013F7E
+        move.l       a2, rSpriteAttributeTableWritePointer(a6)                                ; $013F7E
         tst.w        rPlayerDeathTicks(a6)                         ; $013F82
         bne.w        loc_01417A                                    ; $013F86
         cmpi.w       #$2, d7                                       ; $013F8A
@@ -40,11 +40,11 @@ loc_013F64:
         beq.b        loc_013FBC                                    ; $013F96
         cmpi.w       #$1, d7                                       ; $013F98
         bne.w        loc_01417A                                    ; $013F9C
-        clr.w        -$55a0(a6)                                    ; $013FA0
-        clr.w        -$559e(a6)                                    ; $013FA4
+        clr.w        rStatusSoundScriptActive(a6)                                    ; $013FA0
+        clr.w        rSoundEffectCooldown(a6)                                    ; $013FA4
         move.w       #$37, d0                                      ; $013FA8
-        jsr          SoundRoutine_00DF84.l                         ; $013FAC
-        move.w       #$14, -$559e(a6)                              ; $013FB2
+        jsr          PlaySoundEventAndMaybeSendLink.l                         ; $013FAC
+        move.w       #$14, rSoundEffectCooldown(a6)                              ; $013FB2
         bra.w        loc_01403E                                    ; $013FB8
 
 loc_013FBC:
@@ -53,7 +53,7 @@ loc_013FBC:
         move.w       #$3, rWeaponActionPhase(a6)                   ; $013FC4
 
 loc_013FCA:
-        tst.w        -$7ffe(a6)                                    ; $013FCA
+        tst.w        rVBlankTransferPhasesRemaining(a6)                                    ; $013FCA
         bne.b        loc_013FCA                                    ; $013FCE
         clr.w        d0                                            ; $013FD0
         move.b       rSelectedInventorySlot(a6), d0                ; $013FD2
@@ -89,7 +89,7 @@ loc_014008:
         subq.w       #$1, d0                                       ; $014032
         lsr.w        #$8, d0                                       ; $014034
         addq.w       #$1, d0                                       ; $014036
-        jsr          UiRoutine_020944.l                            ; $014038
+        jsr          DrawInventoryQuantityDigits.l                            ; $014038
 
 loc_01403E:
         jsr          AllocateActor.l                               ; $01403E
@@ -97,7 +97,7 @@ loc_01403E:
         move.b       #$ff, $38(a0)                                 ; $014048
         move.l       a0, -(a7)                                     ; $01404E
         move.w       #$8, d1                                       ; $014050
-        move.w       -$71b0(a6), d2                                ; $014054
+        move.w       rViewSwayAngleOffset(a6), d2                                ; $014054
         addi.w       #$40, d2                                      ; $014058
         jsr          SelectPlayerWeaponAimTarget.l                 ; $01405C
         movea.l      (a7)+, a0                                     ; $014062
@@ -128,15 +128,15 @@ loc_01408C:
         move.b       d0, $38(a0)                                   ; $0140A4
 
 loc_0140A8:
-        clr.b        $23(a0)                                       ; $0140A8
+        clr.b        ActorUpdateDelay(a0)                                       ; $0140A8
         move.l       #UpdateFlamethrowerParticle, ActorUpdateCallback(a0) ; $0140AC
-        move.l       #loc_01CBA4, ActorDrawCallback(a0)            ; $0140B4
-        move.w       -$71f2(a6), d0                                ; $0140BC
+        move.l       #DrawSharedFireEffectTile, ActorDrawCallback(a0)            ; $0140B4
+        move.w       rPlayerFacingVectorX(a6), d0                                ; $0140BC
         asr.w        #$2, d0                                       ; $0140C0
         move.w       d0, $2e(a0)                                   ; $0140C2
         add.w        rPlayerX(a6), d0                              ; $0140C6
         move.w       d0, $24(a0)                                   ; $0140CA
-        move.w       -$71f0(a6), d0                                ; $0140CE
+        move.w       rPlayerFacingVectorY(a6), d0                                ; $0140CE
         asr.w        #$2, d0                                       ; $0140D2
         move.w       d0, $30(a0)                                   ; $0140D4
         add.w        rPlayerY(a6), d0                              ; $0140D8
@@ -150,21 +150,21 @@ loc_0140A8:
         andi.w       #$1f, d2                                      ; $0140F6
         subi.w       #$10, d2                                      ; $0140FA
         add.w        d2, $30(a0)                                   ; $0140FE
-        move.w       -$71d8(a6), d0                                ; $014102
-        sub.w        -$6e4c(a6), d0                                ; $014106
+        move.w       rPlayerViewOffsetZ(a6), d0                                ; $014102
+        sub.w        rTransitHeightOffset(a6), d0                                ; $014106
         subi.w       #$c, d0                                       ; $01410A
         move.w       d0, $28(a0)                                   ; $01410E
         move.w       #$fffe, $32(a0)                               ; $014112
-        jsr          ObjectsRoutine_00A3D2.l                       ; $014118
+        jsr          ClassifyPlayerCellForWeapon.l                       ; $014118
         beq.b        loc_014128                                    ; $01411E
-        move.l       #$1c902, ActorUpdateCallback(a0)              ; $014120
+        move.l       #ResolveSpecialCellParticleImpact, ActorUpdateCallback(a0)              ; $014120
 
 loc_014128:
         tst.w        rLinkRole(a6)                                 ; $014128
         beq.b        loc_01417A                                    ; $01412C
         move.l       #RemoveActorAndSendLink, ActorExitCallback(a0) ; $01412E
-        move.l       #$1edfe, ActorLinkCallback(a0)                ; $014136
-        lea.l        -$6fdc(a6), a1                                ; $01413E
+        move.l       #QueueActorPositionLinkCommand0EFlag04, ActorLinkCallback(a0)                ; $014136
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01413E
         move.b       #$4, (a1)+                                    ; $014142
         move.b       $42(a0), (a1)+                                ; $014146
         move.w       $24(a0), (a1)+                                ; $01414A
@@ -177,7 +177,7 @@ loc_014128:
         move.b       #$4, (a1)+                                    ; $014164
         move.w       $2e(a0), (a1)+                                ; $014168
         move.w       $30(a0), (a1)+                                ; $01416C
-        lea.l        -$6fdc(a6), a0                                ; $014170
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $014170
         jsr          QueueLinkCommand.l                            ; $014174
 
 loc_01417A:

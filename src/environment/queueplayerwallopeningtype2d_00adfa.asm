@@ -25,7 +25,7 @@ loc_00AE22:
         movea.l      #$ffa9fa, a0                                  ; $00AE22
 
 loc_00AE28:
-        move.b       $c17(a6), (a0)                                ; $00AE28
+        move.b       rCellIndexForType2D(a6), (a0)                                ; $00AE28
         jsr          CommitMapCellAndSendLink.l                    ; $00AE2C
         bra.b        FinishPlayerWallOpeningRecord                 ; $00AE32
 

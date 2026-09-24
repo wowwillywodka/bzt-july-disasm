@@ -14,19 +14,19 @@ LoadEpisodeGeometry:
         movea.l      (a0, d0.w), a0                                ; $0971B2
         adda.l       #$8c, a0                                      ; $0971B6
         lea.l        rTextureDefinitions(a6), a1                   ; $0971BC
-        move.w       #$3ff, d7                                     ; $0971C0
+        move.w       #TextureDefinitionBytes/4-1, d7              ; $0971C0
 
 loc_0971C4:
         move.l       (a0)+, (a1)+                                  ; $0971C4
         dbra         d7, loc_0971C4                                ; $0971C6
         lea.l        rTextureOrder(a6), a1                         ; $0971CA
-        move.w       #$1ff, d7                                     ; $0971CE
+        move.w       #TextureOrderBytes/4-1, d7                    ; $0971CE
 
 loc_0971D2:
         move.l       (a0)+, (a1)+                                  ; $0971D2
         dbra         d7, loc_0971D2                                ; $0971D4
         lea.l        rCellTypeByIndex(a6), a1                      ; $0971D8
-        move.w       #$3f, d7                                      ; $0971DC
+        move.w       #CellTypeTableEntries/4-1, d7                 ; $0971DC
 
 loc_0971E0:
         move.l       (a0)+, (a1)+                                  ; $0971E0
@@ -48,7 +48,7 @@ loc_0971F6:
 
 loc_0971FE:
         lea.l        rCellIndexByType(a6), a0                      ; $0971FE
-        move.w       #$ff, d7                                      ; $097202
+        move.w       #CellTypeTableEntries-1, d7                   ; $097202
 
 loc_097206:
 ; Inverse type table: first matching cell index; an absent type maps to zero, not $FF.
@@ -247,11 +247,11 @@ loc_0973D4:
         move.b       #$ff, d0                                      ; $0973E4
 
 loc_0973E8:
-        move.b       d0, -$71b8(a6)                                ; $0973E8
+        move.b       d0, rObjectiveCellTypeIndexScratch(a6)                                ; $0973E8
         clr.w        d1                                            ; $0973EC
         cmpi.b       #$ff, d0                                      ; $0973EE
         beq.b        loc_09740A                                    ; $0973F2
-        move.b       -$71b8(a6), d0                                ; $0973F4
+        move.b       rObjectiveCellTypeIndexScratch(a6), d0                                ; $0973F4
         lea.l        rEpisodeMapCells(a6), a0                      ; $0973F8
         move.w       #$3fff, d7                                    ; $0973FC
 
@@ -264,7 +264,7 @@ loc_097406:
         dbra         d7, loc_097400                                ; $097406
 
 loc_09740A:
-        move.w       d1, -$71c0(a6)                                ; $09740A
+        move.w       d1, rEpisodeObjectiveCellTotal(a6)                                ; $09740A
         clr.w        d4                                            ; $09740E
         move.w       #$29, d2                                      ; $097410
         bsr.w        CountMapCellsByType                           ; $097414
@@ -296,7 +296,7 @@ loc_09740A:
         bsr.b        CountMapCellsByType                           ; $09746E
         move.w       #$27, d2                                      ; $097470
         bsr.b        CountMapCellsByType                           ; $097474
-        move.w       d4, -$71be(a6)                                ; $097476
+        move.w       d4, rEpisodeEnemyTotalForStats(a6)                                ; $097476
         clr.w        d4                                            ; $09747A
         move.w       #$ec, d0                                      ; $09747C
         bsr.b        CountMapCellIndex                             ; $097480
@@ -315,11 +315,11 @@ loc_09740A:
         move.w       #$f7, d0                                      ; $0974A6
         bsr.b        CountMapCellIndex                             ; $0974AA
         add.w        d4, d4                                        ; $0974AC
-        add.w        d4, -$71be(a6)                                ; $0974AE
+        add.w        d4, rEpisodeEnemyTotalForStats(a6)                                ; $0974AE
         clr.w        d4                                            ; $0974B2
         move.w       #$25, d2                                      ; $0974B4
         bsr.b        CountMapCellsByType                           ; $0974B8
-        add.w        d4, -$71ba(a6)                                ; $0974BA
+        add.w        d4, rEpisodeMedipackCellTotal(a6)                                ; $0974BA
         rts                                                        ; $0974BE
         ifne *-$974C0
         fail "ROM end moved"

@@ -7,8 +7,8 @@
         endif
 
 ProjectMapObjects:
-        lea.l        -$429e(a6), a0                                ; $0033E4
-        movea.l      -$7fc2(a6), a2                                ; $0033E8
+        lea.l        rVisibleMapObjectCoordinates(a6), a0                                ; $0033E4
+        movea.l      rSpriteAttributeTableWritePointer(a6), a2                                ; $0033E8
 
 loc_0033EC:
         clr.w        d0                                            ; $0033EC
@@ -21,7 +21,7 @@ loc_0033EC:
         lsl.w        #$2, d1                                       ; $0033FC
         addi.w       #$9c, d1                                      ; $0033FE
         addi.w       #$e0, d0                                      ; $003402
-        move.w       -$2260(a6), d6                                ; $003406
+        move.w       rPauseMapPanY(a6), d6                                ; $003406
         add.w        rMapWindowOriginY(a6), d6                     ; $00340A
         asl.w        #$2, d6                                       ; $00340E
         neg.w        d6                                            ; $003410
@@ -30,7 +30,7 @@ loc_0033EC:
         ble.b        loc_003454                                    ; $003418
         cmpi.w       #$11c, d1                                     ; $00341A
         bge.b        loc_003454                                    ; $00341E
-        move.w       -$2262(a6), d6                                ; $003420
+        move.w       rPauseMapPanX(a6), d6                                ; $003420
         add.w        rMapWindowOriginX(a6), d6                     ; $003424
         andi.w       #$fffe, d6                                    ; $003428
         asl.w        #$2, d6                                       ; $00342C
@@ -41,10 +41,10 @@ loc_0033EC:
         cmpi.w       #$160, d0                                     ; $003438
         bge.b        loc_003454                                    ; $00343C
         move.w       d1, (a2)+                                     ; $00343E
-        move.w       -$7fbe(a6), d2                                ; $003440
+        move.w       rSpriteAttributeNextLink(a6), d2                                ; $003440
         ori.w        #$0, d2                                       ; $003444
         move.w       d2, (a2)+                                     ; $003448
-        addq.w       #$1, -$7fbe(a6)                               ; $00344A
+        addq.w       #$1, rSpriteAttributeNextLink(a6)                               ; $00344A
         move.w       #$e286, (a2)+                                 ; $00344E
         move.w       d0, (a2)+                                     ; $003452
 
@@ -52,7 +52,7 @@ loc_003454:
         bra.b        loc_0033EC                                    ; $003454
 
 loc_003456:
-        move.l       a2, -$7fc2(a6)                                ; $003456
+        move.l       a2, rSpriteAttributeTableWritePointer(a6)                                ; $003456
         rts                                                        ; $00345A
         ifne *-$345C
         fail "ROM end moved"

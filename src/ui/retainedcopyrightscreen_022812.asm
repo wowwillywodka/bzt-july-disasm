@@ -10,7 +10,7 @@ RetainedCopyrightScreen:
         jsr          ClearAllVram(pc)                              ; $022816
         jsr          InitializeMenuVdp(pc)                         ; $02281A
         move.w       #$0, d0                                       ; $02281E
-        jsr          VideoRoutine_021E4A(pc)                       ; $022822
+        jsr          WriteVerticalScrollToVsram(pc)                       ; $022822
         move.w       #$0, d0                                       ; $022826
         jsr          WriteScreenTile(pc)                           ; $02282A
         lea.l        CommonInterfaceCompressedTiles.l, a3          ; $02282E

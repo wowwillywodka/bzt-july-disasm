@@ -7,7 +7,7 @@
         endif
 
 UploadPalette:
-        tst.w        -$7ffe(a6)                                    ; $000BCE
+        tst.w        rVBlankTransferPhasesRemaining(a6)                                    ; $000BCE
         bne.b        UploadPalette                                 ; $000BD2
         move.w       sr, -(a7)                                     ; $000BD4
         move.w       #$2700, sr                                    ; $000BD6

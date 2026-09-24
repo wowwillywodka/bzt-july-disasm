@@ -12,7 +12,7 @@ ReduceRandomInventoryQuantity:
         st.b         d7                                            ; $0179E4
         clr.w        d0                                            ; $0179E6
         lea.l        rInventorySlots(a6), a0                       ; $0179E8
-        lea.l        -$6f48(a6), a1                                ; $0179EC
+        lea.l        rInventoryRandomSelectionScratch(a6), a1                                ; $0179EC
         tst.w        (a0)                                          ; $0179F0
         beq.b        loc_0179FA                                    ; $0179F2
         move.w       #$0, (a1)+                                    ; $0179F4
@@ -57,7 +57,7 @@ loc_017A2A:
         andi.w       #$7, d2                                       ; $017A42
         clr.w        d0                                            ; $017A46
         move.b       (a0, d2.w), d0                                ; $017A48
-        lea.l        -$6f48(a6), a1                                ; $017A4C
+        lea.l        rInventoryRandomSelectionScratch(a6), a1                                ; $017A4C
         add.w        d0, d0                                        ; $017A50
         move.w       (a1, d0.w), d2                                ; $017A52
         move.w       d2, d3                                        ; $017A56
@@ -79,7 +79,7 @@ loc_017A2A:
 loc_017A7E:
         lsl.w        #$8, d0                                       ; $017A7E
         sub.w        d0, $2(a0, d3.w)                              ; $017A80
-        bsr.w        VideoRoutine_01173A                           ; $017A84
+        bsr.w        UploadInventorySlotIconsToVram                           ; $017A84
 
 loc_017A88:
         clr.w        d7                                            ; $017A88

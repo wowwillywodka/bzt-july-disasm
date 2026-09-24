@@ -5,7 +5,10 @@
         endif
 
 SpawnActorFromVisibleProfile:
-; Visible-profile path; octagonal distance must be < $800 to instantiate the actor.
+; Inputs: D0/D1 are cell offsets from player cell, A0 points at the raw
+; visible-map cell, rPendingActorDefinition selects the enemy definition.
+; A cell at octagonal distance >= $800 is queued as a projected world object;
+; only the near branch consumes its marker and attempts AllocateActor.
         movem.w      d0-d2, -(a7)                                  ; $0094F4
         add.w        rPlayerCellX(a6), d0                          ; $0094F8
         lsl.w        #$8, d0                                       ; $0094FC
@@ -24,6 +27,9 @@ SpawnActorFromVisibleProfile:
         rts                                                        ; $00952A
 
 loc_00952C:
+; Restore caller offsets before computing spawn XY. The pointer fallback is
+; literal ROM behavior; the accepted [$FFA5FA,$FFE5FA) span is wider than
+; the 32x32 visible window. Normal ray traversal supplies a window pointer.
         movem.w      (a7)+, d0-d2                                  ; $00952C
         movem.l      d0/a0-a1, -(a7)                               ; $009530
         cmpa.l       #$ffa5fa, a0                                  ; $009534
@@ -35,12 +41,14 @@ loc_009544:
         movea.l      #$ffa9fa, a0                                  ; $009544
 
 loc_00954A:
-; Clear and commit the spawn cell BEFORE allocation. A full actor pool does not restore this marker.
+; Clear and persist the marker BEFORE allocation. Pool exhaustion loses it.
         clr.b        (a0)                                          ; $00954A
         jsr          CommitMapCellAndSendLink.l                    ; $00954C
         move.w       d0, d3                                        ; $009552
         jsr          AllocateActor.l                               ; $009554
         beq.w        loc_00961E                                    ; $00955A
+; AllocateActor gave an occupied slot with default callbacks and flags=1.
+; Fill definition fields, cell-centered local XY, state $CD and counter $14.
         movea.l      rPendingActorDefinition(a6), a1               ; $00955E
         clr.b        ActorUpdateDelay(a0)                          ; $009562
         move.l       (a1), ActorUpdateCallback(a0)                 ; $009566
@@ -73,8 +81,9 @@ loc_00954A:
         move.b       ActorDefCorpseCellProfile(a1), ActorCorpseCellProfile(a0) ; $0095E6
         move.l       #ramPlayerActorProxy, ActorTarget(a0)         ; $0095EC
         move.w       ActorDefSpawnSound(a1), d0                    ; $0095F4
-        bsr.b        RendererRoutine_009626                        ; $0095F8
-; Clear tracking flag, set only if ROM marker matcher succeeds. All four original July episode marker counts are0; ordinary spawn does not enable the problematic tracked-move tail.
+        bsr.b        PlayActorSpawnSound                        ; $0095F8
+; Clear tracking flag, set only if ROM marker matcher succeeds. All four
+; original July episode marker counts are 0.
         clr.b        ActorMarkerTracked(a0)                        ; $0095FA
         jsr          CheckEnemyKeyPosition.l                       ; $0095FE
         tst.w        d0                                            ; $009604

@@ -18,7 +18,7 @@ CommitMapCellAndSendLink:
 
 loc_020924:
         movem.l      d0-d7/a0-a3, -(a7)                            ; $020924
-        lea.l        -$6fdc(a6), a0                                ; $020928
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $020928
         move.b       #$3, (a0)                                     ; $02092C
         move.b       (a1), $1(a0)                                  ; $020930
         move.l       a1, $2(a0)                                    ; $020934

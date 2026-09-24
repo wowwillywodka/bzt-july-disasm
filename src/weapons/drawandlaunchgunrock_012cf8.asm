@@ -23,36 +23,36 @@ DrawAndLaunchGunrock:
         clr.w        rWeaponActionPhase(a6)                        ; $012D20
 
 loc_012D24:
-        movea.l      -$7fc2(a6), a2                                ; $012D24
+        movea.l      rSpriteAttributeTableWritePointer(a6), a2                                ; $012D24
         move.w       d0, (a2)+                                     ; $012D28
-        move.w       -$7fbe(a6), d2                                ; $012D2A
+        move.w       rSpriteAttributeNextLink(a6), d2                                ; $012D2A
         ori.w        #$e00, d2                                     ; $012D2E
-        addq.w       #$1, -$7fbe(a6)                               ; $012D32
+        addq.w       #$1, rSpriteAttributeNextLink(a6)                               ; $012D32
         move.w       d2, (a2)+                                     ; $012D36
         move.w       #$a4ef, (a2)+                                 ; $012D38
         move.w       d1, (a2)+                                     ; $012D3C
-        move.l       a2, -$7fc2(a6)                                ; $012D3E
+        move.l       a2, rSpriteAttributeTableWritePointer(a6)                                ; $012D3E
         cmpi.w       #$2, rWeaponActionPhase(a6)                   ; $012D42
         bne.w        loc_013842                                    ; $012D48
         subq.w       #$5, d1                                       ; $012D4C
         subq.w       #$8, d0                                       ; $012D4E
-        movea.l      -$7fc2(a6), a2                                ; $012D50
+        movea.l      rSpriteAttributeTableWritePointer(a6), a2                                ; $012D50
         move.w       d0, (a2)+                                     ; $012D54
-        move.w       -$7fbe(a6), d2                                ; $012D56
+        move.w       rSpriteAttributeNextLink(a6), d2                                ; $012D56
         ori.w        #$a00, d2                                     ; $012D5A
-        addq.w       #$1, -$7fbe(a6)                               ; $012D5E
+        addq.w       #$1, rSpriteAttributeNextLink(a6)                               ; $012D5E
         move.w       d2, (a2)+                                     ; $012D62
         move.w       #$a4fb, (a2)+                                 ; $012D64
         move.w       d1, (a2)+                                     ; $012D68
-        move.l       a2, -$7fc2(a6)                                ; $012D6A
+        move.l       a2, rSpriteAttributeTableWritePointer(a6)                                ; $012D6A
         jsr          AllocateActor.l                               ; $012D6E
         beq.w        loc_012ECC                                    ; $012D74
-        move.w       -$71f2(a6), d0                                ; $012D78
+        move.w       rPlayerFacingVectorX(a6), d0                                ; $012D78
         asr.w        #$2, d0                                       ; $012D7C
         move.w       d0, $2e(a0)                                   ; $012D7E
         add.w        rPlayerX(a6), d0                              ; $012D82
         move.w       d0, $24(a0)                                   ; $012D86
-        move.w       -$71f0(a6), d0                                ; $012D8A
+        move.w       rPlayerFacingVectorY(a6), d0                                ; $012D8A
         asr.w        #$2, d0                                       ; $012D8E
         move.w       d0, $30(a0)                                   ; $012D90
         add.w        rPlayerY(a6), d0                              ; $012D94
@@ -60,7 +60,7 @@ loc_012D24:
         move.b       #$32, $38(a0)                                 ; $012D9C
         move.l       a0, -(a7)                                     ; $012DA2
         move.w       #$10, d1                                      ; $012DA4
-        move.w       -$71b0(a6), d2                                ; $012DA8
+        move.w       rViewSwayAngleOffset(a6), d2                                ; $012DA8
         addi.w       #$40, d2                                      ; $012DAC
         jsr          SelectPlayerWeaponAimTarget.l                 ; $012DB0
         movea.l      (a7)+, a0                                     ; $012DB6
@@ -102,19 +102,19 @@ loc_012DE0:
         move.w       d1, $30(a1)                                   ; $012E14
 
 loc_012E18:
-        clr.b        $23(a0)                                       ; $012E18
+        clr.b        ActorUpdateDelay(a0)                                       ; $012E18
         move.l       #UpdateBouncingProjectile, ActorUpdateCallback(a0) ; $012E1C
         move.l       #DrawGunrockProjectileTile, ActorDrawCallback(a0) ; $012E24
         move.l       #ExplodeProjectileOnNearHit, ActorHitCallback(a0) ; $012E2C
-        ori.w        #$c8, $4(a0)                                  ; $012E34
-        move.w       -$71d8(a6), d0                                ; $012E3A
-        sub.w        -$6e4c(a6), d0                                ; $012E3E
+        ori.w        #ActorFlagAimAnyView, ActorFlags(a0)                                  ; $012E34
+        move.w       rPlayerViewOffsetZ(a6), d0                                ; $012E3A
+        sub.w        rTransitHeightOffset(a6), d0                                ; $012E3E
         subq.w       #$6, d0                                       ; $012E42
         move.w       d0, $28(a0)                                   ; $012E44
         move.w       #$12, $32(a0)                                 ; $012E48
-        jsr          ObjectsRoutine_00A3D2.l                       ; $012E4E
+        jsr          ClassifyPlayerCellForWeapon.l                       ; $012E4E
         beq.b        loc_012E5E                                    ; $012E54
-        move.l       #WeaponsRoutine_01C880, ActorUpdateCallback(a0) ; $012E56
+        move.l       #ResolveSpecialCellProjectileImpact, ActorUpdateCallback(a0) ; $012E56
 
 loc_012E5E:
 ; Character1 doubles projectile XY velocity; fuse is (byte(fuse+1) ASR.B 1), with signed byte wrap behavior.
@@ -131,8 +131,8 @@ loc_012E7A:
         tst.w        rLinkRole(a6)                                 ; $012E7A
         beq.b        loc_012ECC                                    ; $012E7E
         move.l       #RemoveActorAndSendLink, ActorExitCallback(a0) ; $012E80
-        move.l       #SoundRoutine_01EDB4, ActorLinkCallback(a0)   ; $012E88
-        lea.l        -$6fdc(a6), a1                                ; $012E90
+        move.l       #QueueActorPositionLinkCommand, ActorLinkCallback(a0)   ; $012E88
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $012E90
         move.b       #$4, (a1)+                                    ; $012E94
         move.b       $42(a0), (a1)+                                ; $012E98
         move.w       $24(a0), (a1)+                                ; $012E9C
@@ -145,7 +145,7 @@ loc_012E7A:
         move.b       #$0, (a1)+                                    ; $012EB6
         move.w       $2e(a0), (a1)+                                ; $012EBA
         move.w       $30(a0), (a1)+                                ; $012EBE
-        lea.l        -$6fdc(a6), a0                                ; $012EC2
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $012EC2
         jsr          QueueLinkCommand.l                            ; $012EC6
 
 loc_012ECC:

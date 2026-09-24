@@ -9,11 +9,11 @@
 RemoveActorAndSendLink:
         tst.w        rLinkRole(a6)                                 ; $01C17E
         beq.b        RemoveActor                                   ; $01C182
-        lea.l        -$6fdc(a6), a1                                ; $01C184
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01C184
         move.b       #$5, (a1)+                                    ; $01C188
         move.b       ActorLinkId(a0), (a1)+                        ; $01C18C
         move.l       a0, -(a7)                                     ; $01C190
-        lea.l        -$6fdc(a6), a0                                ; $01C192
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $01C192
         jsr          QueueLinkCommand.l                            ; $01C196
         movea.l      (a7)+, a0                                     ; $01C19C
         bra.b        RemoveActor                                   ; $01C19E

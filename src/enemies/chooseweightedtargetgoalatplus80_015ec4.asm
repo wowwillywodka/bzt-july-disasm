@@ -15,7 +15,7 @@ ChooseWeightedTargetGoalAtPlus80:
         andi.w       #$1ff, d0                                     ; $015ED4
         subi.w       #$100, d0                                     ; $015ED8
         lea.l        AngleVectorPairs.w, a4                        ; $015EDC
-        move.w       -$71ee(a6), d0                                ; $015EE0
+        move.w       rPlayerFacingAngle(a6), d0                                ; $015EE0
         addi.w       #$80, d0                                      ; $015EE4
         andi.w       #$1ff, d0                                     ; $015EE8
         lsl.w        #$2, d0                                       ; $015EEC

@@ -1,7 +1,7 @@
 ; $029BCA..$029BD5 | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; RESEARCH NOTE (July; semantic claims still require local review):
-; Шаг XOR-шифра: байт (A1) ^= D3, прокрутка ключа D3 (ror.l #7 + swap), запись обратно в (A1)+ — поточное шифрование/дешифрование с роллинг-ключом
+; JULY LOCAL REVIEW: XOR one buffer byte with the low key byte, then update
+; the fixed rolling key by ROR.L #7 and SWAP. A1 advances to the next byte.
         ifne *-$29BCA
         fail "ROM start moved"
         endif

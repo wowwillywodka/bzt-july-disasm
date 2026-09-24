@@ -161,7 +161,7 @@
       "start": 11176,
       "end": 11196,
       "kind": "pointers",
-      "source": "src/ui/characterportraitpalettepointers_002ba8.asm",
+      "source": "src/ui/gameplayportraittilemappointers_002ba8.asm",
       "path": "generated/data/002ba8.bin",
       "sha256": "cbf32d457eaa13d338395f8467adc73e5bc079e6beff94e70ce0c789b7cc67f7"
     },
@@ -217,7 +217,7 @@
       "start": 15516,
       "end": 15548,
       "kind": "pointers",
-      "source": "src/renderer/celltilegraphicspointers_003c9c.asm",
+      "source": "src/renderer/pausemapcelltilepatternpointers_003c9c.asm",
       "path": "generated/data/003c9c.bin",
       "sha256": "0af51844d659aa28303101a0f50b4cb3f90a7e78fc4fcc94734988a8afbbbed7"
     },
@@ -233,7 +233,7 @@
       "start": 15712,
       "end": 15876,
       "kind": "pointers",
-      "source": "src/renderer/alternatewallcolumnscalers_003d60.asm",
+      "source": "src/renderer/directwallcolumnscalers_003d60.asm",
       "path": "generated/data/003d60.bin",
       "sha256": "7eb95b49daa84fe51bee1e10218921f3f53a6c27752ab24ce424946ab616a1de"
     },
@@ -1641,7 +1641,7 @@
       "start": 503536,
       "end": 503556,
       "kind": "pointers",
-      "source": "src/ui/charactermenuportraitpalettepointers_07aef0.asm",
+      "source": "src/ui/charactermenuportraittilemappointers_07aef0.asm",
       "path": "generated/data/07aef0.bin",
       "sha256": "eeac0eed127ed4beb57f075e400cf21c50e0790bed9a2d9557325d6211e70beb"
     },
@@ -1697,7 +1697,7 @@
       "start": 507376,
       "end": 508240,
       "kind": "binary",
-      "source": "src/graphics/charactermenuframetiles_07bdf0.asm",
+      "source": "src/graphics/charactermenuspritetiles_07bdf0.asm",
       "path": "generated/data/07bdf0.bin",
       "sha256": "def641d21f96c8153251041dc8c29d06fbef4f28901047f44b3d4783ae00d0f0"
     },
@@ -1705,7 +1705,7 @@
       "start": 508240,
       "end": 508320,
       "kind": "words",
-      "source": "src/ui/charactermenuframerow_07c150.asm",
+      "source": "src/ui/charactermenuarrowtileuploadindices_07c150.asm",
       "path": "generated/data/07c150.bin",
       "sha256": "e11d136b07e7f6b18da5c3c2fcf77b14c982f78a4f1828726c343dffb3dc1f7d"
     },
@@ -1713,7 +1713,7 @@
       "start": 508320,
       "end": 510240,
       "kind": "words",
-      "source": "src/ui/charactermenuframetilemap_07c1a0.asm",
+      "source": "src/ui/charactermenuprompttileuploadindices_07c1a0.asm",
       "path": "generated/data/07c1a0.bin",
       "sha256": "6efa03590f38de1de4cdb511eed54d185249916a97c71da9fffbd6211262d5bf"
     },
@@ -1721,7 +1721,7 @@
       "start": 510240,
       "end": 510272,
       "kind": "words",
-      "source": "src/palettes/charactermenubackgroundpalette_07c920.asm",
+      "source": "src/palettes/charactermenuspritepalette_07c920.asm",
       "path": "generated/data/07c920.bin",
       "sha256": "6e7baeb4e4d74a51efbae6eea06b5600cd6b543caa4c6c13b35ebb9870da058a"
     },
@@ -1737,7 +1737,7 @@
       "start": 510368,
       "end": 519008,
       "kind": "binary",
-      "source": "src/graphics/charactermenubackgroundtiles_07c9a0.asm",
+      "source": "src/graphics/deceasedstamptiles_07c9a0.asm",
       "path": "generated/data/07c9a0.bin",
       "sha256": "afe3fb39d8170b91f19c6a678fc43b7a3adbc15472483a1f4a133c2030457cc5"
     },
@@ -1745,7 +1745,7 @@
       "start": 519008,
       "end": 521248,
       "kind": "words",
-      "source": "src/ui/charactermenubackgroundtilemap_07eb60.asm",
+      "source": "src/ui/deceasedstamptilemap_07eb60.asm",
       "path": "generated/data/07eb60.bin",
       "sha256": "7f9baa13323e45c099a4687c61414abca58f5d5c589a8bbcb8714c23fed48369"
     },
@@ -1753,7 +1753,7 @@
       "start": 521248,
       "end": 521280,
       "kind": "words",
-      "source": "src/palettes/charactermenuaccentpalette_07f420.asm",
+      "source": "src/palettes/deceasedstamppalette_07f420.asm",
       "path": "generated/data/07f420.bin",
       "sha256": "47257f88ae18d35673c300303af60e4b9d6829412d0a936ec1ee0e1961f07bdf"
     },
@@ -1769,7 +1769,7 @@
       "start": 521376,
       "end": 521440,
       "kind": "binary",
-      "source": "src/graphics/retainedmenutilepixels_07f4a0.asm",
+      "source": "src/graphics/retainedztcharactermenumarkertiles_07f4a0.asm",
       "path": "generated/data/07f4a0.bin",
       "sha256": "aa6c45d022c407001de21b69586600450028f3f9316212d0f65005a2644fa99d"
     },
@@ -1897,7 +1897,7 @@
       "start": 538236,
       "end": 538300,
       "kind": "binary",
-      "source": "src/graphics/optionswindowtilepatterns_08367c.asm",
+      "source": "src/graphics/optionscursorspritetiles_08367c.asm",
       "path": "generated/data/08367c.bin",
       "sha256": "1778dd61e038fc67579469a5e39c7a6cf1e447d95f553aa7ec2b823db127d7da"
     },
@@ -3201,7 +3201,7 @@
       "start": 1458504,
       "end": 1460256,
       "kind": "binary",
-      "source": "src/graphics/inventoryiconbanktail_164148.asm",
+      "source": "src/graphics/inventoryquantitydigitrows_164148.asm",
       "path": "generated/data/164148.bin",
       "sha256": "6aef1c1525e3ddb0a0c16d10e42e08341563898316acfdf253221f696c863731"
     },

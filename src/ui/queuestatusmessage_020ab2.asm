@@ -8,14 +8,14 @@
 
 QueueStatusMessage:
 ; Append A0 message pointer to the 16-entry array; count == 16 returns. This is not a ring buffer; the update shifts pending pointers.
-        move.w       -$76f0(a6), d0                                ; $020AB2
+        move.w       rStatusMessageQueueCount(a6), d0                                ; $020AB2
         cmpi.w       #$10, d0                                      ; $020AB6
         bne.b        loc_020ABE                                    ; $020ABA
         rts                                                        ; $020ABC
 
 loc_020ABE:
-        addq.w       #$1, -$76f0(a6)                               ; $020ABE
-        lea.l        -$7730(a6), a1                                ; $020AC2
+        addq.w       #$1, rStatusMessageQueueCount(a6)                               ; $020ABE
+        lea.l        rStatusMessageQueue(a6), a1                                ; $020AC2
         lsl.w        #$2, d0                                       ; $020AC6
         adda.w       d0, a1                                        ; $020AC8
         move.l       a0, (a1)                                      ; $020ACA

@@ -18,9 +18,9 @@ DispatchBeatressMeleeEvent:
 
 loc_019A08:
         move.w       #$5f, d0                                      ; $019A08
-        jsr          SoundRoutine_00DF64.l                         ; $019A0C
+        jsr          RouteSoundEventByActorFloor.l                         ; $019A0C
         move.w       #$83, d0                                      ; $019A12
-        jmp          SoundRoutine_00DF64.l                         ; $019A16
+        jmp          RouteSoundEventByActorFloor.l                         ; $019A16
         ifne *-$19A1C
         fail "ROM end moved"
         endif

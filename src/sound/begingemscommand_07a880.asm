@@ -1,7 +1,8 @@
 ; $07A880..$07A8B5 | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; RESEARCH NOTE (July; semantic claims still require local review):
-; Старт чтения статуса Z80: link, сохраняет регистры/SR, ставит A0=$A00036/A1=$A01B40, маскирует IRQ, bus-request с busy-wait, читает байт состояния Z80 в D1 (ext.w) — опрос плеера
+; Acquire Z80 bus and prepare the host command ring: A0=$A00036 write
+; index, A1=$A01B40 data, D1=current write index. The unusual return-
+; address save keeps the caller's argument frame available at $8(A6).
         ifne *-$7A880
         fail "ROM start moved"
         endif

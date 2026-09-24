@@ -8,7 +8,7 @@
 
 SendWhiteDummyState:
 ; Command0D writes ID, XY and MotionXY. Selected animation D0/D2 are not serialized by tail $1F5BA.
-        lea.l        -$6fdc(a6), a1                                ; $01F52A
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01F52A
         move.b       #$d, (a1)+                                    ; $01F52E
         move.b       ActorLinkId(a0), (a1)+                        ; $01F532
         move.w       ActorX(a0), (a1)+                             ; $01F536
@@ -41,13 +41,13 @@ loc_01F562:
         cmpi.b       #$1, d7                                       ; $01F578
         beq.b        loc_01F59E                                    ; $01F57C
         cmpi.b       #$7, d7                                       ; $01F57E
-        beq.b        InputRoutine_01F5A8                           ; $01F582
+        beq.b        QueueWhiteDummyStatePacketVariantB                           ; $01F582
         cmpi.b       #$6, d7                                       ; $01F584
-        beq.b        InputRoutine_01F5A8                           ; $01F588
+        beq.b        QueueWhiteDummyStatePacketVariantB                           ; $01F588
         cmpi.b       #$4, d7                                       ; $01F58A
-        beq.b        InputRoutine_01F5A8                           ; $01F58E
+        beq.b        QueueWhiteDummyStatePacketVariantB                           ; $01F58E
         cmpi.b       #$3, d7                                       ; $01F590
-        beq.b        InputRoutine_01F5A8                           ; $01F594
+        beq.b        QueueWhiteDummyStatePacketVariantB                           ; $01F594
         cmpi.b       #$5, d7                                       ; $01F596
         beq.b        loc_01F5B2                                    ; $01F59A
         rts                                                        ; $01F59C

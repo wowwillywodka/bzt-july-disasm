@@ -8,7 +8,7 @@
 
 PauseGemsSequences:
         move.l       a6, -(a7)                                     ; $07AEC8
-        jsr          SoundRoutine_07A974(pc)                       ; $07AECA
+        jsr          GemsPauseAll(pc)                       ; $07AECA
         movea.l      (a7)+, a6                                     ; $07AECE
         rts                                                        ; $07AED0
         ifne *-$7AED2

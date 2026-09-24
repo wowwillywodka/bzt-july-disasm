@@ -11,7 +11,7 @@ RequestHigherFloorTransition:
         movem.l      d0-d1/a0-a1, -(a7)                            ; $00BBEA
         tst.w        rLinkRole(a6)                                 ; $00BBEE
         beq.b        loc_00BC14                                    ; $00BBF2
-        lea.l        -$6fdc(a6), a1                                ; $00BBF4
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $00BBF4
         move.b       #$12, (a1)+                                   ; $00BBF8
         clr.b        (a1)+                                         ; $00BBFC
 
@@ -20,7 +20,7 @@ loc_00BBFE:
         move.b       rCurrentFloorLow(a6), d0                      ; $00BC02
         subq.b       #$1, d0                                       ; $00BC06
         move.b       d0, (a1)+                                     ; $00BC08
-        lea.l        -$6fdc(a6), a0                                ; $00BC0A
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $00BC0A
         jsr          QueueLinkCommand.l                            ; $00BC0E
 
 loc_00BC14:

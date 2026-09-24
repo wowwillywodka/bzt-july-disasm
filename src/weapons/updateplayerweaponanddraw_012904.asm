@@ -1,20 +1,20 @@
 ; $012904..$0129D5 | m68k
 ; Maintained assembly input; no extraction occurs during build.
 ; JULY LOCAL REVIEW:
-; Action then switching then draw-driven simulation. New press = controller bit4 set, previous-state byte FF0032 bit4 clear; death or FF5EC4 suppress initial action. Draw handlers still run and can emit projectiles. See docs/PLAYER_WEAPONS.md.
+; Action then switching then draw-driven simulation. New press = controller bit4 set, previous-state byte FF0032 bit4 clear; death or rear view suppress initial action. Draw handlers still run and can emit projectiles. See docs/PLAYER_WEAPONS.md.
         ifne *-$12904
         fail "ROM start moved"
         endif
 
 UpdatePlayerWeaponAndDraw:
-; Action then switching then draw-driven simulation. New press = controller bit4 set, previous-state byte FF0032 bit4 clear; death or FF5EC4 suppress initial action. Draw handlers still run and can emit projectiles. See docs/PLAYER_WEAPONS.md.
+; Action then switching then draw-driven simulation. New press = controller bit4 set, previous-state byte FF0032 bit4 clear; death or rear view suppress initial action. Draw handlers still run and can emit projectiles. See docs/PLAYER_WEAPONS.md.
         tst.w        rPlayerDeathTicks(a6)                         ; $012904
         bne.b        WeaponCheckPendingSwitch                      ; $012908
         btst.b       #$4, rControllerState(a6)                     ; $01290A
         beq.b        WeaponCheckPendingSwitch                      ; $012910
         btst.b       #$4, rPreviousControllerState(a6)             ; $012912
         bne.b        WeaponCheckPendingSwitch                      ; $012918
-        tst.w        -$213c(a6)                                    ; $01291A
+        tst.w        rRearViewActive(a6)                                    ; $01291A
         bne.b        WeaponCheckPendingSwitch                      ; $01291E
         bsr.w        DispatchWeaponAction                          ; $012920
 
@@ -39,7 +39,7 @@ WeaponCheckPendingSwitch:
 WeaponCommitSelection:
         move.b       d0, rCurrentWeaponId(a6)                      ; $012960
         lsl.w        #$2, d0                                       ; $012964
-        lea.l        HeldWeaponFramePointers.l, a0                 ; $012966
+        lea.l        HeldWeaponGraphicsPointers.l, a0                 ; $012966
         adda.w       d0, a0                                        ; $01296C
         move.l       (a0)+, d4                                     ; $01296E
         move.l       d4, -(a7)                                     ; $012970
@@ -51,7 +51,7 @@ WeaponCommitSelection:
         movea.l      rDmaQueueTail(a6), a0                         ; $01298A
         move.l       #$ffffffff, (a0)                              ; $01298E
         jsr          FlushDmaQueue.w                               ; $012994
-        move.l       #Data_15D6D8, d4                              ; $012998
+        move.l       #UnarmedHeldWeaponGraphics, d4                              ; $012998
         move.w       #$9de0, d5                                    ; $01299E
         move.w       #$100, d6                                     ; $0129A2
         jsr          QueueVramDma.l                                ; $0129A6

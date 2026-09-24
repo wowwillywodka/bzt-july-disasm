@@ -23,34 +23,34 @@ DrawAndLaunchRocket:
         clr.w        rWeaponActionPhase(a6)                        ; $013C1C
 
 loc_013C20:
-        movea.l      -$7fc2(a6), a2                                ; $013C20
+        movea.l      rSpriteAttributeTableWritePointer(a6), a2                                ; $013C20
         move.w       d0, (a2)+                                     ; $013C24
-        move.w       -$7fbe(a6), d2                                ; $013C26
+        move.w       rSpriteAttributeNextLink(a6), d2                                ; $013C26
         ori.w        #$e00, d2                                     ; $013C2A
-        addq.w       #$1, -$7fbe(a6)                               ; $013C2E
+        addq.w       #$1, rSpriteAttributeNextLink(a6)                               ; $013C2E
         move.w       d2, (a2)+                                     ; $013C32
         move.w       #$a4ef, (a2)+                                 ; $013C34
         move.w       d1, (a2)+                                     ; $013C38
-        move.l       a2, -$7fc2(a6)                                ; $013C3A
+        move.l       a2, rSpriteAttributeTableWritePointer(a6)                                ; $013C3A
         cmpi.w       #$2, rWeaponActionPhase(a6)                   ; $013C3E
         bne.w        loc_013D90                                    ; $013C44
         subq.w       #$5, d1                                       ; $013C48
         subq.w       #$8, d0                                       ; $013C4A
-        movea.l      -$7fc2(a6), a2                                ; $013C4C
+        movea.l      rSpriteAttributeTableWritePointer(a6), a2                                ; $013C4C
         move.w       d0, (a2)+                                     ; $013C50
-        move.w       -$7fbe(a6), d2                                ; $013C52
+        move.w       rSpriteAttributeNextLink(a6), d2                                ; $013C52
         ori.w        #$a00, d2                                     ; $013C56
-        addq.w       #$1, -$7fbe(a6)                               ; $013C5A
+        addq.w       #$1, rSpriteAttributeNextLink(a6)                               ; $013C5A
         move.w       d2, (a2)+                                     ; $013C5E
         move.w       #$a4fb, (a2)+                                 ; $013C60
         move.w       d1, (a2)+                                     ; $013C64
-        move.l       a2, -$7fc2(a6)                                ; $013C66
+        move.l       a2, rSpriteAttributeTableWritePointer(a6)                                ; $013C66
         jsr          AllocateActor.l                               ; $013C6A
         beq.w        loc_013D90                                    ; $013C70
         move.b       #$ff, $38(a0)                                 ; $013C74
         move.l       a0, -(a7)                                     ; $013C7A
         move.w       #$8, d1                                       ; $013C7C
-        move.w       -$71b0(a6), d2                                ; $013C80
+        move.w       rViewSwayAngleOffset(a6), d2                                ; $013C80
         addi.w       #$40, d2                                      ; $013C84
         jsr          SelectPlayerWeaponAimTarget.l                 ; $013C88
         movea.l      (a7)+, a0                                     ; $013C8E
@@ -81,37 +81,37 @@ loc_013CB8:
         move.b       d0, $38(a0)                                   ; $013CD0
 
 loc_013CD4:
-        clr.b        $23(a0)                                       ; $013CD4
+        clr.b        ActorUpdateDelay(a0)                                       ; $013CD4
         move.l       #UpdatePlayerRocket, ActorUpdateCallback(a0)  ; $013CD8
-        move.l       #loc_01CBA4, ActorDrawCallback(a0)            ; $013CE0
+        move.l       #DrawSharedFireEffectTile, ActorDrawCallback(a0)            ; $013CE0
         move.l       #ExplodeProjectileOnNearHit, ActorHitCallback(a0) ; $013CE8
-        ori.w        #$c8, $4(a0)                                  ; $013CF0
-        move.w       -$71f2(a6), d0                                ; $013CF6
+        ori.w        #ActorFlagAimAnyView, ActorFlags(a0)                                  ; $013CF0
+        move.w       rPlayerFacingVectorX(a6), d0                                ; $013CF6
         asr.w        #$1, d0                                       ; $013CFA
         move.w       d0, $2e(a0)                                   ; $013CFC
         asr.w        #$1, d0                                       ; $013D00
         add.w        rPlayerX(a6), d0                              ; $013D02
         move.w       d0, $24(a0)                                   ; $013D06
-        move.w       -$71f0(a6), d0                                ; $013D0A
+        move.w       rPlayerFacingVectorY(a6), d0                                ; $013D0A
         asr.w        #$1, d0                                       ; $013D0E
         move.w       d0, $30(a0)                                   ; $013D10
         asr.w        #$1, d0                                       ; $013D14
         add.w        rPlayerY(a6), d0                              ; $013D16
         move.w       d0, $26(a0)                                   ; $013D1A
-        move.w       -$71d8(a6), d0                                ; $013D1E
-        sub.w        -$6e4c(a6), d0                                ; $013D22
+        move.w       rPlayerViewOffsetZ(a6), d0                                ; $013D1E
+        sub.w        rTransitHeightOffset(a6), d0                                ; $013D22
         subi.w       #$c, d0                                       ; $013D26
         move.w       d0, $28(a0)                                   ; $013D2A
-        jsr          ObjectsRoutine_00A3D2.l                       ; $013D2E
+        jsr          ClassifyPlayerCellForWeapon.l                       ; $013D2E
         beq.b        loc_013D3E                                    ; $013D34
-        move.l       #WeaponsRoutine_01C880, ActorUpdateCallback(a0) ; $013D36
+        move.l       #ResolveSpecialCellProjectileImpact, ActorUpdateCallback(a0) ; $013D36
 
 loc_013D3E:
         tst.w        rLinkRole(a6)                                 ; $013D3E
         beq.b        loc_013D90                                    ; $013D42
         move.l       #RemoveActorAndSendLink, ActorExitCallback(a0) ; $013D44
-        move.l       #$1edda, ActorLinkCallback(a0)                ; $013D4C
-        lea.l        -$6fdc(a6), a1                                ; $013D54
+        move.l       #QueueActorPositionLinkCommand0F, ActorLinkCallback(a0)                ; $013D4C
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $013D54
         move.b       #$4, (a1)+                                    ; $013D58
         move.b       $42(a0), (a1)+                                ; $013D5C
         move.w       $24(a0), (a1)+                                ; $013D60
@@ -124,7 +124,7 @@ loc_013D3E:
         move.b       #$1, (a1)+                                    ; $013D7A
         move.w       $2e(a0), (a1)+                                ; $013D7E
         move.w       $30(a0), (a1)+                                ; $013D82
-        lea.l        -$6fdc(a6), a0                                ; $013D86
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $013D86
         jsr          QueueLinkCommand.l                            ; $013D8A
 
 loc_013D90:

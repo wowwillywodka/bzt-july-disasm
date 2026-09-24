@@ -7,6 +7,7 @@
         endif
 
 RotateVectorMinusQuarterTurn:
+; Direct call rotates one quarter turn; fallthrough from $098AA2 performs the second rotation of a half turn.
 ; (D0,D1)->(D1,-D0), negating only D1.W after long EXG. Used by ordinary floor transitions.
         exg.l        d0, d1                                        ; $098AA6
         neg.w        d1                                            ; $098AA8

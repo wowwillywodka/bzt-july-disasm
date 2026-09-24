@@ -13,11 +13,11 @@ FireRetainedCloseRangeWeapon04:
         tst.w        rWeaponLoweringOffset(a6)                     ; $014430
         bne.w        loc_0144E0                                    ; $014434
         move.w       #$38, d0                                      ; $014438
-        jsr          SoundRoutine_00DF84.l                         ; $01443C
+        jsr          PlaySoundEventAndMaybeSendLink.l                         ; $01443C
         move.w       #$1, rWeaponActionPhase(a6)                   ; $014442
         bsr.w        ConsumeSelectedItemAndUpdateHud               ; $014448
         move.w       #$8, d1                                       ; $01444C
-        move.w       -$71b0(a6), d2                                ; $014450
+        move.w       rViewSwayAngleOffset(a6), d2                                ; $014450
         addi.w       #$40, d2                                      ; $014454
         jsr          SelectPlayerWeaponAimTarget.l                 ; $014458
         cmpa.l       #$0, a1                                       ; $01445E
@@ -47,12 +47,12 @@ loc_01449C:
         cmpi.b       #$18, d3                                      ; $0144AC
         beq.b        loc_0144E2                                    ; $0144B0
         movea.l      rVisibleMapBasePointer(a6), a0                ; $0144B2
-        move.w       -$71f2(a6), d0                                ; $0144B6
+        move.w       rPlayerFacingVectorX(a6), d0                                ; $0144B6
         asr.w        #$1, d0                                       ; $0144BA
         add.w        rPlayerX(a6), d0                              ; $0144BC
         asr.w        #$8, d0                                       ; $0144C0
         adda.w       d0, a0                                        ; $0144C2
-        move.w       -$71f0(a6), d0                                ; $0144C4
+        move.w       rPlayerFacingVectorY(a6), d0                                ; $0144C4
         asr.w        #$1, d0                                       ; $0144C8
         add.w        rPlayerY(a6), d0                              ; $0144CA
         asr.w        #$8, d0                                       ; $0144CE
@@ -92,7 +92,7 @@ loc_0144F8:
         movem.w      (a7)+, d0-d1                                  ; $014522
         cmpa.l       #$0, a0                                       ; $014526
         beq.b        loc_0144E0                                    ; $01452C
-        clr.b        $23(a0)                                       ; $01452E
+        clr.b        ActorUpdateDelay(a0)                                       ; $01452E
         clr.b        $22(a0)                                       ; $014532
         move.l       #$1cd78, ActorUpdateCallback(a0)              ; $014536
         move.l       #$1cdb0, ActorDrawCallback(a0)                ; $01453E
@@ -102,8 +102,8 @@ loc_0144F8:
         tst.w        rLinkRole(a6)                                 ; $014554
         beq.b        loc_0144E0                                    ; $014558
         move.l       #RemoveActorAndSendLink, ActorExitCallback(a0) ; $01455A
-        move.l       #$1ee78, ActorLinkCallback(a0)                ; $014562
-        lea.l        -$6fdc(a6), a1                                ; $01456A
+        move.l       #QueueActorLinkCommand11EffectCounter05, ActorLinkCallback(a0)                ; $014562
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01456A
         move.b       #$4, (a1)+                                    ; $01456E
         move.b       $42(a0), (a1)+                                ; $014572
         move.w       $24(a0), (a1)+                                ; $014576
@@ -116,7 +116,7 @@ loc_0144F8:
         move.b       #$5, (a1)+                                    ; $014590
         move.w       $2e(a0), (a1)+                                ; $014594
         move.w       $30(a0), (a1)+                                ; $014598
-        lea.l        -$6fdc(a6), a0                                ; $01459C
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $01459C
         jsr          QueueLinkCommand.l                            ; $0145A0
         rts                                                        ; $0145A6
         ifne *-$145A8

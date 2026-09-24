@@ -7,10 +7,10 @@
 
 RetainedInstallActorCallbacks:
         andi.w       #$ff2f, ActorFlags(a0)                        ; $01F856
-        move.l       #$1f8f8, ActorUpdateCallback(a0)              ; $01F85C
+        move.l       #UpdateLegacyDeathEffect, ActorUpdateCallback(a0) ; $01F85C
         clr.b        ActorUpdateDelay(a0)                          ; $01F864
         move.l       #$1f93a, ActorHitCallback(a0)                 ; $01F868
-        move.l       #EnvironmentRoutine_01D130, ActorExitCallback(a0) ; $01F870
+        move.l       #PlaceCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $01F870
         move.l       #DrawLegacyDeathEffect, ActorDrawCallback(a0) ; $01F878
         clr.w        ActorMotionX(a0)                              ; $01F880
         clr.w        ActorMotionY(a0)                              ; $01F884
@@ -18,7 +18,7 @@ RetainedInstallActorCallbacks:
         move.b       #$35, ActorCorpseCellProfile(a0)              ; $01F890
         jsr          CountLegacyObjectiveFloorEnemies.l            ; $01F896
         tst.w        rLinkRole(a6)                                 ; $01F89C
-        bne.b        RendererRoutine_01F8A4                        ; $01F8A0
+        bne.b        SetActorLinkCallbackAndQueueCommand12                        ; $01F8A0
         rts                                                        ; $01F8A2
         ifne *-$1F8A4
         fail "ROM end moved"

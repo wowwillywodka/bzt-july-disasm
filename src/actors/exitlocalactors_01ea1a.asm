@@ -1,13 +1,15 @@
 ; $01EA1A..$01EA47 | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; RESEARCH NOTE (July; semantic claims still require local review):
-; Диспетчер обновления актёров: цикл по списку (-0x57c4/-0x57c6,A6), для каждого с очищенным флагом 0x20 (0x4,A0) вызывает его think/update-вектор (0x1a,A0); по завершении jmp 0xb028
+; JULY LOCAL REVIEW: invoke exit callbacks for local actors, then finish
+; transient wall records. Called on demo scene exit, not on every window shift.
         ifne *-$1EA1A
         fail "ROM start moved"
         endif
 
 ExitLocalActors:
 ; Invoke exit callbacks of non-remote actors, then clean transient cell records. Not called by every window shift.
+; Save next before each callback: it may unlink A0. ActorNoOp can leave a
+; local actor in the list; this pass does not promise to empty the pool.
         move.w       rActiveActorCount(a6), d7                     ; $01EA1A
         beq.b        loc_01EA42                                    ; $01EA1E
         subq.w       #$1, d7                                       ; $01EA20

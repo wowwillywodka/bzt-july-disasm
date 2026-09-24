@@ -17,13 +17,13 @@ SpawnMissedShotImpact:
         asr.l        #$3, d4                                       ; $01423C
         move.w       d3, $24(a0)                                   ; $01423E
         move.w       d4, $26(a0)                                   ; $014242
-        move.w       -$71d8(a6), d0                                ; $014246
-        sub.w        -$6e4c(a6), d0                                ; $01424A
+        move.w       rPlayerViewOffsetZ(a6), d0                                ; $014246
+        sub.w        rTransitHeightOffset(a6), d0                                ; $01424A
         move.w       d0, $28(a0)                                   ; $01424E
-        clr.b        $23(a0)                                       ; $014252
+        clr.b        ActorUpdateDelay(a0)                                       ; $014252
 ; Impact initialized with state 3; update $01DC20 decrements it and removes on negative. Do not assume every draw starts at state 2.
         move.b       #$3, $38(a0)                                  ; $014256
-        move.l       #$1dc20, ActorUpdateCallback(a0)              ; $01425C
+        move.l       #UpdateMissedShotImpact, ActorUpdateCallback(a0)              ; $01425C
         move.l       #DrawImpactObjectTile, ActorDrawCallback(a0)  ; $014264
         move.l       d0, -(a7)                                     ; $01426C
         move.w       #$1, d0                                       ; $01426E
@@ -34,8 +34,8 @@ SpawnMissedShotImpact:
         tst.w        rLinkRole(a6)                                 ; $014280
         beq.b        loc_01422C                                    ; $014284
         move.l       #RemoveActorAndSendLink, ActorExitCallback(a0) ; $014286
-        move.l       #ActorsRoutine_01EE9E, ActorLinkCallback(a0)  ; $01428E
-        lea.l        -$6fdc(a6), a1                                ; $014296
+        move.l       #QueueActorLinkCommand10Variants, ActorLinkCallback(a0)  ; $01428E
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $014296
         move.b       #$4, (a1)+                                    ; $01429A
         move.b       $42(a0), (a1)+                                ; $01429E
         move.w       $24(a0), (a1)+                                ; $0142A2
@@ -48,7 +48,7 @@ SpawnMissedShotImpact:
         move.b       #$c, (a1)+                                    ; $0142BC
         move.w       $2e(a0), (a1)+                                ; $0142C0
         move.w       $30(a0), (a1)+                                ; $0142C4
-        lea.l        -$6fdc(a6), a0                                ; $0142C8
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $0142C8
         jsr          QueueLinkCommand.l                            ; $0142CC
         rts                                                        ; $0142D2
         ifne *-$142D4

@@ -10,7 +10,7 @@
 RetainedLarvaCreatureDirectHit:
 ; Retained direct-hit tail after RTS $1905C. No decoded external literal entry found. Active death starts separately at $190E2.
         move.w       #$400, d3                                     ; $01905E
-        tst.w        -$71d8(a6)                                    ; $019062
+        tst.w        rPlayerViewOffsetZ(a6)                                    ; $019062
         bpl.b        loc_019078                                    ; $019066
         move.w       #$200, d3                                     ; $019068
         tst.w        rSceneColorMode(a6)                           ; $01906C
@@ -52,9 +52,9 @@ loc_019092:
 
 loc_0190CC:
         move.w       #$5f, d0                                      ; $0190CC
-        jsr          SoundRoutine_00DF64.l                         ; $0190D0
+        jsr          RouteSoundEventByActorFloor.l                         ; $0190D0
         move.w       #$83, d0                                      ; $0190D6
-        jsr          SoundRoutine_00DF64.l                         ; $0190DA
+        jsr          RouteSoundEventByActorFloor.l                         ; $0190DA
 
 loc_0190E0:
         rts                                                        ; $0190E0

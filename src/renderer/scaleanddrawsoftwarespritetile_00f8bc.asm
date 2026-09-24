@@ -1,7 +1,11 @@
 ; $00F8BC..$00FC17 | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; RESEARCH NOTE (July; semantic claims still require local review):
-; Программный блиттер/масштабатор спрайта объекта: клампит прямоугольник (D0=высота,D4=ширина,D1<0x80,D2<0x50), выбирает источник по таблице 0x101fc и колонки 0xfc56, dest-база 0xff8a4a — растеризация масштабированного спрайта в буфер кадра
+; JULY LOCAL REVIEW:
+; Software sprite scaler. FF10E0 walks the FF8A4A screen-column depth words;
+; these words gate occlusion and their addresses select Flash Light remaps.
+; Pixel writes use the separate output pointer A0.
+; X uses packed-pixel pairs, Y uses rows; both are clipped to 128x80 before
+; reading depth words or writing pixels. See docs/RENDER_BUFFER_BOUNDS.md.
         ifne *-$F8BC
         fail "ROM start moved"
         endif
@@ -45,7 +49,7 @@ loc_00F8EC:
         move.l       (a0), d3                                      ; $00F8F0
         cmp.l        rZoneSpriteColorRemaps(a6), d3                ; $00F8F2
         beq.b        loc_00F910                                    ; $00F8F6
-        move.w       -$6f26(a6), d3                                ; $00F8F8
+        move.w       rSoftwareSpriteProjectionScale(a6), d3                                ; $00F8F8
         asr.w        #$3, d3                                       ; $00F8FC
         subq.w       #$1, d3                                       ; $00F8FE
         bpl.b        loc_00F904                                    ; $00F900
@@ -66,15 +70,15 @@ loc_00F910:
         moveq        #$0, d3                                       ; $00F912
         move.w       d1, d3                                        ; $00F914
         lsl.w        #$1, d3                                       ; $00F916
-        addi.l       #$ff8a4a, d3                                  ; $00F918
-        move.l       d3, -$6f20(a6)                                ; $00F91E
+        addi.l       #ramScreenColumnDepthWords, d3                                  ; $00F918
+        move.l       d3, rSoftwareSpriteDepthColumnPointer(a6)                                ; $00F91E
         movea.l      #SpriteScaleSamplePointers, a4                ; $00F922
         move.w       d0, d3                                        ; $00F928
         lsl.w        #$2, d3                                       ; $00F92A
 ; Vertical source rows come from SpriteScaleSamplePointers[height], not floor(y*32/height). See docs/SPRITE_RENDER_REVIEW.md.
         movea.l      (a4, d3.w), a4                                ; $00F92C
         move.w       d0, d3                                        ; $00F930
-        move.w       d2, -$6f28(a6)                                ; $00F932
+        move.w       d2, rSoftwareSpriteUnclippedTopY(a6)                                ; $00F932
         bpl.b        loc_00F93E                                    ; $00F936
         add.w        d2, d3                                        ; $00F938
         suba.w       d2, a4                                        ; $00F93A
@@ -89,20 +93,21 @@ loc_00F93E:
 loc_00F94A:
         sub.w        d2, d3                                        ; $00F94A
         movea.l      #SpriteColumnEntryPointers, a5                ; $00F94C
-        move.w       #$20, -$6f30(a6)                              ; $00F952
-; Any nonzero attribute word selects horizontal mirror: reverse packed-byte columns and use nibble-swapped color lookup.
-        tst.w        -$6f32(a6)                                    ; $00F958
+        move.w       #$20, rSoftwareSpriteSourceColumnStride(a6)                              ; $00F952
+; Any nonzero SoftwareSpriteMirrorFlag selects horizontal mirror: reverse
+; packed-byte columns and use the nibble-swapped color lookup.
+        tst.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $00F958
         beq.b        loc_00F96A                                    ; $00F95C
         adda.w       #$1e0, a1                                     ; $00F95E
-        neg.w        -$6f30(a6)                                    ; $00F962
+        neg.w        rSoftwareSpriteSourceColumnStride(a6)                                    ; $00F962
         adda.w       #$c00, a3                                     ; $00F966
 
 loc_00F96A:
         movea.l      #SpriteColumnEntryPointers, a5                ; $00F96A
-        move.w       d3, -$6f2a(a6)                                ; $00F970
+        move.w       d3, rLargeSpriteColumnLastRow(a6)                                ; $00F970
         lsl.w        #$2, d3                                       ; $00F974
         movea.l      (a5, d3.w), a5                                ; $00F976
-        lea.l        -$1dba(a6), a0                                ; $00F97A
+        lea.l        rSoftwareSpriteOutputBaseMinusFour(a6), a0                                ; $00F97A
         lsl.w        #$2, d2                                       ; $00F97E
         adda.w       d2, a0                                        ; $00F980
         move.w       d1, d3                                        ; $00F982
@@ -124,16 +129,16 @@ loc_00F96A:
         tst.w        d1                                            ; $00F9AA
         bpl.b        loc_00F9D4                                    ; $00F9AC
         move.w       #$4, d3                                       ; $00F9AE
-        lea.l        -$1dba(a6), a0                                ; $00F9B2
+        lea.l        rSoftwareSpriteOutputBaseMinusFour(a6), a0                                ; $00F9B2
         adda.w       d2, a0                                        ; $00F9B6
-        move.l       #$ff8a4a, -$6f20(a6)                          ; $00F9B8
+        move.l       #ramScreenColumnDepthWords, rSoftwareSpriteDepthColumnPointer(a6)                          ; $00F9B8
 
 loc_00F9C0:
         addi.w       #$10, d5                                      ; $00F9C0
         cmp.w        d4, d5                                        ; $00F9C4
         blt.b        loc_00F9CE                                    ; $00F9C6
         sub.w        d4, d5                                        ; $00F9C8
-        adda.w       -$6f30(a6), a1                                ; $00F9CA
+        adda.w       rSoftwareSpriteSourceColumnStride(a6), a1                                ; $00F9CA
 
 loc_00F9CE:
         subq.w       #$1, d7                                       ; $00F9CE
@@ -151,13 +156,13 @@ loc_00F9D4:
 loc_00F9E4:
         cmpi.w       #$50, d0                                      ; $00F9E4
         bls.b        loc_00FA1C                                    ; $00F9E8
-        subq.w       #$1, -$6f2a(a6)                               ; $00F9EA
+        subq.w       #$1, rLargeSpriteColumnLastRow(a6)                               ; $00F9EA
         move.l       #$200000, d6                                  ; $00F9EE
         divu.w       d0, d6                                        ; $00F9F4
-        move.w       d6, -$6f2e(a6)                                ; $00F9F6
+        move.w       d6, rLargeSpriteVerticalSourceStep(a6)                                ; $00F9F6
         lea.l        DrawLargeSpriteColumn(pc), a5                 ; $00F9FA
-        clr.w        -$6f2c(a6)                                    ; $00F9FE
-        move.w       -$6f28(a6), d2                                ; $00FA02
+        clr.w        rLargeSpriteVerticalSourcePhase(a6)                                    ; $00F9FE
+        move.w       rSoftwareSpriteUnclippedTopY(a6), d2                                ; $00FA02
         bpl.b        loc_00FA1C                                    ; $00FA06
         neg.w        d2                                            ; $00FA08
         ext.l        d2                                            ; $00FA0A
@@ -167,21 +172,21 @@ loc_00F9E4:
         swap         d2                                            ; $00FA12
         mulu.w       d6, d2                                        ; $00FA14
         lsr.l        #$5, d2                                       ; $00FA16
-        move.w       d2, -$6f2c(a6)                                ; $00FA18
+        move.w       d2, rLargeSpriteVerticalSourcePhase(a6)                                ; $00FA18
 
 loc_00FA1C:
-        move.w       -$6f2e(a6), d2                                ; $00FA1C
+        move.w       rLargeSpriteVerticalSourceStep(a6), d2                                ; $00FA1C
         clr.w        d0                                            ; $00FA20
         clr.w        d1                                            ; $00FA22
-        move.w       -$6f26(a6), d6                                ; $00FA24
-        tst.w        -$6f6c(a6)                                    ; $00FA28
+        move.w       rSoftwareSpriteProjectionScale(a6), d6                                ; $00FA24
+        tst.w        rNightVisionInventorySlotIndex(a6)                                    ; $00FA28
         bpl.b        loc_00FA34                                    ; $00FA2C
-        tst.w        -$6f6a(a6)                                    ; $00FA2E
+        tst.w        rFlashlightInventorySlotIndex(a6)                                    ; $00FA2E
         bpl.b        loc_00FA68                                    ; $00FA32
 
 loc_00FA34:
-        movea.l      -$6f20(a6), a2                                ; $00FA34
-        addq.l       #$2, -$6f20(a6)                               ; $00FA38
+        movea.l      rSoftwareSpriteDepthColumnPointer(a6), a2                                ; $00FA34
+        addq.l       #$2, rSoftwareSpriteDepthColumnPointer(a6)                               ; $00FA38
         cmp.w        (a2), d6                                      ; $00FA3C
         blt.b        loc_00FA48                                    ; $00FA3E
         move.l       a0, -(a7)                                     ; $00FA40
@@ -201,42 +206,42 @@ loc_00FA54:
         cmp.w        d4, d5                                        ; $00FA58
         blt.b        loc_00FA62                                    ; $00FA5A
         sub.w        d4, d5                                        ; $00FA5C
-        adda.w       -$6f30(a6), a1                                ; $00FA5E
+        adda.w       rSoftwareSpriteSourceColumnStride(a6), a1                                ; $00FA5E
 
 loc_00FA62:
         dbra         d7, loc_00FA34                                ; $00FA62
         rts                                                        ; $00FA66
 
 loc_00FA68:
-        movea.l      -$6f20(a6), a2                                ; $00FA68
-        cmpa.l       -$6f60(a6), a2                                ; $00FA6C
+        movea.l      rSoftwareSpriteDepthColumnPointer(a6), a2                                ; $00FA68
+        cmpa.l       rFlashlightBandStartPointer(a6), a2                                ; $00FA6C
         bls.b        loc_00FA8A                                    ; $00FA70
-        cmpa.l       -$6f5c(a6), a2                                ; $00FA72
+        cmpa.l       rFlashlightBandEndPointer(a6), a2                                ; $00FA72
         bhi.b        loc_00FA8A                                    ; $00FA76
         move.l       a3, rRenderPointerScratch(a6)                 ; $00FA78
         movea.l      rActiveSpriteColorRemaps(a6), a3              ; $00FA7C
-        tst.w        -$6f32(a6)                                    ; $00FA80
+        tst.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $00FA80
         beq.b        loc_00FA8A                                    ; $00FA84
         adda.w       #$c00, a3                                     ; $00FA86
 
 loc_00FA8A:
-        movea.l      -$6f20(a6), a2                                ; $00FA8A
-        cmpa.l       -$6f60(a6), a2                                ; $00FA8E
+        movea.l      rSoftwareSpriteDepthColumnPointer(a6), a2                                ; $00FA8A
+        cmpa.l       rFlashlightBandStartPointer(a6), a2                                ; $00FA8E
         bne.b        loc_00FAA8                                    ; $00FA92
         move.l       a3, rRenderPointerScratch(a6)                 ; $00FA94
         movea.l      rActiveSpriteColorRemaps(a6), a3              ; $00FA98
-        tst.w        -$6f32(a6)                                    ; $00FA9C
+        tst.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $00FA9C
         beq.b        loc_00FAB2                                    ; $00FAA0
         adda.w       #$c00, a3                                     ; $00FAA2
         bra.b        loc_00FAB2                                    ; $00FAA6
 
 loc_00FAA8:
-        cmpa.l       -$6f5c(a6), a2                                ; $00FAA8
+        cmpa.l       rFlashlightBandEndPointer(a6), a2                                ; $00FAA8
         bne.b        loc_00FAB2                                    ; $00FAAC
         movea.l      rRenderPointerScratch(a6), a3                 ; $00FAAE
 
 loc_00FAB2:
-        addq.l       #$2, -$6f20(a6)                               ; $00FAB2
+        addq.l       #$2, rSoftwareSpriteDepthColumnPointer(a6)                               ; $00FAB2
         cmp.w        (a2), d6                                      ; $00FAB6
         blt.b        loc_00FAC2                                    ; $00FAB8
         move.l       a0, -(a7)                                     ; $00FABA
@@ -256,7 +261,7 @@ loc_00FACE:
         cmp.w        d4, d5                                        ; $00FAD2
         blt.b        loc_00FADC                                    ; $00FAD4
         sub.w        d4, d5                                        ; $00FAD6
-        adda.w       -$6f30(a6), a1                                ; $00FAD8
+        adda.w       rSoftwareSpriteSourceColumnStride(a6), a1                                ; $00FAD8
 
 loc_00FADC:
         dbra         d7, loc_00FA8A                                ; $00FADC
@@ -267,7 +272,7 @@ loc_00FAE2:
 ; Below 16 packed columns use SpriteColumnSourceSteps[width + 16*mirror]. Width counts pixel pairs, not individual pixels.
         lea.l        SpriteColumnSourceSteps(pc), a4               ; $00FAE4
         move.w       d4, d5                                        ; $00FAE8
-        tst.w        -$6f32(a6)                                    ; $00FAEA
+        tst.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $00FAEA
         beq.b        loc_00FAF4                                    ; $00FAEE
         addi.w       #$10, d5                                      ; $00FAF0
 
@@ -280,8 +285,8 @@ loc_00FAF4:
         tst.w        d1                                            ; $00FB00
         bpl.b        loc_00FB1E                                    ; $00FB02
         move.w       #$4, d3                                       ; $00FB04
-        lea.l        -$1dba(a6), a0                                ; $00FB08
-        move.l       #$ff8a4a, -$6f20(a6)                          ; $00FB0C
+        lea.l        rSoftwareSpriteOutputBaseMinusFour(a6), a0                                ; $00FB08
+        move.l       #ramScreenColumnDepthWords, rSoftwareSpriteDepthColumnPointer(a6)                          ; $00FB0C
         adda.w       d2, a0                                        ; $00FB14
 
 loc_00FB16:
@@ -301,13 +306,13 @@ loc_00FB1E:
 loc_00FB2E:
         cmpi.w       #$50, d0                                      ; $00FB2E
         bls.b        loc_00FB66                                    ; $00FB32
-        subq.w       #$1, -$6f2a(a6)                               ; $00FB34
+        subq.w       #$1, rLargeSpriteColumnLastRow(a6)                               ; $00FB34
         move.l       #$200000, d6                                  ; $00FB38
         divu.w       d0, d6                                        ; $00FB3E
-        move.w       d6, -$6f2e(a6)                                ; $00FB40
+        move.w       d6, rLargeSpriteVerticalSourceStep(a6)                                ; $00FB40
         lea.l        DrawLargeSpriteColumn(pc), a5                 ; $00FB44
-        clr.w        -$6f2c(a6)                                    ; $00FB48
-        move.w       -$6f28(a6), d2                                ; $00FB4C
+        clr.w        rLargeSpriteVerticalSourcePhase(a6)                                    ; $00FB48
+        move.w       rSoftwareSpriteUnclippedTopY(a6), d2                                ; $00FB4C
         bpl.b        loc_00FB66                                    ; $00FB50
         neg.w        d2                                            ; $00FB52
         ext.l        d2                                            ; $00FB54
@@ -317,21 +322,21 @@ loc_00FB2E:
         swap         d2                                            ; $00FB5C
         mulu.w       d6, d2                                        ; $00FB5E
         lsr.l        #$5, d2                                       ; $00FB60
-        move.w       d2, -$6f2c(a6)                                ; $00FB62
+        move.w       d2, rLargeSpriteVerticalSourcePhase(a6)                                ; $00FB62
 
 loc_00FB66:
-        move.w       -$6f2e(a6), d2                                ; $00FB66
+        move.w       rLargeSpriteVerticalSourceStep(a6), d2                                ; $00FB66
         clr.w        d0                                            ; $00FB6A
         clr.w        d1                                            ; $00FB6C
-        move.w       -$6f26(a6), d6                                ; $00FB6E
-        tst.w        -$6f6c(a6)                                    ; $00FB72
+        move.w       rSoftwareSpriteProjectionScale(a6), d6                                ; $00FB6E
+        tst.w        rNightVisionInventorySlotIndex(a6)                                    ; $00FB72
         bpl.b        loc_00FB7E                                    ; $00FB76
-        tst.w        -$6f6a(a6)                                    ; $00FB78
+        tst.w        rFlashlightInventorySlotIndex(a6)                                    ; $00FB78
         bpl.b        loc_00FBA8                                    ; $00FB7C
 
 loc_00FB7E:
-        movea.l      -$6f20(a6), a2                                ; $00FB7E
-        addq.l       #$2, -$6f20(a6)                               ; $00FB82
+        movea.l      rSoftwareSpriteDepthColumnPointer(a6), a2                                ; $00FB7E
+        addq.l       #$2, rSoftwareSpriteDepthColumnPointer(a6)                               ; $00FB82
         cmp.w        (a2), d6                                      ; $00FB86
         blt.b        loc_00FB92                                    ; $00FB88
         movea.l      (a7), a2                                      ; $00FB8A
@@ -356,35 +361,35 @@ loc_00FBA4:
         rts                                                        ; $00FBA6
 
 loc_00FBA8:
-        movea.l      -$6f20(a6), a2                                ; $00FBA8
-        cmpa.l       -$6f60(a6), a2                                ; $00FBAC
+        movea.l      rSoftwareSpriteDepthColumnPointer(a6), a2                                ; $00FBA8
+        cmpa.l       rFlashlightBandStartPointer(a6), a2                                ; $00FBAC
         bls.b        loc_00FBCA                                    ; $00FBB0
-        cmpa.l       -$6f5c(a6), a2                                ; $00FBB2
+        cmpa.l       rFlashlightBandEndPointer(a6), a2                                ; $00FBB2
         bhi.b        loc_00FBCA                                    ; $00FBB6
         move.l       a3, rRenderPointerScratch(a6)                 ; $00FBB8
         movea.l      rActiveSpriteColorRemaps(a6), a3              ; $00FBBC
-        tst.w        -$6f32(a6)                                    ; $00FBC0
+        tst.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $00FBC0
         beq.b        loc_00FBCA                                    ; $00FBC4
         adda.w       #$c00, a3                                     ; $00FBC6
 
 loc_00FBCA:
-        movea.l      -$6f20(a6), a2                                ; $00FBCA
-        cmpa.l       -$6f60(a6), a2                                ; $00FBCE
+        movea.l      rSoftwareSpriteDepthColumnPointer(a6), a2                                ; $00FBCA
+        cmpa.l       rFlashlightBandStartPointer(a6), a2                                ; $00FBCE
         bne.b        loc_00FBE8                                    ; $00FBD2
         move.l       a3, rRenderPointerScratch(a6)                 ; $00FBD4
         movea.l      rActiveSpriteColorRemaps(a6), a3              ; $00FBD8
-        tst.w        -$6f32(a6)                                    ; $00FBDC
+        tst.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $00FBDC
         beq.b        loc_00FBF2                                    ; $00FBE0
         adda.w       #$c00, a3                                     ; $00FBE2
         bra.b        loc_00FBF2                                    ; $00FBE6
 
 loc_00FBE8:
-        cmpa.l       -$6f5c(a6), a2                                ; $00FBE8
+        cmpa.l       rFlashlightBandEndPointer(a6), a2                                ; $00FBE8
         bne.b        loc_00FBF2                                    ; $00FBEC
         movea.l      rRenderPointerScratch(a6), a3                 ; $00FBEE
 
 loc_00FBF2:
-        addq.l       #$2, -$6f20(a6)                               ; $00FBF2
+        addq.l       #$2, rSoftwareSpriteDepthColumnPointer(a6)                               ; $00FBF2
         cmp.w        (a2), d6                                      ; $00FBF6
         blt.b        loc_00FC02                                    ; $00FBF8
         movea.l      (a7), a2                                      ; $00FBFA

@@ -16,7 +16,8 @@ loc_022006:
         move.w       (a7)+, d0                                     ; $02200C
         rts                                                        ; $02200E
 
-loc_022010:
+; Reviewed call entry (wrapper): Sets D0=0 and D5=$3F, then branches to FadePaletteFromBlack.
+FadeAll64PaletteColorsFromBlack:
         moveq        #$0, d0                                       ; $022010
         moveq        #$3f, d5                                      ; $022012
         bra.w        FadePaletteFromBlack                          ; $022014

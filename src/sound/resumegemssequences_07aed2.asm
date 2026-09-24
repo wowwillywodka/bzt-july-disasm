@@ -8,7 +8,7 @@
 
 ResumeGemsSequences:
         move.l       a6, -(a7)                                     ; $07AED2
-        jsr          SoundRoutine_07A982(pc)                       ; $07AED4
+        jsr          GemsResumeAll(pc)                       ; $07AED4
         movea.l      (a7)+, a6                                     ; $07AED8
         rts                                                        ; $07AEDA
         ifne *-$7AEDC

@@ -9,32 +9,32 @@
 RunGameplayIteration:
 ; Gameplay iteration: train/background, legacy objective messages, VBlank/video, input/pause, player/link, actors, renderer, inventory/HUD, exit/death. Internal loop entry, not an independent ABI.
         jsr          UpdateEpisodeTrain.l                          ; $0013E0
-        cmpi.b       #$0, -$438f(a6)                               ; $0013E6
+        cmpi.b       #$0, rGeometryEpisodeLow(a6)                               ; $0013E6
         beq.b        loc_001402                                    ; $0013EC
         move.l       #$40000010, VDP_CONTROL.l                     ; $0013EE
         move.w       #$ffe0, VDP_DATA.l                            ; $0013F8
         bra.b        loc_00144E                                    ; $001400
 
 loc_001402:
-        addq.w       #$1, -$42f8(a6)                               ; $001402
-        cmpi.w       #$3, -$42f8(a6)                               ; $001406
+        addq.w       #$1, rPanoramaScrollCadence(a6)                               ; $001402
+        cmpi.w       #$3, rPanoramaScrollCadence(a6)                               ; $001406
         bne.w        loc_00144E                                    ; $00140C
-        addq.w       #$1, -$42f2(a6)                               ; $001410
-        clr.w        -$42f8(a6)                                    ; $001414
+        addq.w       #$1, rPanoramaAngleDrift(a6)                               ; $001410
+        clr.w        rPanoramaScrollCadence(a6)                                    ; $001414
         move.l       #$40000010, VDP_CONTROL.l                     ; $001418
         movea.l      #VDP_DATA, a4                                 ; $001422
-        move.w       -$42f4(a6), (a4)                              ; $001428
-        move.w       -$42f4(a6), d0                                ; $00142C
-        add.w        -$42f6(a6), d0                                ; $001430
-        move.w       d0, -$42f4(a6)                                ; $001434
-        cmpi.w       #$ffe2, -$42f4(a6)                            ; $001438
+        move.w       rPanoramaVerticalScroll(a6), (a4)                              ; $001428
+        move.w       rPanoramaVerticalScroll(a6), d0                                ; $00142C
+        add.w        rPanoramaVerticalStep(a6), d0                                ; $001430
+        move.w       d0, rPanoramaVerticalScroll(a6)                                ; $001434
+        cmpi.w       #$ffe2, rPanoramaVerticalScroll(a6)                            ; $001438
         beq.b        loc_00144A                                    ; $00143E
-        cmpi.w       #$ffde, -$42f4(a6)                            ; $001440
+        cmpi.w       #$ffde, rPanoramaVerticalScroll(a6)                            ; $001440
         beq.b        loc_00144A                                    ; $001446
         bra.b        loc_00144E                                    ; $001448
 
 loc_00144A:
-        neg.w        -$42f6(a6)                                    ; $00144A
+        neg.w        rPanoramaVerticalStep(a6)                                    ; $00144A
 
 loc_00144E:
         tst.w        rFloorClearMessageTimer(a6)                   ; $00144E
@@ -45,38 +45,38 @@ loc_00144E:
         jsr          CountLegacyObjectiveFloorEnemies.l            ; $00145E
 
 loc_001464:
-        tst.w        -$559c(a6)                                    ; $001464
+        tst.w        rRetainedSceneLoopGate(a6)                                    ; $001464
         bne.b        loc_001470                                    ; $001468
-        jsr          loc_0021A0.l                                  ; $00146A
+        jsr          ReturnFromTilemapColumnUpload.l                                  ; $00146A
 
 loc_001470:
         jsr          UpdateStatusMessages.l                        ; $001470
-        move.w       #$2, -$7ffe(a6)                               ; $001476
-        move.w       -$71ee(a6), d2                                ; $00147C
+        move.w       #$2, rVBlankTransferPhasesRemaining(a6)                               ; $001476
+        move.w       rPlayerFacingAngle(a6), d2                                ; $00147C
         movea.l      #VDP_DATA, a4                                 ; $001480
         neg.w        d2                                            ; $001486
         lsl.w        #$1, d2                                       ; $001488
         cmpi.w       #$0, rGeometryEpisode(a6)                     ; $00148A
         bne.b        loc_001496                                    ; $001490
-        add.w        -$42f2(a6), d2                                ; $001492
+        add.w        rPanoramaAngleDrift(a6), d2                                ; $001492
 
 loc_001496:
         andi.w       #$3ff, d2                                     ; $001496
         movea.l      #VDP_DATA, a4                                 ; $00149A
-        cmp.w        -$71d0(a6), d2                                ; $0014A0
+        cmp.w        rPanoramaLastHorizontalScroll(a6), d2                                ; $0014A0
         beq.w        loc_001662                                    ; $0014A4
-        move.w       -$71d0(a6), d1                                ; $0014A8
-        move.w       d2, -$71d0(a6)                                ; $0014AC
+        move.w       rPanoramaLastHorizontalScroll(a6), d1                                ; $0014A8
+        move.w       d2, rPanoramaLastHorizontalScroll(a6)                                ; $0014AC
         sub.w        d2, d1                                        ; $0014B0
         lsl.w        #$6, d1                                       ; $0014B2
         asr.w        #$6, d1                                       ; $0014B4
         bpl.b        loc_001516                                    ; $0014B6
-        sub.w        d1, -$6f4c(a6)                                ; $0014B8
-        sub.w        d1, -$6f4c(a6)                                ; $0014BC
-        add.w        d1, -$7212(a6)                                ; $0014C0
+        sub.w        d1, rSceneShiftOrRetainedPanoramaX(a6)                                ; $0014B8
+        sub.w        d1, rSceneShiftOrRetainedPanoramaX(a6)                                ; $0014BC
+        add.w        d1, rPanoramaFineScroll(a6)                                ; $0014C0
         bpl.b        loc_0014D4                                    ; $0014C4
-        addi.w       #$20, -$7212(a6)                              ; $0014C6
-        subq.w       #$8, -$7214(a6)                               ; $0014CC
+        addi.w       #$20, rPanoramaFineScroll(a6)                              ; $0014C6
+        subq.w       #$8, rPanoramaCoarseTileOffset(a6)                               ; $0014CC
         clr.w        d3                                            ; $0014D0
         bra.b        loc_001538                                    ; $0014D2
 
@@ -93,7 +93,7 @@ loc_0014D8:
         move.w       d2, (a4)                                      ; $0014F2
         move.w       rCurrentFloor(a6), d2                         ; $0014F4
         lsl.w        #$2, d2                                       ; $0014F8
-        move.w       -$6e4c(a6), d0                                ; $0014FA
+        move.w       rTransitHeightOffset(a6), d0                                ; $0014FA
         asr.w        #$5, d0                                       ; $0014FE
         add.w        d0, d2                                        ; $001500
         subi.w       #$20, d2                                      ; $001502
@@ -102,13 +102,13 @@ loc_0014D8:
         bra.w        loc_001688                                    ; $001512
 
 loc_001516:
-        sub.w        d1, -$6f4c(a6)                                ; $001516
-        sub.w        d1, -$6f4c(a6)                                ; $00151A
-        add.w        d1, -$7212(a6)                                ; $00151E
-        cmpi.w       #$20, -$7212(a6)                              ; $001522
+        sub.w        d1, rSceneShiftOrRetainedPanoramaX(a6)                                ; $001516
+        sub.w        d1, rSceneShiftOrRetainedPanoramaX(a6)                                ; $00151A
+        add.w        d1, rPanoramaFineScroll(a6)                                ; $00151E
+        cmpi.w       #$20, rPanoramaFineScroll(a6)                              ; $001522
         blt.b        loc_0014D4                                    ; $001528
-        subi.w       #$20, -$7212(a6)                              ; $00152A
-        addq.w       #$8, -$7214(a6)                               ; $001530
+        subi.w       #$20, rPanoramaFineScroll(a6)                              ; $00152A
+        addq.w       #$8, rPanoramaCoarseTileOffset(a6)                               ; $001530
         move.w       #$48, d3                                      ; $001534
 
 loc_001538:
@@ -124,7 +124,7 @@ loc_00153C:
         move.w       d2, (a4)                                      ; $001556
         move.w       rCurrentFloor(a6), d2                         ; $001558
         lsl.w        #$2, d2                                       ; $00155C
-        move.w       -$6e4c(a6), d0                                ; $00155E
+        move.w       rTransitHeightOffset(a6), d0                                ; $00155E
         asr.w        #$5, d0                                       ; $001562
         add.w        d0, d2                                        ; $001564
         subi.w       #$20, d2                                      ; $001566
@@ -134,8 +134,8 @@ loc_00153C:
 
 loc_001580:
         move.w       d3, d4                                        ; $001580
-        add.w        -$7214(a6), d4                                ; $001582
-        movea.l      -$5598(a6), a0                                ; $001586
+        add.w        rPanoramaCoarseTileOffset(a6), d4                                ; $001582
+        movea.l      rActivePanoramaTilemap(a6), a0                                ; $001586
         andi.w       #$ff, d4                                      ; $00158A
         adda.w       d4, a0                                        ; $00158E
         andi.w       #$7f, d4                                      ; $001590
@@ -213,7 +213,7 @@ loc_001666:
         move.w       #$2700, sr                                    ; $00166E
         move.w       rCurrentFloor(a6), d2                         ; $001672
         lsl.w        #$2, d2                                       ; $001676
-        move.w       -$6e4c(a6), d0                                ; $001678
+        move.w       rTransitHeightOffset(a6), d0                                ; $001678
         asr.w        #$5, d0                                       ; $00167C
         add.w        d0, d2                                        ; $00167E
         subi.w       #$20, d2                                      ; $001680
@@ -221,18 +221,18 @@ loc_001666:
         move.w       (a7)+, sr                                     ; $001686
 
 loc_001688:
-        tst.w        -$792c(a6)                                    ; $001688
+        tst.w        rDisplayEnableDelay(a6)                                    ; $001688
         beq.b        loc_00169C                                    ; $00168C
-        subq.w       #$1, -$792c(a6)                               ; $00168E
+        subq.w       #$1, rDisplayEnableDelay(a6)                               ; $00168E
         bne.b        loc_00169C                                    ; $001692
         move.w       #$8164, VDP_CONTROL.l                         ; $001694
 
 loc_00169C:
         bsr.w        FlushDmaQueue                                 ; $00169C
         bsr.w        UpdateDemoInput                               ; $0016A0
-        move.w       #$1, -$7fbe(a6)                               ; $0016A4
-        lea.l        -$7fbc(a6), a0                                ; $0016AA
-        move.l       a0, -$7fc2(a6)                                ; $0016AE
+        move.w       #$1, rSpriteAttributeNextLink(a6)                               ; $0016A4
+        lea.l        rSpriteAttributeTable(a6), a0                                ; $0016AA
+        move.l       a0, rSpriteAttributeTableWritePointer(a6)                                ; $0016AE
         jsr          AnimateWorldTextures.l                        ; $0016B2
         btst.b       #$7, rControllerState(a6)                     ; $0016B8
         beq.b        loc_0016E2                                    ; $0016BE
@@ -241,7 +241,7 @@ loc_00169C:
         bset.b       #$0, rPauseFlags(a6)                          ; $0016C8
         tst.w        rLinkRole(a6)                                 ; $0016CE
         beq.b        loc_0016E2                                    ; $0016D2
-        lea.l        -$6fdc(a6), a0                                ; $0016D4
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $0016D4
         move.b       #$14, (a0)                                    ; $0016D8
         jsr          QueueLinkCommand.l                            ; $0016DC
 
@@ -249,15 +249,15 @@ loc_0016E2:
         tst.w        rPauseFlags(a6)                               ; $0016E2
         beq.b        loc_0016F0                                    ; $0016E6
         bsr.w        RunPauseMapLoop                               ; $0016E8
-        clr.w        -$53a0(a6)                                    ; $0016EC
+        clr.w        rLinkStallTicks(a6)                                    ; $0016EC
 
 loc_0016F0:
-        jsr          CollisionRoutine_00E30C.l                     ; $0016F0
+        jsr          UpdatePlayerInputMovementAndCollision.l                     ; $0016F0
         tst.w        rLinkRole(a6)                                 ; $0016F6
         beq.b        loc_001720                                    ; $0016FA
-        cmpi.w       #$b4, -$53a0(a6)                              ; $0016FC
+        cmpi.w       #$b4, rLinkStallTicks(a6)                              ; $0016FC
         bcs.b        loc_00170C                                    ; $001702
-        jsr          ActorsRoutine_01C1A0.l                        ; $001704
+        jsr          HandleLinkDisconnect.l                        ; $001704
         bra.b        loc_001720                                    ; $00170A
 
 loc_00170C:
@@ -272,20 +272,20 @@ loc_001720:
         jsr          UpdateActors.l                                ; $001720
         tst.w        rLinkRole(a6)                                 ; $001726
         beq.b        loc_001732                                    ; $00172A
-        jsr          InputRoutine_0203A2.l                         ; $00172C
+        jsr          QueueLocalActorAndPlayerLinkState.l            ; $00172C
 
 loc_001732:
-        jsr          RendererRoutine_00F772.l                      ; $001732
-        jsr          RendererRoutine_00DCBE.l                      ; $001738
+        jsr          ApplyMovementViewSway.l                      ; $001732
+        jsr          RefreshSceneBackgroundIfViewChanged.l                      ; $001738
         jsr          SelectSceneRefreshMode.l                      ; $00173E
-        jsr          loc_00C08C.l                                  ; $001744
-        jsr          loc_00F216.l                                  ; $00174A
-        jsr          UiRoutine_00F838.l                            ; $001750
-        jsr          loc_00F816.l                                  ; $001756
+        jsr          RenderWorldWithCameraOffset.l                                  ; $001744
+        jsr          ClampPlayerToFloorBoundsAndRenderWorld.l                                  ; $00174A
+        jsr          AppendGameplayOverlaySpritesToSat.l                            ; $001750
+        jsr          RestoreMovementViewAfterRender.l                                  ; $001756
         jsr          UpdateTransientWallRecords.l                  ; $00175C
-        jsr          UiRoutine_01498A.l                            ; $001762
-        movea.l      -$7fc2(a6), a0                                ; $001768
-        cmpa.l       #$ff0044, a0                                  ; $00176C
+        jsr          TickTimedInventoryEffects.l                            ; $001762
+        movea.l      rSpriteAttributeTableWritePointer(a6), a0                                ; $001768
+        cmpa.l       #ramSpriteAttributeTable, a0                                  ; $00176C
         beq.b        loc_00177A                                    ; $001772
         clr.b        -$5(a0)                                       ; $001774
         bra.b        loc_00177E                                    ; $001778
@@ -296,7 +296,7 @@ loc_00177A:
 
 loc_00177E:
         move.l       a0, d6                                        ; $00177E
-        move.l       #$ff0044, d4                                  ; $001780
+        move.l       #ramSpriteAttributeTable, d4                                  ; $001780
         sub.l        d4, d6                                        ; $001786
         lsr.w        #$1, d6                                       ; $001788
         move.l       #$b800, d5                                    ; $00178A

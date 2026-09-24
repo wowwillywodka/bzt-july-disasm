@@ -1,16 +1,16 @@
 ; $00E024..$00E153 | m68k
 ; Maintained assembly input; no extraction occurs during build.
 ; JULY LOCAL REVIEW:
-; D0.w=distance-like hit parameter; D3/D4 direction. Optional signed scene-height scaling, strict unsigned <$400 cutoff, HP loss only when RAM $FF109A<0. See docs/ENEMY_PROJECTILES.md; HUD/feedback effects remain external.
+; D0.w=distance-like hit parameter; D3/D4 direction. Optional signed scene-height scaling, strict unsigned <$400 cutoff, HP loss only when rBulletProofVestSlotIndex<0. See docs/ENEMY_PROJECTILES.md; HUD/feedback effects remain external.
         ifne *-$E024
         fail "ROM start moved"
         endif
 
 ApplyPlayerDistanceHit:
-; D0.w=distance-like hit parameter; D3/D4 direction. Optional signed scene-height scaling, strict unsigned <$400 cutoff, HP loss only when RAM $FF109A<0. See docs/ENEMY_PROJECTILES.md; HUD/feedback effects remain external.
-        tst.b        -$76eb(a6)                                    ; $00E024
+; D0.w=distance-like hit parameter; D3/D4 direction. Optional signed scene-height scaling, strict unsigned <$400 cutoff, HP loss only when rBulletProofVestSlotIndex<0. See docs/ENEMY_PROJECTILES.md; HUD/feedback effects remain external.
+        tst.b        rPauseMapAndHitFlashToggle(a6)                                    ; $00E024
         beq.b        loc_00E032                                    ; $00E028
-        move.w       #$f, -$6f58(a6)                               ; $00E02A
+        move.w       #$f, rPlayerDamageFlashColor(a6)                               ; $00E02A
         rts                                                        ; $00E030
 
 loc_00E032:
@@ -22,7 +22,7 @@ loc_00E03A:
         move.l       a0, -(a7)                                     ; $00E03A
         move.w       d0, d1                                        ; $00E03C
         move.w       d2, -(a7)                                     ; $00E03E
-        tst.w        -$71d8(a6)                                    ; $00E040
+        tst.w        rPlayerViewOffsetZ(a6)                                    ; $00E040
         beq.b        loc_00E05A                                    ; $00E044
         bmi.b        loc_00E052                                    ; $00E046
         move.w       d1, d2                                        ; $00E048
@@ -47,7 +47,7 @@ loc_00E05A:
 loc_00E066:
         asr.w        #$6, d1                                       ; $00E066
         lea.l        PlayerDamageViewOffsets(pc), a1               ; $00E068
-        tst.w        -$6f66(a6)                                    ; $00E06C
+        tst.w        rBulletProofVestSlotIndex(a6)                                    ; $00E06C
         bpl.b        loc_00E0A0                                    ; $00E070
         neg.w        d1                                            ; $00E072
         addi.w       #$10, d1                                      ; $00E074
@@ -63,7 +63,7 @@ loc_00E086:
         asr.w        #$1, d1                                       ; $00E08E
 
 loc_00E090:
-        move.w       rPlayerHealth(a6), -$720c(a6)                 ; $00E090
+        move.w       rPlayerHealth(a6), rPlayerHealthBeforeHit(a6)                 ; $00E090
         sub.w        d1, rPlayerHealth(a6)                         ; $00E096
         subi.w       #$10, d1                                      ; $00E09A
         neg.w        d1                                            ; $00E09E
@@ -72,22 +72,24 @@ loc_00E0A0:
         lsl.w        #$2, d1                                       ; $00E0A0
         andi.w       #$3c, d1                                      ; $00E0A2
         adda.w       d1, a1                                        ; $00E0A6
-        tst.w        -$6f66(a6)                                    ; $00E0A8
+        tst.w        rBulletProofVestSlotIndex(a6)                                    ; $00E0A8
         bpl.b        loc_00E0C0                                    ; $00E0AC
         lsr.w        #$3, d1                                       ; $00E0AE
         neg.w        d1                                            ; $00E0B0
         addi.w       #$f, d1                                       ; $00E0B2
-        cmp.w        -$6f58(a6), d1                                ; $00E0B6
+        cmp.w        rPlayerDamageFlashColor(a6), d1                                ; $00E0B6
         bls.b        loc_00E0C0                                    ; $00E0BA
-        move.w       d1, -$6f58(a6)                                ; $00E0BC
+        move.w       d1, rPlayerDamageFlashColor(a6)                                ; $00E0BC
 
 loc_00E0C0:
-        tst.w        -$71d2(a6)                                    ; $00E0C0
+; The July ROM loads the table's vertical velocity, then clears it immediately.
+; Keep both instructions: the table value does not survive this path.
+        tst.w        rPlayerViewVerticalVelocity(a6)                                    ; $00E0C0
         bne.b        loc_00E0D4                                    ; $00E0C4
-        tst.w        -$71d8(a6)                                    ; $00E0C6
+        tst.w        rPlayerViewOffsetZ(a6)                                    ; $00E0C6
         bne.b        loc_00E0D4                                    ; $00E0CA
-        move.w       (a1), -$71d2(a6)                              ; $00E0CC
-        clr.w        -$71d2(a6)                                    ; $00E0D0
+        move.w       (a1), rPlayerViewVerticalVelocity(a6)                              ; $00E0CC
+        clr.w        rPlayerViewVerticalVelocity(a6)                                    ; $00E0D0
 
 loc_00E0D4:
         move.w       $2(a1), -(a7)                                 ; $00E0D4
@@ -124,23 +126,23 @@ loc_00E100:
         divs.w       d0, d4                                        ; $00E11C
 
 loc_00E11E:
-        move.w       d3, -$7202(a6)                                ; $00E11E
-        move.w       d4, -$7200(a6)                                ; $00E122
+        move.w       d3, rPlayerHitImpulseX(a6)                                ; $00E11E
+        move.w       d4, rPlayerHitImpulseY(a6)                                ; $00E122
         cmpi.w       #$7, (a1)                                     ; $00E126
         bcs.b        loc_00E138                                    ; $00E12A
-        move.w       #$fff0, -$71d6(a6)                            ; $00E12C
-        move.w       #$14, -$71ce(a6)                              ; $00E132
+        move.w       #$fff0, rPlayerViewOffsetTargetZ(a6)                            ; $00E12C
+        move.w       #$14, rPlayerViewTargetHoldTicks(a6)                              ; $00E132
 
 loc_00E138:
-        bsr.w        UiRoutine_00E194                              ; $00E138
-        tst.w        -$6f66(a6)                                    ; $00E13C
+        bsr.w        QueueHealthThresholdStatusMessage                              ; $00E138
+        tst.w        rBulletProofVestSlotIndex(a6)                                    ; $00E13C
         bpl.b        loc_00E14A                                    ; $00E140
-        bsr.w        UiRoutine_00E1E2                              ; $00E142
+        bsr.w        UpdatePlayerHealthHudDigits                              ; $00E142
         movea.l      (a7)+, a0                                     ; $00E146
         rts                                                        ; $00E148
 
 loc_00E14A:
-        jsr          UiRoutine_011B0C.l                            ; $00E14A
+        jsr          ConsumeVestChargeOnHit.l                            ; $00E14A
         movea.l      (a7)+, a0                                     ; $00E150
         rts                                                        ; $00E152
         ifne *-$E154

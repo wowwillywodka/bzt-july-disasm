@@ -1,32 +1,34 @@
 ; $01E59E..$01E60D | m68k
 ; Maintained assembly input; no extraction occurs during build.
 ; JULY LOCAL REVIEW:
-; Selects player proxy, or active-list head in link mode, by matching FLOOR BYTE +$36 and octagonal distance. This is not a faction field. Distance ties select local player. Returns A1=0 if neither floor matches.
+; Returns A1=player proxy, active-list head in link mode, or zero if floors differ.
+; Ties select the player. Head is dereferenced without an empty-list guard and may equal A0; callers must not assume otherwise.
         ifne *-$1E59E
         fail "ROM start moved"
         endif
 
 SelectEnemyPlayerTarget:
-; Selects player proxy, or active-list head in link mode, by matching FLOOR BYTE +$36 and octagonal distance. This is not a faction field. Distance ties select local player. Returns A1=0 if neither floor matches.
+; Returns A1=player proxy, active-list head in link mode, or zero if floors differ.
+; Ties select the player. Head is dereferenced without an empty-list guard and may equal A0; callers must not assume otherwise.
         tst.w        rLinkRole(a6)                                 ; $01E59E
         beq.b        loc_01E5F8                                    ; $01E5A2
         movea.l      rActiveActorHead(a6), a1                      ; $01E5A4
-        move.b       $36(a1), d0                                   ; $01E5A8
-        cmp.b        $36(a0), d0                                   ; $01E5AC
+        move.b       ActorFloor(a1), d0                                   ; $01E5A8
+        cmp.b        ActorFloor(a0), d0                                   ; $01E5AC
         bne.b        loc_01E5F8                                    ; $01E5B0
         move.w       rCurrentFloor(a6), d0                         ; $01E5B2
-        cmp.b        $36(a0), d0                                   ; $01E5B6
+        cmp.b        ActorFloor(a0), d0                                   ; $01E5B6
         bne.b        loc_01E608                                    ; $01E5BA
-        move.w       $24(a1), d0                                   ; $01E5BC
-        sub.w        $24(a0), d0                                   ; $01E5C0
-        move.w       $26(a1), d1                                   ; $01E5C4
-        sub.w        $26(a0), d1                                   ; $01E5C8
+        move.w       ActorX(a1), d0                                   ; $01E5BC
+        sub.w        ActorX(a0), d0                                   ; $01E5C0
+        move.w       ActorY(a1), d1                                   ; $01E5C4
+        sub.w        ActorY(a0), d1                                   ; $01E5C8
         jsr          OctagonalDistance.l                           ; $01E5CC
         move.w       d0, d6                                        ; $01E5D2
         move.w       rPlayerX(a6), d0                              ; $01E5D4
-        sub.w        $24(a0), d0                                   ; $01E5D8
+        sub.w        ActorX(a0), d0                                   ; $01E5D8
         move.w       rPlayerY(a6), d1                              ; $01E5DC
-        sub.w        $26(a0), d1                                   ; $01E5E0
+        sub.w        ActorY(a0), d1                                   ; $01E5E0
         jsr          OctagonalDistance.l                           ; $01E5E4
         cmp.w        d0, d6                                        ; $01E5EA
         bcs.b        loc_01E608                                    ; $01E5EC
@@ -38,7 +40,7 @@ loc_01E5F0:
 
 loc_01E5F8:
         move.w       rCurrentFloor(a6), d0                         ; $01E5F8
-        cmp.b        $36(a0), d0                                   ; $01E5FC
+        cmp.b        ActorFloor(a0), d0                                   ; $01E5FC
         bne.b        loc_01E5F0                                    ; $01E600
 
 loc_01E602:

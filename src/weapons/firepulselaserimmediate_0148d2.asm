@@ -10,11 +10,11 @@ FirePulseLaserImmediate:
 ; Pulse Laser immediate0E: linear hit with LONG threshold like Shotgun. Normal ammo helper zeroes upper D0; no division remainder is copied into it by target selection.
         tst.w        rWeaponLoweringOffset(a6)                     ; $0148D2
         bne.w        loc_014988                                    ; $0148D6
-        clr.w        -$55a0(a6)                                    ; $0148DA
-        clr.w        -$559e(a6)                                    ; $0148DE
+        clr.w        rStatusSoundScriptActive(a6)                                    ; $0148DA
+        clr.w        rSoundEffectCooldown(a6)                                    ; $0148DE
         move.w       #$1e, d0                                      ; $0148E2
-        jsr          SoundRoutine_00DF84.l                         ; $0148E6
-        move.w       #$f, -$559e(a6)                               ; $0148EC
+        jsr          PlaySoundEventAndMaybeSendLink.l                         ; $0148E6
+        move.w       #$f, rSoundEffectCooldown(a6)                               ; $0148EC
         move.w       #$1, rWeaponActionPhase(a6)                   ; $0148F2
         bsr.w        ConsumeSelectedItemAndUpdateHud               ; $0148F8
         move.l       d0, -(a7)                                     ; $0148FC
@@ -29,7 +29,7 @@ FirePulseLaserImmediate:
         move.w       #$c, d1                                       ; $01491C
 
 loc_014920:
-        move.w       -$71b0(a6), d2                                ; $014920
+        move.w       rViewSwayAngleOffset(a6), d2                                ; $014920
         addi.w       #$40, d2                                      ; $014924
         jsr          SelectPlayerWeaponAimTarget.l                 ; $014928
         cmpa.l       #$0, a1                                       ; $01492E
@@ -56,7 +56,7 @@ loc_014956:
         bra.b        loc_014988                                    ; $014974
 
 loc_014976:
-        jsr          ObjectsRoutine_00A3D2.l                       ; $014976
+        jsr          ClassifyPlayerCellForWeapon.l                       ; $014976
         bne.b        loc_014982                                    ; $01497C
         bsr.w        TraceMissedShotAndSpawnImpact                 ; $01497E
 

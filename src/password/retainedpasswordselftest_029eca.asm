@@ -1,6 +1,8 @@
 ; $029ECA..$029F61 | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; CLASSIFICATION: Reviewed retained instruction island: legal 68000 instructions, local branches/known calls and neighboring routine structure; ordinary reachability not established.
+; JULY LOCAL REVIEW: Retained generator for 48 ordinary password strings,
+; writing them from $FF8000 with space separators, then executing ILLEGAL.
+; No ordinary game-flow caller has been established.
         ifne *-$29ECA
         fail "ROM start moved"
         endif

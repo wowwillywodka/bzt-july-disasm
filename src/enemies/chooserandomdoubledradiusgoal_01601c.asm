@@ -16,7 +16,7 @@ ChooseRandomDoubledRadiusGoal:
         clr.l        d1                                            ; $016030
         move.w       d2, ActorGoalAngle(a0)                        ; $016032
         lea.l        AngleVectorPairs.w, a4                        ; $016036
-        move.w       -$71ee(a6), d0                                ; $01603A
+        move.w       rPlayerFacingAngle(a6), d0                                ; $01603A
         add.w        ActorGoalAngle(a0), d0                        ; $01603E
         andi.w       #$1ff, d0                                     ; $016042
         lsl.w        #$2, d0                                       ; $016046

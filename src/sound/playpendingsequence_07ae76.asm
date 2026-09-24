@@ -7,8 +7,8 @@
         endif
 
 PlayPendingSequence:
-        move.w       -$55ae(a6), d0                                ; $07AE76
-        clr.w        -$55ae(a6)                                    ; $07AE7A
+        move.w       rCurrentSoundSequenceId(a6), d0                                ; $07AE76
+        clr.w        rCurrentSoundSequenceId(a6)                                    ; $07AE7A
         move.l       a6, -(a7)                                     ; $07AE7E
         andi.l       #$ff, d0                                      ; $07AE80
         mulu.w       #$3, d0                                       ; $07AE86
@@ -28,7 +28,7 @@ PlayPendingSequence:
 
 loc_07AEBC:
         move.l       d0, -(a7)                                     ; $07AEBC
-        jsr          SoundRoutine_07A964(pc)                       ; $07AEBE
+        jsr          GemsStopSequence(pc)                       ; $07AEBE
         addq.l       #$4, a7                                       ; $07AEC2
 
 loc_07AEC4:

@@ -1,7 +1,8 @@
 ; $029E68..$029EC9 | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; RESEARCH NOTE (July; semantic claims still require local review):
-; Установка дефолтного состояния пароля/прогресса: пишет стартовые ID уровней/оружия (1,3,0xB,0xC,0xE) с боезапасом 0x63 и 5 флагов владения =1 в поля кода (-0x53CA..-0x53BB,A6) перед кодированием
+; JULY LOCAL REVIEW: Fill five saved inventory IDs (1,3,$B,$C,$E), their
+; amount bytes $63, all five character-available flags and saved health $63.
+; The first two special password phrases call this before setting selection.
         ifne *-$29E68
         fail "ROM start moved"
         endif

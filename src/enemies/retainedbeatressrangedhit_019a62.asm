@@ -10,7 +10,7 @@
 RetainedBeatressRangedHit:
 ; Retained ordinary ranged-hit tail behind unconditional sound JMP $19A5C. No external decoded literal references found. Active death begins separately at $19AE6.
         move.w       #$400, d3                                     ; $019A62
-        tst.w        -$71d8(a6)                                    ; $019A66
+        tst.w        rPlayerViewOffsetZ(a6)                                    ; $019A66
         bpl.b        loc_019A7C                                    ; $019A6A
         move.w       #$200, d3                                     ; $019A6C
         tst.w        rSceneColorMode(a6)                           ; $019A70
@@ -52,9 +52,9 @@ loc_019A96:
 
 loc_019AD0:
         move.w       #$5f, d0                                      ; $019AD0
-        jsr          SoundRoutine_00DF64.l                         ; $019AD4
+        jsr          RouteSoundEventByActorFloor.l                         ; $019AD4
         move.w       #$83, d0                                      ; $019ADA
-        jsr          SoundRoutine_00DF64.l                         ; $019ADE
+        jsr          RouteSoundEventByActorFloor.l                         ; $019ADE
 
 loc_019AE4:
         rts                                                        ; $019AE4

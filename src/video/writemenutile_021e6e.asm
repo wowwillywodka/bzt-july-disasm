@@ -1,7 +1,9 @@
 ; $021E6E..$021EA3 | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; RESEARCH NOTE (July; semantic claims still require local review):
-; Запись одного слова в VRAM по адресу из таблицы $00BC00: разбивает базовый адрес на VRAM-команду записи и пишет D0 в порт данных — обновление ячейки спрайт-таблицы/нейм-таблицы
+; JULY LOCAL REVIEW:
+; This entry contributes MOVEM and D1=$40000000 before the shared VDP write
+; body at $021E78. The latter also has a live branch from $021EAE. Only the
+; first two instructions are in the research-only component.
         ifne *-$21E6E
         fail "ROM start moved"
         endif

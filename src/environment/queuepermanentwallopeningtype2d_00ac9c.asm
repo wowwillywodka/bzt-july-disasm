@@ -23,7 +23,7 @@ loc_00ACC0:
         movea.l      #$ffa9fa, a0                                  ; $00ACC0
 
 loc_00ACC6:
-        move.b       $c17(a6), (a0)                                ; $00ACC6
+        move.b       rCellIndexForType2D(a6), (a0)                                ; $00ACC6
         jsr          CommitMapCellAndSendLink.l                    ; $00ACCA
         jsr          GetCellRenderStateAddress.l                   ; $00ACD0
         move.l       a0, d7                                        ; $00ACD6

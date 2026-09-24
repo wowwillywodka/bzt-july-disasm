@@ -18,9 +18,9 @@ DispatchWhiteDummyAttackEvent:
 
 loc_01A410:
         move.w       #$5f, d0                                      ; $01A410
-        jsr          SoundRoutine_00DF64.l                         ; $01A414
+        jsr          RouteSoundEventByActorFloor.l                         ; $01A414
         move.w       #$83, d0                                      ; $01A41A
-        jmp          SoundRoutine_00DF64.l                         ; $01A41E
+        jmp          RouteSoundEventByActorFloor.l                         ; $01A41E
 
 WhiteDummyTryHitTarget:
         movea.l      ActorTarget(a0), a3                           ; $01A424
@@ -31,7 +31,7 @@ WhiteDummyTryHitTarget:
         bsr.w        TraceFiveRayObstructionInActiveWindow         ; $01A438
         bne.w        ChooseWhiteDummyGoalOrDie                     ; $01A43C
         move.w       #$400, d3                                     ; $01A440
-        tst.w        -$71d8(a6)                                    ; $01A444
+        tst.w        rPlayerViewOffsetZ(a6)                                    ; $01A444
         bpl.b        loc_01A45A                                    ; $01A448
         move.w       #$200, d3                                     ; $01A44A
         tst.w        rSceneColorMode(a6)                           ; $01A44E
@@ -74,9 +74,9 @@ loc_01A474:
 
 loc_01A4AE:
         move.w       #$5f, d0                                      ; $01A4AE
-        jsr          SoundRoutine_00DF64.l                         ; $01A4B2
+        jsr          RouteSoundEventByActorFloor.l                         ; $01A4B2
         move.w       #$83, d0                                      ; $01A4B8
-        jsr          SoundRoutine_00DF64.l                         ; $01A4BC
+        jsr          RouteSoundEventByActorFloor.l                         ; $01A4BC
 
 loc_01A4C2:
         rts                                                        ; $01A4C2

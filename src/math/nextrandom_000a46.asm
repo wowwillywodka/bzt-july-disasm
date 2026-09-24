@@ -7,7 +7,7 @@
         endif
 
 NextRandom:
-        move.l       -$7ffa(a6), d0                                ; $000A46
+        move.l       rRandomSeed(a6), d0                                ; $000A46
         move.w       d0, d2                                        ; $000A4A
         mulu.w       #$e673, d2                                    ; $000A4C
         move.l       d0, d1                                        ; $000A50
@@ -21,7 +21,7 @@ NextRandom:
         clr.w        d0                                            ; $000A64
         add.l        d0, d2                                        ; $000A66
         addq.l       #$1, d2                                       ; $000A68
-        move.l       d2, -$7ffa(a6)                                ; $000A6A
+        move.l       d2, rRandomSeed(a6)                                ; $000A6A
         rts                                                        ; $000A6E
         ifne *-$A70
         fail "ROM end moved"

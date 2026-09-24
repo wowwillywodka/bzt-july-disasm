@@ -7,6 +7,7 @@
         endif
 
 BuildEmptyCellProfile:
+; Direct table entry: emit an empty profile (D3.W=0). Fallthrough from $008DD8 first queues a projected object.
         clr.w        d3                                            ; $008DDE
         rts                                                        ; $008DE0
         ifne *-$8DE2

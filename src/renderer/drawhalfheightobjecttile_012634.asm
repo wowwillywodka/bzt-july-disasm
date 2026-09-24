@@ -16,7 +16,7 @@ DrawHalfHeightObjectTile:
         move.w       d4, d3                                        ; $01263E
         asr.w        #$1, d3                                       ; $012640
         sub.w        d3, d1                                        ; $012642
-        clr.w        -$6f32(a6)                                    ; $012644
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $012644
         bra.w        ScaleAndDrawSoftwareSpriteTile                ; $012648
         ifne *-$1264C
         fail "ROM end moved"

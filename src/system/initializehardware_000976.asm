@@ -38,8 +38,8 @@ loc_0009FA:
         bne.b        loc_0009FA                                    ; $000A04
         jsr          DetectController(pc)                          ; $000A06
         bsr.w        InitializeVdpRegisters                        ; $000A0A
-        clr.w        -$7ffe(a6)                                    ; $000A0E
-        jsr          InputRoutine_01FF82.l                         ; $000A12
+        clr.w        rVBlankTransferPhasesRemaining(a6)                                    ; $000A0E
+        jsr          ResetLinkReceiverPortAndQueues.l                         ; $000A12
         move.w       #$2500, sr                                    ; $000A18
         jsr          InitializeSoundState.l                        ; $000A1C
         bra.w        RunTitleAndGameFlow                           ; $000A22

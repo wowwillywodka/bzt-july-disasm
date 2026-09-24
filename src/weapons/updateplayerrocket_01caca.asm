@@ -47,7 +47,7 @@ loc_01CAF0:
 loc_01CB36:
         move.w       #$120, d0                                     ; $01CB36
         move.l       a0, -(a7)                                     ; $01CB3A
-        jsr          UiRoutine_00279E.l                            ; $01CB3C
+        jsr          ArmRetainedPanoramaEffectMarker.l                            ; $01CB3C
         movea.l      (a7)+, a0                                     ; $01CB42
         bra.w        RemoveActorAndSendLink                        ; $01CB44
 
@@ -64,13 +64,13 @@ loc_01CB48:
         movem.l      (a7)+, d0-d1/a0                               ; $01CB6E
         clr.w        ActorMotionX(a0)                              ; $01CB72
         clr.w        ActorMotionY(a0)                              ; $01CB76
-        clr.w        -$55a0(a6)                                    ; $01CB7A
-        clr.w        -$559e(a6)                                    ; $01CB7E
+        clr.w        rStatusSoundScriptActive(a6)                                    ; $01CB7A
+        clr.w        rSoundEffectCooldown(a6)                                    ; $01CB7E
         move.w       #$e, d0                                       ; $01CB82
         move.l       a0, -(a7)                                     ; $01CB86
-        jsr          SoundRoutine_00DF64.l                         ; $01CB88
+        jsr          RouteSoundEventByActorFloor.l                         ; $01CB88
         movea.l      (a7)+, a0                                     ; $01CB8E
-        move.w       #$32, -$559e(a6)                              ; $01CB90
+        move.w       #$32, rSoundEffectCooldown(a6)                              ; $01CB90
         bra.w        loc_01C812                                    ; $01CB96
 
 loc_01CB9A:
@@ -78,11 +78,13 @@ loc_01CB9A:
         move.w       d1, ActorY(a0)                                ; $01CB9E
         rts                                                        ; $01CBA2
 
-loc_01CBA4:
-        move.w       d5, -$6f26(a6)                                ; $01CBA4
+DrawSharedFireEffectTile:
+; Shared object-tile draw callback for several local/remote weapon effects.
+; D5 is projected scale and D1 is screen X; appearance toggles by game tick.
+        move.w       d5, rSoftwareSpriteProjectionScale(a6)                                ; $01CBA4
         move.w       d5, d2                                        ; $01CBA8
-        move.w       -$71d8(a6), d3                                ; $01CBAA
-        sub.w        -$6e4c(a6), d3                                ; $01CBAE
+        move.w       rPlayerViewOffsetZ(a6), d3                                ; $01CBAA
+        sub.w        rTransitHeightOffset(a6), d3                                ; $01CBAE
         sub.w        ActorZ(a0), d3                                ; $01CBB2
         muls.w       d3, d2                                        ; $01CBB6
         asr.l        #$6, d2                                       ; $01CBB8
@@ -91,7 +93,7 @@ loc_01CBA4:
         adda.w       #ObjectTileOffset01_FireEffect, a1            ; $01CBC2
         move.w       rGameTick(a6), d0                             ; $01CBC6
         andi.w       #$1, d0                                       ; $01CBCA
-        move.w       d0, -$6f32(a6)                                ; $01CBCE
+        move.w       d0, rSoftwareSpriteMirrorFlag(a6)                                ; $01CBCE
         move.w       d5, d0                                        ; $01CBD2
         asr.w        #$1, d0                                       ; $01CBD4
         move.w       d0, d4                                        ; $01CBD6

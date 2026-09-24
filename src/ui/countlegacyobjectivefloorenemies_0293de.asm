@@ -1,13 +1,14 @@
 ; $0293DE..$029495 | m68k
 ; Maintained assembly input; no extraction occurs during build.
 ; JULY LOCAL REVIEW:
-; Legacy count scans 1024 bytes at VisibleMapWindow + LegacyObjectiveFloor*1024, not the variable-size floor buffer. It sets a message timer, not SceneExitRequested.
+; Legacy count scans 1024 bytes at VisibleMapWindow + LegacyObjectiveFloor*1024, not the variable-size floor buffer. It sets a message timer, not SceneExitRequested. See docs/ENEMY_COUNT_AND_STATISTICS.md.
         ifne *-$293DE
         fail "ROM start moved"
         endif
 
 CountLegacyObjectiveFloorEnemies:
 ; Legacy count scans 1024 bytes at VisibleMapWindow + LegacyObjectiveFloor*1024, not the variable-size floor buffer. It sets a message timer, not SceneExitRequested.
+; The HUD compare field stays FFFF after scene initialization; there is no direct update after WriteTwoDigitHudNumberToVram.
         tst.w        rFloorClearMessageTimer(a6)                   ; $0293DE
         beq.b        loc_0293E6                                    ; $0293E2
         rts                                                        ; $0293E4
@@ -70,7 +71,7 @@ loc_029458:
 loc_029466:
         cmp.w        rLastDrawnEnemyCount(a6), d6                  ; $029466
         beq.b        loc_029472                                    ; $02946A
-        jsr          UiRoutine_0209FE.l                            ; $02946C
+        jsr          WriteTwoDigitHudNumberToVram.l                            ; $02946C
 
 loc_029472:
         move.w       d6, rRemainingEnemyCount(a6)                  ; $029472

@@ -6,8 +6,8 @@
         endif
 
 AdvanceRetainedPanoramaEffect:
-        addq.b       #$1, -$6f52(a6)                               ; $0026E2
-        move.b       -$6f52(a6), d0                                ; $0026E6
+        addq.b       #$1, rRetainedPanoramaEffectFrame(a6)                               ; $0026E2
+        move.b       rRetainedPanoramaEffectFrame(a6), d0                                ; $0026E6
         cmpi.b       #$20, d0                                      ; $0026EA
         beq.w        FinishRetainedPanoramaEffect                  ; $0026EE
         cmpi.b       #$24, d0                                      ; $0026F2

@@ -1,7 +1,7 @@
 ; $01BE0C..$01BEBB | m68k
 ; Maintained assembly input; no extraction occurs during build.
 ; RESEARCH NOTE (July; semantic claims still require local review):
-; Главный цикл обновления актёров: заполняет шаблон (-0x6e1e,A6) позицией/углами камеры, обходит список актёров (счётчик -0x57c6, ptr -0x57c4), валидирует позицию (0x24/0x26 в [0,0x2000), тайл 0x36 в [0,0xf]) и по таймеру (0x23,A0) вызывает per-actor хэндлер через vptr (0x16,A0)
+; Обновляет proxy игрока из позиции, вектора взгляда и вертикального смещения, затем обходит активный список актёров.
         ifne *-$1BE0C
         fail "ROM start moved"
         endif
@@ -11,12 +11,14 @@ UpdateActors:
         andi.w       #$1fff, rPlayerX(a6)                          ; $01BE0C
         andi.w       #$1fff, rPlayerY(a6)                          ; $01BE12
         lea.l        rPlayerActorProxy(a6), a0                     ; $01BE18
-        move.w       -$71d8(a6), ActorZ(a0)                        ; $01BE1C
+        move.w       rPlayerViewOffsetZ(a6), ActorZ(a0)                        ; $01BE1C
         move.w       rPlayerX(a6), ActorX(a0)                      ; $01BE22
         move.w       rPlayerY(a6), ActorY(a0)                      ; $01BE28
-        move.w       -$71f2(a6), ActorMotionX(a0)                  ; $01BE2E
-        move.w       -$71f0(a6), ActorMotionY(a0)                  ; $01BE34
+        move.w       rPlayerFacingVectorX(a6), ActorMotionX(a0)                  ; $01BE2E
+        move.w       rPlayerFacingVectorY(a6), ActorMotionY(a0)                  ; $01BE34
         move.b       rCurrentFloorLow(a6), ActorFloor(a0)          ; $01BE3A
+; Player proxy uses the player-specific hit handler; ordinary local-player blast
+; paths may call that handler directly without traversing the actor list.
         move.l       #ApplyPlayerDistanceHit, ActorHitCallback(a0) ; $01BE40
         move.w       rActiveActorCount(a6), d7                     ; $01BE48
         bne.b        loc_01BE50                                    ; $01BE4C
@@ -54,6 +56,10 @@ loc_01BE8E:
 
 loc_01BE9E:
 ; Signed byte countdown: callback runs when the decremented value is negative. No automatic reload.
+; A zero delay runs now (0->$FF); $14 runs after 21 visits if nobody edits it.
+; A negative delay also runs now. Callbacks commonly clear it to zero.
+; A visible-cell spawn sets delay=0, so its first visited update is eligible
+; immediately; renderer-created actors are first visited next iteration.
         subq.b       #$1, ActorUpdateDelay(a0)                     ; $01BE9E
         bpl.b        loc_01BEAE                                    ; $01BEA2
         movea.l      ActorUpdateCallback(a0), a1                   ; $01BEA4

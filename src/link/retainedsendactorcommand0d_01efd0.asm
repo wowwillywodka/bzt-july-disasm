@@ -6,7 +6,7 @@
         endif
 
 RetainedSendActorCommand0D:
-        lea.l        -$6fdc(a6), a1                                ; $01EFD0
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01EFD0
         move.b       #$d, (a1)+                                    ; $01EFD4
         move.b       ActorLinkId(a0), (a1)+                        ; $01EFD8
         move.w       ActorX(a0), (a1)+                             ; $01EFDC
@@ -14,7 +14,7 @@ RetainedSendActorCommand0D:
         move.w       ActorMotionX(a0), (a1)+                       ; $01EFE4
         move.w       ActorMotionY(a0), (a1)+                       ; $01EFE8
         move.b       d0, (a1)+                                     ; $01EFEC
-        lea.l        -$6fdc(a6), a0                                ; $01EFEE
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $01EFEE
         jmp          QueueLinkCommand.l                            ; $01EFF2
         ifne *-$1EFF8
         fail "ROM end moved"

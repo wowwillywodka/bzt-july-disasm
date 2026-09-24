@@ -25,7 +25,7 @@ loc_01BD1E:
 
 WakeDenpyderWithoutDamage:
 ; Wake only, no damage/particles/range rejection; not normal recoil.
-        addq.w       #$1, -$71c2(a6)                               ; $01BD20
+        addq.w       #$1, rEnemyHitCallbacksRecorded(a6)                               ; $01BD20
         move.b       #$c, ActorStateCounter(a0)                    ; $01BD24
         clr.w        ActorMotionX(a0)                              ; $01BD2A
         clr.w        ActorMotionY(a0)                              ; $01BD2E
@@ -33,7 +33,7 @@ WakeDenpyderWithoutDamage:
         rts                                                        ; $01BD38
 
 loc_01BD3A:
-        addq.w       #$1, -$71c2(a6)                               ; $01BD3A
+        addq.w       #$1, rEnemyHitCallbacksRecorded(a6)                               ; $01BD3A
         clr.b        ActorStateCounter(a0)                         ; $01BD3E
         clr.w        ActorMotionX(a0)                              ; $01BD42
         clr.w        ActorMotionY(a0)                              ; $01BD46
@@ -58,7 +58,7 @@ loc_01BD6A:
         bmi.b        loc_01BDA6                                    ; $01BD70
         asr.w        #$1, d0                                       ; $01BD72
         sub.w        d0, ActorHealth(a0)                           ; $01BD74
-        bsr.w        ActorsRoutine_01D92C                          ; $01BD78
+        bsr.w        SpawnHitParticles                          ; $01BD78
         asr.w        #$3, d0                                       ; $01BD7C
         muls.w       d0, d3                                        ; $01BD7E
         muls.w       d0, d4                                        ; $01BD80

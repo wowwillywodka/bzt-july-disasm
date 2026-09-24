@@ -1,7 +1,9 @@
 ; $029F62..$02A40F | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; RESEARCH NOTE (July; semantic claims still require local review):
-; Декодер ввода пароля/чит-фраз: сверяет ASCII-строку (A0) с 'Highrise!'/'Basement!'/'Boxing!!!' (даёт уровень/оружие), иначе декодирует 0x2A450+0x29BD6, проверяет чек-сумму, распаковывает поля статуса в (-0x53CA..,A6) и масштабирует по таблице 0x11F24; D7=0 ок, -1 ошибка
+; JULY LOCAL REVIEW: Checks three nine-byte special phrases first, then
+; decodes the ordinary 54-bit password. Checksum and a maximum of five
+; inventory IDs gate success; normal decode sets GeometryEpisode to the low
+; nibble and LevelSelection to 1. D7=0 on success, $FFFF on failure.
         ifne *-$29F62
         fail "ROM start moved"
         endif
@@ -90,7 +92,7 @@ loc_02A00A:
 
 loc_02A098:
         movea.l      a0, a2                                        ; $02A098
-        lea.l        -$53ae(a6), a1                                ; $02A09A
+        lea.l        rPasswordEncodedBitBuffer(a6), a1                                ; $02A09A
         clr.w        d1                                            ; $02A09E
         move.w       #$8, d6                                       ; $02A0A0
 
@@ -103,10 +105,10 @@ loc_02A0A4:
         bsr.w        WritePasswordBit                              ; $02A0B8
         bsr.w        WritePasswordBit                              ; $02A0BC
         dbra         d6, loc_02A0A4                                ; $02A0C0
-        lea.l        -$53ae(a6), a2                                ; $02A0C4
-        lea.l        -$53b8(a6), a1                                ; $02A0C8
+        lea.l        rPasswordEncodedBitBuffer(a6), a2                                ; $02A0C4
+        lea.l        rPasswordPlainBitBuffer(a6), a1                                ; $02A0C8
         bsr.w        EncodePasswordBytes                           ; $02A0CC
-        lea.l        -$53b8(a6), a2                                ; $02A0D0
+        lea.l        rPasswordPlainBitBuffer(a6), a2                                ; $02A0D0
         clr.w        d2                                            ; $02A0D4
         clr.w        d3                                            ; $02A0D6
         clr.w        d0                                            ; $02A0D8
@@ -191,7 +193,7 @@ loc_02A1DC:
         rts                                                        ; $02A1E0
 
 loc_02A1E2:
-        lea.l        -$53b8(a6), a2                                ; $02A1E2
+        lea.l        rPasswordPlainBitBuffer(a6), a2                                ; $02A1E2
         clr.w        d2                                            ; $02A1E6
         clr.w        d0                                            ; $02A1E8
         bsr.w        ReadPasswordBit                               ; $02A1EA

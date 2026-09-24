@@ -1,7 +1,7 @@
 ; $000A88..$000BCB | m68k
 ; Maintained assembly input; no extraction occurs during build.
 ; RESEARCH NOTE (July; semantic claims still require local review):
-; VBLANK-обработчик: инкремент кадра (-0x71B6,A6) и каскад часов кадры/сек/мин по 0x3C, инкремент $FF0000/$FF2C60, декремент таймеров $FF08CE/$FF2A62, обработка отложенной VDP-передачи $FF0002
+; VBLANK-обработчик: каскад игровых часов, звуковые таймеры и две фазы VDP-передачи через ramVBlankTransferPhasesRemaining.
         ifne *-$A88
         fail "ROM start moved"
         endif
@@ -9,35 +9,35 @@
 VBlankInterrupt:
         tst.b        rPauseFlags(a6)                               ; $000A88
         bne.b        loc_000AC2                                    ; $000A8C
-        addq.b       #$1, -$71b6(a6)                               ; $000A8E
-        cmpi.b       #$3c, -$71b6(a6)                              ; $000A92
+        addq.b       #$1, rGameClockFrameTicks(a6)                               ; $000A8E
+        cmpi.b       #$3c, rGameClockFrameTicks(a6)                              ; $000A92
         bne.b        loc_000AC2                                    ; $000A98
-        clr.b        -$71b6(a6)                                    ; $000A9A
-        addq.b       #$1, -$71b5(a6)                               ; $000A9E
-        cmpi.b       #$3c, -$71b5(a6)                              ; $000AA2
+        clr.b        rGameClockFrameTicks(a6)                                    ; $000A9A
+        addq.b       #$1, rGameClockSeconds(a6)                               ; $000A9E
+        cmpi.b       #$3c, rGameClockSeconds(a6)                              ; $000AA2
         bne.b        loc_000AC2                                    ; $000AA8
-        clr.b        -$71b5(a6)                                    ; $000AAA
-        addq.b       #$1, -$71b4(a6)                               ; $000AAE
-        cmpi.b       #$3c, -$71b4(a6)                              ; $000AB2
+        clr.b        rGameClockSeconds(a6)                                    ; $000AAA
+        addq.b       #$1, rGameClockMinutes(a6)                               ; $000AAE
+        cmpi.b       #$3c, rGameClockMinutes(a6)                              ; $000AB2
         bne.b        loc_000AC2                                    ; $000AB8
-        clr.b        -$71b4(a6)                                    ; $000ABA
-        addq.b       #$1, -$71b3(a6)                               ; $000ABE
+        clr.b        rGameClockMinutes(a6)                                    ; $000ABA
+        addq.b       #$1, rGameClockHours(a6)                               ; $000ABE
 
 loc_000AC2:
         addq.w       #$1, ramVBlankCounter.l                       ; $000AC2
-        addq.w       #$1, $ff2c60.l                                ; $000AC8
-        subq.w       #$1, $ff08ce.l                                ; $000ACE
-        tst.w        $ff2a62.l                                     ; $000AD4
+        addq.w       #$1, ramLinkStallTicks.l                                ; $000AC8
+        subq.w       #$1, ramStatusSoundScriptStepTicks.l                                ; $000ACE
+        tst.w        ramSoundEffectCooldown.l                                     ; $000AD4
         beq.b        loc_000AE2                                    ; $000ADA
-        subq.w       #$1, $ff2a62.l                                ; $000ADC
+        subq.w       #$1, ramSoundEffectCooldown.l                                ; $000ADC
 
 loc_000AE2:
-        tst.w        $ff0002.l                                     ; $000AE2
+        tst.w        ramVBlankTransferPhasesRemaining.l                                     ; $000AE2
         beq.w        IgnoreInterrupt                               ; $000AE8
         move.l       a0, -(a7)                                     ; $000AEC
         movea.l      #VDP_CONTROL, a0                              ; $000AEE
         move.w       #$8174, VDP_CONTROL.l                         ; $000AF4
-        subq.w       #$1, $ff0002.l                                ; $000AFC
+        subq.w       #$1, ramVBlankTransferPhasesRemaining.l                                ; $000AFC
         beq.w        loc_000B8C                                    ; $000B02
         move.l       d0, -(a7)                                     ; $000B06
         jsr          RequestGemsMailbox.l                          ; $000B08
@@ -50,29 +50,29 @@ loc_000AE2:
         move.w       #$80, (a0)                                    ; $000B26
         jsr          StopGemsDriver.l                              ; $000B2A
         move.l       (a7)+, d0                                     ; $000B30
-        tst.w        $ff10a8.l                                     ; $000B32
+        tst.w        ramPlayerDamageFlashColor.l                                     ; $000B32
         beq.b        loc_000BB8                                    ; $000B38
         tst.w        ramPlayerDeathTicks.l                         ; $000B3A
         beq.b        loc_000B66                                    ; $000B40
-        cmpi.w       #$f, $ff10a8.l                                ; $000B42
+        cmpi.w       #$f, ramPlayerDamageFlashColor.l                                ; $000B42
         bhi.b        loc_000B5C                                    ; $000B4A
-        subq.w       #$1, $ff10a8.l                                ; $000B4C
+        subq.w       #$1, ramPlayerDamageFlashColor.l                                ; $000B4C
         bpl.b        loc_000B74                                    ; $000B52
-        clr.w        $ff10a8.l                                     ; $000B54
+        clr.w        ramPlayerDamageFlashColor.l                                     ; $000B54
         bra.b        loc_000B74                                    ; $000B5A
 
 loc_000B5C:
-        subi.w       #$110, $ff10a8.l                              ; $000B5C
+        subi.w       #$110, ramPlayerDamageFlashColor.l                              ; $000B5C
         bra.b        loc_000B74                                    ; $000B64
 
 loc_000B66:
-        subq.w       #$3, $ff10a8.l                                ; $000B66
+        subq.w       #$3, ramPlayerDamageFlashColor.l                                ; $000B66
         bpl.b        loc_000B74                                    ; $000B6C
-        clr.w        $ff10a8.l                                     ; $000B6E
+        clr.w        ramPlayerDamageFlashColor.l                                     ; $000B6E
 
 loc_000B74:
         move.l       #$c07e0000, VDP_CONTROL.l                     ; $000B74
-        move.w       $ff10a8.l, VDP_DATA.l                         ; $000B7E
+        move.w       ramPlayerDamageFlashColor.l, VDP_DATA.l                         ; $000B7E
         bra.w        loc_000BB8                                    ; $000B88
 
 loc_000B8C:

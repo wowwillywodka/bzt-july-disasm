@@ -1,14 +1,15 @@
 ; $029C0E..$029E67 | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; RESEARCH NOTE (July; semantic claims still require local review):
-; Кодировщик пароля-чита: упаковывает поля статуса (-0x53CA..-0x53BA,A6) побитно через bsr 0x29B4E, считает чек-сумму rol/add (0x29B78), шифрует (0x29BA2) и через PC-таблицу символов @~0x29AD8 (lea -0x35e,PC) переводит 6-битные группы в 9 печатных символов пароля в (A0)+
+; JULY LOCAL REVIEW: Packs 46 progress bits and an eight-bit checksum,
+; permutes and XORs seven bytes, then writes nine six-bit alphabet characters.
+; This is the ordinary password encoder, not the early special-phrase path.
         ifne *-$29C0E
         fail "ROM start moved"
         endif
 
 EncodeProgressPassword:
         move.l       a0, -(a7)                                     ; $029C0E
-        lea.l        -$53b8(a6), a1                                ; $029C10
+        lea.l        rPasswordPlainBitBuffer(a6), a1                                ; $029C10
         clr.w        d1                                            ; $029C14
         move.b       rCharacterAvailable0(a6), d0                  ; $029C16
         bsr.w        WritePasswordBit                              ; $029C1A
@@ -80,7 +81,7 @@ EncodeProgressPassword:
         bsr.w        WritePasswordBit                              ; $029D14
         bsr.w        WritePasswordBit                              ; $029D18
         bsr.w        WritePasswordBit                              ; $029D1C
-        lea.l        -$53b8(a6), a2                                ; $029D20
+        lea.l        rPasswordPlainBitBuffer(a6), a2                                ; $029D20
         clr.w        d2                                            ; $029D24
         clr.w        d3                                            ; $029D26
         clr.w        d0                                            ; $029D28
@@ -157,11 +158,11 @@ EncodeProgressPassword:
         bsr.w        WritePasswordBit                              ; $029E1E
         bsr.w        WritePasswordBit                              ; $029E22
         movea.l      (a7)+, a0                                     ; $029E26
-        lea.l        -$53b8(a6), a2                                ; $029E28
-        lea.l        -$53ae(a6), a1                                ; $029E2C
+        lea.l        rPasswordPlainBitBuffer(a6), a2                                ; $029E28
+        lea.l        rPasswordEncodedBitBuffer(a6), a1                                ; $029E2C
         bsr.w        DecodePasswordBits                            ; $029E30
         lea.l        PasswordCodeAlphabet(pc), a1                  ; $029E34
-        lea.l        -$53ae(a6), a2                                ; $029E38
+        lea.l        rPasswordEncodedBitBuffer(a6), a2                                ; $029E38
         clr.w        d2                                            ; $029E3C
         move.w       #$8, d6                                       ; $029E3E
 

@@ -4,7 +4,7 @@
         fail "ROM start moved"
         endif
 
-HeldWeaponFramePointers equ $0129D6
+HeldWeaponGraphicsPointers equ $0129D6
 
         incbin "generated/data/0129d6.bin"
         ifne *-$12A1E

@@ -9,11 +9,12 @@ RetainedSetVramWriteAddress:
         swap         d0                                            ; $021FEC
         clr.w        d0                                            ; $021FEE
         asl.l        #$3, d0                                       ; $021FF0
-        add.l        -$790c(a6), d0                                ; $021FF2
+        add.l        rMenuVramWriteAddressOffset(a6), d0                                ; $021FF2
         move.l       d0, VDP_CONTROL.l                             ; $021FF6
         rts                                                        ; $021FFC
 
-loc_021FFE:
+; Reviewed call entry (shared-tail): Branches to the D3/D1/D4/D2 VDP-data writes of WriteHardwareSprite.
+WriteHardwareSpriteWordsAtCurrentAddress:
         bra.b        loc_021FD2                                    ; $021FFE
         ifne *-$22000
         fail "ROM end moved"

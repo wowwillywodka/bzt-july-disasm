@@ -10,19 +10,19 @@ EnterBeatressDeath:
 ; Sound$06; ordinary CB/counter4/state3; preserve C8/C9. GoalAngle word set8, corpse callbacks. Alternate signal uses shared legacy effect.
         move.l       a0, -(a7)                                     ; $019AE6
         move.w       #$6, d0                                       ; $019AE8
-        jsr          SoundRoutine_00DF64.l                         ; $019AEC
+        jsr          RouteSoundEventByActorFloor.l                         ; $019AEC
         movea.l      (a7)+, a0                                     ; $019AF2
         tst.b        ActorAlternateDeathSignal(a0)                 ; $019AF4
         bne.w        EnterLegacyEnemyDeathEffect                   ; $019AF8
         andi.w       #$ff2f, ActorFlags(a0)                        ; $019AFC
         move.l       #UpdateBeatressCorpse, ActorUpdateCallback(a0) ; $019B02
-        addq.w       #$1, -$71c8(a6)                               ; $019B0A
+        addq.w       #$1, rEnemyDeathsRecorded(a6)                               ; $019B0A
         clr.b        ActorUpdateDelay(a0)                          ; $019B0E
         move.l       #HitBeatressCorpse, ActorHitCallback(a0)      ; $019B12
-        move.l       #EnvironmentRoutine_01D130, ActorExitCallback(a0) ; $019B1A
+        move.l       #PlaceCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $019B1A
         tst.b        ActorMarkerTracked(a0)                        ; $019B22
         beq.b        loc_019B30                                    ; $019B26
-        move.l       #EnvironmentRoutine_097964, ActorExitCallback(a0) ; $019B28
+        move.l       #WriteTrackedCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $019B28
 
 loc_019B30:
         move.l       #DrawBeatressCorpse, ActorDrawCallback(a0)    ; $019B30
@@ -45,14 +45,14 @@ loc_019B6C:
 
 loc_019B7A:
         move.l       #$1ef8a, ActorLinkCallback(a0)                ; $019B7A
-        lea.l        -$6fdc(a6), a1                                ; $019B82
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $019B82
         move.b       #$12, (a1)+                                   ; $019B86
         move.b       ActorLinkId(a0), (a1)+                        ; $019B8A
         move.w       ActorFlags(a0), d0                            ; $019B8E
         ori.w        #$20, d0                                      ; $019B92
         move.b       d0, (a1)+                                     ; $019B96
         move.b       ActorFloor(a0), (a1)+                         ; $019B98
-        lea.l        -$6fdc(a6), a0                                ; $019B9C
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $019B9C
         jmp          QueueLinkCommand.l                            ; $019BA0
 
 BeatressTickWeaponDeath:

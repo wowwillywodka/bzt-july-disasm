@@ -8,7 +8,7 @@
 
 RunTitleAndGameFlow:
 ; July flow: Start/options/password/link setup, five-character selection, then scene loading. GeometryEpisode is separate from packed LevelSelection. See docs/GAME_FLOW.md.
-        move.w       -$55ae(a6), d0                                ; $000DAE
+        move.w       rCurrentSoundSequenceId(a6), d0                                ; $000DAE
         cmpi.w       #$2, d0                                       ; $000DB2
         bls.b        loc_000DBE                                    ; $000DB6
         cmpi.w       #$42, d0                                      ; $000DB8
@@ -44,7 +44,7 @@ loc_000E0C:
         clr.w        rSelectedCharacter(a6)                        ; $000E16
         jsr          RunCharacterSelection.l                       ; $000E1A
         bsr.w        LoadSceneAndRunGameplay                       ; $000E20
-        clr.l        -$71b6(a6)                                    ; $000E24
+        clr.l        rGameClockFrameTicks(a6)                                    ; $000E24
         bra.w        InitializeHardware                            ; $000E28
 
 loc_000E2C:
@@ -66,7 +66,7 @@ loc_000E2C:
         move.w       d2, rSelectedCharacter(a6)                    ; $000E66
         move.w       rLinkRole(a6), -(a7)                          ; $000E6A
         clr.w        rLinkRole(a6)                                 ; $000E6E
-        jsr          SoundRoutine_07A990.l                         ; $000E72
+        jsr          GemsStopAll.l                         ; $000E72
         bsr.w        LoadSceneAndRunGameplay                       ; $000E78
         move.w       (a7)+, rLinkRole(a6)                          ; $000E7C
         cmpi.w       #$1, d7                                       ; $000E80

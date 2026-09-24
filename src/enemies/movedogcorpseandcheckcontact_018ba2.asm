@@ -49,7 +49,7 @@ loc_018BDC:
         bra.b        loc_018BFA                                    ; $018BF4
 
 loc_018BF6:
-        bra.w        EnemiesRoutine_01E25A                         ; $018BF6
+        bra.w        SteerEnemyMotionAtNearbyWall                         ; $018BF6
 
 loc_018BFA:
         movea.l      ActorTarget(a0), a3                           ; $018BFA
@@ -62,7 +62,7 @@ loc_018BFA:
         jsr          OctagonalDistance.l                           ; $018C12
         cmpi.w       #$60, d0                                      ; $018C18
         bcs.b        loc_018C22                                    ; $018C1C
-        bra.w        EnemiesRoutine_01E25A                         ; $018C1E
+        bra.w        SteerEnemyMotionAtNearbyWall                         ; $018C1E
 
 loc_018C22:
         tst.b        ActorMarkerTracked(a0)                        ; $018C22
@@ -73,7 +73,7 @@ loc_018C22:
 loc_018C32:
         cmpi.b       #$3, ActorState(a0)                           ; $018C32
         bne.b        loc_018C9C                                    ; $018C38
-        cmpa.l       #$ff11e2, a3                                  ; $018C3A
+        cmpa.l       #ramPlayerActorProxy, a3                                  ; $018C3A
         bne.b        SendDogCorpsePickup                           ; $018C40
         jsr          NextRandom.l                                  ; $018C42
         asr.w        #$8, d2                                       ; $018C48

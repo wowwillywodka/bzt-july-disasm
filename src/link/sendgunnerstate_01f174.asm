@@ -8,7 +8,7 @@
 
 SendGunnerState:
 ; Command0D writes ID, XY and MotionXY. Selected animation D0/D2 are not serialized by tail $1F204; receiver behavior is a separate contract.
-        lea.l        -$6fdc(a6), a1                                ; $01F174
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01F174
         move.b       #$d, (a1)+                                    ; $01F178
         move.b       ActorLinkId(a0), (a1)+                        ; $01F17C
         move.w       ActorX(a0), (a1)+                             ; $01F180
@@ -33,21 +33,21 @@ loc_01F1AA:
 loc_01F1AC:
         move.b       ActorStateCounter(a0), d7                     ; $01F1AC
         cmpi.b       #$9, d7                                       ; $01F1B0
-        beq.b        ActorsRoutine_01F1E8                          ; $01F1B4
+        beq.b        QueueGunnerStatePacketVariantA                          ; $01F1B4
         cmpi.b       #$8, d7                                       ; $01F1B6
-        beq.b        ActorsRoutine_01F1E8                          ; $01F1BA
+        beq.b        QueueGunnerStatePacketVariantA                          ; $01F1BA
         cmpi.b       #$2, d7                                       ; $01F1BC
-        beq.b        ActorsRoutine_01F1E8                          ; $01F1C0
+        beq.b        QueueGunnerStatePacketVariantA                          ; $01F1C0
         cmpi.b       #$1, d7                                       ; $01F1C2
-        beq.b        ActorsRoutine_01F1E8                          ; $01F1C6
+        beq.b        QueueGunnerStatePacketVariantA                          ; $01F1C6
         cmpi.b       #$7, d7                                       ; $01F1C8
-        beq.b        ActorsRoutine_01F1F2                          ; $01F1CC
+        beq.b        QueueGunnerStatePacketVariantB                          ; $01F1CC
         cmpi.b       #$6, d7                                       ; $01F1CE
-        beq.b        ActorsRoutine_01F1F2                          ; $01F1D2
+        beq.b        QueueGunnerStatePacketVariantB                          ; $01F1D2
         cmpi.b       #$4, d7                                       ; $01F1D4
-        beq.b        ActorsRoutine_01F1F2                          ; $01F1D8
+        beq.b        QueueGunnerStatePacketVariantB                          ; $01F1D8
         cmpi.b       #$3, d7                                       ; $01F1DA
-        beq.b        ActorsRoutine_01F1F2                          ; $01F1DE
+        beq.b        QueueGunnerStatePacketVariantB                          ; $01F1DE
         cmpi.b       #$5, d7                                       ; $01F1E0
         beq.b        loc_01F1FC                                    ; $01F1E4
         rts                                                        ; $01F1E6

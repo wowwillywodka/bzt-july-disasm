@@ -25,8 +25,8 @@ UpdateFlamethrowerParticle:
         beq.w        loc_01CF90                                    ; $01CE3A
 
 loc_01CE3E:
-        move.b       #$1, -$55be(a6)                               ; $01CE3E
-        move.b       #$1, -$55bd(a6)                               ; $01CE44
+        move.b       #$1, rRemoteHitCommandVariant(a6)                               ; $01CE3E
+        move.b       #$1, rRemoteHitCommandSpecial(a6)                               ; $01CE44
         move.w       ActorX(a0), d0                                ; $01CE4A
         move.w       ActorY(a0), d1                                ; $01CE4E
         clr.w        d5                                            ; $01CE52
@@ -41,7 +41,7 @@ loc_01CE66:
         movem.w      d0-d1/d5/d7, -(a7)                            ; $01CE66
         move.l       (a0), -(a7)                                   ; $01CE6A
         move.w       ActorFlags(a0), d3                            ; $01CE6C
-        andi.w       #$c8, d3                                      ; $01CE70
+        andi.w       #ActorFlagAimAnyView, d3                                      ; $01CE70
         beq.b        loc_01CED0                                    ; $01CE74
         cmp.b        ActorFloor(a0), d5                            ; $01CE76
         bne.b        loc_01CED0                                    ; $01CE7A
@@ -64,10 +64,10 @@ loc_01CE94:
         bcc.b        loc_01CED0                                    ; $01CEAE
         movea.l      ActorHitCallback(a0), a1                      ; $01CEB0
         move.l       a0, -(a7)                                     ; $01CEB4
-        move.w       -$6fe0(a6), -(a7)                             ; $01CEB6
-        move.w       #$10, -$6fe0(a6)                              ; $01CEBA
+        move.w       rHitParticleCount(a6), -(a7)                             ; $01CEB6
+        move.w       #$10, rHitParticleCount(a6)                              ; $01CEBA
         jsr          (a1)                                          ; $01CEC0
-        move.w       (a7)+, -$6fe0(a6)                             ; $01CEC2
+        move.w       (a7)+, rHitParticleCount(a6)                             ; $01CEC2
         movea.l      (a7)+, a0                                     ; $01CEC6
         clr.w        ActorMotionX(a0)                              ; $01CEC8
         clr.w        ActorMotionY(a0)                              ; $01CECC
@@ -97,13 +97,13 @@ loc_01CEF8:
         jsr          OctagonalDistance.l                           ; $01CF08
         cmpi.w       #$30, d0                                      ; $01CF0E
         bcc.w        loc_01CF1C                                    ; $01CF12
-        jsr          UiRoutine_00E000.l                            ; $01CF16
+        jsr          ResolvePlayerHitOrConsumeAlternateSlot.l                            ; $01CF16
 
 loc_01CF1C:
-        clr.b        -$55be(a6)                                    ; $01CF1C
-        clr.b        -$55bd(a6)                                    ; $01CF20
+        clr.b        rRemoteHitCommandVariant(a6)                                    ; $01CF1C
+        clr.b        rRemoteHitCommandSpecial(a6)                                    ; $01CF20
         move.w       #$38, d0                                      ; $01CF24
-        jsr          SoundRoutine_00DF64.l                         ; $01CF28
+        jsr          RouteSoundEventByActorFloor.l                         ; $01CF28
         movea.l      (a7)+, a0                                     ; $01CF2E
         clr.b        ActorUpdateDelay(a0)                          ; $01CF30
         clr.b        ActorEffectCounter(a0)                        ; $01CF34
@@ -118,15 +118,15 @@ loc_01CF1C:
         rts                                                        ; $01CF62
 
 loc_01CF64:
-        move.l       #$1ee78, ActorLinkCallback(a0)                ; $01CF64
-        lea.l        -$6fdc(a6), a1                                ; $01CF6C
+        move.l       #QueueActorLinkCommand11EffectCounter05, ActorLinkCallback(a0)                ; $01CF64
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01CF6C
         move.b       #$12, (a1)+                                   ; $01CF70
         move.b       ActorLinkId(a0), (a1)+                        ; $01CF74
         move.w       ActorFlags(a0), d0                            ; $01CF78
         ori.w        #$20, d0                                      ; $01CF7C
         move.b       d0, (a1)+                                     ; $01CF80
         move.b       ActorFloor(a0), (a1)+                         ; $01CF82
-        lea.l        -$6fdc(a6), a0                                ; $01CF86
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $01CF86
         jmp          QueueLinkCommand.l                            ; $01CF8A
 
 loc_01CF90:

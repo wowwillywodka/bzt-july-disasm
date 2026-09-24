@@ -6,13 +6,13 @@
         endif
 
 RetainedActorScanEdges:
-        bsr.w        loc_0099D0                                    ; $009974
+        bsr.w        ScanRetainedActorColumnNearHighX                                    ; $009974
         bra.w        loc_009994                                    ; $009978
-        bsr.w        loc_009A0E                                    ; $00997C
+        bsr.w        ScanRetainedActorColumnNearLowX                                    ; $00997C
         bra.w        loc_009994                                    ; $009980
-        bsr.w        loc_0099D0                                    ; $009984
+        bsr.w        ScanRetainedActorColumnNearHighX                                    ; $009984
         bra.w        loc_009A4C                                    ; $009988
-        bsr.w        loc_009A0E                                    ; $00998C
+        bsr.w        ScanRetainedActorColumnNearLowX                                    ; $00998C
         bra.w        loc_009A4C                                    ; $009990
 
 loc_009994:
@@ -43,7 +43,8 @@ loc_0099C8:
 loc_0099CE:
         rts                                                        ; $0099CE
 
-loc_0099D0:
+; Reviewed call entry (internal-helper): Uses player X/Y and A0/A4/A5 to scan five candidate cells near high X.
+ScanRetainedActorColumnNearHighX:
         cmpi.w       #$1e00, rPlayerX(a6)                          ; $0099D0
         bcc.b        loc_009A0C                                    ; $0099D6
         move.w       rPlayerY(a6), d0                              ; $0099D8
@@ -71,7 +72,8 @@ loc_009A04:
 loc_009A0C:
         rts                                                        ; $009A0C
 
-loc_009A0E:
+; Reviewed call entry (internal-helper): Uses player X/Y and A0/A4/A5 to scan five candidate cells near low X.
+ScanRetainedActorColumnNearLowX:
         cmpi.w       #$200, rPlayerX(a6)                           ; $009A0E
         bcs.b        loc_009A4A                                    ; $009A14
         move.w       rPlayerY(a6), d0                              ; $009A16

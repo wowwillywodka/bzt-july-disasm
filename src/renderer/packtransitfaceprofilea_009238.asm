@@ -19,7 +19,7 @@ PackTransitFaceProfileA:
         lsl.w        #$8, d3                                       ; $00924A
         move.b       d1, d3                                        ; $00924C
         addq.b       #$1, d3                                       ; $00924E
-        bsr.w        EnemiesRoutine_0096CC                         ; $009250
+        bsr.w        QueueBackgroundFilledWallMarker                         ; $009250
 
 loc_009254:
         clr.w        d3                                            ; $009254

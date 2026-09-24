@@ -10,11 +10,11 @@ FireShotgun:
 ; Shotgun immediate hit: linear distance (character0 halves), threshold compares LONG D0. Normal ConsumeSelectedItemAndUpdateHud clears upper D0 through MULU; aim selector updates only its word.
         tst.w        rWeaponLoweringOffset(a6)                     ; $01481A
         bne.w        loc_0148D0                                    ; $01481E
-        clr.w        -$55a0(a6)                                    ; $014822
-        clr.w        -$559e(a6)                                    ; $014826
+        clr.w        rStatusSoundScriptActive(a6)                                    ; $014822
+        clr.w        rSoundEffectCooldown(a6)                                    ; $014826
         move.w       #$2d, d0                                      ; $01482A
-        jsr          SoundRoutine_00DF84.l                         ; $01482E
-        move.w       #$14, -$559e(a6)                              ; $014834
+        jsr          PlaySoundEventAndMaybeSendLink.l                         ; $01482E
+        move.w       #$14, rSoundEffectCooldown(a6)                              ; $014834
         move.w       #$1, rWeaponActionPhase(a6)                   ; $01483A
         bsr.w        ConsumeSelectedItemAndUpdateHud               ; $014840
         move.l       d0, -(a7)                                     ; $014844
@@ -29,7 +29,7 @@ FireShotgun:
         move.w       #$c, d1                                       ; $014864
 
 loc_014868:
-        move.w       -$71b0(a6), d2                                ; $014868
+        move.w       rViewSwayAngleOffset(a6), d2                                ; $014868
         addi.w       #$40, d2                                      ; $01486C
         jsr          SelectPlayerWeaponAimTarget.l                 ; $014870
         cmpa.l       #$0, a1                                       ; $014876
@@ -56,7 +56,7 @@ loc_01489E:
         bra.b        loc_0148D0                                    ; $0148BC
 
 loc_0148BE:
-        jsr          ObjectsRoutine_00A3D2.l                       ; $0148BE
+        jsr          ClassifyPlayerCellForWeapon.l                       ; $0148BE
         bne.b        loc_0148CA                                    ; $0148C4
         bsr.w        TraceMissedShotAndSpawnImpact                 ; $0148C6
 

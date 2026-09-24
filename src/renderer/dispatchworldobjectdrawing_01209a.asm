@@ -8,7 +8,7 @@
 
 DispatchWorldObjectDrawing:
 ; Read queued TYPE (not map-cell index), remap $85 to $25, accept $18..$82 and dispatch 107 entries. Some entries select actor banks instead of ZoneObjectTiles.
-        suba.w       #$a, a3                                       ; $01209A
+        suba.w       #ProjectedWorldObjectEntryBytes, a3          ; $01209A
         move.w       $4(a3), d2                                    ; $01209E
         andi.w       #$ff, d2                                      ; $0120A2
         cmpi.w       #$85, d2                                      ; $0120A6
@@ -24,10 +24,10 @@ loc_0120B0:
         movea.l      (a5, d2.w), a5                                ; $0120C0
         move.w       $6(a3), d5                                    ; $0120C4
         move.w       $8(a3), d1                                    ; $0120C8
-        move.w       d5, -$6f26(a6)                                ; $0120CC
+        move.w       d5, rSoftwareSpriteProjectionScale(a6)                                ; $0120CC
         move.w       d5, d2                                        ; $0120D0
-        move.w       -$71d8(a6), d3                                ; $0120D2
-        sub.w        -$6e4c(a6), d3                                ; $0120D6
+        move.w       rPlayerViewOffsetZ(a6), d3                                ; $0120D2
+        sub.w        rTransitHeightOffset(a6), d3                                ; $0120D6
         addi.w       #$20, d3                                      ; $0120DA
         muls.w       d3, d2                                        ; $0120DE
         asr.l        #$6, d2                                       ; $0120E0

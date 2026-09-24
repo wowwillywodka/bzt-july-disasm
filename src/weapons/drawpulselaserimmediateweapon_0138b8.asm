@@ -27,36 +27,36 @@ loc_0138E2:
         cmpi.w       #$4, rWeaponActionPhase(a6)                   ; $0138E8
         bhi.b        loc_013910                                    ; $0138EE
         movem.w      d0-d1, -(a7)                                  ; $0138F0
-        clr.w        -$55a0(a6)                                    ; $0138F4
-        clr.w        -$559e(a6)                                    ; $0138F8
+        clr.w        rStatusSoundScriptActive(a6)                                    ; $0138F4
+        clr.w        rSoundEffectCooldown(a6)                                    ; $0138F8
         move.w       #$1e, d0                                      ; $0138FC
-        jsr          SoundRoutine_00DF84.l                         ; $013900
-        move.w       #$f, -$559e(a6)                               ; $013906
+        jsr          PlaySoundEventAndMaybeSendLink.l                         ; $013900
+        move.w       #$f, rSoundEffectCooldown(a6)                               ; $013906
         movem.w      (a7)+, d0-d1                                  ; $01390C
 
 loc_013910:
-        movea.l      -$7fc2(a6), a2                                ; $013910
+        movea.l      rSpriteAttributeTableWritePointer(a6), a2                                ; $013910
         move.w       d0, (a2)+                                     ; $013914
-        move.w       -$7fbe(a6), d2                                ; $013916
+        move.w       rSpriteAttributeNextLink(a6), d2                                ; $013916
         ori.w        #$b00, d2                                     ; $01391A
-        addq.w       #$1, -$7fbe(a6)                               ; $01391E
+        addq.w       #$1, rSpriteAttributeNextLink(a6)                               ; $01391E
         move.w       d2, (a2)+                                     ; $013922
         move.w       #$a4ef, (a2)+                                 ; $013924
         move.w       d1, (a2)+                                     ; $013928
-        move.l       a2, -$7fc2(a6)                                ; $01392A
+        move.l       a2, rSpriteAttributeTableWritePointer(a6)                                ; $01392A
         cmpi.w       #$2, rWeaponActionPhase(a6)                   ; $01392E
         bne.b        loc_013958                                    ; $013934
         subq.w       #$1, d1                                       ; $013936
         subq.w       #$5, d0                                       ; $013938
-        movea.l      -$7fc2(a6), a2                                ; $01393A
+        movea.l      rSpriteAttributeTableWritePointer(a6), a2                                ; $01393A
         move.w       d0, (a2)+                                     ; $01393E
-        move.w       -$7fbe(a6), d2                                ; $013940
+        move.w       rSpriteAttributeNextLink(a6), d2                                ; $013940
         ori.w        #$a00, d2                                     ; $013944
-        addq.w       #$1, -$7fbe(a6)                               ; $013948
+        addq.w       #$1, rSpriteAttributeNextLink(a6)                               ; $013948
         move.w       d2, (a2)+                                     ; $01394C
         move.w       #$a4fb, (a2)+                                 ; $01394E
         move.w       d1, (a2)+                                     ; $013952
-        move.l       a2, -$7fc2(a6)                                ; $013954
+        move.l       a2, rSpriteAttributeTableWritePointer(a6)                                ; $013954
 
 loc_013958:
         rts                                                        ; $013958

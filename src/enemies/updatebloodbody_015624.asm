@@ -50,7 +50,7 @@ loc_01569C:
         move.l       (a1), -(a7)                                   ; $01569C
         cmpa.l       a0, a1                                        ; $01569E
         beq.b        loc_0156CA                                    ; $0156A0
-        cmpi.l       #$15624, ActorUpdateCallback(a1)              ; $0156A2
+        cmpi.l       #UpdateBloodBody, ActorUpdateCallback(a1)    ; $0156A2
         bne.b        loc_0156CA                                    ; $0156AA
         cmpi.b       #$1, ActorBehaviorByte50(a1)                  ; $0156AC
         bne.b        loc_0156B6                                    ; $0156B2
@@ -175,9 +175,9 @@ BloodBodyTickAttack:
 
 loc_0157DC:
         move.w       #$5f, d0                                      ; $0157DC
-        jsr          SoundRoutine_00DF64(pc)                       ; $0157E0
+        jsr          RouteSoundEventByActorFloor(pc)                       ; $0157E0
         move.w       #$83, d0                                      ; $0157E4
-        jmp          SoundRoutine_00DF64.l                         ; $0157E8
+        jmp          RouteSoundEventByActorFloor.l                         ; $0157E8
 
 BloodBodyTryHitTarget:
         movea.l      ActorTarget(a0), a3                           ; $0157EE
@@ -189,7 +189,7 @@ BloodBodyTryHitTarget:
         jsr          TraceFiveRayObstructionInActiveWindow.l       ; $015802
         bne.w        BloodBodyChooseNextGoalOrDie                  ; $015808
         move.w       #$400, d3                                     ; $01580C
-        tst.w        -$71d8(a6)                                    ; $015810
+        tst.w        rPlayerViewOffsetZ(a6)                                    ; $015810
         bpl.b        loc_015826                                    ; $015814
         move.w       #$200, d3                                     ; $015816
         tst.w        rSceneColorMode(a6)                           ; $01581A
@@ -234,9 +234,9 @@ loc_015840:
 
 BloodBodyPlayAttackSounds:
         move.w       #$5f, d0                                      ; $015878
-        jsr          SoundRoutine_00DF64(pc)                       ; $01587C
+        jsr          RouteSoundEventByActorFloor(pc)                       ; $01587C
         move.w       #$83, d0                                      ; $015880
-        jsr          SoundRoutine_00DF64.l                         ; $015884
+        jsr          RouteSoundEventByActorFloor.l                         ; $015884
 
 loc_01588A:
         rts                                                        ; $01588A
@@ -245,19 +245,19 @@ BloodBodyEnterDeath:
 ; Normal death installs corpse callbacks and state=3. Health death is checked with BMI (<0), not <=0; special states 5/6 reach this path regardless of remaining health.
         move.l       a0, -(a7)                                     ; $01588C
         move.w       #$1, d0                                       ; $01588E
-        jsr          SoundRoutine_00DF64(pc)                       ; $015892
+        jsr          RouteSoundEventByActorFloor(pc)                       ; $015892
         movea.l      (a7)+, a0                                     ; $015896
         tst.b        ActorAlternateDeathSignal(a0)                 ; $015898
         bne.w        EnterLegacyEnemyDeathEffect                   ; $01589C
         andi.w       #$ff2f, ActorFlags(a0)                        ; $0158A0
         move.l       #UpdateBloodBodyCorpse, ActorUpdateCallback(a0) ; $0158A6
-        addq.w       #$1, -$71c8(a6)                               ; $0158AE
+        addq.w       #$1, rEnemyDeathsRecorded(a6)                               ; $0158AE
         clr.b        ActorUpdateDelay(a0)                          ; $0158B2
         move.l       #HitBloodBodyCorpse, ActorHitCallback(a0)     ; $0158B6
-        move.l       #EnvironmentRoutine_01D130, ActorExitCallback(a0) ; $0158BE
+        move.l       #PlaceCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $0158BE
         tst.b        ActorMarkerTracked(a0)                        ; $0158C6
         beq.b        loc_0158D4                                    ; $0158CA
-        move.l       #EnvironmentRoutine_097964, ActorExitCallback(a0) ; $0158CC
+        move.l       #WriteTrackedCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $0158CC
 
 loc_0158D4:
         move.l       #DrawBloodBodyCorpse, ActorDrawCallback(a0)   ; $0158D4
@@ -279,14 +279,14 @@ loc_015904:
 
 loc_015912:
         move.l       #$1ef6c, ActorLinkCallback(a0)                ; $015912
-        lea.l        -$6fdc(a6), a1                                ; $01591A
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01591A
         move.b       #$12, (a1)+                                   ; $01591E
         move.b       ActorLinkId(a0), (a1)+                        ; $015922
         move.w       ActorFlags(a0), d0                            ; $015926
         ori.w        #$20, d0                                      ; $01592A
         move.b       d0, (a1)+                                     ; $01592E
         move.b       ActorFloor(a0), (a1)+                         ; $015930
-        lea.l        -$6fdc(a6), a0                                ; $015934
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $015934
         jmp          QueueLinkCommand.l                            ; $015938
 
 BloodBodyTickWeapon0DDeath:

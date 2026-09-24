@@ -8,7 +8,7 @@
 RetainedGemsCommands:
         jsr          BeginGemsCommand(pc)                          ; $07A9DC
         moveq        #$14, d0                                      ; $07A9E0
-        bra.b        loc_07A9B4                                    ; $07A9E2
+        bra.b        WriteGemsTwoArgumentCommand                                    ; $07A9E2
         ifne *-$7A9E4
         fail "ROM end moved"
         endif

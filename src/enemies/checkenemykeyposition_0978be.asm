@@ -20,8 +20,8 @@ CheckEnemyKeyPosition:
         rts                                                        ; $0978DC
 
 loc_0978DE:
-        move.b       -$438d(a6), d1                                ; $0978DE
-        move.b       -$438b(a6), d2                                ; $0978E2
+        move.b       rMapWindowOriginXLow(a6), d1                                ; $0978DE
+        move.b       rMapWindowOriginYLow(a6), d2                                ; $0978E2
 ; Marker-list discriminator; no explicit actor-field producer found in the reviewed July code.
         move.b       ActorMarkerKind(a0), d3                       ; $0978E6
         add.b        ActorCellX(a0), d1                            ; $0978EA

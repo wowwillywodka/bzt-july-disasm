@@ -10,7 +10,8 @@ RotateVectorPlusQuarterTurn:
 ; Three calls/fallthroughs to RotateVectorMinusQuarterTurn: (D0,D1)->(-D1,D0), word arithmetic. Used by ordinary floor transitions, not train state dispatch.
         bsr.w        RotateVectorMinusQuarterTurn                  ; $098A9E
 
-loc_098AA2:
+; Reviewed call entry (dual-entry): Calls RotateVectorMinusQuarterTurn, then falls into it once more.
+RotateVectorHalfTurnWords:
         bsr.w        RotateVectorMinusQuarterTurn                  ; $098AA2
         ifne *-$98AA6
         fail "ROM end moved"

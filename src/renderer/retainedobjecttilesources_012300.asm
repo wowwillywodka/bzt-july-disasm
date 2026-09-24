@@ -22,7 +22,7 @@ RetainedObjectTileSources:
         move.w       d4, d3                                        ; $01231E
         asr.w        #$1, d3                                       ; $012320
         sub.w        d3, d1                                        ; $012322
-        clr.w        -$6f32(a6)                                    ; $012324
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $012324
         bra.w        ScaleAndDrawSoftwareSpriteTile                ; $012328
 
 loc_01232C:

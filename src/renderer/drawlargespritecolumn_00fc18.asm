@@ -8,8 +8,8 @@
 
 DrawLargeSpriteColumn:
         movem.l      d6/a1, -(a7)                                  ; $00FC18
-        move.w       -$6f2a(a6), d6                                ; $00FC1C
-        move.w       -$6f2c(a6), d0                                ; $00FC20
+        move.w       rLargeSpriteColumnLastRow(a6), d6                                ; $00FC1C
+        move.w       rLargeSpriteVerticalSourcePhase(a6), d0                                ; $00FC20
         move.b       (a1)+, d1                                     ; $00FC24
         beq.b        loc_00FC2C                                    ; $00FC26
         move.b       (a3, d1.w), d1                                ; $00FC28

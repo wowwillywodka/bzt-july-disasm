@@ -13,7 +13,7 @@ RunBriefingTextLoop:
         jsr          ClearMenuTileRectangle.l                      ; $07FC92
         move.w       #$0, d0                                       ; $07FC98
         move.w       d0, $ff2a4e.l                                 ; $07FC9C
-        jsr          VideoRoutine_021E4A.l                         ; $07FCA2
+        jsr          WriteVerticalScrollToVsram.l                         ; $07FCA2
 
 loc_07FCA8:
         move.w       #$3, d0                                       ; $07FCA8
@@ -63,7 +63,7 @@ loc_07FD40:
 
 loc_07FD44:
         move.w       d0, -(a7)                                     ; $07FD44
-        jsr          loc_07FD86.l                                  ; $07FD46
+        jsr          AdvanceRetainedBriefingScroll.l                                  ; $07FD46
         move.w       (a7)+, d0                                     ; $07FD4C
         dbra         d0, loc_07FD44                                ; $07FD4E
         bra.w        loc_07FCA8                                    ; $07FD52

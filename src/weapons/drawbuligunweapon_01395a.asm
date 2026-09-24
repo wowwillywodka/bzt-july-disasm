@@ -22,28 +22,28 @@ DrawBuligunWeapon:
         clr.w        rWeaponActionPhase(a6)                        ; $013980
 
 loc_013984:
-        movea.l      -$7fc2(a6), a2                                ; $013984
+        movea.l      rSpriteAttributeTableWritePointer(a6), a2                                ; $013984
         move.w       d0, (a2)+                                     ; $013988
-        move.w       -$7fbe(a6), d2                                ; $01398A
+        move.w       rSpriteAttributeNextLink(a6), d2                                ; $01398A
         ori.w        #$b00, d2                                     ; $01398E
-        addq.w       #$1, -$7fbe(a6)                               ; $013992
+        addq.w       #$1, rSpriteAttributeNextLink(a6)                               ; $013992
         move.w       d2, (a2)+                                     ; $013996
         move.w       #$a4ef, (a2)+                                 ; $013998
         move.w       d1, (a2)+                                     ; $01399C
-        move.l       a2, -$7fc2(a6)                                ; $01399E
+        move.l       a2, rSpriteAttributeTableWritePointer(a6)                                ; $01399E
         cmpi.w       #$2, rWeaponActionPhase(a6)                   ; $0139A2
         bne.b        loc_0139CE                                    ; $0139A8
         subq.w       #$1, d1                                       ; $0139AA
         subi.w       #$9, d0                                       ; $0139AC
-        movea.l      -$7fc2(a6), a2                                ; $0139B0
+        movea.l      rSpriteAttributeTableWritePointer(a6), a2                                ; $0139B0
         move.w       d0, (a2)+                                     ; $0139B4
-        move.w       -$7fbe(a6), d2                                ; $0139B6
+        move.w       rSpriteAttributeNextLink(a6), d2                                ; $0139B6
         ori.w        #$a00, d2                                     ; $0139BA
-        addq.w       #$1, -$7fbe(a6)                               ; $0139BE
+        addq.w       #$1, rSpriteAttributeNextLink(a6)                               ; $0139BE
         move.w       d2, (a2)+                                     ; $0139C2
         move.w       #$a4fb, (a2)+                                 ; $0139C4
         move.w       d1, (a2)+                                     ; $0139C8
-        move.l       a2, -$7fc2(a6)                                ; $0139CA
+        move.l       a2, rSpriteAttributeTableWritePointer(a6)                                ; $0139CA
 
 loc_0139CE:
         rts                                                        ; $0139CE

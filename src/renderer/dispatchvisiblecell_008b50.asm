@@ -12,8 +12,8 @@ DispatchVisibleCell:
         cmpi.b       #$25, d3                                      ; $008B56
         bne.b        loc_008B72                                    ; $008B5A
         move.w       d0, -(a7)                                     ; $008B5C
-        move.b       -$790e(a6), d0                                ; $008B5E
-        tst.w        -$715a(a6)                                    ; $008B62
+        move.b       rVisibleObjectCellTypeIndex(a6), d0                                ; $008B5E
+        tst.w        rCellSideEffectsSuppressed(a6)                                    ; $008B62
         bne.b        loc_008B70                                    ; $008B66
         move.b       d0, (a0)                                      ; $008B68
         jsr          CommitMapCellAndSendLink.l                    ; $008B6A

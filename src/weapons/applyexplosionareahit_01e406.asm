@@ -57,13 +57,15 @@ loc_01E472:
         cmpi.w       #$80, d0                                      ; $01E48E
         bhi.b        loc_01E49A                                    ; $01E492
 ; Distance<=$80 sets global $FF2A42 for hit callback; sender $1EAE2 uses it to select link command07 instead of06. Not ActorAlternateDeathSignal. Cleared after callback; assumed clear on entry for farther hits.
-        move.b       #$1, -$55be(a6)                               ; $01E494
+        move.b       #$1, rRemoteHitCommandVariant(a6)                               ; $01E494
 
 loc_01E49A:
+; Callback input: A0=target, D0.w=octagonal blast distance, D3/D4=blastXY-targetXY.
+; Its current handler decides whether this changes HP, state, or another projectile.
         movea.l      ActorHitCallback(a0), a1                      ; $01E49A
 ; D0=distance, D3/D4=blastXY-targetXY. No source/faction/Flags exclusion, including other projectiles. Original CurrentWeapon byte remains unchanged, so local enemy weapon-specific reactions still apply.
         jsr          (a1)                                          ; $01E49E
-        clr.b        -$55be(a6)                                    ; $01E4A0
+        clr.b        rRemoteHitCommandVariant(a6)                                    ; $01E4A0
 
 loc_01E4A4:
         movea.l      (a7)+, a0                                     ; $01E4A4

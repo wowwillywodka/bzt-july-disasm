@@ -72,7 +72,7 @@ loc_01DE64:
 
 loc_01DE6C:
         move.w       #$5e, d0                                      ; $01DE6C
-        jsr          SoundRoutine_00DF84.l                         ; $01DE70
+        jsr          PlaySoundEventAndMaybeSendLink.l                         ; $01DE70
         rts                                                        ; $01DE76
         ifne *-$1DE78
         fail "ROM end moved"

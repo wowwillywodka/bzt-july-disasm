@@ -8,10 +8,10 @@
 
 DrawGunrockProjectileTile:
 ; Shared projectile draw: active zone tile16 decimal (+$2000), scale D5/4, no horizontal mirror; Blue Dummy uses this callback. Simulation/explosion internals remain separate.
-        move.w       d5, -$6f26(a6)                                ; $01C984
+        move.w       d5, rSoftwareSpriteProjectionScale(a6)                                ; $01C984
         move.w       d5, d2                                        ; $01C988
-        move.w       -$71d8(a6), d3                                ; $01C98A
-        sub.w        -$6e4c(a6), d3                                ; $01C98E
+        move.w       rPlayerViewOffsetZ(a6), d3                                ; $01C98A
+        sub.w        rTransitHeightOffset(a6), d3                                ; $01C98E
         sub.w        ActorZ(a0), d3                                ; $01C992
         muls.w       d3, d2                                        ; $01C996
         asr.l        #$6, d2                                       ; $01C998
@@ -26,7 +26,7 @@ DrawGunrockProjectileTile:
         move.w       d4, d3                                        ; $01C9B0
         asr.w        #$1, d3                                       ; $01C9B2
         sub.w        d3, d1                                        ; $01C9B4
-        clr.w        -$6f32(a6)                                    ; $01C9B6
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $01C9B6
         move.l       a0, -(a7)                                     ; $01C9BA
         jsr          ScaleAndDrawSoftwareSpriteTile.l              ; $01C9BC
         movea.l      (a7)+, a0                                     ; $01C9C2

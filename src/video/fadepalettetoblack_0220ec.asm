@@ -12,7 +12,7 @@ FadePaletteToBlack:
         move.l       a0, -(a7)                                     ; $0220F2
         jsr          LoadPaletteLine(pc)                           ; $0220F4
         movea.l      (a7)+, a0                                     ; $0220F8
-        lea.l        -$7908(a6), a1                                ; $0220FA
+        lea.l        rPaletteFadeCurrentColors(a6), a1                                ; $0220FA
         moveq        #$20, d0                                      ; $0220FE
         subq.w       #$1, d0                                       ; $022100
 
@@ -26,7 +26,7 @@ loc_02210C:
         move.l       a0, -(a7)                                     ; $022110
         move.l       d1, d0                                        ; $022112
         jsr          WaitVBlankFrames(pc)                          ; $022114
-        lea.l        -$7908(a6), a1                                ; $022118
+        lea.l        rPaletteFadeCurrentColors(a6), a1                                ; $022118
         move.w       d5, d2                                        ; $02211C
 
 loc_02211E:
@@ -64,7 +64,7 @@ loc_02215E:
         move.w       d6, d4                                        ; $022170
 
 loc_022172:
-        lea.l        -$7908(a6), a0                                ; $022172
+        lea.l        rPaletteFadeCurrentColors(a6), a0                                ; $022172
         adda.l       d6, a0                                        ; $022176
         move.w       d4, d0                                        ; $022178
         movem.l      d4-d6, -(a7)                                  ; $02217A

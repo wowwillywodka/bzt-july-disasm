@@ -10,14 +10,14 @@ RetainedSoundStateReset:
         move.l       a6, -(a6)                                     ; $07AC34
         move.l       #$ffffffff, $ff2a56.l                         ; $07AC36
         move.l       #$ffffffff, $ff2a5a.l                         ; $07AC40
-        clr.w        $ff2a60.l                                     ; $07AC4A
+        clr.w        ramStatusSoundScriptActive.l                                     ; $07AC4A
 
 loc_07AC50:
         move.l       #$4, -(a7)                                    ; $07AC50
         move.l       #$f, -(a7)                                    ; $07AC56
-        jsr          SoundRoutine_07AA8E(pc)                       ; $07AC5C
+        jsr          GemsSetDacRate(pc)                       ; $07AC5C
         addq.l       #$4, a7                                       ; $07AC60
-        jsr          SoundRoutine_07A99E(pc)                       ; $07AC62
+        jsr          GemsReserveChannel(pc)                       ; $07AC62
         addq.l       #$4, a7                                       ; $07AC66
         lea.l        SoundEventRecords(pc), a0                     ; $07AC68
         clr.l        d0                                            ; $07AC6C
@@ -51,7 +51,7 @@ loc_07ACB6:
         andi.l       #$ff, d0                                      ; $07ACB8
         addi.w       #$d, d0                                       ; $07ACBE
         move.l       d0, -(a7)                                     ; $07ACC2
-        jsr          SoundRoutine_07A99E(pc)                       ; $07ACC4
+        jsr          GemsReserveChannel(pc)                       ; $07ACC4
         addq.l       #$4, a7                                       ; $07ACC8
         move.w       (a7)+, d0                                     ; $07ACCA
         dbra         d0, loc_07ACB6                                ; $07ACCC

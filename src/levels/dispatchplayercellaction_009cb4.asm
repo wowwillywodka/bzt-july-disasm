@@ -1,7 +1,7 @@
 ; $009CB4..$009CEB | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; RESEARCH NOTE (July; semantic claims still require local review):
-; Чтение типа клетки карты под игроком: индексирует map-указатель (-0x6fb2) по X/Y камеры (-0x7206/-0x7204), прогоняет байт через celltype-LUT (0x24ea) и второй LUT (0x9cec), затем jmp по jump-таблице обработчиков взаимодействия с клеткой
+; JULY LOCAL REVIEW: Current player cell -> episode type -> 1-based action
+; selector ($009CEC). Zero returns; 1..16 dispatch through $009DEC.
         ifne *-$9CB4
         fail "ROM start moved"
         endif

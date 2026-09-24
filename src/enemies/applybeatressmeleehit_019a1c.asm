@@ -23,14 +23,14 @@ ApplyBeatressMeleeHit:
         jsr          (a1)                                          ; $019A42
         movea.l      (a7)+, a3                                     ; $019A44
         movea.l      (a7)+, a0                                     ; $019A46
-        cmpa.l       #$ff11e2, a3                                  ; $019A48
+        cmpa.l       #ramPlayerActorProxy, a3                                  ; $019A48
         bne.b        loc_019A58                                    ; $019A4E
-        asl.w        -$7202(a6)                                    ; $019A50
-        asl.w        -$7200(a6)                                    ; $019A54
+        asl.w        rPlayerHitImpulseX(a6)                                    ; $019A50
+        asl.w        rPlayerHitImpulseY(a6)                                    ; $019A54
 
 loc_019A58:
         move.w       #$2a, d0                                      ; $019A58
-        jmp          SoundRoutine_00DF64.l                         ; $019A5C
+        jmp          RouteSoundEventByActorFloor.l                         ; $019A5C
         ifne *-$19A62
         fail "ROM end moved"
         endif

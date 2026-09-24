@@ -19,13 +19,13 @@ DamagePanelCellAtPoint:
         lea.l        rCellTypeByIndex(a6), a5                      ; $00A1E2
         move.b       (a5, d3.w), d3                                ; $00A1E6
         cmpi.b       #$79, d3                                      ; $00A1EA
-        beq.b        ObjectsRoutine_00A204                         ; $00A1EE
+        beq.b        ReplacePointPanelType79                         ; $00A1EE
         cmpi.b       #$7b, d3                                      ; $00A1F0
-        beq.b        loc_00A230                                    ; $00A1F4
+        beq.b        ReplacePointPanelType7B                                    ; $00A1F4
         cmpi.b       #$7d, d3                                      ; $00A1F6
-        beq.b        loc_00A254                                    ; $00A1FA
+        beq.b        ReplacePointPanelType7D                                    ; $00A1FA
         cmpi.b       #$7f, d3                                      ; $00A1FC
-        beq.b        loc_00A278                                    ; $00A200
+        beq.b        ReplacePointPanelType7F                                    ; $00A200
         rts                                                        ; $00A202
         ifne *-$A204
         fail "ROM end moved"

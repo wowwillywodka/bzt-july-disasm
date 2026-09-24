@@ -64,8 +64,8 @@ loc_00BD14:
 loc_00BD1C:
 ; Reached even when all 64 records miss. D4/D5 are not valid destination coordinates in that case; never describe this as a safe fallback.
         ext.w        d0                                            ; $00BD1C
-        move.b       -$7205(a6), d2                                ; $00BD1E
-        move.b       -$7203(a6), d3                                ; $00BD22
+        move.b       rPlayerXLow(a6), d2                                ; $00BD1E
+        move.b       rPlayerYLow(a6), d3                                ; $00BD22
         andi.w       #$ff, d2                                      ; $00BD26
         andi.w       #$ff, d3                                      ; $00BD2A
         lsl.w        #$8, d4                                       ; $00BD2E
@@ -220,9 +220,9 @@ loc_00BEF2:
         bra.w        loc_00BFEE                                    ; $00BF52
 
 loc_00BF56:
-        addi.w       #$80, -$71ee(a6)                              ; $00BF56
-        move.b       -$7205(a6), d0                                ; $00BF5C
-        move.b       -$7203(a6), d1                                ; $00BF60
+        addi.w       #$80, rPlayerFacingAngle(a6)                              ; $00BF56
+        move.b       rPlayerXLow(a6), d0                                ; $00BF5C
+        move.b       rPlayerYLow(a6), d1                                ; $00BF60
         subi.b       #$80, d0                                      ; $00BF64
         subi.b       #$80, d1                                      ; $00BF68
         ext.w        d0                                            ; $00BF6C
@@ -230,14 +230,14 @@ loc_00BF56:
         jsr          RotateVectorPlusQuarterTurn.l                 ; $00BF70
         addi.b       #$80, d0                                      ; $00BF76
         addi.b       #$80, d1                                      ; $00BF7A
-        move.b       d0, -$7205(a6)                                ; $00BF7E
-        move.b       d1, -$7203(a6)                                ; $00BF82
+        move.b       d0, rPlayerXLow(a6)                                ; $00BF7E
+        move.b       d1, rPlayerYLow(a6)                                ; $00BF82
         bra.w        loc_00BFEE                                    ; $00BF86
 
 loc_00BF8A:
-        subi.w       #$80, -$71ee(a6)                              ; $00BF8A
-        move.b       -$7205(a6), d0                                ; $00BF90
-        move.b       -$7203(a6), d1                                ; $00BF94
+        subi.w       #$80, rPlayerFacingAngle(a6)                              ; $00BF8A
+        move.b       rPlayerXLow(a6), d0                                ; $00BF90
+        move.b       rPlayerYLow(a6), d1                                ; $00BF94
         subi.b       #$80, d0                                      ; $00BF98
         subi.b       #$80, d1                                      ; $00BF9C
         ext.w        d0                                            ; $00BFA0
@@ -245,31 +245,31 @@ loc_00BF8A:
         jsr          RotateVectorMinusQuarterTurn.l                ; $00BFA4
         addi.b       #$80, d0                                      ; $00BFAA
         addi.b       #$80, d1                                      ; $00BFAE
-        move.b       d0, -$7205(a6)                                ; $00BFB2
-        move.b       d1, -$7203(a6)                                ; $00BFB6
+        move.b       d0, rPlayerXLow(a6)                                ; $00BFB2
+        move.b       d1, rPlayerYLow(a6)                                ; $00BFB6
         bra.w        loc_00BFEE                                    ; $00BFBA
 
 loc_00BFBE:
-        addi.w       #$100, -$71ee(a6)                             ; $00BFBE
-        move.b       -$7205(a6), d0                                ; $00BFC4
-        move.b       -$7203(a6), d1                                ; $00BFC8
+        addi.w       #$100, rPlayerFacingAngle(a6)                             ; $00BFBE
+        move.b       rPlayerXLow(a6), d0                                ; $00BFC4
+        move.b       rPlayerYLow(a6), d1                                ; $00BFC8
         subi.b       #$80, d0                                      ; $00BFCC
         subi.b       #$80, d1                                      ; $00BFD0
         ext.w        d0                                            ; $00BFD4
         ext.w        d1                                            ; $00BFD6
-        jsr          loc_098AA2.l                                  ; $00BFD8
+        jsr          RotateVectorHalfTurnWords.l                                  ; $00BFD8
         addi.b       #$80, d0                                      ; $00BFDE
         addi.b       #$80, d1                                      ; $00BFE2
-        move.b       d0, -$7205(a6)                                ; $00BFE6
-        move.b       d1, -$7203(a6)                                ; $00BFEA
+        move.b       d0, rPlayerXLow(a6)                                ; $00BFE6
+        move.b       d1, rPlayerYLow(a6)                                ; $00BFEA
 
 loc_00BFEE:
-        andi.w       #$1ff, -$71ee(a6)                             ; $00BFEE
+        andi.w       #$1ff, rPlayerFacingAngle(a6)                             ; $00BFEE
         lea.l        AngleVectorPairs(pc), a0                      ; $00BFF4
-        move.w       -$71ee(a6), d0                                ; $00BFF8
+        move.w       rPlayerFacingAngle(a6), d0                                ; $00BFF8
         lsl.w        #$2, d0                                       ; $00BFFC
-        move.w       (a0, d0.w), -$71f2(a6)                        ; $00BFFE
-        move.w       $2(a0, d0.w), -$71f0(a6)                      ; $00C004
+        move.w       (a0, d0.w), rPlayerFacingVectorX(a6)                        ; $00BFFE
+        move.w       $2(a0, d0.w), rPlayerFacingVectorY(a6)                      ; $00C004
         ifne *-$C00A
         fail "ROM end moved"
         endif

@@ -50,7 +50,7 @@ ChooseTargetGoalAtPlayerAnglePlusA8:
         andi.w       #$1ff, d0                                     ; $015DFA
         subi.w       #$100, d0                                     ; $015DFE
         lea.l        AngleVectorPairs.w, a4                        ; $015E02
-        move.w       -$71ee(a6), d0                                ; $015E06
+        move.w       rPlayerFacingAngle(a6), d0                                ; $015E06
         addi.w       #$a8, d0                                      ; $015E0A
         andi.w       #$1ff, d0                                     ; $015E0E
         lsl.w        #$2, d0                                       ; $015E12
@@ -75,7 +75,7 @@ ChooseTargetGoalAtPlayerAnglePlus158:
         andi.w       #$1ff, d0                                     ; $015E4A
         subi.w       #$100, d0                                     ; $015E4E
         lea.l        AngleVectorPairs.w, a4                        ; $015E52
-        move.w       -$71ee(a6), d0                                ; $015E56
+        move.w       rPlayerFacingAngle(a6), d0                                ; $015E56
         addi.w       #$158, d0                                     ; $015E5A
         andi.w       #$1ff, d0                                     ; $015E5E
         lsl.w        #$2, d0                                       ; $015E62

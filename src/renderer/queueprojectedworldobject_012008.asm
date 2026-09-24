@@ -2,6 +2,7 @@
 ; Maintained assembly input; no extraction occurs during build.
 ; JULY LOCAL REVIEW:
 ; Queue a 10-byte world object record: local cell coordinates, type word, projected scale and screen X. Center is cell +$80; depth below 2 is rejected. See docs/OBJECT_GRAPHICS.md.
+; The fixed queue at FF10E8 has 20 records; its tail pointer lives at FF11B0.
         ifne *-$12008
         fail "ROM start moved"
         endif
@@ -12,18 +13,18 @@ QueueProjectedWorldObject:
         swap         d0                                            ; $01200C
         move.w       d1, d0                                        ; $01200E
         swap         d0                                            ; $012010
-        lea.l        -$6f18(a6), a3                                ; $012012
+        lea.l        rProjectedWorldObjectQueue(a6), a3                                ; $012012
 
 loc_012016:
-        cmpa.l       -$6e50(a6), a3                                ; $012016
+        cmpa.l       rProjectedWorldObjectQueueEnd(a6), a3                                ; $012016
         beq.b        loc_012026                                    ; $01201A
         cmp.l        (a3), d0                                      ; $01201C
         beq.b        loc_012094                                    ; $01201E
-        adda.w       #$a, a3                                       ; $012020
+        adda.w       #ProjectedWorldObjectEntryBytes, a3          ; $012020
         bra.b        loc_012016                                    ; $012024
 
 loc_012026:
-        cmpa.l       #$ff11b0, a3                                  ; $012026
+        cmpa.l       #ramProjectedWorldObjectQueueEnd, a3                                  ; $012026
         beq.b        loc_012094                                    ; $01202C
         movem.l      d1/d3-d6, -(a7)                               ; $01202E
         move.l       d0, (a3)+                                     ; $012032
@@ -38,14 +39,14 @@ loc_012026:
         move.w       d0, d4                                        ; $01204C
         sub.w        rPlayerX(a6), d4                              ; $01204E
         move.w       d4, d5                                        ; $012052
-        muls.w       -$71f2(a6), d4                                ; $012054
+        muls.w       rPlayerFacingVectorX(a6), d4                                ; $012054
         move.w       d1, d3                                        ; $012058
         sub.w        rPlayerY(a6), d3                              ; $01205A
         move.w       d3, d6                                        ; $01205E
-        muls.w       -$71f0(a6), d3                                ; $012060
+        muls.w       rPlayerFacingVectorY(a6), d3                                ; $012060
         add.l        d3, d4                                        ; $012064
-        muls.w       -$71f2(a6), d6                                ; $012066
-        muls.w       -$71f0(a6), d5                                ; $01206A
+        muls.w       rPlayerFacingVectorX(a6), d6                                ; $012066
+        muls.w       rPlayerFacingVectorY(a6), d5                                ; $01206A
         sub.l        d5, d6                                        ; $01206E
         asr.l        #$6, d4                                       ; $012070
         cmpi.l       #$2, d4                                       ; $012072
@@ -56,7 +57,7 @@ loc_012026:
         divs.w       d4, d5                                        ; $012086
         move.w       d5, (a3)+                                     ; $012088
         move.w       d6, (a3)+                                     ; $01208A
-        move.l       a3, -$6e50(a6)                                ; $01208C
+        move.l       a3, rProjectedWorldObjectQueueEnd(a6)                                ; $01208C
 
 loc_012090:
         movem.l      (a7)+, d1/d3-d6                               ; $012090

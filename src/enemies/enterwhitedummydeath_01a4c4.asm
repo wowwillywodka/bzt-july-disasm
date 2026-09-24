@@ -10,19 +10,19 @@ EnterWhiteDummyDeath:
 ; Active normal death: sound$21, GoalAngle word repurposed to8, corpse callbacks; normal CB/counter4, but C8/C9 preserved. Alternate signal uses shared legacy effect setup.
         move.l       a0, -(a7)                                     ; $01A4C4
         move.w       #$21, d0                                      ; $01A4C6
-        jsr          SoundRoutine_00DF64.l                         ; $01A4CA
+        jsr          RouteSoundEventByActorFloor.l                         ; $01A4CA
         movea.l      (a7)+, a0                                     ; $01A4D0
         tst.b        ActorAlternateDeathSignal(a0)                 ; $01A4D2
         bne.w        EnterLegacyEnemyDeathEffect                   ; $01A4D6
         andi.w       #$ff2f, ActorFlags(a0)                        ; $01A4DA
         move.l       #UpdateWhiteDummyCorpse, ActorUpdateCallback(a0) ; $01A4E0
-        addq.w       #$1, -$71c8(a6)                               ; $01A4E8
+        addq.w       #$1, rEnemyDeathsRecorded(a6)                               ; $01A4E8
         clr.b        ActorUpdateDelay(a0)                          ; $01A4EC
         move.l       #HitWhiteDummyCorpse, ActorHitCallback(a0)    ; $01A4F0
-        move.l       #EnvironmentRoutine_01D130, ActorExitCallback(a0) ; $01A4F8
+        move.l       #PlaceCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $01A4F8
         tst.b        ActorMarkerTracked(a0)                        ; $01A500
         beq.b        loc_01A50E                                    ; $01A504
-        move.l       #EnvironmentRoutine_097964, ActorExitCallback(a0) ; $01A506
+        move.l       #WriteTrackedCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $01A506
 
 loc_01A50E:
         move.l       #DrawWhiteDummyCorpse, ActorDrawCallback(a0)  ; $01A50E
@@ -45,14 +45,14 @@ loc_01A54A:
 
 loc_01A558:
         move.l       #$1ef90, ActorLinkCallback(a0)                ; $01A558
-        lea.l        -$6fdc(a6), a1                                ; $01A560
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01A560
         move.b       #$12, (a1)+                                   ; $01A564
         move.b       ActorLinkId(a0), (a1)+                        ; $01A568
         move.w       ActorFlags(a0), d0                            ; $01A56C
         ori.w        #$20, d0                                      ; $01A570
         move.b       d0, (a1)+                                     ; $01A574
         move.b       ActorFloor(a0), (a1)+                         ; $01A576
-        lea.l        -$6fdc(a6), a0                                ; $01A57A
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $01A57A
         jmp          QueueLinkCommand.l                            ; $01A57E
 
 WhiteDummyTickWeaponDeath:

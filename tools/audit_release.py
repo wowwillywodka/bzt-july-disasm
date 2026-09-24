@@ -8,7 +8,8 @@ import re
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ALLOWED_TOP_LEVEL = {".gitignore", "Makefile", "README.md", "include", "main.asm", "metadata", "src", "tools"}
+ALLOWED_TOP_LEVEL = {".gitignore", "Makefile", "README.md", "docs", "include", "main.asm", "metadata", "src", "tools"}
+ALLOWED_DOCS = {"LINK_PROCEDURE_CONTRACTS.md", "VIDEO_UI_PROCEDURE_CONTRACTS.md", "PROCEDURE_ENTRY_AUDIT.md", "PLAYER_MOVEMENT_FLOW.md", "GAMEPLAY_FRAME_RAM.md", "ENEMY_COUNT_AND_STATISTICS.md", "RENDER_RAM_HANDOFFS.md", "INVENTORY_RAM_HANDOFFS.md", "PASSWORD_FORMAT.md", "RAM_REMAINING_SWEEP.md", "RAM_POSITIVE_A6.md", "INDEXED_WORK_RAM.md", "RENDER_BUFFER_BOUNDS.md", "RAM_OWNERSHIP.md", "ACTOR_UNKNOWN_FIELDS.md", "INDIRECT_RAM_HANDOFFS.md", "ENTRY_PROVENANCE.md", "ORPHAN_ROOTS.md", "DUAL_ENTRY_CONTRACTS.md"}
 IGNORED_TOP_LEVEL = {".git", ".tools", "build", "generated", "__pycache__"}
 DATA_DIRECTIVE = re.compile(r"^\s*dc\.[bwl]\b", re.MULTILINE | re.IGNORECASE)
 INCBIN = re.compile(r'^\s*incbin\s+"([^"]+)"\s*$', re.MULTILINE | re.IGNORECASE)
@@ -40,6 +41,11 @@ def main() -> int:
     for item in ROOT.iterdir():
         if item.name not in ALLOWED_TOP_LEVEL | IGNORED_TOP_LEVEL:
             errors.append(f"unexpected top-level publication file: {item.name}")
+    docs = ROOT / "docs"
+    if docs.exists():
+        for item in docs.iterdir():
+            if item.name not in ALLOWED_DOCS or not item.is_file() or item.stat().st_size > 100_000:
+                errors.append(f"unexpected publication document: {item.name}")
     for path in ROOT.rglob("*.bin"):
         if not any(part in IGNORED_TOP_LEVEL for part in path.relative_to(ROOT).parts):
             errors.append(f"binary file outside ignored build directories: {path.relative_to(ROOT)}")

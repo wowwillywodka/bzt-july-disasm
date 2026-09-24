@@ -1,19 +1,21 @@
 ; $029496..$0294FD | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; JULY LOCAL REVIEW:
-; Build and encode progress snapshot. Inventory IDs and quantities follow separate legacy traversals; SavedHealth becomes a 6-bit quantized value; LevelSelection receives GeometryEpisode directly.
+; JULY LOCAL REVIEW: Capture the first five ordinary inventory slot IDs,
+; scan IDs 1..14 for matching quantities in ascending order, quantize health,
+; and encode GeometryEpisode as the ordinary password's six-bit episode field.
         ifne *-$29496
         fail "ROM start moved"
         endif
 
 EncodeCurrentProgressSnapshot:
-; Build and encode progress snapshot. Inventory IDs and quantities follow separate legacy traversals; SavedHealth becomes a 6-bit quantized value; LevelSelection receives GeometryEpisode directly.
-        lea.l        -$557a(a6), a0                                ; $029496
-        move.b       -$6f9f(a6), rSavedInventoryItem0(a6)          ; $02949A
-        move.b       -$6f9b(a6), rSavedInventoryItem1(a6)          ; $0294A0
-        move.b       -$6f97(a6), rSavedInventoryItem2(a6)          ; $0294A6
-        move.b       -$6f93(a6), rSavedInventoryItem3(a6)          ; $0294AC
-        move.b       -$6f8f(a6), rSavedInventoryItem4(a6)          ; $0294B2
+; The separate quantity scan preserves the ascending order reconstructed by
+; the decoder from the item-ID mask; special inventory slots are excluded.
+        lea.l        rSceneProgressPasswordText(a6), a0                                ; $029496
+        move.b       rInventorySlot0ItemIdLow(a6), rSavedInventoryItem0(a6)          ; $02949A
+        move.b       rInventorySlot1ItemIdLow(a6), rSavedInventoryItem1(a6)          ; $0294A0
+        move.b       rInventorySlot2ItemIdLow(a6), rSavedInventoryItem2(a6)          ; $0294A6
+        move.b       rInventorySlot3ItemIdLow(a6), rSavedInventoryItem3(a6)          ; $0294AC
+        move.b       rInventorySlot4ItemIdLow(a6), rSavedInventoryItem4(a6)          ; $0294B2
         lea.l        rSavedInventoryAmount0(a6), a2                ; $0294B8
         move.w       #$1, d6                                       ; $0294BC
 
@@ -35,7 +37,7 @@ loc_0294C0:
         bne.b        loc_0294EA                                    ; $0294DE
 
 loc_0294E0:
-        bsr.b        MathRoutine_0294FE                            ; $0294E0
+        bsr.b        AppendScaledProgressByte                            ; $0294E0
         cmpa.l       #$ff2c45, a2                                  ; $0294E2
         beq.b        loc_02951C                                    ; $0294E8
 

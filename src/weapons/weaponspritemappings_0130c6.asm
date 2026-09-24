@@ -4,7 +4,7 @@
         fail "ROM start moved"
         endif
 
-WeaponSpriteMappings equ $0130C6
+HandGrenadeActionSpriteMappings equ $0130C6
 
         incbin "generated/data/0130c6.bin"
         ifne *-$130EE

@@ -12,7 +12,7 @@ RefreshFloorLabelAndColorMode:
         move.w       rCurrentFloor(a6), d0                         ; $00C00E
         neg.w        d0                                            ; $00C012
         addi.w       #$a5, d0                                      ; $00C014
-        lea.l        $e2a(a6), a0                                  ; $00C018
+        lea.l        rFloorLabelTextureDefinition(a6), a0                                  ; $00C018
         move.w       #$2e, d1                                      ; $00C01C
         cmpi.w       #$64, d0                                      ; $00C020
         bcs.b        loc_00C036                                    ; $00C024

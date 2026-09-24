@@ -14,8 +14,8 @@ RetainedStoreActorKinematics:
         move.w       d5, ActorZ(a0)                                ; $01E0BA
         move.w       d6, ActorVelocityZ(a0)                        ; $01E0BE
         clr.b        ActorUpdateDelay(a0)                          ; $01E0C2
-        move.l       #WeaponsRoutine_01E0DC, ActorUpdateCallback(a0) ; $01E0C6
-        move.l       #RendererRoutine_01E1AE, ActorDrawCallback(a0) ; $01E0CE
+        move.l       #UpdateSlowProjectileAndApplyProximityHit, ActorUpdateCallback(a0) ; $01E0C6
+        move.l       #DrawPositionedProjectileSprite, ActorDrawCallback(a0) ; $01E0CE
         movem.w      (a7)+, d3-d4                                  ; $01E0D6
         rts                                                        ; $01E0DA
         ifne *-$1E0DC

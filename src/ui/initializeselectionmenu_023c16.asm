@@ -11,11 +11,11 @@ InitializeSelectionMenu:
         jsr          ClearAllVram(pc)                              ; $023C1A
         jsr          InitializeMenuVdp(pc)                         ; $023C1E
         move.w       #$0, d0                                       ; $023C22
-        jsr          VideoRoutine_021E4A(pc)                       ; $023C26
+        jsr          WriteVerticalScrollToVsram(pc)                       ; $023C26
         move.w       #$0, d0                                       ; $023C2A
         jsr          WriteScreenTile(pc)                           ; $023C2E
         move.l       #$55c00002, VDP_CONTROL.l                     ; $023C32
-        lea.l        OptionsWindowTilePatterns.l, a0               ; $023C3C
+        lea.l        OptionsCursorSpriteTiles.l, a0               ; $023C3C
         move.w       #$f, d7                                       ; $023C42
 
 loc_023C46:
@@ -33,7 +33,7 @@ loc_023C46:
         move.w       #$1c, d1                                      ; $023C7E
         move.w       #$40, d2                                      ; $023C82
         move.w       #$1, d3                                       ; $023C86
-        jsr          loc_021EFA(pc)                                ; $023C8A
+        jsr          UploadAttributedTilemapAtE000Offset(pc)                                ; $023C8A
         lea.l        JulyTitlePalette.l, a0                        ; $023C8E
         lea.l        $ff0778.l, a1                                 ; $023C94
         jsr          CopyOneTile(pc)                               ; $023C9A
@@ -42,7 +42,7 @@ loc_023C46:
         jsr          CopyOneTile(pc)                               ; $023CAA
         lea.l        $ff0778.l, a0                                 ; $023CAE
         move.w       #$4, d1                                       ; $023CB4
-        jsr          loc_022010(pc)                                ; $023CB8
+        jsr          FadeAll64PaletteColorsFromBlack(pc)                                ; $023CB8
         move.w       #$1, d0                                       ; $023CBC
         lea.l        OptionsPalettes.l, a0                         ; $023CC0
         jsr          LoadPaletteLine(pc)                           ; $023CC6

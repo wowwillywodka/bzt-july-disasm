@@ -27,7 +27,7 @@ loc_00F552:
         lsl.w        #$5, d0                                       ; $00F58E
         adda.w       d0, a0                                        ; $00F590
         movem.l      d5/a2, -(a7)                                  ; $00F592
-        bsr.w        EnvironmentRoutine_00ED6C                     ; $00F596
+        bsr.w        TryCollectItemAtCurrentCell                     ; $00F596
         movem.l      (a7)+, d5/a2                                  ; $00F59A
         movea.l      (a7)+, a0                                     ; $00F59E
         cmpa.l       rPreviousPlayerCellPointer(a6), a0            ; $00F5A0
@@ -35,7 +35,7 @@ loc_00F552:
         move.w       d5, -(a7)                                     ; $00F5A6
         move.l       a0, rPreviousPlayerCellPointer(a6)            ; $00F5A8
         move.l       a2, -(a7)                                     ; $00F5AC
-        bsr.w        EnvironmentRoutine_00EDAA                     ; $00F5AE
+        bsr.w        DispatchEnteredCellInteraction                     ; $00F5AE
         movea.l      (a7)+, a2                                     ; $00F5B2
         move.w       (a7)+, d5                                     ; $00F5B4
 
@@ -49,7 +49,7 @@ loc_00F5B6:
         move.w       rCurrentFloorMapOffset(a6), d0                ; $00F5CC
         lsr.w        #$1, d0                                       ; $00F5D0
         adda.w       d0, a0                                        ; $00F5D2
-        move.w       -$720a(a6), d0                                ; $00F5D4
+        move.w       rMapSpriteViewCenterX(a6), d0                                ; $00F5D4
         asr.w        #$8, d0                                       ; $00F5D8
         subq.w       #$5, d0                                       ; $00F5DA
         add.w        rMapWindowOriginX(a6), d0                     ; $00F5DC
@@ -57,13 +57,13 @@ loc_00F5B6:
         move.w       d0, d7                                        ; $00F5E2
         lsr.w        #$1, d0                                       ; $00F5E4
         adda.w       d0, a0                                        ; $00F5E6
-        clr.b        -$42a4(a6)                                    ; $00F5E8
+        clr.b        rMapCellParityPhase(a6)                                    ; $00F5E8
         andi.w       #$1, d7                                       ; $00F5EC
         beq.b        loc_00F5F8                                    ; $00F5F0
-        move.b       #$1, -$42a4(a6)                               ; $00F5F2
+        move.b       #$1, rMapCellParityPhase(a6)                               ; $00F5F2
 
 loc_00F5F8:
-        move.w       -$7208(a6), d0                                ; $00F5F8
+        move.w       rMapSpriteViewCenterY(a6), d0                                ; $00F5F8
         asr.w        #$8, d0                                       ; $00F5FC
         subq.w       #$5, d0                                       ; $00F5FE
         add.w        rMapWindowOriginY(a6), d0                     ; $00F600
@@ -99,8 +99,8 @@ loc_00F618:
 loc_00F64E:
         clr.w        d0                                            ; $00F64E
         clr.w        d3                                            ; $00F650
-        move.b       -$42a4(a6), d3                                ; $00F652
-        eori.b       #$1, -$42a4(a6)                               ; $00F656
+        move.b       rMapCellParityPhase(a6), d3                                ; $00F652
+        eori.b       #$1, rMapCellParityPhase(a6)                               ; $00F656
         andi.w       #$1, d3                                       ; $00F65C
         bne.b        loc_00F66C                                    ; $00F660
         move.b       (a1), d0                                      ; $00F662
@@ -116,7 +116,7 @@ loc_00F672:
         clr.w        d3                                            ; $00F672
         move.b       (a4)+, d3                                     ; $00F674
         move.b       (a5, d3.w), d3                                ; $00F676
-        move.b       d3, -$719c(a6)                                ; $00F67A
+        move.b       d3, rRetainedMapCellTypeScratch(a6)                                ; $00F67A
         clr.w        d3                                            ; $00F67E
         move.b       d0, d3                                        ; $00F680
         bsr.w        GetCellCollisionClass                         ; $00F682
@@ -127,10 +127,10 @@ loc_00F672:
         addq.w       #$8, d4                                       ; $00F698
         dbra         d7, loc_00F618                                ; $00F69A
         subq.w       #$5, d5                                       ; $00F69E
-        bsr.w        RendererRoutine_00F28C                        ; $00F6A0
+        bsr.w        AppendPlayerWorldSpritesToSat                        ; $00F6A0
         addq.w       #$5, d5                                       ; $00F6A4
-        bsr.w        RendererRoutine_00F6B0                        ; $00F6A6
-        move.l       a2, -$7fc2(a6)                                ; $00F6AA
+        bsr.w        AppendVisibleActorsToSat                        ; $00F6A6
+        move.l       a2, rSpriteAttributeTableWritePointer(a6)                                ; $00F6AA
         rts                                                        ; $00F6AE
         ifne *-$F6B0
         fail "ROM end moved"

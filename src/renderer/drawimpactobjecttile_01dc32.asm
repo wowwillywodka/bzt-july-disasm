@@ -8,10 +8,10 @@
 
 DrawImpactObjectTile:
 ; Impact reader: tile 63 + signed_word(((2 - state) & $FF) << 9)/512. Nominal state 3..0 selects 62,63,64,65; no native bounds clamp.
-        move.w       d5, -$6f26(a6)                                ; $01DC32
+        move.w       d5, rSoftwareSpriteProjectionScale(a6)                                ; $01DC32
         move.w       d5, d2                                        ; $01DC36
-        move.w       -$71d8(a6), d3                                ; $01DC38
-        sub.w        -$6e4c(a6), d3                                ; $01DC3C
+        move.w       rPlayerViewOffsetZ(a6), d3                                ; $01DC38
+        sub.w        rTransitHeightOffset(a6), d3                                ; $01DC3C
         sub.w        ActorZ(a0), d3                                ; $01DC40
         muls.w       d3, d2                                        ; $01DC44
         asr.l        #$6, d2                                       ; $01DC46
@@ -26,7 +26,7 @@ DrawImpactObjectTile:
         adda.w       d0, a1                                        ; $01DC62
 
 loc_01DC64:
-        clr.w        -$6f32(a6)                                    ; $01DC64
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $01DC64
         move.w       d5, d0                                        ; $01DC68
         asr.w        #$2, d0                                       ; $01DC6A
         move.w       d0, d4                                        ; $01DC6C

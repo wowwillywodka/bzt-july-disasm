@@ -1,7 +1,7 @@
 ; $011878..$0118CB | m68k
 ; Maintained assembly input; no extraction occurs during build.
 ; JULY LOCAL REVIEW:
-; Exhaust selected slot: add another $100 to usage, clear kind/amount, decrement occupied count, request weapon0, mark HUD dirty and erase icon. Caller supplies A0=inventory, D0=slot*4, D5=VRAM icon address, A4=VDP_DATA.
+; Exhaust selected slot: add another $100 to usage, clear kind/amount, decrement occupied count, request weapon0, set the depletion flag and erase icon. No direct reader of that flag is known. Caller supplies A0=inventory, D0=slot*4, D5=VRAM icon address, A4=VDP_DATA.
         ifne *-$11878
         fail "ROM start moved"
         endif
@@ -9,7 +9,7 @@
 ExhaustSelectedItemAndEraseHud:
 ; Exhaust selected slot: add another $100 to usage, clear kind/amount, decrement occupied count, request weapon0, mark HUD dirty and erase icon. Caller supplies A0=inventory, D0=slot*4, D5=VRAM icon address, A4=VDP_DATA.
         addi.l       #$100, rAmmoUsageFixedCounter(a6)             ; $011878
-        move.w       #$1, -$558e(a6)                               ; $011880
+        move.w       #$1, rInventorySlotDepletionFlag(a6)                               ; $011880
         clr.w        (a0, d0.w)                                    ; $011886
         clr.w        $2(a0, d0.w)                                  ; $01188A
         subq.b       #$1, rOccupiedInventorySlotCount(a6)          ; $01188E

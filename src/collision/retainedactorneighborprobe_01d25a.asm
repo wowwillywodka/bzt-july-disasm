@@ -61,7 +61,7 @@ loc_01D2CA:
         movea.l      (a7)+, a0                                     ; $01D2D8
         tst.w        rLinkRole(a6)                                 ; $01D2DA
         beq.w        RemoveActor                                   ; $01D2DE
-        lea.l        -$6fdc(a6), a1                                ; $01D2E2
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01D2E2
         move.b       #$5, (a1)                                     ; $01D2E6
         move.b       ActorLinkId(a0), $1(a1)                       ; $01D2EA
         movem.l      d0-d7/a0-a3, -(a7)                            ; $01D2F0

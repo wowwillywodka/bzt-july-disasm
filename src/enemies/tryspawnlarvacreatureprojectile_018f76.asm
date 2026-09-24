@@ -17,7 +17,7 @@ TrySpawnLarvaCreatureProjectile:
         bne.b        loc_018F3A                                    ; $018F8E
         movea.l      a0, a3                                        ; $018F90
         move.w       #$2a, d0                                      ; $018F92
-        jsr          SoundRoutine_00DF64.l                         ; $018F96
+        jsr          RouteSoundEventByActorFloor.l                         ; $018F96
         bsr.w        AllocateActor                                 ; $018F9C
         beq.w        loc_01905C                                    ; $018FA0
         clr.w        ActorGoalAngle(a0)                            ; $018FA4
@@ -51,8 +51,8 @@ TrySpawnLarvaCreatureProjectile:
 ; Link command04/subtype0 has same generic payload as Blue projectile, although local callbacks differ; remote behavior not certified.
         tst.w        rLinkRole(a6)                                 ; $019012
         beq.b        loc_01905C                                    ; $019016
-        move.l       #SoundRoutine_01EDB4, ActorLinkCallback(a0)   ; $019018
-        lea.l        -$6fdc(a6), a1                                ; $019020
+        move.l       #QueueActorPositionLinkCommand, ActorLinkCallback(a0)   ; $019018
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $019020
         move.b       #$4, (a1)+                                    ; $019024
         move.b       ActorLinkId(a0), (a1)+                        ; $019028
         move.w       ActorX(a0), (a1)+                             ; $01902C
@@ -65,7 +65,7 @@ TrySpawnLarvaCreatureProjectile:
         move.b       #$0, (a1)+                                    ; $019046
         move.w       ActorMotionX(a0), (a1)+                       ; $01904A
         move.w       ActorMotionY(a0), (a1)+                       ; $01904E
-        lea.l        -$6fdc(a6), a0                                ; $019052
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $019052
         jmp          QueueLinkCommand.l                            ; $019056
 
 loc_01905C:

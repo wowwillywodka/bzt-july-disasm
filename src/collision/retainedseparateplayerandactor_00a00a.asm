@@ -7,8 +7,8 @@
 
 RetainedSeparatePlayerAndActor:
         movea.l      #$0, a0                                       ; $00A00A
-        move.w       #$14, d5                                      ; $00A010
-        jsr          EnemiesRoutine_01E4FA.l                       ; $00A014
+        move.w       #ActorFlagRetainedSeparationMask, d5                                      ; $00A010
+        jsr          FindNearestActorOrPlayerWithFlags.l                       ; $00A014
         cmpa.l       #$ffffffff, a1                                ; $00A01A
         beq.w        loc_00A0C4                                    ; $00A020
         cmpi.w       #$38, d6                                      ; $00A024

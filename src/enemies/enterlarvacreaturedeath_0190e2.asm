@@ -10,19 +10,19 @@ EnterLarvaCreatureDeath:
 ; Sound$26; normal CB/counter4/state3, GoalAngle8. PreserveC8/C9; CE->state4. Special corpses switch to Dog bank while drawing.
         move.l       a0, -(a7)                                     ; $0190E2
         move.w       #$26, d0                                      ; $0190E4
-        jsr          SoundRoutine_00DF64.l                         ; $0190E8
+        jsr          RouteSoundEventByActorFloor.l                         ; $0190E8
         movea.l      (a7)+, a0                                     ; $0190EE
         tst.b        ActorAlternateDeathSignal(a0)                 ; $0190F0
         bne.w        EnterLegacyEnemyDeathEffect                   ; $0190F4
         andi.w       #$ff2f, ActorFlags(a0)                        ; $0190F8
         move.l       #UpdateLarvaCreatureCorpse, ActorUpdateCallback(a0) ; $0190FE
-        addq.w       #$1, -$71c8(a6)                               ; $019106
+        addq.w       #$1, rEnemyDeathsRecorded(a6)                               ; $019106
         clr.b        ActorUpdateDelay(a0)                          ; $01910A
         move.l       #HitLarvaCreatureCorpse, ActorHitCallback(a0) ; $01910E
-        move.l       #EnvironmentRoutine_01D130, ActorExitCallback(a0) ; $019116
+        move.l       #PlaceCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $019116
         tst.b        ActorMarkerTracked(a0)                        ; $01911E
         beq.b        loc_01912C                                    ; $019122
-        move.l       #EnvironmentRoutine_097964, ActorExitCallback(a0) ; $019124
+        move.l       #WriteTrackedCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $019124
 
 loc_01912C:
         move.l       #DrawLarvaCreatureCorpse, ActorDrawCallback(a0) ; $01912C
@@ -51,14 +51,14 @@ loc_019178:
 
 loc_019186:
         move.l       #$1ef9c, ActorLinkCallback(a0)                ; $019186
-        lea.l        -$6fdc(a6), a1                                ; $01918E
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01918E
         move.b       #$12, (a1)+                                   ; $019192
         move.b       ActorLinkId(a0), (a1)+                        ; $019196
         move.w       ActorFlags(a0), d0                            ; $01919A
         ori.w        #$20, d0                                      ; $01919E
         move.b       d0, (a1)+                                     ; $0191A2
         move.b       ActorFloor(a0), (a1)+                         ; $0191A4
-        lea.l        -$6fdc(a6), a0                                ; $0191A8
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $0191A8
         jmp          QueueLinkCommand.l                            ; $0191AC
 
 loc_0191B2:

@@ -8,7 +8,7 @@
 
 SendBeatressState:
 ; Command0D contains ID/XY/MotionXY; copied counter9..1 selection differs from local melee6..1, but D0/D2 are not serialized by tail.
-        lea.l        -$6fdc(a6), a1                                ; $01F5E8
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01F5E8
         move.b       #$d, (a1)+                                    ; $01F5EC
         move.b       ActorLinkId(a0), (a1)+                        ; $01F5F0
         move.w       ActorX(a0), (a1)+                             ; $01F5F4
@@ -41,13 +41,13 @@ loc_01F620:
         cmpi.b       #$1, d7                                       ; $01F636
         beq.b        loc_01F65C                                    ; $01F63A
         cmpi.b       #$7, d7                                       ; $01F63C
-        beq.b        ActorsRoutine_01F666                          ; $01F640
+        beq.b        QueueBeatressStatePacketVariantB                          ; $01F640
         cmpi.b       #$6, d7                                       ; $01F642
-        beq.b        ActorsRoutine_01F666                          ; $01F646
+        beq.b        QueueBeatressStatePacketVariantB                          ; $01F646
         cmpi.b       #$4, d7                                       ; $01F648
-        beq.b        ActorsRoutine_01F666                          ; $01F64C
+        beq.b        QueueBeatressStatePacketVariantB                          ; $01F64C
         cmpi.b       #$3, d7                                       ; $01F64E
-        beq.b        ActorsRoutine_01F666                          ; $01F652
+        beq.b        QueueBeatressStatePacketVariantB                          ; $01F652
         cmpi.b       #$5, d7                                       ; $01F654
         beq.b        loc_01F670                                    ; $01F658
         rts                                                        ; $01F65A

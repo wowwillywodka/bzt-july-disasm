@@ -4,7 +4,7 @@
         fail "ROM start moved"
         endif
 
-WeaponOverlaySpriteMappings equ $0136F0
+UnarmedOverlaySpriteMappings equ $0136F0
 
         incbin "generated/data/0136f0.bin"
         ifne *-$137B0

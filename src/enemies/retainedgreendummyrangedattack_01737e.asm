@@ -40,9 +40,9 @@ loc_0173B2:
 
 loc_0173CC:
         move.w       #$5f, d0                                      ; $0173CC
-        jsr          SoundRoutine_00DF64.l                         ; $0173D0
+        jsr          RouteSoundEventByActorFloor.l                         ; $0173D0
         move.w       #$83, d0                                      ; $0173D6
-        jmp          SoundRoutine_00DF64.l                         ; $0173DA
+        jmp          RouteSoundEventByActorFloor.l                         ; $0173DA
 
 loc_0173E0:
         movea.l      ActorTarget(a0), a3                           ; $0173E0
@@ -53,7 +53,7 @@ loc_0173E0:
         bsr.w        TraceFiveRayObstructionInActiveWindow         ; $0173F4
         bne.b        loc_0173A8                                    ; $0173F8
         move.w       #$400, d3                                     ; $0173FA
-        tst.w        -$71d8(a6)                                    ; $0173FE
+        tst.w        rPlayerViewOffsetZ(a6)                                    ; $0173FE
         bpl.b        loc_017414                                    ; $017402
         move.w       #$200, d3                                     ; $017404
         tst.w        rSceneColorMode(a6)                           ; $017408
@@ -95,9 +95,9 @@ loc_01742E:
 
 loc_017468:
         move.w       #$5f, d0                                      ; $017468
-        jsr          SoundRoutine_00DF64.l                         ; $01746C
+        jsr          RouteSoundEventByActorFloor.l                         ; $01746C
         move.w       #$83, d0                                      ; $017472
-        jsr          SoundRoutine_00DF64.l                         ; $017476
+        jsr          RouteSoundEventByActorFloor.l                         ; $017476
 
 loc_01747C:
         rts                                                        ; $01747C

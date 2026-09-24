@@ -8,10 +8,10 @@
 
 DrawSlowProjectileTile:
 ; Shared slow-projectile draw: active zone tile01 (+$200), scale D5/2, tick parity mirror. Larva Creature and player weapon share the callback.
-        move.w       d5, -$6f26(a6)                                ; $01CC86
+        move.w       d5, rSoftwareSpriteProjectionScale(a6)                                ; $01CC86
         move.w       d5, d2                                        ; $01CC8A
-        move.w       -$71d8(a6), d3                                ; $01CC8C
-        sub.w        -$6e4c(a6), d3                                ; $01CC90
+        move.w       rPlayerViewOffsetZ(a6), d3                                ; $01CC8C
+        sub.w        rTransitHeightOffset(a6), d3                                ; $01CC90
         sub.w        ActorZ(a0), d3                                ; $01CC94
         muls.w       d3, d2                                        ; $01CC98
         asr.l        #$6, d2                                       ; $01CC9A
@@ -20,7 +20,7 @@ DrawSlowProjectileTile:
         adda.w       #ObjectTileOffset01_FireEffect, a1            ; $01CCA4
         move.w       rGameTick(a6), d0                             ; $01CCA8
         andi.w       #$1, d0                                       ; $01CCAC
-        move.w       d0, -$6f32(a6)                                ; $01CCB0
+        move.w       d0, rSoftwareSpriteMirrorFlag(a6)                                ; $01CCB0
         move.w       d5, d0                                        ; $01CCB4
         asr.w        #$1, d0                                       ; $01CCB6
         move.w       d0, d4                                        ; $01CCB8

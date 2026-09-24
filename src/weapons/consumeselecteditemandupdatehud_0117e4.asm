@@ -8,7 +8,7 @@
 
 ConsumeSelectedItemAndUpdateHud:
 ; Consume $100 fixed-point units from selected inventory slot and update HUD. <=$100 empties slot but DOES NOT cancel the pending shot. Usage longword increments $100 here and again in exhausted tail. No success boolean. See docs/PLAYER_WEAPONS.md.
-        tst.w        -$7ffe(a6)                                    ; $0117E4
+        tst.w        rVBlankTransferPhasesRemaining(a6)                                    ; $0117E4
         bne.b        ConsumeSelectedItemAndUpdateHud               ; $0117E8
         clr.w        d0                                            ; $0117EA
         move.b       rSelectedInventorySlot(a6), d0                ; $0117EC
@@ -50,7 +50,7 @@ loc_011848:
         subq.w       #$1, d0                                       ; $01186C
         lsr.w        #$8, d0                                       ; $01186E
         addq.w       #$1, d0                                       ; $011870
-        jmp          UiRoutine_020944.l                            ; $011872
+        jmp          DrawInventoryQuantityDigits.l                            ; $011872
         ifne *-$11878
         fail "ROM end moved"
         endif

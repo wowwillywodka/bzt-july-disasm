@@ -14,7 +14,7 @@ ScrollCharacterMenuUp:
         lea.l        ramCharacterAvailable0.l, a0                  ; $07B348
         cmpi.b       #$1, (a0, d0.w)                               ; $07B34E
         beq.w        loc_07B35E                                    ; $07B354
-        jsr          UploadCharacterMenuPanel.l                    ; $07B358
+        jsr          UploadDeceasedStamp.l                    ; $07B358
 
 loc_07B35E:
         move.w       #$1f, d7                                      ; $07B35E
@@ -24,10 +24,10 @@ loc_07B362:
         subq.w       #$8, $ff2a4e.l                                ; $07B368
         move.w       $ff2a4e.l, d0                                 ; $07B36E
         jsr          WriteScreenTile.l                             ; $07B374
-        jsr          VideoRoutine_021E4A.l                         ; $07B37A
+        jsr          WriteVerticalScrollToVsram.l                         ; $07B37A
         jsr          DrawCharacterMenuIcons(pc)                    ; $07B380
         dbra         d7, loc_07B362                                ; $07B384
-        jsr          VideoRoutine_07B4FE.l                         ; $07B388
+        jsr          ClearCharacterMenuTilemapRegion.l                         ; $07B388
         rts                                                        ; $07B38E
         ifne *-$7B390
         fail "ROM end moved"

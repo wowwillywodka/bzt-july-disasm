@@ -18,9 +18,9 @@ DispatchLarvaCreatureAttackEvent:
 
 loc_018F62:
         move.w       #$5f, d0                                      ; $018F62
-        jsr          SoundRoutine_00DF64.l                         ; $018F66
+        jsr          RouteSoundEventByActorFloor.l                         ; $018F66
         move.w       #$83, d0                                      ; $018F6C
-        jmp          SoundRoutine_00DF64.l                         ; $018F70
+        jmp          RouteSoundEventByActorFloor.l                         ; $018F70
         ifne *-$18F76
         fail "ROM end moved"
         endif

@@ -8,7 +8,8 @@
 RetainedUiWaitReturn:
         rts                                                        ; $02173C
 
-loc_02173E:
+; Reviewed call entry (wrapper): Calls RunMissionSelection and returns; retained caller.
+RunMissionSelectionFromRetainedUi:
         jsr          RunMissionSelection.l                         ; $02173E
         rts                                                        ; $021744
         ifne *-$21746

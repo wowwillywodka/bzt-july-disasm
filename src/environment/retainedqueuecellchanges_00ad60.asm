@@ -23,7 +23,7 @@ loc_00AD8A:
         movea.l      #$ffa9fa, a0                                  ; $00AD8A
 
 loc_00AD90:
-        move.b       $c17(a6), (a0)                                ; $00AD90
+        move.b       rCellIndexForType2D(a6), (a0)                                ; $00AD90
         jsr          CommitMapCellAndSendLink.l                    ; $00AD94
         bra.b        loc_00ADD6                                    ; $00AD9A
 
@@ -46,11 +46,11 @@ loc_00ADC6:
         movea.l      #$ffa9fa, a0                                  ; $00ADC6
 
 loc_00ADCC:
-        move.b       $c18(a6), (a0)                                ; $00ADCC
+        move.b       rCellIndexForType2E(a6), (a0)                                ; $00ADCC
         jsr          CommitMapCellAndSendLink.l                    ; $00ADD0
 
 loc_00ADD6:
-        move.w       #$1, -$711e(a6)                               ; $00ADD6
+        move.w       #$1, rWallChangeRefreshFlag(a6)                               ; $00ADD6
         move.w       d0, (a3)+                                     ; $00ADDC
         move.w       d1, (a3)+                                     ; $00ADDE
         move.b       #$0, (a3)+                                    ; $00ADE0

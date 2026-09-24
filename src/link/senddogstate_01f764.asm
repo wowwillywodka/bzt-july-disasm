@@ -8,7 +8,7 @@
 
 SendDogState:
 ; Command0D: copied state1 selector exists but normal local Dog never sets1; animation registers not serialized.
-        lea.l        -$6fdc(a6), a1                                ; $01F764
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01F764
         move.b       #$d, (a1)+                                    ; $01F768
         move.b       ActorLinkId(a0), (a1)+                        ; $01F76C
         move.w       ActorX(a0), (a1)+                             ; $01F770
@@ -41,13 +41,13 @@ loc_01F79C:
         cmpi.b       #$1, d7                                       ; $01F7B2
         beq.b        loc_01F7D8                                    ; $01F7B6
         cmpi.b       #$7, d7                                       ; $01F7B8
-        beq.b        ActorsRoutine_01F7E2                          ; $01F7BC
+        beq.b        QueueDogStatePacketVariantB                          ; $01F7BC
         cmpi.b       #$6, d7                                       ; $01F7BE
-        beq.b        ActorsRoutine_01F7E2                          ; $01F7C2
+        beq.b        QueueDogStatePacketVariantB                          ; $01F7C2
         cmpi.b       #$4, d7                                       ; $01F7C4
-        beq.b        ActorsRoutine_01F7E2                          ; $01F7C8
+        beq.b        QueueDogStatePacketVariantB                          ; $01F7C8
         cmpi.b       #$3, d7                                       ; $01F7CA
-        beq.b        ActorsRoutine_01F7E2                          ; $01F7CE
+        beq.b        QueueDogStatePacketVariantB                          ; $01F7CE
         cmpi.b       #$5, d7                                       ; $01F7D0
         beq.b        loc_01F7EC                                    ; $01F7D4
         rts                                                        ; $01F7D6

@@ -20,9 +20,9 @@ DispatchBlueDummyAttackEvent:
 
 loc_017D58:
         move.w       #$5f, d0                                      ; $017D58
-        jsr          SoundRoutine_00DF64.l                         ; $017D5C
+        jsr          RouteSoundEventByActorFloor.l                         ; $017D5C
         move.w       #$83, d0                                      ; $017D62
-        jmp          SoundRoutine_00DF64.l                         ; $017D66
+        jmp          RouteSoundEventByActorFloor.l                         ; $017D66
         ifne *-$17D6C
         fail "ROM end moved"
         endif

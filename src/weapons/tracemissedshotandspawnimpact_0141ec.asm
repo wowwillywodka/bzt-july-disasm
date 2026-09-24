@@ -14,8 +14,8 @@ TraceMissedShotAndSpawnImpact:
         ext.l        d4                                            ; $0141F6
         lsl.l        #$3, d3                                       ; $0141F8
         lsl.l        #$3, d4                                       ; $0141FA
-        move.w       -$71f2(a6), d5                                ; $0141FC
-        move.w       -$71f0(a6), d6                                ; $014200
+        move.w       rPlayerFacingVectorX(a6), d5                                ; $0141FC
+        move.w       rPlayerFacingVectorY(a6), d6                                ; $014200
         ext.l        d5                                            ; $014204
         ext.l        d6                                            ; $014206
         move.w       #$1f, d7                                      ; $014208

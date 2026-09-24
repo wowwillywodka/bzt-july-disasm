@@ -8,7 +8,7 @@
 
 SendLarvaCreatureState:
 ; Command0D writes ID/XY/MotionXY only. D0/D2 animation selection is not serialized; state1 invalid counter can return before queueing.
-        lea.l        -$6fdc(a6), a1                                ; $01F3AE
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01F3AE
         move.b       #$d, (a1)+                                    ; $01F3B2
         move.b       ActorLinkId(a0), (a1)+                        ; $01F3B6
         move.w       ActorX(a0), (a1)+                             ; $01F3BA
@@ -67,7 +67,7 @@ loc_01F436:
         move.w       #$3, d2                                       ; $01F43A
 
 loc_01F43E:
-        lea.l        -$6fdc(a6), a0                                ; $01F43E
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $01F43E
         jmp          QueueLinkCommand.l                            ; $01F442
 
 loc_01F448:
@@ -79,7 +79,7 @@ loc_01F448:
 loc_01F45C:
         move.l       #LarvaCreatureSpriteBank, ActorSpriteBank(a0) ; $01F45C
         move.w       #$3, d0                                       ; $01F464
-        bra.w        loc_01F844                                    ; $01F468
+        bra.w        SelectActorStateCounterParityFrame                                    ; $01F468
         ifne *-$1F46C
         fail "ROM end moved"
         endif

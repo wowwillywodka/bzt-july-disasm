@@ -59,7 +59,7 @@ loc_017B20:
 loc_017B3E:
         lsl.w        #$8, d0                                       ; $017B3E
         sub.w        d0, $2(a0)                                    ; $017B40
-        bsr.w        VideoRoutine_01173A                           ; $017B44
+        bsr.w        UploadInventorySlotIconsToVram                           ; $017B44
         clr.w        d7                                            ; $017B48
 
 loc_017B4A:

@@ -11,7 +11,7 @@ RetainedActorSoundAndMessage_018C54:
 ; Retained local pickup completion behind RTS $18C52; no item grant precedes it. Remote branch at $18C70 is live and separately named.
         move.b       #$4, ActorState(a0)                           ; $018C54
         move.w       #$60, d0                                      ; $018C5A
-        jsr          SoundRoutine_00DF64.l                         ; $018C5E
+        jsr          RouteSoundEventByActorFloor.l                         ; $018C5E
         movea.l      #StatusMessageBuligunCollected, a0            ; $018C64
         jmp          QueueStatusMessage.l                          ; $018C6A
         ifne *-$18C70

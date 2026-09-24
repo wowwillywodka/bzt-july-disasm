@@ -57,7 +57,7 @@ loc_009BE0:
         move.b       ActorDefCorpseCellProfile(a1), ActorCorpseCellProfile(a0) ; $009C84
         move.l       #ramPlayerActorProxy, ActorTarget(a0)         ; $009C8A
         move.w       ActorDefSpawnSound(a1), d0                    ; $009C92
-        bsr.w        RendererRoutine_009626                        ; $009C96
+        bsr.w        PlayActorSpawnSound                        ; $009C96
         tst.w        rLinkRole(a6)                                 ; $009C9A
         beq.b        loc_009CAC                                    ; $009C9E
         move.l       ActorDefLink(a1), ActorLinkCallback(a0)       ; $009CA0

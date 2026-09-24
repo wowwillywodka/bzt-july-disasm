@@ -18,7 +18,7 @@ RunCharacterSelection:
         move.w       #$e102, $ff2a4c.l                             ; $07AF38
         move.w       ramSelectedCharacter.l, d0                    ; $07AF40
         lsl.w        #$2, d0                                       ; $07AF46
-        lea.l        CharacterMenuPortraitPalettePointers(pc), a0  ; $07AF48
+        lea.l        CharacterMenuPortraitTilemapPointers(pc), a0  ; $07AF48
         movea.l      (a0, d0.w), a0                                ; $07AF4C
         adda.l       #$20, a0                                      ; $07AF50
         move.w       #$b, d1                                       ; $07AF56
@@ -34,13 +34,13 @@ RunCharacterSelection:
         lea.l        ramCharacterAvailable0.l, a0                  ; $07AF82
         cmpi.b       #$1, (a0, d0.w)                               ; $07AF88
         beq.w        loc_07AF98                                    ; $07AF8E
-        jsr          UploadCharacterMenuPanel.l                    ; $07AF92
+        jsr          UploadDeceasedStamp.l                    ; $07AF92
 
 loc_07AF98:
         jsr          DrawCharacterBiographyTail.l                  ; $07AF98
         move.w       #$4, d1                                       ; $07AF9E
         lea.l        $ff0778.l, a0                                 ; $07AFA2
-        jsr          loc_022010.l                                  ; $07AFA8
+        jsr          FadeAll64PaletteColorsFromBlack.l                                  ; $07AFA8
 
 loc_07AFAE:
         jsr          WaitForVBlank.l                               ; $07AFAE
@@ -116,7 +116,7 @@ loc_07B0BE:
         jsr          PlaySoundEvent(pc)                            ; $07B0C2
         move.w       #$4, d1                                       ; $07B0C6
         lea.l        $ff0778.l, a0                                 ; $07B0CA
-        jsr          VideoRoutine_022018.l                         ; $07B0D0
+        jsr          FadeFullPaletteToBlack.l                         ; $07B0D0
         addq.l       #$4, a7                                       ; $07B0D6
         rts                                                        ; $07B0D8
         ifne *-$7B0DA

@@ -26,20 +26,20 @@ BoardTrainAndTransferPlayer:
         move.w       #$0, rTrainArrivalFlag(a6)                    ; $0988AC
         move.b       rPlayerX(a6), d0                              ; $0988B2
         move.b       rPlayerY(a6), d1                              ; $0988B6
-        add.b        -$438d(a6), d0                                ; $0988BA
-        add.b        -$438b(a6), d1                                ; $0988BE
+        add.b        rMapWindowOriginXLow(a6), d0                                ; $0988BA
+        add.b        rMapWindowOriginYLow(a6), d1                                ; $0988BE
         sub.b        TrainOriginX(a0), d0                          ; $0988C2
         sub.b        TrainOriginY(a0), d1                          ; $0988C6
         lsl.w        #$8, d0                                       ; $0988CA
         lsl.w        #$8, d1                                       ; $0988CC
-        move.b       -$7205(a6), d0                                ; $0988CE
-        move.b       -$7203(a6), d1                                ; $0988D2
+        move.b       rPlayerXLow(a6), d0                                ; $0988CE
+        move.b       rPlayerYLow(a6), d1                                ; $0988D2
         move.b       TrainOrientation(a0), d2                      ; $0988D6
         movem.l      d0-d2/d7/a0, -(a7)                            ; $0988DA
         bsr.w        AdvanceTrainRoute                             ; $0988DE
         movem.l      (a7)+, d0-d2/d7/a0                            ; $0988E2
-        move.b       -$7205(a6), d3                                ; $0988E6
-        move.b       -$7203(a6), d4                                ; $0988EA
+        move.b       rPlayerXLow(a6), d3                                ; $0988E6
+        move.b       rPlayerYLow(a6), d4                                ; $0988EA
         move.b       TrainOrientation(a0), d5                      ; $0988EE
         jsr          TransformTrainPassengerPosition.l             ; $0988F2
         move.w       d3, rPlayerX(a6)                              ; $0988F8

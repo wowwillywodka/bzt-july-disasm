@@ -10,10 +10,10 @@ HandleNoSurvivingCharacters:
 ; All five characters unavailable: optional link command $17, disabled briefing reason 5, return D7=0. Normal caller returns to hardware/title initialization.
         tst.w        rLinkRole(a6)                                 ; $001A1C
         beq.b        loc_001A36                                    ; $001A20
-        lea.l        -$6fdc(a6), a0                                ; $001A22
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $001A22
         move.b       #$17, (a0)                                    ; $001A26
         jsr          QueueLinkCommand.l                            ; $001A2A
-        jsr          InputRoutine_020058.l                         ; $001A30
+        jsr          ServiceLinkUntilTxQueueEmpty.l                         ; $001A30
 
 loc_001A36:
         move.w       #$5, d0                                       ; $001A36

@@ -25,10 +25,10 @@ loc_0123A4:
         move.w       d4, d3                                        ; $0123B4
         asr.w        #$1, d3                                       ; $0123B6
         sub.w        d3, d1                                        ; $0123B8
-        clr.w        -$6f32(a6)                                    ; $0123BA
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $0123BA
         movea.l      rZoneObjectTiles(a6), a1                      ; $0123BE
         adda.w       #ObjectTileOffset19_Cell26Frame0, a1          ; $0123C2
-        btst.b       #$1, -$711f(a6)                               ; $0123C6
+        btst.b       #$1, rGameTickLow(a6)                               ; $0123C6
         beq.w        ScaleAndDrawSoftwareSpriteTile                ; $0123CC
         movea.l      rZoneObjectTiles(a6), a1                      ; $0123D0
         adda.w       #ObjectTileOffset20_Cell26Frame1, a1          ; $0123D4

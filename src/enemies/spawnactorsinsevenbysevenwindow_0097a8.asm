@@ -7,6 +7,7 @@
         endif
 
 SpawnActorsInSevenBySevenWindow:
+; Direct explosion call and retained movement fallthrough share this scan. A0 is the cell anchor, A4/A5 are selector/type tables; bounds still use global player X/Y.
 ; 7x7 scan around A0-3rows-3cols, but bounds and spawn coordinate counters come from GLOBAL player XY. A4 selector table, A5 type LUT. Explosion passes actor-cell pointer and temporarily changes CurrentFloor.
         move.w       rPlayerY(a6), d0                              ; $0097A8
         asr.w        #$8, d0                                       ; $0097AC
@@ -50,9 +51,11 @@ loc_0097FA:
 loc_009802:
         rts                                                        ; $009802
 
-loc_009804:
-        bsr.w        EnemiesRoutine_009860                         ; $009804
-        bra.w        loc_009824                                    ; $009808
+RetainedScanRightThenTopActorEdges:
+; Retained branch target: right column first, then top row. The dispatcher
+; also chooses this for the +33 pointer delta (not bottom row).
+        bsr.w        RetainedScanRightActorEdge                         ; $009804
+        bra.w        RetainedScanTopActorEdge                                    ; $009808
         ifne *-$980C
         fail "ROM end moved"
         endif

@@ -10,19 +10,19 @@ EnterDogDeath:
 ; Sound$36; ordinary CB/counter4/state3; CE->state4, preserve C8/C9. Does not force all modes to CB as Denpyder does.
         move.l       a0, -(a7)                                     ; $018788
         move.w       #$36, d0                                      ; $01878A
-        jsr          SoundRoutine_00DF64.l                         ; $01878E
+        jsr          RouteSoundEventByActorFloor.l                         ; $01878E
         movea.l      (a7)+, a0                                     ; $018794
         tst.b        ActorAlternateDeathSignal(a0)                 ; $018796
         bne.w        EnterLegacyEnemyDeathEffect                   ; $01879A
         andi.w       #$ff2f, ActorFlags(a0)                        ; $01879E
         move.l       #UpdateDogCorpse, ActorUpdateCallback(a0)     ; $0187A4
-        addq.w       #$1, -$71c8(a6)                               ; $0187AC
+        addq.w       #$1, rEnemyDeathsRecorded(a6)                               ; $0187AC
         clr.b        ActorUpdateDelay(a0)                          ; $0187B0
         move.l       #HitDogCorpse, ActorHitCallback(a0)           ; $0187B4
-        move.l       #EnvironmentRoutine_01D130, ActorExitCallback(a0) ; $0187BC
+        move.l       #PlaceCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $0187BC
         tst.b        ActorMarkerTracked(a0)                        ; $0187C4
         beq.b        loc_0187D2                                    ; $0187C8
-        move.l       #EnvironmentRoutine_097964, ActorExitCallback(a0) ; $0187CA
+        move.l       #WriteTrackedCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $0187CA
 
 loc_0187D2:
         move.l       #DrawDogCorpse, ActorDrawCallback(a0)         ; $0187D2
@@ -50,14 +50,14 @@ loc_018818:
 
 loc_018826:
         move.l       #$1efa8, ActorLinkCallback(a0)                ; $018826
-        lea.l        -$6fdc(a6), a1                                ; $01882E
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01882E
         move.b       #$12, (a1)+                                   ; $018832
         move.b       ActorLinkId(a0), (a1)+                        ; $018836
         move.w       ActorFlags(a0), d0                            ; $01883A
         ori.w        #$20, d0                                      ; $01883E
         move.b       d0, (a1)+                                     ; $018842
         move.b       ActorFloor(a0), (a1)+                         ; $018844
-        lea.l        -$6fdc(a6), a0                                ; $018848
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $018848
         jmp          QueueLinkCommand.l                            ; $01884C
 
 DogEnterWeaponFiveDeath:

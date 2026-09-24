@@ -6,7 +6,7 @@
 
 SendActorSpawnCommand:
         movem.l      d0-d7/a0-a3, -(a7)                            ; $00968E
-        lea.l        -$6fdc(a6), a1                                ; $009692
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $009692
         move.b       #$4, (a1)+                                    ; $009696
         move.b       ActorLinkId(a0), (a1)+                        ; $00969A
         move.w       ActorX(a0), (a1)+                             ; $00969E
@@ -17,7 +17,7 @@ SendActorSpawnCommand:
         move.b       d0, (a1)+                                     ; $0096B2
         move.w       ActorMotionX(a0), (a1)+                       ; $0096B4
         move.w       ActorMotionY(a0), (a1)+                       ; $0096B8
-        lea.l        -$6fdc(a6), a0                                ; $0096BC
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $0096BC
         jsr          QueueLinkCommand.l                            ; $0096C0
         movem.l      (a7)+, d0-d7/a0-a3                            ; $0096C6
         rts                                                        ; $0096CA

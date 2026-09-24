@@ -7,6 +7,7 @@
         endif
 
 PlaySoundEvent:
+; Direct calls dispatch D0 without storing rCurrentSoundSequenceId; fallthrough from $07ACE4 stores it first.
         move.l       a6, -(a7)                                     ; $07ACE8
         andi.l       #$ff, d0                                      ; $07ACEA
         move.w       d0, d1                                        ; $07ACF0
@@ -35,9 +36,9 @@ loc_07AD32:
         beq.w        loc_07AE72                                    ; $07AD3C
         move.l       d0, -(a7)                                     ; $07AD40
         move.l       d2, -(a7)                                     ; $07AD42
-        jsr          SoundRoutine_07A96C(pc)                       ; $07AD44
+        jsr          GemsSetTempo(pc)                       ; $07AD44
         addq.l       #$4, a7                                       ; $07AD48
-        jsr          SoundRoutine_07A94E(pc)                       ; $07AD4A
+        jsr          GemsStartSequence(pc)                       ; $07AD4A
         addq.l       #$4, a7                                       ; $07AD4E
         bra.w        loc_07AE72                                    ; $07AD50
 
@@ -51,7 +52,7 @@ loc_07AD54:
         move.l       $ff2a5a.l, -(a7)                              ; $07AD70
         bmi.b        loc_07AD84                                    ; $07AD76
         move.l       #$e, -(a7)                                    ; $07AD78
-        jsr          loc_07A9D4(pc)                                ; $07AD7E
+        jsr          GemsNoteOff(pc)                                ; $07AD7E
         addq.w       #$4, a7                                       ; $07AD82
 
 loc_07AD84:
@@ -64,7 +65,7 @@ loc_07AD84:
         jsr          GemsSetChannelPatch(pc)                       ; $07AD9A
         addq.w       #$8, a7                                       ; $07AD9E
         move.l       #$e, -(a7)                                    ; $07ADA0
-        jsr          SoundRoutine_07A9CC(pc)                       ; $07ADA6
+        jsr          GemsNoteOn(pc)                       ; $07ADA6
         addq.w       #$8, a7                                       ; $07ADAA
         bra.b        loc_07ADEE                                    ; $07ADAC
 
@@ -73,7 +74,7 @@ loc_07ADAE:
         move.l       $ff2a56.l, -(a7)                              ; $07ADB2
         bmi.b        loc_07ADC6                                    ; $07ADB8
         move.l       #$d, -(a7)                                    ; $07ADBA
-        jsr          loc_07A9D4(pc)                                ; $07ADC0
+        jsr          GemsNoteOff(pc)                                ; $07ADC0
         addq.w       #$4, a7                                       ; $07ADC4
 
 loc_07ADC6:
@@ -86,7 +87,7 @@ loc_07ADC6:
         jsr          GemsSetChannelPatch(pc)                       ; $07ADDC
         addq.w       #$8, a7                                       ; $07ADE0
         move.l       #$d, -(a7)                                    ; $07ADE2
-        jsr          SoundRoutine_07A9CC(pc)                       ; $07ADE8
+        jsr          GemsNoteOn(pc)                       ; $07ADE8
         addq.w       #$8, a7                                       ; $07ADEC
 
 loc_07ADEE:
@@ -104,30 +105,30 @@ loc_07AE12:
         move.w       ramSoundOptions.l, d7                         ; $07AE12
         btst.l       #$3, d7                                       ; $07AE18
         beq.w        loc_07AE72                                    ; $07AE1C
-        tst.w        $ff2a60.l                                     ; $07AE20
+        tst.w        ramStatusSoundScriptActive.l                                     ; $07AE20
         bne.b        loc_07AE72                                    ; $07AE26
-        tst.w        $ff2a62.l                                     ; $07AE28
+        tst.w        ramSoundEffectCooldown.l                                     ; $07AE28
         bne.b        loc_07AE72                                    ; $07AE2E
         move.l       d0, -(a7)                                     ; $07AE30
         move.l       #$f, -(a7)                                    ; $07AE32
         move.l       d2, -(a7)                                     ; $07AE38
         move.l       #$f, -(a7)                                    ; $07AE3A
-        jsr          SoundRoutine_07AA8E(pc)                       ; $07AE40
+        jsr          GemsSetDacRate(pc)                       ; $07AE40
         addq.w       #$8, a7                                       ; $07AE44
-        jsr          SoundRoutine_07A9CC(pc)                       ; $07AE46
+        jsr          GemsNoteOn(pc)                       ; $07AE46
         addq.l       #$8, a7                                       ; $07AE4A
         bra.b        loc_07AE72                                    ; $07AE4C
 
 loc_07AE4E:
-        tst.w        $ff2a62.l                                     ; $07AE4E
+        tst.w        ramSoundEffectCooldown.l                                     ; $07AE4E
         bne.b        loc_07AE72                                    ; $07AE54
         move.l       d0, -(a7)                                     ; $07AE56
         move.l       #$f, -(a7)                                    ; $07AE58
         move.l       d2, -(a7)                                     ; $07AE5E
         move.l       #$f, -(a7)                                    ; $07AE60
-        jsr          SoundRoutine_07AA8E(pc)                       ; $07AE66
+        jsr          GemsSetDacRate(pc)                       ; $07AE66
         addq.w       #$8, a7                                       ; $07AE6A
-        jsr          SoundRoutine_07A9CC(pc)                       ; $07AE6C
+        jsr          GemsNoteOn(pc)                       ; $07AE6C
         addq.l       #$8, a7                                       ; $07AE70
 
 loc_07AE72:

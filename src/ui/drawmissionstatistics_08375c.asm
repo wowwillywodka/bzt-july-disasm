@@ -27,7 +27,7 @@ DrawMissionStatistics:
         jsr          ClearCram.l                                   ; $083782
         jsr          ClearAllVram.l                                ; $083788
         move.w       #$0, d0                                       ; $08378E
-        jsr          VideoRoutine_021E4A.l                         ; $083792
+        jsr          WriteVerticalScrollToVsram.l                         ; $083792
         lea.l        InterfacePalettes.l, a0                       ; $083798
         move.w       #$3, d0                                       ; $08379E
         jsr          LoadPaletteLine.l                             ; $0837A2

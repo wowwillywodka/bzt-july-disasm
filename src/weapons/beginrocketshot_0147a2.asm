@@ -12,11 +12,11 @@ BeginRocketShot:
         bne.b        loc_0147D0                                    ; $0147A6
         tst.w        rWeaponLoweringOffset(a6)                     ; $0147A8
         bne.b        loc_0147D0                                    ; $0147AC
-        clr.w        -$55a0(a6)                                    ; $0147AE
-        clr.w        -$559e(a6)                                    ; $0147B2
+        clr.w        rStatusSoundScriptActive(a6)                                    ; $0147AE
+        clr.w        rSoundEffectCooldown(a6)                                    ; $0147B2
         move.w       #$37, d0                                      ; $0147B6
-        jsr          SoundRoutine_00DF84.l                         ; $0147BA
-        move.w       #$14, -$559e(a6)                              ; $0147C0
+        jsr          PlaySoundEventAndMaybeSendLink.l                         ; $0147BA
+        move.w       #$14, rSoundEffectCooldown(a6)                              ; $0147C0
         move.w       #$1, rWeaponActionPhase(a6)                   ; $0147C6
         bsr.w        ConsumeSelectedItemAndUpdateHud               ; $0147CC
 

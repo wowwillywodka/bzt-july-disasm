@@ -8,7 +8,7 @@
 
 SendBloodBodyState:
 ; Command $0D sends ID, XY and MotionXY. Animation choices in D0/D2 are not written to this packet before the shared send tail. Full link behavior remains separate.
-        lea.l        -$6fdc(a6), a1                                ; $01EFF8
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01EFF8
         move.b       #$d, (a1)+                                    ; $01EFFC
         move.b       ActorLinkId(a0), (a1)+                        ; $01F000
         move.w       ActorX(a0), (a1)+                             ; $01F004
@@ -33,13 +33,13 @@ loc_01F02E:
 loc_01F030:
         move.b       ActorStateCounter(a0), d7                     ; $01F030
         cmpi.b       #$9, d7                                       ; $01F034
-        beq.b        ActorsRoutine_01F06C                          ; $01F038
+        beq.b        QueueBloodBodyStatePacketVariantA                          ; $01F038
         cmpi.b       #$8, d7                                       ; $01F03A
-        beq.b        ActorsRoutine_01F06C                          ; $01F03E
+        beq.b        QueueBloodBodyStatePacketVariantA                          ; $01F03E
         cmpi.b       #$2, d7                                       ; $01F040
-        beq.b        ActorsRoutine_01F06C                          ; $01F044
+        beq.b        QueueBloodBodyStatePacketVariantA                          ; $01F044
         cmpi.b       #$1, d7                                       ; $01F046
-        beq.b        ActorsRoutine_01F06C                          ; $01F04A
+        beq.b        QueueBloodBodyStatePacketVariantA                          ; $01F04A
         cmpi.b       #$7, d7                                       ; $01F04C
         beq.b        loc_01F076                                    ; $01F050
         cmpi.b       #$6, d7                                       ; $01F052
@@ -49,7 +49,7 @@ loc_01F030:
         cmpi.b       #$3, d7                                       ; $01F05E
         beq.b        loc_01F076                                    ; $01F062
         cmpi.b       #$5, d7                                       ; $01F064
-        beq.b        ActorsRoutine_01F080                          ; $01F068
+        beq.b        QueueBloodBodyStatePacketVariantC                          ; $01F068
         rts                                                        ; $01F06A
         ifne *-$1F06C
         fail "ROM end moved"

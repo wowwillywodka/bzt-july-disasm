@@ -155,6 +155,7 @@ loc_01FAE8:
         bcs.w        DrawActorAnimationFrame                       ; $01FB04
 ; Accumulate movement magnitude for walk frames; allocator does not reset this phase.
 ; WalkPhase advances while drawing, by OctagonalDistance(MotionX,MotionY); lookup selects frames 1..last, leaving frame zero for idle.
+; Visibility therefore affects phase progression: no draw means no increment.
         add.w        d0, ActorWalkPhase(a0)                        ; $01FB08
         move.w       ActorWalkPhase(a0), d1                        ; $01FB0C
         asr.w        #$3, d1                                       ; $01FB10

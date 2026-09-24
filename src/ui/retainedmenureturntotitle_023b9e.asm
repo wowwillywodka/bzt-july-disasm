@@ -6,7 +6,7 @@
         endif
 
 RetainedMenuReturnToTitle:
-        move.w       #$1, -$778c(a6)                               ; $023B9E
+        move.w       #$1, rTitleScrollState(a6)                               ; $023B9E
         move.w       #$0, rLegacyEpisodeSelection(a6)              ; $023BA4
         move.w       #$1, rDemoMode(a6)                            ; $023BAA
         jsr          WaitForVBlank.l                               ; $023BB0

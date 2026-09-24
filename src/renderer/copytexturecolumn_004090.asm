@@ -1,7 +1,10 @@
 ; $004090..$0041D1 | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; RESEARCH NOTE (July; semantic claims still require local review):
-; Развёрнутый блиттер копирования текстурной колонки в фреймбуфер: повторяющийся фрагмент move.b (A5)+,(A0)/addq #4,A0 (запись пиксела с шагом-страйдом 4), сотни итераций до rts @0x41D0 — Duff-device масштабатор столбца стены
+; JULY LOCAL REVIEW:
+; Exactly 80 byte-copy steps at four-byte destination stride, followed by RTS.
+; Entry at $4090 copies all 80; each subsequent four-byte-aligned label skips
+; one leading step. Pointer tables use these suffixes to preserve background
+; pixels above/below the scaled wall center. See docs/WALL_SCALERS.md.
         ifne *-$4090
         fail "ROM start moved"
         endif

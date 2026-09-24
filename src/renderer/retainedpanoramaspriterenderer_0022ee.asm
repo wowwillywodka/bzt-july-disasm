@@ -6,20 +6,20 @@
         endif
 
 RetainedPanoramaSpriteRenderer:
-        tst.b        -$6f56(a6)                                    ; $0022EE
+        tst.b        rRetainedPanoramaEffectActive(a6)                                    ; $0022EE
         beq.b        loc_002302                                    ; $0022F2
         bsr.w        AdvanceRetainedPanoramaEffect                 ; $0022F4
-        tst.b        -$6f51(a6)                                    ; $0022F8
+        tst.b        rRetainedPanoramaEffectPending(a6)                                    ; $0022F8
         beq.b        loc_002302                                    ; $0022FC
-        bsr.w        UiRoutine_0025C4                              ; $0022FE
+        bsr.w        AppendRandomRetainedEffectSprite                              ; $0022FE
 
 loc_002302:
-        tst.b        -$6f4d(a6)                                    ; $002302
+        tst.b        rRetainedPanoramaMarkerTicks(a6)                                    ; $002302
         beq.b        loc_00230C                                    ; $002306
         bsr.w        TrackRetainedPanoramaEffectPosition           ; $002308
 
 loc_00230C:
-        move.w       -$71ee(a6), d2                                ; $00230C
+        move.w       rPlayerFacingAngle(a6), d2                                ; $00230C
         neg.w        d2                                            ; $002310
         lsl.w        #$1, d2                                       ; $002312
         addi.w       #$210, d2                                     ; $002314
@@ -35,25 +35,25 @@ loc_00232C:
         rts                                                        ; $00232C
 
 loc_00232E:
-        clr.w        -$6f50(a6)                                    ; $00232E
-        tst.b        -$6f56(a6)                                    ; $002332
+        clr.w        rRetainedPanoramaSpriteScreenX(a6)                                    ; $00232E
+        tst.b        rRetainedPanoramaEffectActive(a6)                                    ; $002332
         beq.b        loc_00236E                                    ; $002336
         move.w       #$c9, (a2)+                                   ; $002338
         lea.l        RetainedPanoramaAnimationTiles(pc), a0        ; $00233C
         clr.w        d4                                            ; $002340
-        move.b       -$6f52(a6), d4                                ; $002342
+        move.b       rRetainedPanoramaEffectFrame(a6), d4                                ; $002342
         bclr.l       #$0, d4                                       ; $002346
-        move.w       -$7fbe(a6), d5                                ; $00234A
+        move.w       rSpriteAttributeNextLink(a6), d5                                ; $00234A
         ori.w        #$0, d5                                       ; $00234E
         move.w       d5, (a2)+                                     ; $002352
-        addq.w       #$1, -$7fbe(a6)                               ; $002354
+        addq.w       #$1, rSpriteAttributeNextLink(a6)                               ; $002354
         move.w       (a0, d4.w), (a2)+                             ; $002358
         clr.w        d4                                            ; $00235C
-        move.b       -$6f55(a6), d4                                ; $00235E
+        move.b       rRetainedPanoramaHorizontalPhase(a6), d4                                ; $00235E
         addi.w       #$10, d4                                      ; $002362
         add.w        d2, d4                                        ; $002366
         move.w       d4, (a2)+                                     ; $002368
-        move.w       d4, -$6f50(a6)                                ; $00236A
+        move.w       d4, rRetainedPanoramaSpriteScreenX(a6)                                ; $00236A
 
 loc_00236E:
         move.w       #$13, d3                                      ; $00236E
@@ -78,10 +78,10 @@ loc_002394:
         adda.w       d3, a0                                        ; $00239A
         lsl.w        #$1, d3                                       ; $00239C
         adda.w       d3, a0                                        ; $00239E
-        move.w       -$7fbe(a6), d1                                ; $0023A0
+        move.w       rSpriteAttributeNextLink(a6), d1                                ; $0023A0
         move.w       rCurrentFloor(a6), d5                         ; $0023A4
         lsl.w        #$3, d5                                       ; $0023A8
-        move.w       -$6e4c(a6), d0                                ; $0023AA
+        move.w       rTransitHeightOffset(a6), d0                                ; $0023AA
         asr.w        #$4, d0                                       ; $0023AE
         add.w        d0, d5                                        ; $0023B0
         neg.w        d5                                            ; $0023B2
@@ -117,7 +117,7 @@ loc_0023EA:
         addi.w       #$10, d5                                      ; $0023EA
         cmpi.w       #$f8, d5                                      ; $0023EE
         blt.b        loc_0023CE                                    ; $0023F2
-        move.w       d1, -$7fbe(a6)                                ; $0023F4
+        move.w       d1, rSpriteAttributeNextLink(a6)                                ; $0023F4
         rts                                                        ; $0023F8
         ifne *-$23FA
         fail "ROM end moved"

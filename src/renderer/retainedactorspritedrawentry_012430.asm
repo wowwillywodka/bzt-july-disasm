@@ -53,7 +53,7 @@ loc_012480:
         move.w       d4, d3                                        ; $012496
         asr.w        #$1, d3                                       ; $012498
         sub.w        d3, d1                                        ; $01249A
-        clr.w        -$6f32(a6)                                    ; $01249C
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $01249C
         bra.w        ScaleAndDrawSoftwareSpriteTile                ; $0124A0
 
 loc_0124A4:
@@ -67,7 +67,7 @@ loc_0124A4:
         move.w       d4, d3                                        ; $0124B6
         asr.w        #$1, d3                                       ; $0124B8
         sub.w        d3, d1                                        ; $0124BA
-        clr.w        -$6f32(a6)                                    ; $0124BC
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $0124BC
         bra.w        ScaleAndDrawSoftwareSpriteTile                ; $0124C0
 
 loc_0124C4:
@@ -83,7 +83,7 @@ loc_0124C4:
         move.w       d4, d3                                        ; $0124DA
         asr.w        #$1, d3                                       ; $0124DC
         sub.w        d3, d1                                        ; $0124DE
-        clr.w        -$6f32(a6)                                    ; $0124E0
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $0124E0
         bra.w        ScaleAndDrawSoftwareSpriteTile                ; $0124E4
 
 loc_0124E8:
@@ -97,7 +97,7 @@ loc_0124E8:
         move.w       d4, d3                                        ; $0124FA
         asr.w        #$1, d3                                       ; $0124FC
         sub.w        d3, d1                                        ; $0124FE
-        clr.w        -$6f32(a6)                                    ; $012500
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $012500
         bra.w        ScaleAndDrawSoftwareSpriteTile                ; $012504
 
 loc_012508:
@@ -113,7 +113,7 @@ loc_012508:
         move.w       d4, d3                                        ; $01251E
         asr.w        #$1, d3                                       ; $012520
         sub.w        d3, d1                                        ; $012522
-        clr.w        -$6f32(a6)                                    ; $012524
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $012524
         bsr.w        ScaleAndDrawSoftwareSpriteTile                ; $012528
         bra.w        loc_012580                                    ; $01252C
 
@@ -128,13 +128,13 @@ loc_012530:
         move.w       d4, d3                                        ; $012542
         asr.w        #$1, d3                                       ; $012544
         sub.w        d3, d1                                        ; $012546
-        clr.w        -$6f32(a6)                                    ; $012548
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $012548
         bra.w        ScaleAndDrawSoftwareSpriteTile                ; $01254C
 
 loc_012550:
         movea.l      rZoneObjectTiles(a6), a1                      ; $012550
         adda.w       #ObjectTileOffset53_LampFrame0, a1            ; $012554
-        btst.b       #$1, -$711f(a6)                               ; $012558
+        btst.b       #$1, rGameTickLow(a6)                               ; $012558
         beq.b        loc_012568                                    ; $01255E
         movea.l      rZoneObjectTiles(a6), a1                      ; $012560
         adda.w       #ObjectTileOffset49_FlashingLampFrame1, a1    ; $012564
@@ -148,7 +148,7 @@ loc_012568:
         move.w       d4, d3                                        ; $012572
         asr.w        #$1, d3                                       ; $012574
         sub.w        d3, d1                                        ; $012576
-        clr.w        -$6f32(a6)                                    ; $012578
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $012578
         bra.w        ScaleAndDrawSoftwareSpriteTile                ; $01257C
 
 loc_012580:
@@ -162,19 +162,19 @@ loc_012580:
         sub.w        d3, d1                                        ; $012594
         move.w       d3, d0                                        ; $012596
         move.w       #$20, d3                                      ; $012598
-        add.w        -$71d8(a6), d3                                ; $01259C
-        sub.w        -$6e4c(a6), d3                                ; $0125A0
+        add.w        rPlayerViewOffsetZ(a6), d3                                ; $01259C
+        sub.w        rTransitHeightOffset(a6), d3                                ; $0125A0
         muls.w       d3, d0                                        ; $0125A4
         asr.l        #$6, d0                                       ; $0125A6
         move.w       d0, d3                                        ; $0125A8
         asr.w        #$1, d3                                       ; $0125AA
         sub.w        d3, d2                                        ; $0125AC
-        clr.w        -$6f32(a6)                                    ; $0125AE
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $0125AE
         bra.w        ScaleAndDrawSoftwareSpriteTile                ; $0125B2
 
 loc_0125B6:
 ; Type $78 fan: tick&3 selects (tile,mirror) = (58,0),(59,0),(59,1),(58,1).
-        clr.w        -$6f32(a6)                                    ; $0125B6
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $0125B6
         movea.l      rZoneObjectTiles(a6), a1                      ; $0125BA
         adda.w       #ObjectTileOffset58_FanFrame0, a1             ; $0125BE
         move.w       rGameTick(a6), d0                             ; $0125C2
@@ -187,7 +187,7 @@ loc_0125B6:
 loc_0125D6:
         cmpi.w       #$2, d0                                       ; $0125D6
         bcs.b        loc_0125E2                                    ; $0125DA
-        move.w       #$1, -$6f32(a6)                               ; $0125DC
+        move.w       #$1, rSoftwareSpriteMirrorFlag(a6)                               ; $0125DC
 
 loc_0125E2:
         move.w       d5, d4                                        ; $0125E2
@@ -197,8 +197,8 @@ loc_0125E2:
         sub.w        d3, d1                                        ; $0125EA
         move.w       d3, d0                                        ; $0125EC
         move.w       #$20, d3                                      ; $0125EE
-        add.w        -$71d8(a6), d3                                ; $0125F2
-        sub.w        -$6e4c(a6), d3                                ; $0125F6
+        add.w        rPlayerViewOffsetZ(a6), d3                                ; $0125F2
+        sub.w        rTransitHeightOffset(a6), d3                                ; $0125F6
         muls.w       d3, d0                                        ; $0125FA
         asr.l        #$6, d0                                       ; $0125FC
         move.w       d0, d3                                        ; $0125FE

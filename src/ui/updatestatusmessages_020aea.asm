@@ -2,6 +2,7 @@
 ; Maintained assembly input; no extraction occurs during build.
 ; JULY LOCAL REVIEW:
 ; Consume four fixed 9-byte text rows, then optional sound-script data. No NUL terminator is read for the 36 text bytes. See docs/TEXT.md.
+; Floor-clear timer cycles E1 -> 69 -> 0 -> E1, so a zero result latches CountLegacyObjectiveFloorEnemies until an external reset.
         ifne *-$20AEA
         fail "ROM start moved"
         endif
@@ -25,18 +26,18 @@ loc_020B0E:
         bsr.b        QueueStatusMessage                            ; $020B18
 
 loc_020B1A:
-        bsr.w        SoundRoutine_020CBC                           ; $020B1A
-        move.w       -$76ee(a6), d0                                ; $020B1E
+        bsr.w        AdvanceStatusSoundScript                           ; $020B1A
+        move.w       rStatusMessageDisplayTicks(a6), d0                                ; $020B1E
         beq.b        loc_020B9A                                    ; $020B22
-        sub.w        -$76f0(a6), d0                                ; $020B24
+        sub.w        rStatusMessageQueueCount(a6), d0                                ; $020B24
         subq.w       #$1, d0                                       ; $020B28
         beq.b        loc_020B34                                    ; $020B2A
         bmi.b        loc_020B34                                    ; $020B2C
-        move.w       d0, -$76ee(a6)                                ; $020B2E
+        move.w       d0, rStatusMessageDisplayTicks(a6)                                ; $020B2E
         rts                                                        ; $020B32
 
 loc_020B34:
-        clr.w        -$76ee(a6)                                    ; $020B34
+        clr.w        rStatusMessageDisplayTicks(a6)                                    ; $020B34
         movea.l      #VDP_DATA, a4                                 ; $020B38
         move.w       #$e514, d0                                    ; $020B3E
         swap         d0                                            ; $020B42
@@ -68,12 +69,12 @@ loc_020B34:
         rts                                                        ; $020B98
 
 loc_020B9A:
-        tst.w        -$76f0(a6)                                    ; $020B9A
+        tst.w        rStatusMessageQueueCount(a6)                                    ; $020B9A
         bne.b        loc_020BA2                                    ; $020B9E
         rts                                                        ; $020BA0
 
 loc_020BA2:
-        lea.l        -$7730(a6), a0                                ; $020BA2
+        lea.l        rStatusMessageQueue(a6), a0                                ; $020BA2
         movea.l      (a0), a1                                      ; $020BA6
         move.l       $4(a0), (a0)+                                 ; $020BA8
         move.l       $4(a0), (a0)+                                 ; $020BAC
@@ -90,11 +91,11 @@ loc_020BA2:
         move.l       $4(a0), (a0)+                                 ; $020BD8
         move.l       $4(a0), (a0)+                                 ; $020BDC
         move.l       $4(a0), (a0)+                                 ; $020BE0
-        subq.w       #$1, -$76f0(a6)                               ; $020BE4
-        move.w       #$14, -$76ee(a6)                              ; $020BE8
+        subq.w       #$1, rStatusMessageQueueCount(a6)                               ; $020BE4
+        move.w       #$14, rStatusMessageDisplayTicks(a6)                              ; $020BE8
 
 loc_020BEE:
-        tst.w        -$7ffe(a6)                                    ; $020BEE
+        tst.w        rVBlankTransferPhasesRemaining(a6)                                    ; $020BEE
         bne.b        loc_020BEE                                    ; $020BF2
         lea.l        StatusMessageTileLookup(pc), a0               ; $020BF4
         clr.w        d0                                            ; $020BF8
@@ -136,20 +137,20 @@ loc_020C68:
         move.w       (a0, d0.w), (a4)                              ; $020C70
         dbra         d7, loc_020C68                                ; $020C74
         movea.l      a1, a0                                        ; $020C78
-        btst.b       #$1, -$7feb(a6)                               ; $020C7A
+        btst.b       #$1, rSoundOptionsLow(a6)                               ; $020C7A
         bne.b        loc_020C84                                    ; $020C80
         rts                                                        ; $020C82
 
 loc_020C84:
-        tst.w        -$55a0(a6)                                    ; $020C84
+        tst.w        rStatusSoundScriptActive(a6)                                    ; $020C84
         beq.b        loc_020C8C                                    ; $020C88
         rts                                                        ; $020C8A
 
 loc_020C8C:
-        lea.l        -$7772(a6), a1                                ; $020C8C
+        lea.l        rStatusSoundScript(a6), a1                                ; $020C8C
         cmpi.w       #$ffff, (a0)                                  ; $020C90
         bne.b        loc_020C9C                                    ; $020C94
-        clr.w        -$55a0(a6)                                    ; $020C96
+        clr.w        rStatusSoundScriptActive(a6)                                    ; $020C96
         rts                                                        ; $020C9A
 
 loc_020C9C:
@@ -157,10 +158,10 @@ loc_020C9C:
         cmpi.w       #$ffff, (a0)                                  ; $020C9E
         bne.b        loc_020C9C                                    ; $020CA2
         move.w       (a0)+, (a1)+                                  ; $020CA4
-        move.w       #$1, -$55a0(a6)                               ; $020CA6
-        move.w       -$7772(a6), -$7732(a6)                        ; $020CAC
-        move.w       -$7770(a6), d0                                ; $020CB2
-        jmp          SoundRoutine_00DFBA.l                         ; $020CB6
+        move.w       #$1, rStatusSoundScriptActive(a6)                               ; $020CA6
+        move.w       rStatusSoundScript(a6), rStatusSoundScriptStepTicks(a6)                        ; $020CAC
+        move.w       rStatusSoundScriptSoundId(a6), d0                                ; $020CB2
+        jmp          DispatchSoundEventWithIrqMask.l                         ; $020CB6
         ifne *-$20CBC
         fail "ROM end moved"
         endif

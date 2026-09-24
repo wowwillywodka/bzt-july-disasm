@@ -8,7 +8,7 @@
 
 LinkInterrupt:
         move.b       #$20, PAD2_CONTROL.l                          ; $0201E6
-        cmpi.w       #$2100, $ff2c66.l                             ; $0201EE
+        cmpi.w       #$2100, ramLinkPortStatusShadow.l                             ; $0201EE
         beq.b        loc_0201FA                                    ; $0201F6
         rte                                                        ; $0201F8
 
@@ -20,23 +20,23 @@ loc_0201FA:
         movea.l      #PAD2_DATA, a3                                ; $02020A
         moveq        #$f, d2                                       ; $020210
         move.w       #$f0, d3                                      ; $020212
-        clr.w        $ff2c5e.l                                     ; $020216
-        bsr.w        loc_01FEAC                                    ; $02021C
-        tst.w        $ff2c5e.l                                     ; $020220
+        clr.w        ramLinkTransferFailureCount.l                                     ; $020216
+        bsr.w        ClearLinkPortStrobeBit                                    ; $02021C
+        tst.w        ramLinkTransferFailureCount.l                                     ; $020220
         bne.w        loc_020352                                    ; $020226
         clr.w        d1                                            ; $02022A
-        bsr.w        InputRoutine_01FEB6                           ; $02022C
-        tst.w        $ff2c5e.l                                     ; $020230
+        bsr.w        ReceiveLinkWordInNibbles                           ; $02022C
+        tst.w        ramLinkTransferFailureCount.l                                     ; $020230
         bne.w        loc_020352                                    ; $020236
-        move.w       $ff2c6a.l, d4                                 ; $02023A
+        move.w       ramLinkReceiveWriteOffset.l, d4                                 ; $02023A
         move.w       d7, d0                                        ; $020240
         subq.w       #$1, d0                                       ; $020242
         bmi.w        loc_02026C                                    ; $020244
-        lea.l        $ff2c70.l, a0                                 ; $020248
+        lea.l        ramLinkReceiveRing.l, a0                                 ; $020248
 
 loc_02024E:
-        bsr.w        InputRoutine_01FEB6                           ; $02024E
-        tst.w        $ff2c5e.l                                     ; $020252
+        bsr.w        ReceiveLinkWordInNibbles                           ; $02024E
+        tst.w        ramLinkTransferFailureCount.l                                     ; $020252
         bne.w        loc_020352                                    ; $020258
         add.w        d7, d1                                        ; $02025C
         move.w       d7, (a0, d4.w)                                ; $02025E
@@ -45,80 +45,80 @@ loc_02024E:
         dbra         d0, loc_02024E                                ; $020268
 
 loc_02026C:
-        bsr.w        InputRoutine_01FEB6                           ; $02026C
-        tst.w        $ff2c5e.l                                     ; $020270
+        bsr.w        ReceiveLinkWordInNibbles                           ; $02026C
+        tst.w        ramLinkTransferFailureCount.l                                     ; $020270
         bne.w        loc_020352                                    ; $020276
         cmp.w        d7, d1                                        ; $02027A
         bne.b        loc_020284                                    ; $02027C
-        move.w       d4, $ff2c6a.l                                 ; $02027E
+        move.w       d4, ramLinkReceiveWriteOffset.l                                 ; $02027E
 
 loc_020284:
-        bsr.w        InputRoutine_01FF30                           ; $020284
-        tst.w        $ff2c5e.l                                     ; $020288
+        bsr.w        WaitForLinkPeerHighAndSetStrobe                           ; $020284
+        tst.w        ramLinkTransferFailureCount.l                                     ; $020288
         bne.w        loc_020352                                    ; $02028E
-        bsr.w        InputRoutine_01FDD4                           ; $020292
-        tst.w        $ff2c5e.l                                     ; $020296
+        bsr.w        WaitForLinkPeerLowAfterClearingStrobe                           ; $020292
+        tst.w        ramLinkTransferFailureCount.l                                     ; $020296
         bne.w        loc_020352                                    ; $02029C
         move.w       d1, d7                                        ; $0202A0
-        bsr.w        InputRoutine_01FDF6                           ; $0202A2
-        tst.w        $ff2c5e.l                                     ; $0202A6
+        bsr.w        TransmitLinkWordInNibbles                           ; $0202A2
+        tst.w        ramLinkTransferFailureCount.l                                     ; $0202A6
         bne.w        loc_020352                                    ; $0202AC
-        move.w       $ff2c6e.l, d0                                 ; $0202B0
-        sub.w        $ff2c6c.l, d0                                 ; $0202B6
+        move.w       ramLinkTransmitWriteOffset.l, d0                                 ; $0202B0
+        sub.w        ramLinkTransmitReadOffset.l, d0                                 ; $0202B6
         bpl.b        loc_0202C2                                    ; $0202BC
         addi.w       #$800, d0                                     ; $0202BE
 
 loc_0202C2:
         asr.w        #$1, d0                                       ; $0202C2
         move.w       d0, d7                                        ; $0202C4
-        bsr.w        InputRoutine_01FDF6                           ; $0202C6
-        tst.w        $ff2c5e.l                                     ; $0202CA
+        bsr.w        TransmitLinkWordInNibbles                           ; $0202C6
+        tst.w        ramLinkTransferFailureCount.l                                     ; $0202CA
         bne.w        loc_020352                                    ; $0202D0
         clr.w        d1                                            ; $0202D4
-        move.w       $ff2c6c.l, d4                                 ; $0202D6
+        move.w       ramLinkTransmitReadOffset.l, d4                                 ; $0202D6
         subq.w       #$1, d0                                       ; $0202DC
         bmi.w        loc_020306                                    ; $0202DE
-        lea.l        $ff3470.l, a0                                 ; $0202E2
+        lea.l        ramLinkTransmitRing.l, a0                                 ; $0202E2
 
 loc_0202E8:
         move.w       (a0, d4.w), d7                                ; $0202E8
         addq.w       #$2, d4                                       ; $0202EC
         andi.w       #$7ff, d4                                     ; $0202EE
         add.w        d7, d1                                        ; $0202F2
-        bsr.w        InputRoutine_01FDF6                           ; $0202F4
-        tst.w        $ff2c5e.l                                     ; $0202F8
+        bsr.w        TransmitLinkWordInNibbles                           ; $0202F4
+        tst.w        ramLinkTransferFailureCount.l                                     ; $0202F8
         bne.w        loc_020352                                    ; $0202FE
         dbra         d0, loc_0202E8                                ; $020302
 
 loc_020306:
         move.w       d1, d7                                        ; $020306
-        bsr.w        InputRoutine_01FDF6                           ; $020308
-        tst.w        $ff2c5e.l                                     ; $02030C
+        bsr.w        TransmitLinkWordInNibbles                           ; $020308
+        tst.w        ramLinkTransferFailureCount.l                                     ; $02030C
         bne.w        loc_020352                                    ; $020312
-        bsr.w        InputRoutine_01FE8A                           ; $020316
-        tst.w        $ff2c5e.l                                     ; $02031A
+        bsr.w        SetLinkPortDirectionAndWaitPeerHigh                           ; $020316
+        tst.w        ramLinkTransferFailureCount.l                                     ; $02031A
         bne.w        loc_020352                                    ; $020320
-        bsr.w        loc_01FEAC                                    ; $020324
-        tst.w        $ff2c5e.l                                     ; $020328
+        bsr.w        ClearLinkPortStrobeBit                                    ; $020324
+        tst.w        ramLinkTransferFailureCount.l                                     ; $020328
         bne.w        loc_020352                                    ; $02032E
-        bsr.w        InputRoutine_01FEB6                           ; $020332
-        tst.w        $ff2c5e.l                                     ; $020336
+        bsr.w        ReceiveLinkWordInNibbles                           ; $020332
+        tst.w        ramLinkTransferFailureCount.l                                     ; $020336
         bne.w        loc_020352                                    ; $02033C
         cmp.w        d7, d1                                        ; $020340
         bne.b        loc_02034E                                    ; $020342
-        move.w       $ff2c6e.l, $ff2c6c.l                          ; $020344
+        move.w       ramLinkTransmitWriteOffset.l, ramLinkTransmitReadOffset.l                          ; $020344
 
 loc_02034E:
-        bsr.w        InputRoutine_01FF30                           ; $02034E
+        bsr.w        WaitForLinkPeerHighAndSetStrobe                           ; $02034E
 
 loc_020352:
-        tst.w        $ff2c5e.l                                     ; $020352
+        tst.w        ramLinkTransferFailureCount.l                                     ; $020352
         bne.b        loc_020362                                    ; $020358
-        clr.w        $ff2c60.l                                     ; $02035A
+        clr.w        ramLinkStallTicks.l                                     ; $02035A
         bra.b        loc_020368                                    ; $020360
 
 loc_020362:
-        addq.w       #$5, $ff2c60.l                                ; $020362
+        addq.w       #$5, ramLinkStallTicks.l                                ; $020362
 
 loc_020368:
         move.b       #$20, (a2)                                    ; $020368

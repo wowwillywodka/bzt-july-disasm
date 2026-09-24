@@ -7,31 +7,31 @@
         endif
 
 FadeInScenePalette:
-        lea.l        -$7908(a6), a0                                ; $001C42
+        lea.l        rPaletteFadeCurrentColors(a6), a0                                ; $001C42
         move.w       #$1f, d7                                      ; $001C46
 
 loc_001C4A:
         clr.l        (a0)+                                         ; $001C4A
         dbra         d7, loc_001C4A                                ; $001C4C
         movea.l      #VDP_DATA, a4                                 ; $001C50
-        cmpi.w       #$ffff, -$6f6c(a6)                            ; $001C56
+        cmpi.w       #$ffff, rNightVisionInventorySlotIndex(a6)                            ; $001C56
         bne.b        loc_001C66                                    ; $001C5C
-        move.l       rZoneScenePalette(a6), -$7806(a6)             ; $001C5E
+        move.l       rZoneScenePalette(a6), rPaletteFadeTargetColorsPointer(a6)             ; $001C5E
         bra.b        loc_001C6C                                    ; $001C64
 
 loc_001C66:
-        move.l       rZoneEffectPalette(a6), -$7806(a6)            ; $001C66
+        move.l       rZoneEffectPalette(a6), rPaletteFadeTargetColorsPointer(a6)            ; $001C66
 
 loc_001C6C:
-        clr.b        -$7802(a6)                                    ; $001C6C
-        clr.w        -$7808(a6)                                    ; $001C70
+        clr.b        rPaletteFadeComponentIndex(a6)                                    ; $001C6C
+        clr.w        rPaletteFadeStableStepCount(a6)                                    ; $001C70
 
 loc_001C74:
         jsr          WaitForVBlank.l                               ; $001C74
-        tst.w        -$7808(a6)                                    ; $001C7A
+        tst.w        rPaletteFadeStableStepCount(a6)                                    ; $001C7A
         bne.b        loc_001CA6                                    ; $001C7E
         move.l       #$c0000000, VDP_CONTROL.l                     ; $001C80
-        lea.l        -$7908(a6), a0                                ; $001C8A
+        lea.l        rPaletteFadeCurrentColors(a6), a0                                ; $001C8A
         move.w       #$3, d7                                       ; $001C8E
 
 loc_001C92:
@@ -48,7 +48,7 @@ loc_001C92:
 loc_001CA6:
         move.w       #$3f, d7                                      ; $001CA6
         jsr          StepPaletteFade.l                             ; $001CAA
-        cmpi.w       #$2, -$7808(a6)                               ; $001CB0
+        cmpi.w       #$2, rPaletteFadeStableStepCount(a6)                               ; $001CB0
         bne.b        loc_001C74                                    ; $001CB6
         rts                                                        ; $001CB8
         ifne *-$1CBA

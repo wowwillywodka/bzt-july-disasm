@@ -24,7 +24,7 @@ loc_082100:
         jsr          RunPasswordEntry.l                            ; $082104
         jsr          InitializeOptionsScreen(pc)                   ; $08210A
         move.w       #$c328, d0                                    ; $08210E
-        lea.l        $ff000a.l, a0                                 ; $082112
+        lea.l        ramPasswordSavedText.l, a0                                 ; $082112
         jsr          PrintCharacterMenuText(pc)                    ; $082118
         rts                                                        ; $08211C
 
@@ -53,7 +53,7 @@ loc_08215E:
         btst.l       #$0, d0                                       ; $082164
         beq.w        loc_082182                                    ; $082168
         move.w       d0, -(a7)                                     ; $08216C
-        jsr          SoundRoutine_07A990(pc)                       ; $08216E
+        jsr          GemsStopAll(pc)                       ; $08216E
         move.w       (a7)+, d0                                     ; $082172
         bclr.l       #$0, d0                                       ; $082174
         lea.l        Data_08225E.l, a0                             ; $082178
@@ -71,7 +71,7 @@ loc_08218C:
         btst.l       #$0, d0                                       ; $0821A0
         beq.w        loc_0821B0                                    ; $0821A4
         move.w       #$41, d0                                      ; $0821A8
-        jsr          loc_07ACE4(pc)                                ; $0821AC
+        jsr          StoreCurrentSoundSequenceAndPlayEvent(pc)                                ; $0821AC
 
 loc_0821B0:
         rts                                                        ; $0821B0
@@ -95,7 +95,7 @@ loc_0821D8:
         rts                                                        ; $0821E6
 
 loc_0821E8:
-        jsr          SoundRoutine_07A990(pc)                       ; $0821E8
+        jsr          GemsStopAll(pc)                       ; $0821E8
         move.w       ramSoundOptions.l, d0                         ; $0821EC
         move.w       d0, -(a7)                                     ; $0821F2
         move.w       #$f, ramSoundOptions.l                        ; $0821F4

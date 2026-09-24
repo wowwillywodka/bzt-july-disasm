@@ -6,14 +6,14 @@
         endif
 
 FinishRetainedPanoramaEffect:
-        clr.b        -$6f56(a6)                                    ; $002786
-        clr.b        -$6f52(a6)                                    ; $00278A
+        clr.b        rRetainedPanoramaEffectActive(a6)                                    ; $002786
+        clr.b        rRetainedPanoramaEffectFrame(a6)                                    ; $00278A
         rts                                                        ; $00278E
 
 loc_002790:
-        clr.b        -$6f56(a6)                                    ; $002790
-        clr.b        -$6f51(a6)                                    ; $002794
-        subq.b       #$1, -$6f53(a6)                               ; $002798
+        clr.b        rRetainedPanoramaEffectActive(a6)                                    ; $002790
+        clr.b        rRetainedPanoramaEffectPending(a6)                                    ; $002794
+        subq.b       #$1, rRetainedPanoramaEffectBudget(a6)                               ; $002798
         rts                                                        ; $00279C
         ifne *-$279E
         fail "ROM end moved"

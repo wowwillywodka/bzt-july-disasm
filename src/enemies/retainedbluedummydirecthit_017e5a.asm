@@ -10,7 +10,7 @@
 RetainedBlueDummyDirectHit:
 ; Retained direct-hit tail behind RTS $17E58; no decoded external literal entry found. Active death starts separately at $17EDE.
         move.w       #$400, d3                                     ; $017E5A
-        tst.w        -$71d8(a6)                                    ; $017E5E
+        tst.w        rPlayerViewOffsetZ(a6)                                    ; $017E5E
         bpl.b        loc_017E74                                    ; $017E62
         move.w       #$200, d3                                     ; $017E64
         tst.w        rSceneColorMode(a6)                           ; $017E68
@@ -52,9 +52,9 @@ loc_017E8E:
 
 loc_017EC8:
         move.w       #$5f, d0                                      ; $017EC8
-        jsr          SoundRoutine_00DF64.l                         ; $017ECC
+        jsr          RouteSoundEventByActorFloor.l                         ; $017ECC
         move.w       #$83, d0                                      ; $017ED2
-        jsr          SoundRoutine_00DF64.l                         ; $017ED6
+        jsr          RouteSoundEventByActorFloor.l                         ; $017ED6
 
 loc_017EDC:
         rts                                                        ; $017EDC

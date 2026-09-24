@@ -10,8 +10,9 @@ GemsSetChannelPatch:
         jsr          BeginGemsCommand(pc)                          ; $07A9AE
         moveq        #$2, d0                                       ; $07A9B2
 
-loc_07A9B4:
-        jsr          SoundRoutine_07A8C8(pc)                       ; $07A9B4
+WriteGemsTwoArgumentCommand:
+; Shared host command tail: D0=opcode, $8/$C(A6)=two byte arguments.
+        jsr          WriteGemsCommandPrefixAndOpcode(pc)                       ; $07A9B4
         move.l       $8(a6), d0                                    ; $07A9B8
         jsr          WriteGemsCommandByte(pc)                      ; $07A9BC
         move.l       $c(a6), d0                                    ; $07A9C0

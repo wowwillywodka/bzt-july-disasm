@@ -7,6 +7,7 @@
         endif
 
 CountMapCellIndex:
+; Direct callers supply D0.B and an initialized D4.W accumulator; type-lookup fallthrough uses -1 to skip missing types.
         clr.w        d1                                            ; $0974DC
         cmpi.b       #$ff, d0                                      ; $0974DE
         beq.b        loc_0974F6                                    ; $0974E2

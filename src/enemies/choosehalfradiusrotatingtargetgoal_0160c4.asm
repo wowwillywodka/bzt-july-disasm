@@ -15,7 +15,7 @@ ChooseHalfRadiusRotatingTargetGoal:
         andi.w       #$1ff, d0                                     ; $0160D4
         subi.w       #$100, d0                                     ; $0160D8
         lea.l        AngleVectorPairs.w, a4                        ; $0160DC
-        move.w       -$71ee(a6), d0                                ; $0160E0
+        move.w       rPlayerFacingAngle(a6), d0                                ; $0160E0
         add.w        ActorGoalAngle(a0), d0                        ; $0160E4
         addi.w       #$50, ActorGoalAngle(a0)                      ; $0160E8
         andi.w       #$1ff, ActorGoalAngle(a0)                     ; $0160EE

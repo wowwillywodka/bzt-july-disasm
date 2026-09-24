@@ -20,7 +20,7 @@ ChooseStananOffsetGoal:
 
 loc_015FDE:
         lea.l        AngleVectorPairs.w, a4                        ; $015FDE
-        move.w       -$71ee(a6), d0                                ; $015FE2
+        move.w       rPlayerFacingAngle(a6), d0                                ; $015FE2
         add.w        ActorGoalAngle(a0), d0                        ; $015FE6
         andi.w       #$1ff, d0                                     ; $015FEA
         lsl.w        #$2, d0                                       ; $015FEE

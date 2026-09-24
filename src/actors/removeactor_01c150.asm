@@ -8,6 +8,9 @@
 
 RemoveActor:
 ; Requires A0 to be a live list member. No double-free/null guard. Clears flags and next only.
+; Does not clear ActorTarget in this slot or invalidate other actors pointing to it.
+; Does not call ActorExitCallback, commit a map cell, or touch the separate
+; hit-particle count. The caller owns those effects.
         subq.w       #$1, rActiveActorCount(a6)                    ; $01C150
         cmpa.l       rActiveActorHead(a6), a0                      ; $01C154
         bne.b        loc_01C166                                    ; $01C158

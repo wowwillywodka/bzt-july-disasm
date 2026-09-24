@@ -11,19 +11,20 @@ PlacePlayerMine:
         tst.w        rWeaponLoweringOffset(a6)                     ; $014328
         bne.w        loc_014426                                    ; $01432C
         move.w       #$63, d0                                      ; $014330
-        jsr          SoundRoutine_00DF84.l                         ; $014334
+        jsr          PlaySoundEventAndMaybeSendLink.l                         ; $014334
         bsr.w        ConsumeSelectedItemAndUpdateHud               ; $01433A
         bsr.w        AllocateActor                                 ; $01433E
         beq.w        loc_014426                                    ; $014342
-        move.b       #$1e, $23(a0)                                 ; $014346
+; This initial 31-visit delay is conditional: the branch at $0143C8 clears it.
+        move.b       #$1e, ActorUpdateDelay(a0)                                 ; $014346
         clr.b        $22(a0)                                       ; $01434C
         move.l       #UpdatePlayerProximityMine, ActorUpdateCallback(a0) ; $014350
-        move.l       #loc_01CA7E, ActorDrawCallback(a0)            ; $014358
+        move.l       #DrawProximityMineTile, ActorDrawCallback(a0)            ; $014358
         move.l       #ExplodeProjectileOnNearHit, ActorHitCallback(a0) ; $014360
         ori.w        #$8, $4(a0)                                   ; $014368
-        move.w       -$71f2(a6), d5                                ; $01436E
+        move.w       rPlayerFacingVectorX(a6), d5                                ; $01436E
         asr.w        #$4, d5                                       ; $014372
-        move.w       -$71f0(a6), d6                                ; $014374
+        move.w       rPlayerFacingVectorY(a6), d6                                ; $014374
         asr.w        #$4, d6                                       ; $014378
         move.w       rPlayerX(a6), d3                              ; $01437A
         move.w       rPlayerY(a6), d4                              ; $01437E
@@ -50,19 +51,19 @@ loc_0143AC:
         move.w       d3, $24(a0)                                   ; $0143AC
         move.w       d4, $26(a0)                                   ; $0143B0
         move.w       #$ffe0, d0                                    ; $0143B4
-        sub.w        -$6e4c(a6), d0                                ; $0143B8
+        sub.w        rTransitHeightOffset(a6), d0                                ; $0143B8
         move.w       d0, $28(a0)                                   ; $0143BC
-        jsr          ObjectsRoutine_00A3D2.l                       ; $0143C0
+        jsr          ClassifyPlayerCellForWeapon.l                       ; $0143C0
         beq.b        loc_0143D4                                    ; $0143C6
-        clr.b        $23(a0)                                       ; $0143C8
-        move.l       #WeaponsRoutine_01C880, ActorUpdateCallback(a0) ; $0143CC
+        clr.b        ActorUpdateDelay(a0)                                       ; $0143C8
+        move.l       #ResolveSpecialCellProjectileImpact, ActorUpdateCallback(a0) ; $0143CC
 
 loc_0143D4:
         tst.w        rLinkRole(a6)                                 ; $0143D4
         beq.b        loc_014426                                    ; $0143D8
         move.l       #RemoveActorAndSendLink, ActorExitCallback(a0) ; $0143DA
-        move.l       #$1edfc, ActorLinkCallback(a0)                ; $0143E2
-        lea.l        -$6fdc(a6), a1                                ; $0143EA
+        move.l       #ActorLinkNoOp, ActorLinkCallback(a0)                ; $0143E2
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $0143EA
         move.b       #$4, (a1)+                                    ; $0143EE
         move.b       $42(a0), (a1)+                                ; $0143F2
         move.w       $24(a0), (a1)+                                ; $0143F6
@@ -75,7 +76,7 @@ loc_0143D4:
         move.b       #$2, (a1)+                                    ; $014410
         move.w       $2e(a0), (a1)+                                ; $014414
         move.w       $30(a0), (a1)+                                ; $014418
-        lea.l        -$6fdc(a6), a0                                ; $01441C
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $01441C
         jsr          QueueLinkCommand.l                            ; $014420
 
 loc_014426:

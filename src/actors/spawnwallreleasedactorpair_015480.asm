@@ -54,7 +54,7 @@ loc_0154B0:
         move.l       #ramPlayerActorProxy, ActorTarget(a0)         ; $015538
         move.w       d0, -(a7)                                     ; $015540
         move.w       ActorDefSpawnSound(a1), d0                    ; $015542
-        jsr          RendererRoutine_009626.l                      ; $015546
+        jsr          PlayActorSpawnSound.l                      ; $015546
         move.w       (a7)+, d0                                     ; $01554C
         tst.w        rLinkRole(a6)                                 ; $01554E
         beq.b        loc_015560                                    ; $015552
@@ -95,7 +95,7 @@ loc_015560:
         move.b       ActorDefCorpseCellProfile(a1), ActorCorpseCellProfile(a0) ; $0155EE
         move.l       #ramPlayerActorProxy, ActorTarget(a0)         ; $0155F4
         move.w       ActorDefSpawnSound(a1), d0                    ; $0155FC
-        jsr          RendererRoutine_009626.l                      ; $015600
+        jsr          PlayActorSpawnSound.l                      ; $015600
         tst.w        rLinkRole(a6)                                 ; $015606
         beq.b        loc_015618                                    ; $01560A
         move.l       ActorDefLink(a1), ActorLinkCallback(a0)       ; $01560C

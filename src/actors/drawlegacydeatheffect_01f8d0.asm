@@ -18,6 +18,9 @@ DrawLegacyDeathEffect:
         beq.w        DrawActorAnimation                            ; $01F8EE
         addq.w       #$3, d2                                       ; $01F8F2
         bra.w        DrawActorAnimation                            ; $01F8F4
+UpdateLegacyDeathEffect:
+; Independent update entry: damp XY motion, then reuse the shared enemy
+; target/obstacle exit gate. The draw branch above never falls through here.
         clr.b        ActorUpdateDelay(a0)                          ; $01F8F8
         move.w       ActorMotionX(a0), d0                          ; $01F8FC
         bmi.b        loc_01F906                                    ; $01F900
@@ -51,7 +54,7 @@ loc_01F920:
         bsr.w        MoveActorWithWallMargin32                     ; $01F932
 
 loc_01F936:
-        bra.w        EnemiesRoutine_01E25A                         ; $01F936
+        bra.w        SteerEnemyMotionAtNearbyWall                         ; $01F936
         clr.w        ActorMotionX(a0)                              ; $01F93A
         clr.w        ActorMotionY(a0)                              ; $01F93E
         neg.w        d3                                            ; $01F942

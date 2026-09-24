@@ -1,7 +1,10 @@
 ; $00B8E2..$00B917 | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; RESEARCH NOTE (July; semantic claims still require local review):
-; Обработка хода игрока: диспетчер действий по D3 (таблица @0xB91A), поворот мини-карты (-0x6e4c шагом 4), скольжение вдоль стен по celltype соседних клеток (0x32-0x5B) с вызовом x/y-сдвига 0x98A9E/0x98AA6/0x98AA2 и обновлением угла (-0x71ee)
+; JULY LOCAL REVIEW: D3 is the current cell type. The $12..$4F range uses
+; TransitHeightHandlers; afterward states +1/-1 advance the lift motion and
+; may request a new floor. Called from TraceAndDrawVisibleWorld at $00C220.
+; In stock July LUTs, all 18 non-noop table entries are unreachable; the
+; state branches after the table remain in use for types $32..$34/$51..$5B.
         ifne *-$B8E2
         fail "ROM start moved"
         endif
@@ -22,9 +25,9 @@ loc_00B8EA:
         jsr          (a1)                                          ; $00B900
 
 loc_00B902:
-        cmpi.w       #$1, -$6e4a(a6)                               ; $00B902
+        cmpi.w       #$1, rTransitDirectionState(a6)                               ; $00B902
         beq.w        loc_00BB66                                    ; $00B908
-        cmpi.w       #$ffff, -$6e4a(a6)                            ; $00B90C
+        cmpi.w       #$ffff, rTransitDirectionState(a6)                            ; $00B90C
         beq.w        loc_00BBA8                                    ; $00B912
         rts                                                        ; $00B916
         ifne *-$B918

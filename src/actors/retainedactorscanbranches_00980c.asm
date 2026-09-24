@@ -6,10 +6,11 @@
         endif
 
 RetainedActorScanBranches:
-        bsr.w        EnemiesRoutine_00989E                         ; $00980C
-        bra.w        loc_009824                                    ; $009810
-        bsr.w        EnemiesRoutine_009860                         ; $009814
-        bra.w        loc_0098DC                                    ; $009818
+; Previous-to-current pointer delta -33: left and top entering edges.
+        bsr.w        RetainedScanLeftActorEdge                         ; $00980C
+        bra.w        RetainedScanTopActorEdge                                    ; $009810
+        bsr.w        RetainedScanRightActorEdge                         ; $009814
+        bra.w        RetainedScanBottomActorEdge                                    ; $009818
         ifne *-$981C
         fail "ROM end moved"
         endif

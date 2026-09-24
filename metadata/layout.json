@@ -420,8 +420,8 @@
     "end": 7446,
     "kind": "m68k",
     "module": "video",
-    "name": "VideoRoutine_001CBA",
-    "file": "src/video/videoroutine_001cba_001cba.asm"
+    "name": "FadeScreenThroughBlackPalette",
+    "file": "src/video/fadescreenthroughblackpalette_001cba.asm"
   },
   {
     "start": 7446,
@@ -500,16 +500,16 @@
     "end": 8504,
     "kind": "m68k",
     "module": "video",
-    "name": "VideoRoutine_002132",
-    "file": "src/video/videoroutine_002132_002132.asm"
+    "name": "WriteTilemapColumnsVdpAddress",
+    "file": "src/video/writetilemapcolumnsvdpaddress_002132.asm"
   },
   {
     "start": 8504,
     "end": 8532,
     "kind": "m68k",
     "module": "video",
-    "name": "VideoRoutine_002138",
-    "file": "src/video/videoroutine_002138_002138.asm"
+    "name": "WriteTilemapColumnWords",
+    "file": "src/video/writetilemapcolumnwords_002138.asm"
   },
   {
     "start": 8532,
@@ -532,16 +532,16 @@
     "end": 8610,
     "kind": "m68k",
     "module": "video",
-    "name": "loc_0021A0",
-    "file": "src/video/loc_0021a0_0021a0.asm"
+    "name": "ReturnFromTilemapColumnUpload",
+    "file": "src/video/returnfromtilemapcolumnupload_0021a0.asm"
   },
   {
     "start": 8610,
     "end": 8806,
     "kind": "m68k",
     "module": "video",
-    "name": "ComposeTileSpritePair",
-    "file": "src/video/composetilespritepair_0021a2.asm"
+    "name": "RetainedPanoramaTileAnimation",
+    "file": "src/video/retainedpanoramatileanimation_0021a2.asm"
   },
   {
     "start": 8806,
@@ -596,40 +596,40 @@
     "end": 9594,
     "kind": "m68k",
     "module": "levels",
-    "name": "LevelsRoutine_00256C",
-    "file": "src/levels/levelsroutine_00256c_00256c.asm"
+    "name": "TryArmRetainedPanoramaEffectFromCell",
+    "file": "src/levels/tryarmretainedpanoramaeffectfromcell_00256c.asm"
   },
   {
     "start": 9594,
     "end": 9668,
     "kind": "m68k",
     "module": "video",
-    "name": "VideoRoutine_00257A",
-    "file": "src/video/videoroutine_00257a_00257a.asm"
+    "name": "ArmRetainedPanoramaEffect",
+    "file": "src/video/armretainedpanoramaeffect_00257a.asm"
   },
   {
     "start": 9668,
     "end": 9734,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_0025C4",
-    "file": "src/ui/uiroutine_0025c4_0025c4.asm"
+    "name": "AppendRandomRetainedEffectSprite",
+    "file": "src/ui/appendrandomretainedeffectsprite_0025c4.asm"
   },
   {
     "start": 9734,
     "end": 9854,
     "kind": "m68k",
-    "module": "system",
-    "name": "SystemRoutine_002606",
-    "file": "src/system/systemroutine_002606_002606.asm"
+    "module": "ui",
+    "name": "PrepareRetainedEffectSpriteAttributes",
+    "file": "src/ui/prepareretainedeffectspriteattributes_002606.asm"
   },
   {
     "start": 9854,
     "end": 9936,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00267E",
-    "file": "src/renderer/rendererroutine_00267e_00267e.asm"
+    "name": "ComputeRetainedEffectSpriteAttributes",
+    "file": "src/renderer/computeretainedeffectspriteattributes_00267e.asm"
   },
   {
     "start": 9936,
@@ -652,8 +652,8 @@
     "end": 10036,
     "kind": "m68k",
     "module": "sound",
-    "name": "SoundRoutine_002700",
-    "file": "src/sound/soundroutine_002700_002700.asm"
+    "name": "HandleRetainedPanoramaEffectEvent",
+    "file": "src/sound/handleretainedpanoramaeffectevent_002700.asm"
   },
   {
     "start": 10036,
@@ -668,16 +668,16 @@
     "end": 10102,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_00274E",
-    "file": "src/ui/uiroutine_00274e_00274e.asm"
+    "name": "CheckRetainedPanoramaCellHit",
+    "file": "src/ui/checkretainedpanoramacellhit_00274e.asm"
   },
   {
     "start": 10102,
     "end": 10118,
     "kind": "m68k",
-    "module": "sound",
-    "name": "SoundRoutine_002776",
-    "file": "src/sound/soundroutine_002776_002776.asm"
+    "module": "game",
+    "name": "ApplyRetainedPanoramaCellHit",
+    "file": "src/game/applyretainedpanoramacellhit_002776.asm"
   },
   {
     "start": 10118,
@@ -692,8 +692,8 @@
     "end": 10208,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_00279E",
-    "file": "src/ui/uiroutine_00279e_00279e.asm"
+    "name": "ArmRetainedPanoramaEffectMarker",
+    "file": "src/ui/armretainedpanoramaeffectmarker_00279e.asm"
   },
   {
     "start": 10208,
@@ -708,8 +708,8 @@
     "end": 10340,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_002800",
-    "file": "src/ui/uiroutine_002800_002800.asm"
+    "name": "TickRetainedPanoramaEffectMarker",
+    "file": "src/ui/tickretainedpanoramaeffectmarker_002800.asm"
   },
   {
     "start": 10340,
@@ -724,24 +724,24 @@
     "end": 10412,
     "kind": "m68k",
     "module": "ui",
-    "name": "loc_0028A4",
-    "file": "src/ui/loc_0028a4_0028a4.asm"
+    "name": "QueueRetainedEffectLinkCommandIfConnected",
+    "file": "src/ui/queueretainedeffectlinkcommandifconnected_0028a4.asm"
   },
   {
     "start": 10412,
     "end": 10436,
     "kind": "m68k",
-    "module": "sound",
-    "name": "SoundRoutine_0028AC",
-    "file": "src/sound/soundroutine_0028ac_0028ac.asm"
+    "module": "link",
+    "name": "QueueLinkCommand16",
+    "file": "src/link/queuelinkcommand16_0028ac.asm"
   },
   {
     "start": 10436,
     "end": 11156,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_0028C4",
-    "file": "src/ui/uiroutine_0028c4_0028c4.asm"
+    "name": "InitializeGameplayVideo",
+    "file": "src/ui/initializegameplayvideo_0028c4.asm"
   },
   {
     "start": 11156,
@@ -756,8 +756,8 @@
     "end": 11196,
     "kind": "pointers",
     "module": "ui",
-    "name": "CharacterPortraitPalettePointers",
-    "file": "src/ui/characterportraitpalettepointers_002ba8.asm"
+    "name": "GameplayPortraitTilemapPointers",
+    "file": "src/ui/gameplayportraittilemappointers_002ba8.asm"
   },
   {
     "start": 11196,
@@ -804,16 +804,16 @@
     "end": 12352,
     "kind": "m68k",
     "module": "ui",
-    "name": "loc_002FEC",
-    "file": "src/ui/loc_002fec_002fec.asm"
+    "name": "WaitAndUploadEightInventoryIcons",
+    "file": "src/ui/waitanduploadeightinventoryicons_002fec.asm"
   },
   {
     "start": 12352,
     "end": 13218,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RenderSceneWalls",
-    "file": "src/renderer/renderscenewalls_003040.asm"
+    "name": "RenderPauseMapCells",
+    "file": "src/renderer/renderpausemapcells_003040.asm"
   },
   {
     "start": 13218,
@@ -876,8 +876,8 @@
     "end": 15548,
     "kind": "pointers",
     "module": "renderer",
-    "name": "CellTileGraphicsPointers",
-    "file": "src/renderer/celltilegraphicspointers_003c9c.asm"
+    "name": "PauseMapCellTilePatternPointers",
+    "file": "src/renderer/pausemapcelltilepatternpointers_003c9c.asm"
   },
   {
     "start": 15548,
@@ -892,8 +892,8 @@
     "end": 15876,
     "kind": "pointers",
     "module": "renderer",
-    "name": "AlternateWallColumnScalers",
-    "file": "src/renderer/alternatewallcolumnscalers_003d60.asm"
+    "name": "DirectWallColumnScalers",
+    "file": "src/renderer/directwallcolumnscalers_003d60.asm"
   },
   {
     "start": 15876,
@@ -948,8 +948,8 @@
     "end": 31310,
     "kind": "m68k",
     "module": "renderer",
-    "name": "CopySevenPixelColumn",
-    "file": "src/renderer/copysevenpixelcolumn_007904.asm"
+    "name": "CopyBackgroundColumn80",
+    "file": "src/renderer/copybackgroundcolumn80_007904.asm"
   },
   {
     "start": 31310,
@@ -1019,9 +1019,9 @@
     "start": 36342,
     "end": 36356,
     "kind": "m68k",
-    "module": "ui",
-    "name": "UiRoutine_008DF6",
-    "file": "src/ui/uiroutine_008df6_008df6.asm"
+    "module": "renderer",
+    "name": "HandleVisibleObjectiveCellRenderState",
+    "file": "src/renderer/handlevisibleobjectivecellrenderstate_008df6.asm"
   },
   {
     "start": 36356,
@@ -1076,96 +1076,104 @@
     "end": 36738,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_008F50",
-    "file": "src/renderer/rendererroutine_008f50_008f50.asm"
+    "name": "BuildTransitType38FaceProfile",
+    "file": "src/renderer/buildtransittype38faceprofile_008f50.asm"
   },
   {
     "start": 36738,
     "end": 36796,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_008F82",
-    "file": "src/renderer/rendererroutine_008f82_008f82.asm"
+    "name": "BuildTransitType39FaceProfile",
+    "file": "src/renderer/buildtransittype39faceprofile_008f82.asm"
   },
   {
     "start": 36796,
     "end": 36846,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_008FBC",
-    "file": "src/renderer/rendererroutine_008fbc_008fbc.asm"
+    "name": "BuildTransitType3AFaceProfile",
+    "file": "src/renderer/buildtransittype3afaceprofile_008fbc.asm"
   },
   {
     "start": 36846,
     "end": 36920,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_008FEE",
-    "file": "src/renderer/rendererroutine_008fee_008fee.asm"
+    "name": "BuildTransitType3BFaceProfile",
+    "file": "src/renderer/buildtransittype3bfaceprofile_008fee.asm"
   },
   {
     "start": 36920,
     "end": 36970,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_009038",
-    "file": "src/renderer/rendererroutine_009038_009038.asm"
+    "name": "BuildTransitType40FaceProfile",
+    "file": "src/renderer/buildtransittype40faceprofile_009038.asm"
   },
   {
     "start": 36970,
     "end": 37028,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00906A",
-    "file": "src/renderer/rendererroutine_00906a_00906a.asm"
+    "name": "BuildTransitType41FaceProfile",
+    "file": "src/renderer/buildtransittype41faceprofile_00906a.asm"
   },
   {
     "start": 37028,
     "end": 37078,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_0090A4",
-    "file": "src/renderer/rendererroutine_0090a4_0090a4.asm"
+    "name": "BuildTransitType42FaceProfile",
+    "file": "src/renderer/buildtransittype42faceprofile_0090a4.asm"
   },
   {
     "start": 37078,
     "end": 37152,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_0090D6",
-    "file": "src/renderer/rendererroutine_0090d6_0090d6.asm"
+    "name": "BuildTransitType43FaceProfile",
+    "file": "src/renderer/buildtransittype43faceprofile_0090d6.asm"
   },
   {
     "start": 37152,
     "end": 37202,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_009120",
-    "file": "src/renderer/rendererroutine_009120_009120.asm"
+    "name": "BuildTransitType48FaceProfile",
+    "file": "src/renderer/buildtransittype48faceprofile_009120.asm"
   },
   {
     "start": 37202,
     "end": 37260,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_009152",
-    "file": "src/renderer/rendererroutine_009152_009152.asm"
+    "name": "BuildTransitType49FaceProfile",
+    "file": "src/renderer/buildtransittype49faceprofile_009152.asm"
   },
   {
     "start": 37260,
     "end": 37310,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00918C",
-    "file": "src/renderer/rendererroutine_00918c_00918c.asm"
+    "name": "BuildTransitType4AFaceProfile",
+    "file": "src/renderer/buildtransittype4afaceprofile_00918c.asm"
   },
   {
     "start": 37310,
+    "end": 37384,
+    "kind": "m68k",
+    "module": "renderer",
+    "name": "BuildTransitType4BFaceProfile",
+    "file": "src/renderer/buildtransittype4bfaceprofile_0091be.asm"
+  },
+  {
+    "start": 37384,
     "end": 37432,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_0091BE",
-    "file": "src/renderer/rendererroutine_0091be_0091be.asm"
+    "name": "BuildCellType30FaceProfile",
+    "file": "src/renderer/buildcelltype30faceprofile_009208.asm"
   },
   {
     "start": 37432,
@@ -1235,9 +1243,9 @@
     "start": 38438,
     "end": 38454,
     "kind": "m68k",
-    "module": "renderer",
-    "name": "RendererRoutine_009626",
-    "file": "src/renderer/rendererroutine_009626_009626.asm"
+    "module": "sound",
+    "name": "PlayActorSpawnSound",
+    "file": "src/sound/playactorspawnsound_009626.asm"
   },
   {
     "start": 38454,
@@ -1339,25 +1347,25 @@
     "start": 38604,
     "end": 38612,
     "kind": "m68k",
-    "module": "enemies",
-    "name": "EnemiesRoutine_0096CC",
-    "file": "src/enemies/enemiesroutine_0096cc_0096cc.asm"
+    "module": "renderer",
+    "name": "QueueBackgroundFilledWallMarker",
+    "file": "src/renderer/queuebackgroundfilledwallmarker_0096cc.asm"
   },
   {
     "start": 38612,
     "end": 38652,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_0096D4",
-    "file": "src/renderer/rendererroutine_0096d4_0096d4.asm"
+    "name": "QueueUniqueWallMarker",
+    "file": "src/renderer/queueuniquewallmarker_0096d4.asm"
   },
   {
     "start": 38652,
     "end": 38734,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_0096FC",
-    "file": "src/renderer/rendererroutine_0096fc_0096fc.asm"
+    "name": "ProjectAndDrawQueuedWallMarkers",
+    "file": "src/renderer/projectanddrawqueuedwallmarkers_0096fc.asm"
   },
   {
     "start": 38734,
@@ -1371,9 +1379,9 @@
     "start": 38762,
     "end": 38824,
     "kind": "m68k",
-    "module": "renderer",
-    "name": "SelectEnemyWakeEdges",
-    "file": "src/renderer/selectenemywakeedges_00976a.asm"
+    "module": "actors",
+    "name": "RetainedDispatchActorSpawnEdges",
+    "file": "src/actors/retaineddispatchactorspawnedges_00976a.asm"
   },
   {
     "start": 38824,
@@ -1395,25 +1403,25 @@
     "start": 38940,
     "end": 39008,
     "kind": "m68k",
-    "module": "enemies",
-    "name": "EnemiesRoutine_00981C",
-    "file": "src/enemies/enemiesroutine_00981c_00981c.asm"
+    "module": "actors",
+    "name": "RetainedScanLeftAndBottomActorEdges",
+    "file": "src/actors/retainedscanleftandbottomactoredges_00981c.asm"
   },
   {
     "start": 39008,
     "end": 39070,
     "kind": "m68k",
-    "module": "enemies",
-    "name": "EnemiesRoutine_009860",
-    "file": "src/enemies/enemiesroutine_009860_009860.asm"
+    "module": "actors",
+    "name": "RetainedScanRightActorEdge",
+    "file": "src/actors/retainedscanrightactoredge_009860.asm"
   },
   {
     "start": 39070,
     "end": 39192,
     "kind": "m68k",
-    "module": "enemies",
-    "name": "EnemiesRoutine_00989E",
-    "file": "src/enemies/enemiesroutine_00989e_00989e.asm"
+    "module": "actors",
+    "name": "RetainedScanLeftActorEdge",
+    "file": "src/actors/retainedscanleftactoredge_00989e.asm"
   },
   {
     "start": 39192,
@@ -1492,24 +1500,24 @@
     "end": 40832,
     "kind": "m68k",
     "module": "levels",
-    "name": "loc_009E2C",
-    "file": "src/levels/loc_009e2c_009e2c.asm"
+    "name": "RepelPlayerFromCellCenterShortRange",
+    "file": "src/levels/playercellactioneffects_009e2c.asm"
   },
   {
     "start": 40832,
     "end": 40860,
     "kind": "m68k",
     "module": "collision",
-    "name": "CollisionRoutine_009F80",
-    "file": "src/collision/collisionroutine_009f80_009f80.asm"
+    "name": "ResetViewAndCenterPlayerXLowerHalf",
+    "file": "src/collision/resetviewandcenterplayerxlowerhalf_009f80.asm"
   },
   {
     "start": 40860,
     "end": 40970,
     "kind": "m68k",
     "module": "collision",
-    "name": "CollisionRoutine_009F9C",
-    "file": "src/collision/collisionroutine_009f9c_009f9c.asm"
+    "name": "ResetViewAndCenterPlayerXUpperHalf",
+    "file": "src/collision/resetviewandcenterplayerxupperhalf_009f9c.asm"
   },
   {
     "start": 40970,
@@ -1531,9 +1539,9 @@
     "start": 41248,
     "end": 41336,
     "kind": "m68k",
-    "module": "objects",
-    "name": "ObjectsRoutine_00A120",
-    "file": "src/objects/objectsroutine_00a120_00a120.asm"
+    "module": "environment",
+    "name": "ReplaceShotPanelType79",
+    "file": "src/environment/replaceshotpaneltype79_00a120.asm"
   },
   {
     "start": 41336,
@@ -1555,25 +1563,25 @@
     "start": 41476,
     "end": 41650,
     "kind": "m68k",
-    "module": "objects",
-    "name": "ObjectsRoutine_00A204",
-    "file": "src/objects/objectsroutine_00a204_00a204.asm"
+    "module": "environment",
+    "name": "ReplacePointPanelType79",
+    "file": "src/environment/replacepointpaneltype79_00a204.asm"
   },
   {
     "start": 41650,
     "end": 41938,
     "kind": "m68k",
-    "module": "enemies",
-    "name": "EnemiesRoutine_00A2B2",
-    "file": "src/enemies/enemiesroutine_00a2b2_00a2b2.asm"
+    "module": "environment",
+    "name": "HandleProximityWallChargeCell",
+    "file": "src/environment/handleproximitywallchargecell_00a2b2.asm"
   },
   {
     "start": 41938,
     "end": 41960,
     "kind": "m68k",
-    "module": "objects",
-    "name": "ObjectsRoutine_00A3D2",
-    "file": "src/objects/objectsroutine_00a3d2_00a3d2.asm"
+    "module": "weapons",
+    "name": "ClassifyPlayerCellForWeapon",
+    "file": "src/weapons/classifyplayercellforweapon_00a3d2.asm"
   },
   {
     "start": 41960,
@@ -1628,16 +1636,16 @@
     "end": 43362,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00A900",
-    "file": "src/renderer/rendererroutine_00a900_00a900.asm"
+    "name": "ContinueVisibleWallFaceAfterCacheCheck",
+    "file": "src/renderer/continuevisiblewallfaceaftercachecheck_00a900.asm"
   },
   {
     "start": 43362,
     "end": 43410,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00A962",
-    "file": "src/renderer/rendererroutine_00a962_00a962.asm"
+    "name": "DrawAlternateVisibleWallFaceOrientation",
+    "file": "src/renderer/drawalternatevisiblewallfaceorientation_00a962.asm"
   },
   {
     "start": 43410,
@@ -1660,8 +1668,8 @@
     "end": 44188,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00ABA2",
-    "file": "src/renderer/rendererroutine_00aba2_00aba2.asm"
+    "name": "DrawOpeningWallHalfFaces",
+    "file": "src/renderer/drawopeningwallhalffaces_00aba2.asm"
   },
   {
     "start": 44188,
@@ -1753,35 +1761,107 @@
   },
   {
     "start": 45186,
+    "end": 45356,
+    "kind": "m68k",
+    "module": "renderer",
+    "name": "RenderType8EClosedWallAlongY",
+    "file": "src/renderer/rendertype8eclosedwallalongy_00b082.asm"
+  },
+  {
+    "start": 45356,
+    "end": 45526,
+    "kind": "m68k",
+    "module": "renderer",
+    "name": "RenderType90ClosedWallAlongY",
+    "file": "src/renderer/rendertype90closedwallalongy_00b12c.asm"
+  },
+  {
+    "start": 45526,
+    "end": 45696,
+    "kind": "m68k",
+    "module": "renderer",
+    "name": "RenderType8DClosedWallAlongX",
+    "file": "src/renderer/rendertype8dclosedwallalongx_00b1d6.asm"
+  },
+  {
+    "start": 45696,
+    "end": 45866,
+    "kind": "m68k",
+    "module": "renderer",
+    "name": "RenderType8FClosedWallAlongX",
+    "file": "src/renderer/rendertype8fclosedwallalongx_00b280.asm"
+  },
+  {
+    "start": 45866,
     "end": 46080,
     "kind": "m68k",
-    "module": "environment",
-    "name": "EnvironmentRoutine_00B082",
-    "file": "src/environment/environmentroutine_00b082_00b082.asm"
+    "module": "renderer",
+    "name": "RenderType93OpeningWallAlongY",
+    "file": "src/renderer/rendertype93openingwallalongy_00b32a.asm"
   },
   {
     "start": 46080,
-    "end": 46528,
+    "end": 46170,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00B400",
-    "file": "src/renderer/rendererroutine_00b400_00b400.asm"
+    "name": "FinishType93OpeningWallAlongY",
+    "file": "src/renderer/finishtype93openingwallalongy_00b400.asm"
   },
   {
-    "start": 46528,
-    "end": 46832,
+    "start": 46170,
+    "end": 46474,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00B5C0",
-    "file": "src/renderer/rendererroutine_00b5c0_00b5c0.asm"
+    "name": "RenderType94OpeningWallAlongY",
+    "file": "src/renderer/rendertype94openingwallalongy_00b45a.asm"
   },
   {
-    "start": 46832,
+    "start": 46474,
+    "end": 46778,
+    "kind": "m68k",
+    "module": "renderer",
+    "name": "RenderType91OpeningWallAlongX",
+    "file": "src/renderer/rendertype91openingwallalongx_00b58a.asm"
+  },
+  {
+    "start": 46778,
+    "end": 47082,
+    "kind": "m68k",
+    "module": "renderer",
+    "name": "RenderType92OpeningWallAlongX",
+    "file": "src/renderer/rendertype92openingwallalongx_00b6ba.asm"
+  },
+  {
+    "start": 47082,
+    "end": 47144,
+    "kind": "m68k",
+    "module": "environment",
+    "name": "QueuePlayerWallOpeningType8D",
+    "file": "src/environment/queueplayerwallopeningtype8d_00b7ea.asm"
+  },
+  {
+    "start": 47144,
+    "end": 47206,
+    "kind": "m68k",
+    "module": "environment",
+    "name": "QueuePlayerWallOpeningType8F",
+    "file": "src/environment/queueplayerwallopeningtype8f_00b828.asm"
+  },
+  {
+    "start": 47206,
+    "end": 47268,
+    "kind": "m68k",
+    "module": "environment",
+    "name": "QueuePlayerWallOpeningType8E",
+    "file": "src/environment/queueplayerwallopeningtype8e_00b866.asm"
+  },
+  {
+    "start": 47268,
     "end": 47330,
     "kind": "m68k",
-    "module": "renderer",
-    "name": "RendererRoutine_00B6F0",
-    "file": "src/renderer/rendererroutine_00b6f0_00b6f0.asm"
+    "module": "environment",
+    "name": "QueuePlayerWallOpeningType90",
+    "file": "src/environment/queueplayerwallopeningtype90_00b8a4.asm"
   },
   {
     "start": 47330,
@@ -1804,24 +1884,32 @@
     "end": 47798,
     "kind": "m68k",
     "module": "collision",
-    "name": "loc_00BA10",
-    "file": "src/collision/loc_00ba10_00ba10.asm"
+    "name": "SetTransitHeightFromYMinusFF",
+    "file": "src/collision/transitheightoffseteffects_00ba10.asm"
   },
   {
     "start": 47798,
     "end": 48020,
     "kind": "m68k",
-    "module": "renderer",
-    "name": "RendererRoutine_00BAB6",
-    "file": "src/renderer/rendererroutine_00bab6_00bab6.asm"
+    "module": "collision",
+    "name": "SetTransitHeightPositiveLimit",
+    "file": "src/collision/transitheighthandlereffects_00bab6.asm"
   },
   {
     "start": 48020,
-    "end": 48106,
+    "end": 48022,
     "kind": "m68k",
     "module": "collision",
     "name": "RetainedTransitReturn",
     "file": "src/collision/retainedtransitreturn_00bb94.asm"
+  },
+  {
+    "start": 48022,
+    "end": 48106,
+    "kind": "m68k",
+    "module": "collision",
+    "name": "SettlePositiveTransitHeightAtCellBoundary",
+    "file": "src/collision/activetransitmotion_00bb96.asm"
   },
   {
     "start": 48106,
@@ -1875,17 +1963,17 @@
     "start": 49292,
     "end": 49416,
     "kind": "m68k",
-    "module": "levels",
-    "name": "loc_00C08C",
-    "file": "src/levels/loc_00c08c_00c08c.asm"
+    "module": "renderer",
+    "name": "RenderWorldWithCameraOffset",
+    "file": "src/renderer/renderworldwithcameraoffset_00c08c.asm"
   },
   {
     "start": 49416,
     "end": 49834,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00C108",
-    "file": "src/renderer/rendererroutine_00c108_00c108.asm"
+    "name": "TraceAndDrawVisibleWorld",
+    "file": "src/renderer/traceanddrawvisibleworld_00c108.asm"
   },
   {
     "start": 49834,
@@ -1900,8 +1988,8 @@
     "end": 50972,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00C3AA",
-    "file": "src/renderer/rendererroutine_00c3aa_00c3aa.asm"
+    "name": "TraceVisibleMapRay",
+    "file": "src/renderer/tracevisiblemapray_00c3aa.asm"
   },
   {
     "start": 50972,
@@ -1924,16 +2012,16 @@
     "end": 51070,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00C74E",
-    "file": "src/renderer/rendererroutine_00c74e_00c74e.asm"
+    "name": "ProbeXSteppedRayCell",
+    "file": "src/renderer/probexsteppedraycell_00c74e.asm"
   },
   {
     "start": 51070,
     "end": 51488,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00C77E",
-    "file": "src/renderer/rendererroutine_00c77e_00c77e.asm"
+    "name": "ProbeYSteppedRayCell",
+    "file": "src/renderer/probeysteppedraycell_00c77e.asm"
   },
   {
     "start": 51488,
@@ -1956,16 +2044,16 @@
     "end": 51586,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00C952",
-    "file": "src/renderer/rendererroutine_00c952_00c952.asm"
+    "name": "ProbeQuadrantTwoXCell",
+    "file": "src/renderer/probequadranttwoxcell_00c952.asm"
   },
   {
     "start": 51586,
     "end": 52004,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00C982",
-    "file": "src/renderer/rendererroutine_00c982_00c982.asm"
+    "name": "ProbeQuadrantTwoYCell",
+    "file": "src/renderer/probequadranttwoycell_00c982.asm"
   },
   {
     "start": 52004,
@@ -1988,16 +2076,16 @@
     "end": 52102,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00CB56",
-    "file": "src/renderer/rendererroutine_00cb56_00cb56.asm"
+    "name": "ProbeQuadrantThreeXCell",
+    "file": "src/renderer/probequadrantthreexcell_00cb56.asm"
   },
   {
     "start": 52102,
     "end": 52520,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00CB86",
-    "file": "src/renderer/rendererroutine_00cb86_00cb86.asm"
+    "name": "ProbeQuadrantThreeYCell",
+    "file": "src/renderer/probequadrantthreeycell_00cb86.asm"
   },
   {
     "start": 52520,
@@ -2020,120 +2108,120 @@
     "end": 52618,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00CD5A",
-    "file": "src/renderer/rendererroutine_00cd5a_00cd5a.asm"
+    "name": "ProbeQuadrantFourXCell",
+    "file": "src/renderer/probequadrantfourxcell_00cd5a.asm"
   },
   {
     "start": 52618,
     "end": 52840,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00CD8A",
-    "file": "src/renderer/rendererroutine_00cd8a_00cd8a.asm"
+    "name": "ProbeQuadrantFourYCell",
+    "file": "src/renderer/probequadrantfourycell_00cd8a.asm"
   },
   {
     "start": 52840,
     "end": 52902,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00CE68",
-    "file": "src/renderer/rendererroutine_00ce68_00ce68.asm"
+    "name": "RenderWallEdgeY0",
+    "file": "src/renderer/renderwalledgey0_00ce68.asm"
   },
   {
     "start": 52902,
     "end": 52970,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00CEA6",
-    "file": "src/renderer/rendererroutine_00cea6_00cea6.asm"
+    "name": "RenderWallEdgeY1",
+    "file": "src/renderer/renderwalledgey1_00cea6.asm"
   },
   {
     "start": 52970,
     "end": 53034,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00CEEA",
-    "file": "src/renderer/rendererroutine_00ceea_00ceea.asm"
+    "name": "RenderWallEdgeX0",
+    "file": "src/renderer/renderwalledgex0_00ceea.asm"
   },
   {
     "start": 53034,
     "end": 53164,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00CF2A",
-    "file": "src/renderer/rendererroutine_00cf2a_00cf2a.asm"
+    "name": "RenderWallEdgeX1",
+    "file": "src/renderer/renderwalledgex1_00cf2a.asm"
   },
   {
     "start": 53164,
     "end": 53270,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00CFAC",
-    "file": "src/renderer/rendererroutine_00cfac_00cfac.asm"
+    "name": "RenderDiagonalCellFaceClass4",
+    "file": "src/renderer/renderdiagonalcellfaceclass4_00cfac.asm"
   },
   {
     "start": 53270,
     "end": 53378,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00D016",
-    "file": "src/renderer/rendererroutine_00d016_00d016.asm"
+    "name": "RenderDiagonalCellFaceClass2",
+    "file": "src/renderer/renderdiagonalcellfaceclass2_00d016.asm"
   },
   {
     "start": 53378,
     "end": 53490,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00D082",
-    "file": "src/renderer/rendererroutine_00d082_00d082.asm"
+    "name": "RenderDiagonalCellFaceClass5",
+    "file": "src/renderer/renderdiagonalcellfaceclass5_00d082.asm"
   },
   {
     "start": 53490,
     "end": 53538,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00D0F2",
-    "file": "src/renderer/rendererroutine_00d0f2_00d0f2.asm"
+    "name": "RenderDiagonalCellFaceClass3",
+    "file": "src/renderer/renderdiagonalcellfaceclass3_00d0f2.asm"
   },
   {
     "start": 53538,
     "end": 53606,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00D122",
-    "file": "src/renderer/rendererroutine_00d122_00d122.asm"
+    "name": "RecordVisibleCellRenderState",
+    "file": "src/renderer/recordvisiblecellrenderstate_00d122.asm"
   },
   {
     "start": 53606,
     "end": 53666,
     "kind": "m68k",
     "module": "environment",
-    "name": "EnvironmentRoutine_00D166",
-    "file": "src/environment/environmentroutine_00d166_00d166.asm"
+    "name": "MarkCellRenderStateAfterHit",
+    "file": "src/environment/markcellrenderstateafterhit_00d166.asm"
   },
   {
     "start": 53666,
     "end": 53718,
     "kind": "m68k",
     "module": "environment",
-    "name": "EnvironmentRoutine_00D1A2",
-    "file": "src/environment/environmentroutine_00d1a2_00d1a2.asm"
+    "name": "CountAndClearObjectiveCellRenderState",
+    "file": "src/environment/countandclearobjectivecellrenderstate_00d1a2.asm"
   },
   {
     "start": 53718,
     "end": 53810,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00D1D6",
-    "file": "src/renderer/rendererroutine_00d1d6_00d1d6.asm"
+    "name": "TransformSegmentEndpointBToCamera",
+    "file": "src/renderer/transformsegmentendpointbtocamera_00d1d6.asm"
   },
   {
     "start": 53810,
     "end": 53864,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00D232",
-    "file": "src/renderer/rendererroutine_00d232_00d232.asm"
+    "name": "TransformSegmentEndpointAToCamera",
+    "file": "src/renderer/transformsegmentendpointatocamera_00d232.asm"
   },
   {
     "start": 53864,
@@ -2188,24 +2276,24 @@
     "end": 55848,
     "kind": "m68k",
     "module": "renderer",
-    "name": "loc_00D8EA",
-    "file": "src/renderer/loc_00d8ea_00d8ea.asm"
+    "name": "DrawSlopedWallTextureSpan",
+    "file": "src/renderer/drawslopedwalltexturespan_00d8ea.asm"
   },
   {
     "start": 55848,
     "end": 56510,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00DA28",
-    "file": "src/renderer/rendererroutine_00da28_00da28.asm"
+    "name": "DrawHeightAdjustedWallColumn",
+    "file": "src/renderer/drawheightadjustedwallcolumn_00da28.asm"
   },
   {
     "start": 56510,
     "end": 56522,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00DCBE",
-    "file": "src/renderer/rendererroutine_00dcbe_00dcbe.asm"
+    "name": "RefreshSceneBackgroundIfViewChanged",
+    "file": "src/renderer/refreshscenebackgroundifviewchanged_00dcbe.asm"
   },
   {
     "start": 56522,
@@ -2228,32 +2316,32 @@
     "end": 57220,
     "kind": "m68k",
     "module": "sound",
-    "name": "SoundRoutine_00DF64",
-    "file": "src/sound/soundroutine_00df64_00df64.asm"
+    "name": "RouteSoundEventByActorFloor",
+    "file": "src/sound/routesoundeventbyactorfloor_00df64.asm"
   },
   {
     "start": 57220,
     "end": 57246,
     "kind": "m68k",
     "module": "sound",
-    "name": "SoundRoutine_00DF84",
-    "file": "src/sound/soundroutine_00df84_00df84.asm"
+    "name": "PlaySoundEventAndMaybeSendLink",
+    "file": "src/sound/playsoundeventandmaybesendlink_00df84.asm"
   },
   {
     "start": 57246,
     "end": 57274,
     "kind": "m68k",
     "module": "sound",
-    "name": "SoundRoutine_00DF9E",
-    "file": "src/sound/soundroutine_00df9e_00df9e.asm"
+    "name": "QueueSoundEventLinkCommand",
+    "file": "src/sound/queuesoundeventlinkcommand_00df9e.asm"
   },
   {
     "start": 57274,
     "end": 57310,
     "kind": "m68k",
     "module": "sound",
-    "name": "SoundRoutine_00DFBA",
-    "file": "src/sound/soundroutine_00dfba_00dfba.asm"
+    "name": "DispatchSoundEventWithIrqMask",
+    "file": "src/sound/dispatchsoundeventwithirqmask_00dfba.asm"
   },
   {
     "start": 57310,
@@ -2275,9 +2363,9 @@
     "start": 57344,
     "end": 57380,
     "kind": "m68k",
-    "module": "ui",
-    "name": "UiRoutine_00E000",
-    "file": "src/ui/uiroutine_00e000_00e000.asm"
+    "module": "game",
+    "name": "ResolvePlayerHitOrConsumeAlternateSlot",
+    "file": "src/game/resolveplayerhitorconsumealternateslot_00e000.asm"
   },
   {
     "start": 57380,
@@ -2300,24 +2388,24 @@
     "end": 57826,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_00E194",
-    "file": "src/ui/uiroutine_00e194_00e194.asm"
+    "name": "QueueHealthThresholdStatusMessage",
+    "file": "src/ui/queuehealththresholdstatusmessage_00e194.asm"
   },
   {
     "start": 57826,
     "end": 58124,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_00E1E2",
-    "file": "src/ui/uiroutine_00e1e2_00e1e2.asm"
+    "name": "UpdatePlayerHealthHudDigits",
+    "file": "src/ui/updateplayerhealthhuddigits_00e1e2.asm"
   },
   {
     "start": 58124,
     "end": 60384,
     "kind": "m68k",
     "module": "collision",
-    "name": "CollisionRoutine_00E30C",
-    "file": "src/collision/collisionroutine_00e30c_00e30c.asm"
+    "name": "UpdatePlayerInputMovementAndCollision",
+    "file": "src/collision/updateplayerinputmovementandcollision_00e30c.asm"
   },
   {
     "start": 60384,
@@ -2356,16 +2444,16 @@
     "end": 60842,
     "kind": "m68k",
     "module": "environment",
-    "name": "EnvironmentRoutine_00ED6C",
-    "file": "src/environment/environmentroutine_00ed6c_00ed6c.asm"
+    "name": "TryCollectItemAtCurrentCell",
+    "file": "src/environment/trycollectitematcurrentcell_00ed6c.asm"
   },
   {
     "start": 60842,
     "end": 60892,
     "kind": "m68k",
     "module": "environment",
-    "name": "EnvironmentRoutine_00EDAA",
-    "file": "src/environment/environmentroutine_00edaa_00edaa.asm"
+    "name": "DispatchEnteredCellInteraction",
+    "file": "src/environment/dispatchenteredcellinteraction_00edaa.asm"
   },
   {
     "start": 60892,
@@ -2381,31 +2469,47 @@
     "kind": "m68k",
     "module": "game",
     "name": "RequestEpisodeExit",
-    "file": "src/game/requestepisodeexit_00f030.asm"
+    "file": "src/game/cellinteractioneffects_00f030.asm"
   },
   {
     "start": 61904,
-    "end": 62092,
+    "end": 61906,
     "kind": "m68k",
     "module": "levels",
     "name": "RetainedCellHandlerReturn",
     "file": "src/levels/retainedcellhandlerreturn_00f1d0.asm"
   },
   {
+    "start": 61906,
+    "end": 61974,
+    "kind": "m68k",
+    "module": "levels",
+    "name": "FinishCellTransitMotion",
+    "file": "src/levels/finishcelltransitmotion_00f1d2.asm"
+  },
+  {
+    "start": 61974,
+    "end": 62092,
+    "kind": "m68k",
+    "module": "renderer",
+    "name": "ClampPlayerToFloorBoundsAndRenderWorld",
+    "file": "src/renderer/clampplayertofloorboundsandrenderworld_00f216.asm"
+  },
+  {
     "start": 62092,
     "end": 62298,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00F28C",
-    "file": "src/renderer/rendererroutine_00f28c_00f28c.asm"
+    "name": "AppendPlayerWorldSpritesToSat",
+    "file": "src/renderer/appendplayerworldspritestosat_00f28c.asm"
   },
   {
     "start": 62298,
     "end": 62770,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00F35A",
-    "file": "src/renderer/rendererroutine_00f35a_00f35a.asm"
+    "name": "RenderRetainedMapGrid",
+    "file": "src/renderer/renderretainedmapgrid_00f35a.asm"
   },
   {
     "start": 62770,
@@ -2428,16 +2532,16 @@
     "end": 63286,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00F6B0",
-    "file": "src/renderer/rendererroutine_00f6b0_00f6b0.asm"
+    "name": "AppendVisibleActorsToSat",
+    "file": "src/renderer/appendvisibleactorstosat_00f6b0.asm"
   },
   {
     "start": 63286,
     "end": 63330,
     "kind": "m68k",
     "module": "sound",
-    "name": "SoundRoutine_00F736",
-    "file": "src/sound/soundroutine_00f736_00f736.asm"
+    "name": "PlayStrideSoundOnPhaseChange",
+    "file": "src/sound/playstridesoundonphasechange_00f736.asm"
   },
   {
     "start": 63330,
@@ -2452,8 +2556,8 @@
     "end": 63478,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00F772",
-    "file": "src/renderer/rendererroutine_00f772_00f772.asm"
+    "name": "ApplyMovementViewSway",
+    "file": "src/renderer/applymovementviewsway_00f772.asm"
   },
   {
     "start": 63478,
@@ -2468,16 +2572,17 @@
     "end": 63544,
     "kind": "m68k",
     "module": "renderer",
-    "name": "loc_00F816",
-    "file": "src/renderer/loc_00f816_00f816.asm"
+    "name": "RestoreMovementViewAfterRender",
+    "file": "src/renderer/restoremovementviewafterrender_00f816.asm",
+    "naming": "reviewed-anchor"
   },
   {
     "start": 63544,
     "end": 63676,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_00F838",
-    "file": "src/ui/uiroutine_00f838_00f838.asm"
+    "name": "AppendGameplayOverlaySpritesToSat",
+    "file": "src/ui/appendgameplayoverlayspritestosat_00f838.asm"
   },
   {
     "start": 63676,
@@ -2508,16 +2613,16 @@
     "end": 65120,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00FD9A",
-    "file": "src/renderer/rendererroutine_00fd9a_00fd9a.asm"
+    "name": "BlitSpriteColumnUnrolledFirstEntry",
+    "file": "src/renderer/blitspritecolumnunrolledfirstentry_00fd9a.asm"
   },
   {
     "start": 65120,
     "end": 66044,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_00FE60",
-    "file": "src/renderer/rendererroutine_00fe60_00fe60.asm"
+    "name": "BlitSpriteColumnUnrolledContinuation",
+    "file": "src/renderer/blitspritecolumnunrolledcontinuation_00fe60.asm"
   },
   {
     "start": 66044,
@@ -2548,64 +2653,64 @@
     "end": 70906,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_0113EA",
-    "file": "src/ui/uiroutine_0113ea_0113ea.asm"
+    "name": "AppendInventoryHudSpritesToSat",
+    "file": "src/ui/appendinventoryhudspritestosat_0113ea.asm"
   },
   {
     "start": 70906,
     "end": 71024,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_0114FA",
-    "file": "src/ui/uiroutine_0114fa_0114fa.asm"
+    "name": "AppendSpecialInventoryHudSpritesToSat",
+    "file": "src/ui/appendspecialinventoryhudspritestosat_0114fa.asm"
   },
   {
     "start": 71024,
     "end": 71134,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_011570",
-    "file": "src/ui/uiroutine_011570_011570.asm"
+    "name": "AppendInventorySlot6StatusSprite",
+    "file": "src/ui/appendinventoryslot6statussprite_011570.asm"
   },
   {
     "start": 71134,
     "end": 71240,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_0115DE",
-    "file": "src/ui/uiroutine_0115de_0115de.asm"
+    "name": "AppendInventorySlot5StatusSprite",
+    "file": "src/ui/appendinventoryslot5statussprite_0115de.asm"
   },
   {
     "start": 71240,
     "end": 71358,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_011648",
-    "file": "src/ui/uiroutine_011648_011648.asm"
+    "name": "GrantPauseCodeFullLoadout",
+    "file": "src/ui/grantpausecodefullloadout_011648.asm"
   },
   {
     "start": 71358,
     "end": 71482,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_0116BE",
-    "file": "src/ui/uiroutine_0116be_0116be.asm"
+    "name": "ResetInventoryAndVisualEffects",
+    "file": "src/ui/resetinventoryandvisualeffects_0116be.asm"
   },
   {
     "start": 71482,
     "end": 71518,
     "kind": "m68k",
     "module": "video",
-    "name": "VideoRoutine_01173A",
-    "file": "src/video/videoroutine_01173a_01173a.asm"
+    "name": "UploadInventorySlotIconsToVram",
+    "file": "src/video/uploadinventorysloticonstovram_01173a.asm"
   },
   {
     "start": 71518,
     "end": 71596,
     "kind": "m68k",
     "module": "video",
-    "name": "VideoRoutine_01175E",
-    "file": "src/video/videoroutine_01175e_01175e.asm"
+    "name": "UploadInventorySlotIconToVram",
+    "file": "src/video/uploadinventorysloticontovram_01175e.asm"
   },
   {
     "start": 71596,
@@ -2636,56 +2741,56 @@
     "end": 72122,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_0118CC",
-    "file": "src/ui/uiroutine_0118cc_0118cc.asm"
+    "name": "TickNightVisionItemAndUpdateIcon",
+    "file": "src/ui/ticknightvisionitemandupdateicon_0118cc.asm"
   },
   {
     "start": 72122,
     "end": 72286,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_0119BA",
-    "file": "src/ui/uiroutine_0119ba_0119ba.asm"
+    "name": "TickFlashlightItemAndUpdateIcon",
+    "file": "src/ui/tickflashlightitemandupdateicon_0119ba.asm"
   },
   {
     "start": 72286,
     "end": 72460,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_011A5E",
-    "file": "src/ui/uiroutine_011a5e_011a5e.asm"
+    "name": "TickIndexedTimedItemAndUpdateIcon",
+    "file": "src/ui/tickindexedtimeditemandupdateicon_011a5e.asm"
   },
   {
     "start": 72460,
     "end": 72634,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_011B0C",
-    "file": "src/ui/uiroutine_011b0c_011b0c.asm"
+    "name": "ConsumeVestChargeOnHit",
+    "file": "src/ui/consumevestchargeonhit_011b0c.asm"
   },
   {
     "start": 72634,
     "end": 72818,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_011BBA",
-    "file": "src/ui/uiroutine_011bba_011bba.asm"
+    "name": "ConsumeAlternateHitSlotCharge",
+    "file": "src/ui/consumealternatehitslotcharge_011bba.asm"
   },
   {
     "start": 72818,
     "end": 72824,
     "kind": "m68k",
     "module": "weapons",
-    "name": "RetainedStoreWeaponSelection",
-    "file": "src/weapons/retainedstoreweaponselection_011c72.asm"
+    "name": "RetainedSetAlternateHitSlot",
+    "file": "src/weapons/retainedsetalternatehitslot_011c72.asm"
   },
   {
     "start": 72824,
     "end": 73472,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_011C78",
-    "file": "src/ui/uiroutine_011c78_011c78.asm"
+    "name": "GrantInventoryItem",
+    "file": "src/ui/grantinventoryitem_011c78.asm"
   },
   {
     "start": 73472,
@@ -2708,24 +2813,24 @@
     "end": 73584,
     "kind": "m68k",
     "module": "ui",
-    "name": "loc_011F48",
-    "file": "src/ui/loc_011f48_011f48.asm"
+    "name": "CycleInventorySlotsAndRequestWeapon",
+    "file": "src/ui/cycleinventoryslotsandrequestweapon_011f48.asm"
   },
   {
     "start": 73584,
     "end": 73706,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_011F70",
-    "file": "src/ui/uiroutine_011f70_011f70.asm"
+    "name": "ApplyEffectColorPalette",
+    "file": "src/ui/applyeffectcolorpalette_011f70.asm"
   },
   {
     "start": 73706,
     "end": 73736,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_011FEA",
-    "file": "src/ui/uiroutine_011fea_011fea.asm"
+    "name": "RestoreScenePaletteAndColorMode",
+    "file": "src/ui/restorescenepaletteandcolormode_011fea.asm"
   },
   {
     "start": 73736,
@@ -3212,8 +3317,8 @@
     "end": 84464,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_01498A",
-    "file": "src/ui/uiroutine_01498a_01498a.asm"
+    "name": "TickTimedInventoryEffects",
+    "file": "src/ui/ticktimedinventoryeffects_01498a.asm"
   },
   {
     "start": 84464,
@@ -4124,8 +4229,8 @@
     "end": 103510,
     "kind": "m68k",
     "module": "enemies",
-    "name": "EnemiesRoutine_019442",
-    "file": "src/enemies/enemiesroutine_019442_019442.asm"
+    "name": "DrawLarvaCreatureCorpseFinalFrame",
+    "file": "src/enemies/drawlarvacreaturecorpsefinalframe_019442.asm"
   },
   {
     "start": 103510,
@@ -5028,16 +5133,16 @@
     "end": 114724,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_01BFEA",
-    "file": "src/renderer/rendererroutine_01bfea_01bfea.asm"
+    "name": "ReserveProjectedActorHeapSlot",
+    "file": "src/renderer/reserveprojectedactorheapslot_01bfea.asm"
   },
   {
     "start": 114724,
     "end": 114832,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_01C024",
-    "file": "src/renderer/rendererroutine_01c024_01c024.asm"
+    "name": "PopProjectedActorHeapRoot",
+    "file": "src/renderer/popprojectedactorheaproot_01c024.asm"
   },
   {
     "start": 114832,
@@ -5068,8 +5173,8 @@
     "end": 115234,
     "kind": "m68k",
     "module": "actors",
-    "name": "ActorsRoutine_01C1A0",
-    "file": "src/actors/actorsroutine_01c1a0_01c1a0.asm"
+    "name": "HandleLinkDisconnect",
+    "file": "src/actors/handlelinkdisconnect_01c1a0.asm"
   },
   {
     "start": 115234,
@@ -5081,35 +5186,59 @@
   },
   {
     "start": 115438,
+    "end": 115442,
+    "kind": "m68k",
+    "module": "actors",
+    "name": "RemoveDisconnectedActor",
+    "file": "src/actors/removedisconnectedactor_01c2ee.asm"
+  },
+  {
+    "start": 115442,
+    "end": 115508,
+    "kind": "m68k",
+    "module": "actors",
+    "name": "ConvertDisconnectedActorToLegacyDeathEffect",
+    "file": "src/actors/convertdisconnectedactortolegacydeatheffect_01c2f2.asm"
+  },
+  {
+    "start": 115508,
+    "end": 115514,
+    "kind": "m68k",
+    "module": "actors",
+    "name": "ExplodeDisconnectedActor",
+    "file": "src/actors/explodedisconnectedactor_01c334.asm"
+  },
+  {
+    "start": 115514,
     "end": 115548,
     "kind": "m68k",
     "module": "actors",
-    "name": "loc_01C2EE",
-    "file": "src/actors/loc_01c2ee_01c2ee.asm"
+    "name": "ExplodeDisconnectedActorWithSound",
+    "file": "src/actors/explodedisconnectedactorwithsound_01c33a.asm"
   },
   {
     "start": 115548,
     "end": 115594,
     "kind": "m68k",
     "module": "actors",
-    "name": "ActorsRoutine_01C35C",
-    "file": "src/actors/actorsroutine_01c35c_01c35c.asm"
+    "name": "ConvertDisconnectedActorToProximityMine",
+    "file": "src/actors/convertdisconnectedactortoproximitymine_01c35c.asm"
   },
   {
     "start": 115594,
     "end": 115648,
     "kind": "m68k",
     "module": "actors",
-    "name": "ActorsRoutine_01C38A",
-    "file": "src/actors/actorsroutine_01c38a_01c38a.asm"
+    "name": "ConvertDisconnectedActorToWallCharge",
+    "file": "src/actors/convertdisconnectedactortowallcharge_01c38a.asm"
   },
   {
     "start": 115648,
     "end": 115658,
     "kind": "m68k",
     "module": "actors",
-    "name": "ActorsRoutine_01C3C0",
-    "file": "src/actors/actorsroutine_01c3c0_01c3c0.asm"
+    "name": "LoadFirstActorDefinitionOnDisconnect",
+    "file": "src/actors/loadfirstactordefinitionondisconnect_01c3c0.asm"
   },
   {
     "start": 115658,
@@ -5123,9 +5252,9 @@
     "start": 115668,
     "end": 115678,
     "kind": "m68k",
-    "module": "enemies",
-    "name": "EnemiesRoutine_01C3D4",
-    "file": "src/enemies/enemiesroutine_01c3d4_01c3d4.asm"
+    "module": "actors",
+    "name": "LoadFirstActorDeathDefinitionOnDisconnect",
+    "file": "src/actors/loadfirstactordeathdefinitionondisconnect_01c3d4.asm"
   },
   {
     "start": 115678,
@@ -5249,11 +5378,19 @@
   },
   {
     "start": 116864,
+    "end": 116994,
+    "kind": "m68k",
+    "module": "weapons",
+    "name": "ResolveSpecialCellProjectileImpact",
+    "file": "src/weapons/resolvespecialcellprojectileimpact_01c880.asm"
+  },
+  {
+    "start": 116994,
     "end": 117124,
     "kind": "m68k",
     "module": "weapons",
-    "name": "WeaponsRoutine_01C880",
-    "file": "src/weapons/weaponsroutine_01c880_01c880.asm"
+    "name": "ResolveSpecialCellParticleImpact",
+    "file": "src/weapons/resolvespecialcellparticleimpact_01c902.asm"
   },
   {
     "start": 117124,
@@ -5356,8 +5493,8 @@
     "end": 119386,
     "kind": "m68k",
     "module": "environment",
-    "name": "EnvironmentRoutine_01D130",
-    "file": "src/environment/environmentroutine_01d130_01d130.asm"
+    "name": "PlaceCorpseCellAndRemoveActor",
+    "file": "src/environment/placecorpsecellandremoveactor_01d130.asm"
   },
   {
     "start": 119386,
@@ -5411,65 +5548,81 @@
     "start": 120662,
     "end": 120960,
     "kind": "m68k",
-    "module": "collision",
-    "name": "CollisionRoutine_01D756",
-    "file": "src/collision/collisionroutine_01d756_01d756.asm"
+    "module": "environment",
+    "name": "FillNearbyEmptyCellAtPlayer",
+    "file": "src/environment/fillnearbyemptycellatplayer_01d756.asm"
   },
   {
     "start": 120960,
     "end": 121132,
     "kind": "m68k",
     "module": "environment",
-    "name": "EnvironmentRoutine_01D880",
-    "file": "src/environment/environmentroutine_01d880_01d880.asm"
+    "name": "WriteActorExitCellAndRemoveActor",
+    "file": "src/environment/writeactorexitcellandremoveactor_01d880.asm"
   },
   {
     "start": 121132,
     "end": 121370,
     "kind": "m68k",
     "module": "actors",
-    "name": "ActorsRoutine_01D92C",
-    "file": "src/actors/actorsroutine_01d92c_01d92c.asm"
+    "name": "SpawnHitParticles",
+    "file": "src/actors/spawnhitparticles_01d92c.asm"
   },
   {
     "start": 121370,
     "end": 121522,
     "kind": "m68k",
     "module": "actors",
-    "name": "ActorsRoutine_01DA1A",
-    "file": "src/actors/actorsroutine_01da1a_01da1a.asm"
+    "name": "UpdateHitParticle",
+    "file": "src/actors/updatehitparticle_01da1a.asm"
   },
   {
     "start": 121522,
     "end": 121554,
     "kind": "m68k",
-    "module": "collision",
-    "name": "CollisionRoutine_01DAB2",
-    "file": "src/collision/collisionroutine_01dab2_01dab2.asm"
+    "module": "actors",
+    "name": "CommitHitParticleMotion",
+    "file": "src/actors/commithitparticlemotion_01dab2.asm"
   },
   {
     "start": 121554,
     "end": 121620,
     "kind": "m68k",
-    "module": "collision",
-    "name": "CollisionRoutine_01DAD2",
-    "file": "src/collision/collisionroutine_01dad2_01dad2.asm"
+    "module": "actors",
+    "name": "AdvanceHitParticleHeight",
+    "file": "src/actors/advancehitparticleheight_01dad2.asm"
   },
   {
     "start": 121620,
     "end": 121660,
     "kind": "m68k",
-    "module": "collision",
-    "name": "CollisionRoutine_01DB14",
-    "file": "src/collision/collisionroutine_01db14_01db14.asm"
+    "module": "actors",
+    "name": "AdvanceHitParticleRestingPhase",
+    "file": "src/actors/advancehitparticlerestingphase_01db14.asm"
   },
   {
     "start": 121660,
-    "end": 121906,
+    "end": 121676,
+    "kind": "m68k",
+    "module": "actors",
+    "name": "RemoveHitParticle",
+    "file": "src/actors/removehitparticle_01db3c.asm"
+  },
+  {
+    "start": 121676,
+    "end": 121888,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_01DB3C",
-    "file": "src/renderer/rendererroutine_01db3c_01db3c.asm"
+    "name": "DrawHitParticle",
+    "file": "src/renderer/drawhitparticle_01db4c.asm"
+  },
+  {
+    "start": 121888,
+    "end": 121906,
+    "kind": "m68k",
+    "module": "weapons",
+    "name": "UpdateMissedShotImpact",
+    "file": "src/weapons/updatemissedshotimpact_01dc20.asm"
   },
   {
     "start": 121906,
@@ -5499,25 +5652,25 @@
     "start": 122146,
     "end": 122242,
     "kind": "m68k",
-    "module": "weapons",
-    "name": "WeaponsRoutine_01DD22",
-    "file": "src/weapons/weaponsroutine_01dd22_01dd22.asm"
+    "module": "environment",
+    "name": "TryArmWallChargeWhenTargetNear",
+    "file": "src/environment/tryarmwallchargewhentargetnear_01dd22.asm"
   },
   {
     "start": 122242,
     "end": 122278,
     "kind": "m68k",
-    "module": "weapons",
-    "name": "WeaponsRoutine_01DD82",
-    "file": "src/weapons/weaponsroutine_01dd82_01dd82.asm"
+    "module": "environment",
+    "name": "StartWallChargeCountdown",
+    "file": "src/environment/startwallchargecountdown_01dd82.asm"
   },
   {
     "start": 122278,
     "end": 122324,
     "kind": "m68k",
-    "module": "weapons",
-    "name": "WeaponsRoutine_01DDA6",
-    "file": "src/weapons/weaponsroutine_01dda6_01dda6.asm"
+    "module": "environment",
+    "name": "RetireWallChargeWhenTargetFar",
+    "file": "src/environment/retirewallchargewhentargetfar_01dda6.asm"
   },
   {
     "start": 122324,
@@ -5529,11 +5682,35 @@
   },
   {
     "start": 122488,
+    "end": 122596,
+    "kind": "m68k",
+    "module": "environment",
+    "name": "SpawnActorsNearDetonatedWallCharge",
+    "file": "src/environment/spawnactorsneardetonatedwallcharge_01de78.asm"
+  },
+  {
+    "start": 122596,
+    "end": 122682,
+    "kind": "m68k",
+    "module": "environment",
+    "name": "DrawProximityWallChargeTile",
+    "file": "src/environment/drawproximitywallchargetile_01dee4.asm"
+  },
+  {
+    "start": 122682,
+    "end": 122726,
+    "kind": "m68k",
+    "module": "actors",
+    "name": "UpdateWallChargeHitFire",
+    "file": "src/actors/updatewallchargehitfire_01df3a.asm"
+  },
+  {
+    "start": 122726,
     "end": 122806,
     "kind": "m68k",
-    "module": "enemies",
-    "name": "EnemiesRoutine_01DE78",
-    "file": "src/enemies/enemiesroutine_01de78_01de78.asm"
+    "module": "actors",
+    "name": "DrawWallChargeHitFire",
+    "file": "src/actors/drawwallchargehitfire_01df66.asm"
   },
   {
     "start": 122806,
@@ -5547,17 +5724,17 @@
     "start": 122812,
     "end": 122944,
     "kind": "m68k",
-    "module": "enemies",
-    "name": "Code_01DFBC",
-    "file": "src/enemies/code_01dfbc_01dfbc.asm"
+    "module": "environment",
+    "name": "ConvertWallChargeToFireOnHit",
+    "file": "src/environment/convertwallchargetofireonhit_01dfbc.asm"
   },
   {
     "start": 122944,
     "end": 123046,
     "kind": "m68k",
     "module": "environment",
-    "name": "EnvironmentRoutine_01E040",
-    "file": "src/environment/environmentroutine_01e040_01e040.asm"
+    "name": "RestoreWallChargeCellAndRemove",
+    "file": "src/environment/restorewallchargecellandremove_01e040.asm"
   },
   {
     "start": 123046,
@@ -5572,16 +5749,16 @@
     "end": 123310,
     "kind": "m68k",
     "module": "weapons",
-    "name": "WeaponsRoutine_01E0DC",
-    "file": "src/weapons/weaponsroutine_01e0dc_01e0dc.asm"
+    "name": "UpdateSlowProjectileAndApplyProximityHit",
+    "file": "src/weapons/updateslowprojectileandapplyproximityhit_01e0dc.asm"
   },
   {
     "start": 123310,
     "end": 123382,
     "kind": "m68k",
     "module": "renderer",
-    "name": "RendererRoutine_01E1AE",
-    "file": "src/renderer/rendererroutine_01e1ae_01e1ae.asm"
+    "name": "DrawPositionedProjectileSprite",
+    "file": "src/renderer/drawpositionedprojectilesprite_01e1ae.asm"
   },
   {
     "start": 123382,
@@ -5604,16 +5781,16 @@
     "end": 123602,
     "kind": "m68k",
     "module": "enemies",
-    "name": "EnemiesRoutine_01E25A",
-    "file": "src/enemies/enemiesroutine_01e25a_01e25a.asm"
+    "name": "SteerEnemyMotionAtNearbyWall",
+    "file": "src/enemies/steerenemymotionatnearbywall_01e25a.asm"
   },
   {
     "start": 123602,
     "end": 123684,
     "kind": "m68k",
     "module": "collision",
-    "name": "CollisionRoutine_01E2D2",
-    "file": "src/collision/collisionroutine_01e2d2_01e2d2.asm"
+    "name": "ClampEnemyMotionAtWall",
+    "file": "src/collision/clampenemymotionatwall_01e2d2.asm"
   },
   {
     "start": 123684,
@@ -5636,8 +5813,8 @@
     "end": 124318,
     "kind": "m68k",
     "module": "enemies",
-    "name": "EnemiesRoutine_01E4FA",
-    "file": "src/enemies/enemiesroutine_01e4fa_01e4fa.asm"
+    "name": "FindNearestActorOrPlayerWithFlags",
+    "file": "src/enemies/findnearestactororplayerwithflags_01e4fa.asm"
   },
   {
     "start": 124318,
@@ -5723,9 +5900,9 @@
     "start": 125660,
     "end": 125774,
     "kind": "m68k",
-    "module": "actors",
-    "name": "Code_01EADC",
-    "file": "src/actors/code_01eadc_01eadc.asm"
+    "module": "link",
+    "name": "SendRemoteActorHit",
+    "file": "src/link/sendremoteactorhit_01eadc.asm"
   },
   {
     "start": 125774,
@@ -5763,25 +5940,25 @@
     "start": 126388,
     "end": 126500,
     "kind": "m68k",
-    "module": "sound",
-    "name": "SoundRoutine_01EDB4",
-    "file": "src/sound/soundroutine_01edb4_01edb4.asm"
+    "module": "link",
+    "name": "QueueActorPositionLinkCommand",
+    "file": "src/link/queueactorpositionlinkcommand_01edb4.asm"
   },
   {
     "start": 126500,
     "end": 126622,
     "kind": "m68k",
-    "module": "actors",
-    "name": "ActorsRoutine_01EE24",
-    "file": "src/actors/actorsroutine_01ee24_01ee24.asm"
+    "module": "link",
+    "name": "QueueActorLinkStateCommands10And11",
+    "file": "src/link/queueactorlinkstatecommands10and11_01ee24.asm"
   },
   {
     "start": 126622,
     "end": 126790,
     "kind": "m68k",
-    "module": "actors",
-    "name": "ActorsRoutine_01EE9E",
-    "file": "src/actors/actorsroutine_01ee9e_01ee9e.asm"
+    "module": "link",
+    "name": "QueueActorLinkCommand10Variants",
+    "file": "src/link/queueactorlinkcommand10variants_01ee9e.asm"
   },
   {
     "start": 126790,
@@ -5811,17 +5988,33 @@
     "start": 127084,
     "end": 127104,
     "kind": "m68k",
-    "module": "actors",
-    "name": "ActorsRoutine_01F06C",
-    "file": "src/actors/actorsroutine_01f06c_01f06c.asm"
+    "module": "link",
+    "name": "QueueBloodBodyStatePacketVariantA",
+    "file": "src/link/queuebloodbodystatepacketvarianta_01f06c.asm"
   },
   {
     "start": 127104,
+    "end": 127122,
+    "kind": "m68k",
+    "module": "link",
+    "name": "QueueBloodBodyStatePacketVariantC",
+    "file": "src/link/queuebloodbodystatepacketvariantc_01f080.asm"
+  },
+  {
+    "start": 127122,
+    "end": 127142,
+    "kind": "m68k",
+    "module": "actors",
+    "name": "DrawBloodBodyBaseFrame",
+    "file": "src/actors/drawbloodbodybaseframe_01f092.asm"
+  },
+  {
+    "start": 127142,
     "end": 127158,
     "kind": "m68k",
     "module": "actors",
-    "name": "ActorsRoutine_01F080",
-    "file": "src/actors/actorsroutine_01f080_01f080.asm"
+    "name": "DrawBloodBodyStateParityFrame",
+    "file": "src/actors/drawbloodbodystateparityframe_01f0a6.asm"
   },
   {
     "start": 127158,
@@ -5835,17 +6028,33 @@
     "start": 127274,
     "end": 127302,
     "kind": "m68k",
-    "module": "actors",
-    "name": "ActorsRoutine_01F12A",
-    "file": "src/actors/actorsroutine_01f12a_01f12a.asm"
+    "module": "link",
+    "name": "QueueStananStatePacketVariantA",
+    "file": "src/link/queuestananstatepacketvarianta_01f12a.asm"
   },
   {
     "start": 127302,
+    "end": 127312,
+    "kind": "m68k",
+    "module": "link",
+    "name": "QueueStananPreparedStatePacket",
+    "file": "src/link/queuestananpreparedstatepacket_01f146.asm"
+  },
+  {
+    "start": 127312,
+    "end": 127332,
+    "kind": "m68k",
+    "module": "actors",
+    "name": "DrawStananBaseFrame",
+    "file": "src/actors/drawstananbaseframe_01f150.asm"
+  },
+  {
+    "start": 127332,
     "end": 127348,
     "kind": "m68k",
     "module": "actors",
-    "name": "ActorsRoutine_01F146",
-    "file": "src/actors/actorsroutine_01f146_01f146.asm"
+    "name": "DrawStananStateParityFrame",
+    "file": "src/actors/drawstananstateparityframe_01f164.asm"
   },
   {
     "start": 127348,
@@ -5859,17 +6068,33 @@
     "start": 127464,
     "end": 127474,
     "kind": "m68k",
-    "module": "actors",
-    "name": "ActorsRoutine_01F1E8",
-    "file": "src/actors/actorsroutine_01f1e8_01f1e8.asm"
+    "module": "link",
+    "name": "QueueGunnerStatePacketVariantA",
+    "file": "src/link/queuegunnerstatepacketvarianta_01f1e8.asm"
   },
   {
     "start": 127474,
+    "end": 127502,
+    "kind": "m68k",
+    "module": "link",
+    "name": "QueueGunnerStatePacketVariantB",
+    "file": "src/link/queuegunnerstatepacketvariantb_01f1f2.asm"
+  },
+  {
+    "start": 127502,
+    "end": 127522,
+    "kind": "m68k",
+    "module": "actors",
+    "name": "DrawGunnerBaseFrame",
+    "file": "src/actors/drawgunnerbaseframe_01f20e.asm"
+  },
+  {
+    "start": 127522,
     "end": 127538,
     "kind": "m68k",
     "module": "actors",
-    "name": "ActorsRoutine_01F1F2",
-    "file": "src/actors/actorsroutine_01f1f2_01f1f2.asm"
+    "name": "DrawGunnerStateParityFrame",
+    "file": "src/actors/drawgunnerstateparityframe_01f222.asm"
   },
   {
     "start": 127538,
@@ -5883,25 +6108,41 @@
     "start": 127654,
     "end": 127674,
     "kind": "m68k",
-    "module": "actors",
-    "name": "ActorsRoutine_01F2A6",
-    "file": "src/actors/actorsroutine_01f2a6_01f2a6.asm"
+    "module": "link",
+    "name": "QueueGreyDummyStatePacketVariantA",
+    "file": "src/link/queuegreydummystatepacketvarianta_01f2a6.asm"
   },
   {
     "start": 127674,
     "end": 127682,
     "kind": "m68k",
-    "module": "actors",
-    "name": "ActorsRoutine_01F2BA",
-    "file": "src/actors/actorsroutine_01f2ba_01f2ba.asm"
+    "module": "link",
+    "name": "QueueGreyDummyStatePacketVariantC",
+    "file": "src/link/queuegreydummystatepacketvariantc_01f2ba.asm"
   },
   {
     "start": 127682,
+    "end": 127692,
+    "kind": "m68k",
+    "module": "link",
+    "name": "QueueGreyDummyPreparedStatePacket",
+    "file": "src/link/queuegreydummypreparedstatepacket_01f2c2.asm"
+  },
+  {
+    "start": 127692,
+    "end": 127712,
+    "kind": "m68k",
+    "module": "actors",
+    "name": "DrawGreyDummyBaseFrame",
+    "file": "src/actors/drawgreydummybaseframe_01f2cc.asm"
+  },
+  {
+    "start": 127712,
     "end": 127728,
     "kind": "m68k",
     "module": "actors",
-    "name": "ActorsRoutine_01F2C2",
-    "file": "src/actors/actorsroutine_01f2c2_01f2c2.asm"
+    "name": "DrawGreyDummyStateParityFrame",
+    "file": "src/actors/drawgreydummystateparityframe_01f2e0.asm"
   },
   {
     "start": 127728,
@@ -5915,17 +6156,33 @@
     "start": 127844,
     "end": 127872,
     "kind": "m68k",
-    "module": "actors",
-    "name": "ActorsRoutine_01F364",
-    "file": "src/actors/actorsroutine_01f364_01f364.asm"
+    "module": "link",
+    "name": "QueueGreenDummyStatePacketVariantA",
+    "file": "src/link/queuegreendummystatepacketvarianta_01f364.asm"
   },
   {
     "start": 127872,
+    "end": 127882,
+    "kind": "m68k",
+    "module": "link",
+    "name": "QueueGreenDummyPreparedStatePacket",
+    "file": "src/link/queuegreendummypreparedstatepacket_01f380.asm"
+  },
+  {
+    "start": 127882,
+    "end": 127902,
+    "kind": "m68k",
+    "module": "actors",
+    "name": "DrawGreenDummyBaseFrame",
+    "file": "src/actors/drawgreendummybaseframe_01f38a.asm"
+  },
+  {
+    "start": 127902,
     "end": 127918,
     "kind": "m68k",
     "module": "actors",
-    "name": "ActorsRoutine_01F380",
-    "file": "src/actors/actorsroutine_01f380_01f380.asm"
+    "name": "DrawGreenDummyStateParityFrame",
+    "file": "src/actors/drawgreendummystateparityframe_01f39e.asm"
   },
   {
     "start": 127918,
@@ -5953,11 +6210,27 @@
   },
   {
     "start": 128424,
+    "end": 128452,
+    "kind": "m68k",
+    "module": "link",
+    "name": "QueueWhiteDummyStatePacketVariantB",
+    "file": "src/link/queuewhitedummystatepacketvariantb_01f5a8.asm"
+  },
+  {
+    "start": 128452,
+    "end": 128472,
+    "kind": "m68k",
+    "module": "actors",
+    "name": "DrawWhiteDummyBaseFrame",
+    "file": "src/actors/drawwhitedummybaseframe_01f5c4.asm"
+  },
+  {
+    "start": 128472,
     "end": 128488,
     "kind": "m68k",
-    "module": "input",
-    "name": "InputRoutine_01F5A8",
-    "file": "src/input/inputroutine_01f5a8_01f5a8.asm"
+    "module": "actors",
+    "name": "DrawWhiteDummyStateParityFrame",
+    "file": "src/actors/drawwhitedummystateparityframe_01f5d8.asm"
   },
   {
     "start": 128488,
@@ -5969,11 +6242,27 @@
   },
   {
     "start": 128614,
+    "end": 128642,
+    "kind": "m68k",
+    "module": "link",
+    "name": "QueueBeatressStatePacketVariantB",
+    "file": "src/link/queuebeatressstatepacketvariantb_01f666.asm"
+  },
+  {
+    "start": 128642,
+    "end": 128662,
+    "kind": "m68k",
+    "module": "actors",
+    "name": "DrawBeatressBaseFrame",
+    "file": "src/actors/drawbeatressbaseframe_01f682.asm"
+  },
+  {
+    "start": 128662,
     "end": 128678,
     "kind": "m68k",
     "module": "actors",
-    "name": "ActorsRoutine_01F666",
-    "file": "src/actors/actorsroutine_01f666_01f666.asm"
+    "name": "DrawBeatressStateParityFrame",
+    "file": "src/actors/drawbeatressstateparityframe_01f696.asm"
   },
   {
     "start": 128678,
@@ -5985,11 +6274,27 @@
   },
   {
     "start": 128804,
+    "end": 128832,
+    "kind": "m68k",
+    "module": "link",
+    "name": "QueueBlueDummyStatePacketVariantB",
+    "file": "src/link/queuebluedummystatepacketvariantb_01f724.asm"
+  },
+  {
+    "start": 128832,
+    "end": 128852,
+    "kind": "m68k",
+    "module": "actors",
+    "name": "DrawBlueDummyBaseFrame",
+    "file": "src/actors/drawbluedummybaseframe_01f740.asm"
+  },
+  {
+    "start": 128852,
     "end": 128868,
     "kind": "m68k",
     "module": "actors",
-    "name": "ActorsRoutine_01F724",
-    "file": "src/actors/actorsroutine_01f724_01f724.asm"
+    "name": "DrawBlueDummyStateParityFrame",
+    "file": "src/actors/drawbluedummystateparityframe_01f754.asm"
   },
   {
     "start": 128868,
@@ -6001,19 +6306,43 @@
   },
   {
     "start": 128994,
+    "end": 129022,
+    "kind": "m68k",
+    "module": "link",
+    "name": "QueueDogStatePacketVariantB",
+    "file": "src/link/queuedogstatepacketvariantb_01f7e2.asm"
+  },
+  {
+    "start": 129022,
+    "end": 129042,
+    "kind": "m68k",
+    "module": "actors",
+    "name": "DrawDogBaseFrame",
+    "file": "src/actors/drawdogbaseframe_01f7fe.asm"
+  },
+  {
+    "start": 129042,
     "end": 129058,
     "kind": "m68k",
     "module": "actors",
-    "name": "ActorsRoutine_01F7E2",
-    "file": "src/actors/actorsroutine_01f7e2_01f7e2.asm"
+    "name": "DrawDogStateParityFrame",
+    "file": "src/actors/drawdogstateparityframe_01f812.asm"
   },
   {
     "start": 129058,
+    "end": 129092,
+    "kind": "m68k",
+    "module": "link",
+    "name": "QueueActorLinkCommand0F",
+    "file": "src/link/queueactorlinkcommand0f_01f822.asm"
+  },
+  {
+    "start": 129092,
     "end": 129110,
     "kind": "m68k",
-    "module": "renderer",
-    "name": "RendererRoutine_01F822",
-    "file": "src/renderer/rendererroutine_01f822_01f822.asm"
+    "module": "actors",
+    "name": "SelectActorStateCounterParityFrame",
+    "file": "src/actors/selectactorstatecounterparityframe_01f844.asm"
   },
   {
     "start": 129110,
@@ -6027,9 +6356,9 @@
     "start": 129188,
     "end": 129232,
     "kind": "m68k",
-    "module": "renderer",
-    "name": "RendererRoutine_01F8A4",
-    "file": "src/renderer/rendererroutine_01f8a4_01f8a4.asm"
+    "module": "link",
+    "name": "SetActorLinkCallbackAndQueueCommand12",
+    "file": "src/link/setactorlinkcallbackandqueuecommand12_01f8a4.asm"
   },
   {
     "start": 129232,
@@ -6083,57 +6412,57 @@
     "start": 130516,
     "end": 130550,
     "kind": "m68k",
-    "module": "input",
-    "name": "InputRoutine_01FDD4",
-    "file": "src/input/inputroutine_01fdd4_01fdd4.asm"
+    "module": "link",
+    "name": "WaitForLinkPeerLowAfterClearingStrobe",
+    "file": "src/link/waitforlinkpeerlowafterclearingstrobe_01fdd4.asm"
   },
   {
     "start": 130550,
     "end": 130698,
     "kind": "m68k",
-    "module": "input",
-    "name": "InputRoutine_01FDF6",
-    "file": "src/input/inputroutine_01fdf6_01fdf6.asm"
+    "module": "link",
+    "name": "TransmitLinkWordInNibbles",
+    "file": "src/link/transmitlinkwordinnibbles_01fdf6.asm"
   },
   {
     "start": 130698,
     "end": 130742,
     "kind": "m68k",
-    "module": "input",
-    "name": "InputRoutine_01FE8A",
-    "file": "src/input/inputroutine_01fe8a_01fe8a.asm"
+    "module": "link",
+    "name": "SetLinkPortDirectionAndWaitPeerHigh",
+    "file": "src/link/setlinkportdirectionandwaitpeerhigh_01fe8a.asm"
   },
   {
     "start": 130742,
     "end": 130864,
     "kind": "m68k",
-    "module": "input",
-    "name": "InputRoutine_01FEB6",
-    "file": "src/input/inputroutine_01feb6_01feb6.asm"
+    "module": "link",
+    "name": "ReceiveLinkWordInNibbles",
+    "file": "src/link/receivelinkwordinnibbles_01feb6.asm"
   },
   {
     "start": 130864,
     "end": 130894,
     "kind": "m68k",
-    "module": "input",
-    "name": "InputRoutine_01FF30",
-    "file": "src/input/inputroutine_01ff30_01ff30.asm"
+    "module": "link",
+    "name": "WaitForLinkPeerHighAndSetStrobe",
+    "file": "src/link/waitforlinkpeerhighandsetstrobe_01ff30.asm"
   },
   {
     "start": 130894,
     "end": 130946,
     "kind": "m68k",
-    "module": "input",
-    "name": "InputRoutine_01FF4E",
-    "file": "src/input/inputroutine_01ff4e_01ff4e.asm"
+    "module": "link",
+    "name": "ConfigureLinkInitiatorPort",
+    "file": "src/link/configurelinkinitiatorport_01ff4e.asm"
   },
   {
     "start": 130946,
     "end": 131020,
     "kind": "m68k",
-    "module": "input",
-    "name": "InputRoutine_01FF82",
-    "file": "src/input/inputroutine_01ff82_01ff82.asm"
+    "module": "link",
+    "name": "ResetLinkReceiverPortAndQueues",
+    "file": "src/link/resetlinkreceiverportandqueues_01ff82.asm"
   },
   {
     "start": 131020,
@@ -6147,17 +6476,17 @@
     "start": 131088,
     "end": 131160,
     "kind": "m68k",
-    "module": "input",
-    "name": "InputRoutine_020010",
-    "file": "src/input/inputroutine_020010_020010.asm"
+    "module": "link",
+    "name": "DequeueLinkCommand",
+    "file": "src/link/dequeuelinkcommand_020010.asm"
   },
   {
     "start": 131160,
     "end": 131208,
     "kind": "m68k",
-    "module": "input",
-    "name": "InputRoutine_020058",
-    "file": "src/input/inputroutine_020058_020058.asm"
+    "module": "link",
+    "name": "ServiceLinkUntilTxQueueEmpty",
+    "file": "src/link/servicelinkuntiltxqueueempty_020058.asm"
   },
   {
     "start": 131208,
@@ -6187,9 +6516,9 @@
     "start": 132002,
     "end": 132254,
     "kind": "m68k",
-    "module": "input",
-    "name": "InputRoutine_0203A2",
-    "file": "src/input/inputroutine_0203a2_0203a2.asm"
+    "module": "link",
+    "name": "QueueLocalActorAndPlayerLinkState",
+    "file": "src/link/queuelocalactorandplayerlinkstate_0203a2.asm"
   },
   {
     "start": 132254,
@@ -6212,16 +6541,16 @@
     "end": 132404,
     "kind": "m68k",
     "module": "link",
-    "name": "loc_02052A",
-    "file": "src/link/loc_02052a_02052a.asm"
+    "name": "CheckSecondaryRoleForLegacyActorCleanup",
+    "file": "src/link/checksecondaryroleforlegacyactorcleanup_02052a.asm"
   },
   {
     "start": 132404,
     "end": 132456,
     "kind": "m68k",
-    "module": "objects",
-    "name": "ObjectsRoutine_020534",
-    "file": "src/objects/objectsroutine_020534_020534.asm"
+    "module": "link",
+    "name": "ScanActorsForLegacyExitCallbacks",
+    "file": "src/link/scanactorsforlegacyexitcallbacks_020534.asm"
   },
   {
     "start": 132456,
@@ -6233,19 +6562,51 @@
   },
   {
     "start": 132464,
+    "end": 132480,
+    "kind": "m68k",
+    "module": "link",
+    "name": "ReceiveRetainedEffectBudgetReset",
+    "file": "src/link/receiveretainedeffectbudgetreset_020570.asm"
+  },
+  {
+    "start": 132480,
+    "end": 132484,
+    "kind": "m68k",
+    "module": "link",
+    "name": "ReceiveLinkDisconnect",
+    "file": "src/link/receivelinkdisconnect_020580.asm"
+  },
+  {
+    "start": 132484,
+    "end": 132492,
+    "kind": "m68k",
+    "module": "link",
+    "name": "ReceiveRemotePauseOn",
+    "file": "src/link/receiveremotepauseon_020584.asm"
+  },
+  {
+    "start": 132492,
+    "end": 132500,
+    "kind": "m68k",
+    "module": "link",
+    "name": "ReceiveRemotePauseOff",
+    "file": "src/link/receiveremotepauseoff_02058c.asm"
+  },
+  {
+    "start": 132500,
     "end": 132566,
     "kind": "m68k",
-    "module": "actors",
-    "name": "ActorsRoutine_020570",
-    "file": "src/actors/actorsroutine_020570_020570.asm"
+    "module": "link",
+    "name": "ReceiveRemoteItemGrant",
+    "file": "src/link/receiveremoteitemgrant_020594.asm"
   },
   {
     "start": 132566,
     "end": 132692,
     "kind": "m68k",
-    "module": "actors",
-    "name": "ActorsRoutine_0205D6",
-    "file": "src/actors/actorsroutine_0205d6_0205d6.asm"
+    "module": "link",
+    "name": "ReceiveTransientCellRecord",
+    "file": "src/link/receivetransientcellrecord_0205d6.asm"
   },
   {
     "start": 132692,
@@ -6267,17 +6628,17 @@
     "start": 132762,
     "end": 132798,
     "kind": "m68k",
-    "module": "actors",
-    "name": "ActorsRoutine_02069A",
-    "file": "src/actors/actorsroutine_02069a_02069a.asm"
+    "module": "link",
+    "name": "ReceiveRemoteActorPositionMotionAndKind",
+    "file": "src/link/receiveremoteactorpositionmotionandkind_02069a.asm"
   },
   {
     "start": 132798,
     "end": 132850,
     "kind": "m68k",
-    "module": "actors",
-    "name": "ActorsRoutine_0206BE",
-    "file": "src/actors/actorsroutine_0206be_0206be.asm"
+    "module": "link",
+    "name": "ReceiveRemoteActorPositionMotionFlagsFrame",
+    "file": "src/link/receiveremoteactorpositionmotionflagsframe_0206be.asm"
   },
   {
     "start": 132850,
@@ -6291,33 +6652,33 @@
     "start": 132880,
     "end": 132910,
     "kind": "m68k",
-    "module": "actors",
-    "name": "ActorsRoutine_020710",
-    "file": "src/actors/actorsroutine_020710_020710.asm"
+    "module": "link",
+    "name": "ReceiveRemoteActorPositionAndKind",
+    "file": "src/link/receiveremoteactorpositionandkind_020710.asm"
   },
   {
     "start": 132910,
     "end": 132932,
     "kind": "m68k",
-    "module": "actors",
-    "name": "ActorsRoutine_02072E",
-    "file": "src/actors/actorsroutine_02072e_02072e.asm"
+    "module": "link",
+    "name": "ReceiveRemoteActorXYAndKind",
+    "file": "src/link/receiveremoteactorxyandkind_02072e.asm"
   },
   {
     "start": 132932,
     "end": 132966,
     "kind": "m68k",
-    "module": "actors",
-    "name": "ActorsRoutine_020744",
-    "file": "src/actors/actorsroutine_020744_020744.asm"
+    "module": "link",
+    "name": "ReceiveRemoteActorPositionFrameAndKind",
+    "file": "src/link/receiveremoteactorpositionframeandkind_020744.asm"
   },
   {
     "start": 132966,
     "end": 132992,
     "kind": "m68k",
-    "module": "actors",
-    "name": "ActorsRoutine_020766",
-    "file": "src/actors/actorsroutine_020766_020766.asm"
+    "module": "link",
+    "name": "ReceiveRemoteActorXYFrameAndKind",
+    "file": "src/link/receiveremoteactorxyframeandkind_020766.asm"
   },
   {
     "start": 132992,
@@ -6329,11 +6690,59 @@
   },
   {
     "start": 133018,
-    "end": 133392,
+    "end": 133094,
     "kind": "m68k",
     "module": "link",
     "name": "ReceiveActorSpawn",
     "file": "src/link/receiveactorspawn_02079a.asm"
+  },
+  {
+    "start": 133094,
+    "end": 133138,
+    "kind": "m68k",
+    "module": "link",
+    "name": "ReceiveRemoteActorRemoval",
+    "file": "src/link/receiveremoteactorremoval_0207e6.asm"
+  },
+  {
+    "start": 133138,
+    "end": 133220,
+    "kind": "m68k",
+    "module": "link",
+    "name": "ReceiveRemoteHitEvent",
+    "file": "src/link/receiveremotehitevent_020812.asm"
+  },
+  {
+    "start": 133220,
+    "end": 133234,
+    "kind": "m68k",
+    "module": "link",
+    "name": "ReceiveRemoteHitEventWithFlag",
+    "file": "src/link/receiveremotehiteventwithflag_020864.asm"
+  },
+  {
+    "start": 133234,
+    "end": 133302,
+    "kind": "m68k",
+    "module": "link",
+    "name": "ReceiveRemoteHitEventDirect",
+    "file": "src/link/receiveremotehiteventdirect_020872.asm"
+  },
+  {
+    "start": 133302,
+    "end": 133312,
+    "kind": "m68k",
+    "module": "link",
+    "name": "ReceiveRemoteSoundEvent",
+    "file": "src/link/receiveremotesoundevent_0208b6.asm"
+  },
+  {
+    "start": 133312,
+    "end": 133392,
+    "kind": "m68k",
+    "module": "link",
+    "name": "ReceiveRemoteActorSnapshot",
+    "file": "src/link/receiveremoteactorsnapshot_0208c0.asm"
   },
   {
     "start": 133392,
@@ -6348,16 +6757,16 @@
     "end": 133630,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_020944",
-    "file": "src/ui/uiroutine_020944_020944.asm"
+    "name": "DrawInventoryQuantityDigits",
+    "file": "src/ui/drawinventoryquantitydigits_020944.asm"
   },
   {
     "start": 133630,
     "end": 133692,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_0209FE",
-    "file": "src/ui/uiroutine_0209fe_0209fe.asm"
+    "name": "WriteTwoDigitHudNumberToVram",
+    "file": "src/ui/writetwodigithudnumbertovram_0209fe.asm"
   },
   {
     "start": 133692,
@@ -6396,8 +6805,8 @@
     "end": 134422,
     "kind": "m68k",
     "module": "sound",
-    "name": "SoundRoutine_020CBC",
-    "file": "src/sound/soundroutine_020cbc_020cbc.asm"
+    "name": "AdvanceStatusSoundScript",
+    "file": "src/sound/advancestatussoundscript_020cbc.asm"
   },
   {
     "start": 134422,
@@ -6436,8 +6845,8 @@
     "end": 137020,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_021728",
-    "file": "src/ui/uiroutine_021728_021728.asm"
+    "name": "InitializeRetainedScreenVideo",
+    "file": "src/ui/initializeretainedscreenvideo_021728.asm"
   },
   {
     "start": 137020,
@@ -6452,24 +6861,24 @@
     "end": 137068,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_021746",
-    "file": "src/ui/uiroutine_021746_021746.asm"
+    "name": "RunRetainedScreenPresentation",
+    "file": "src/ui/runretainedscreenpresentation_021746.asm"
   },
   {
     "start": 137068,
     "end": 137092,
     "kind": "m68k",
     "module": "video",
-    "name": "VideoRoutine_02176C",
-    "file": "src/video/videoroutine_02176c_02176c.asm"
+    "name": "ClearVideoAndSetScrollMinus16",
+    "file": "src/video/clearvideoandsetscrollminus16_02176c.asm"
   },
   {
     "start": 137092,
     "end": 138538,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_021784",
-    "file": "src/ui/uiroutine_021784_021784.asm"
+    "name": "PlayRetainedScreenPageSequence",
+    "file": "src/ui/playretainedscreenpagesequence_021784.asm"
   },
   {
     "start": 138538,
@@ -6532,8 +6941,8 @@
     "end": 138844,
     "kind": "m68k",
     "module": "video",
-    "name": "VideoRoutine_021E4A",
-    "file": "src/video/videoroutine_021e4a_021e4a.asm"
+    "name": "WriteVerticalScrollToVsram",
+    "file": "src/video/writeverticalscrolltovsram_021e4a.asm"
   },
   {
     "start": 138844,
@@ -6636,8 +7045,8 @@
     "end": 139296,
     "kind": "m68k",
     "module": "video",
-    "name": "VideoRoutine_022018",
-    "file": "src/video/videoroutine_022018_022018.asm"
+    "name": "FadeFullPaletteToBlack",
+    "file": "src/video/fadefullpalettetoblack_022018.asm"
   },
   {
     "start": 139296,
@@ -6755,9 +7164,9 @@
     "start": 140926,
     "end": 141074,
     "kind": "m68k",
-    "module": "ui",
-    "name": "UiRoutine_02267E",
-    "file": "src/ui/uiroutine_02267e_02267e.asm"
+    "module": "video",
+    "name": "ContinuePaletteFadeComponentStep",
+    "file": "src/video/continuepalettefadecomponentstep_02267e.asm"
   },
   {
     "start": 141074,
@@ -6804,16 +7213,16 @@
     "end": 143028,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_022980",
-    "file": "src/ui/uiroutine_022980_022980.asm"
+    "name": "RunTitleAnimationScreen",
+    "file": "src/ui/runtitleanimationscreen_022980.asm"
   },
   {
     "start": 143028,
     "end": 143128,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_022EB4",
-    "file": "src/ui/uiroutine_022eb4_022eb4.asm"
+    "name": "InitializeTitleScrollBackground",
+    "file": "src/ui/initializetitlescrollbackground_022eb4.asm"
   },
   {
     "start": 143128,
@@ -6828,8 +7237,8 @@
     "end": 143302,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_022F38",
-    "file": "src/ui/uiroutine_022f38_022f38.asm"
+    "name": "AdvanceTitleScrollBackground",
+    "file": "src/ui/advancetitlescrollbackground_022f38.asm"
   },
   {
     "start": 143302,
@@ -6868,8 +7277,8 @@
     "end": 144182,
     "kind": "m68k",
     "module": "ui",
-    "name": "UiRoutine_023214",
-    "file": "src/ui/uiroutine_023214_023214.asm"
+    "name": "BuildTitleScrollLayers",
+    "file": "src/ui/buildtitlescrolllayers_023214.asm"
   },
   {
     "start": 144182,
@@ -7124,8 +7533,8 @@
     "end": 169294,
     "kind": "m68k",
     "module": "math",
-    "name": "MathRoutine_0294FE",
-    "file": "src/math/mathroutine_0294fe_0294fe.asm"
+    "name": "AppendScaledProgressByte",
+    "file": "src/math/appendscaledprogressbyte_0294fe.asm"
   },
   {
     "start": 169294,
@@ -7900,8 +8309,8 @@
     "end": 501658,
     "kind": "m68k",
     "module": "sound",
-    "name": "QueueGemsSound",
-    "file": "src/sound/queuegemssound_07a786.asm"
+    "name": "ReadGemsStatusBytePreservingA0A1",
+    "file": "src/sound/readgemsstatusbytepreservinga0a1_07a786.asm"
   },
   {
     "start": 501658,
@@ -7972,8 +8381,8 @@
     "end": 501972,
     "kind": "m68k",
     "module": "sound",
-    "name": "SoundRoutine_07A8C8",
-    "file": "src/sound/soundroutine_07a8c8_07a8c8.asm"
+    "name": "WriteGemsCommandPrefixAndOpcode",
+    "file": "src/sound/writegemscommandprefixandopcode_07a8c8.asm"
   },
   {
     "start": 501972,
@@ -8012,56 +8421,56 @@
     "end": 502116,
     "kind": "m68k",
     "module": "sound",
-    "name": "SoundRoutine_07A94E",
-    "file": "src/sound/soundroutine_07a94e_07a94e.asm"
+    "name": "GemsStartSequence",
+    "file": "src/sound/gemsstartsequence_07a94e.asm"
   },
   {
     "start": 502116,
     "end": 502124,
     "kind": "m68k",
     "module": "sound",
-    "name": "SoundRoutine_07A964",
-    "file": "src/sound/soundroutine_07a964_07a964.asm"
+    "name": "GemsStopSequence",
+    "file": "src/sound/gemsstopsequence_07a964.asm"
   },
   {
     "start": 502124,
     "end": 502132,
     "kind": "m68k",
     "module": "sound",
-    "name": "SoundRoutine_07A96C",
-    "file": "src/sound/soundroutine_07a96c_07a96c.asm"
+    "name": "GemsSetTempo",
+    "file": "src/sound/gemssettempo_07a96c.asm"
   },
   {
     "start": 502132,
     "end": 502146,
     "kind": "m68k",
     "module": "sound",
-    "name": "SoundRoutine_07A974",
-    "file": "src/sound/soundroutine_07a974_07a974.asm"
+    "name": "GemsPauseAll",
+    "file": "src/sound/gemspauseall_07a974.asm"
   },
   {
     "start": 502146,
     "end": 502160,
     "kind": "m68k",
     "module": "sound",
-    "name": "SoundRoutine_07A982",
-    "file": "src/sound/soundroutine_07a982_07a982.asm"
+    "name": "GemsResumeAll",
+    "file": "src/sound/gemsresumeall_07a982.asm"
   },
   {
     "start": 502160,
     "end": 502174,
     "kind": "m68k",
     "module": "sound",
-    "name": "SoundRoutine_07A990",
-    "file": "src/sound/soundroutine_07a990_07a990.asm"
+    "name": "GemsStopAll",
+    "file": "src/sound/gemsstopall_07a990.asm"
   },
   {
     "start": 502174,
     "end": 502182,
     "kind": "m68k",
     "module": "sound",
-    "name": "SoundRoutine_07A99E",
-    "file": "src/sound/soundroutine_07a99e_07a99e.asm"
+    "name": "GemsReserveChannel",
+    "file": "src/sound/gemsreservechannel_07a99e.asm"
   },
   {
     "start": 502182,
@@ -8084,8 +8493,8 @@
     "end": 502236,
     "kind": "m68k",
     "module": "sound",
-    "name": "SoundRoutine_07A9CC",
-    "file": "src/sound/soundroutine_07a9cc_07a9cc.asm"
+    "name": "GemsNoteOn",
+    "file": "src/sound/gemsnoteon_07a9cc.asm"
   },
   {
     "start": 502236,
@@ -8132,8 +8541,8 @@
     "end": 502424,
     "kind": "m68k",
     "module": "sound",
-    "name": "SoundRoutine_07AA8E",
-    "file": "src/sound/soundroutine_07aa8e_07aa8e.asm"
+    "name": "GemsSetDacRate",
+    "file": "src/sound/gemssetdacrate_07aa8e.asm"
   },
   {
     "start": 502424,
@@ -8180,8 +8589,8 @@
     "end": 503016,
     "kind": "m68k",
     "module": "sound",
-    "name": "loc_07ACE4",
-    "file": "src/sound/loc_07ace4_07ace4.asm"
+    "name": "StoreCurrentSoundSequenceAndPlayEvent",
+    "file": "src/sound/storecurrentsoundsequenceandplayevent_07ace4.asm"
   },
   {
     "start": 503016,
@@ -8228,8 +8637,8 @@
     "end": 503556,
     "kind": "pointers",
     "module": "ui",
-    "name": "CharacterMenuPortraitPalettePointers",
-    "file": "src/ui/charactermenuportraitpalettepointers_07aef0.asm"
+    "name": "CharacterMenuPortraitTilemapPointers",
+    "file": "src/ui/charactermenuportraittilemappointers_07aef0.asm"
   },
   {
     "start": 503556,
@@ -8316,16 +8725,16 @@
     "end": 505086,
     "kind": "m68k",
     "module": "ui",
-    "name": "UploadCharacterMenuPanel",
-    "file": "src/ui/uploadcharactermenupanel_07b4c4.asm"
+    "name": "UploadDeceasedStamp",
+    "file": "src/ui/uploaddeceasedstamp_07b4c4.asm"
   },
   {
     "start": 505086,
     "end": 505170,
     "kind": "m68k",
     "module": "video",
-    "name": "VideoRoutine_07B4FE",
-    "file": "src/video/videoroutine_07b4fe_07b4fe.asm"
+    "name": "ClearCharacterMenuTilemapRegion",
+    "file": "src/video/clearcharactermenutilemapregion_07b4fe.asm"
   },
   {
     "start": 505170,
@@ -8380,32 +8789,32 @@
     "end": 508240,
     "kind": "binary",
     "module": "graphics",
-    "name": "CharacterMenuFrameTiles",
-    "file": "src/graphics/charactermenuframetiles_07bdf0.asm"
+    "name": "CharacterMenuSpriteTiles",
+    "file": "src/graphics/charactermenuspritetiles_07bdf0.asm"
   },
   {
     "start": 508240,
     "end": 508320,
     "kind": "words",
     "module": "ui",
-    "name": "CharacterMenuFrameRow",
-    "file": "src/ui/charactermenuframerow_07c150.asm"
+    "name": "CharacterMenuArrowTileUploadIndices",
+    "file": "src/ui/charactermenuarrowtileuploadindices_07c150.asm"
   },
   {
     "start": 508320,
     "end": 510240,
     "kind": "words",
     "module": "ui",
-    "name": "CharacterMenuFrameTilemap",
-    "file": "src/ui/charactermenuframetilemap_07c1a0.asm"
+    "name": "CharacterMenuPromptTileUploadIndices",
+    "file": "src/ui/charactermenuprompttileuploadindices_07c1a0.asm"
   },
   {
     "start": 510240,
     "end": 510272,
     "kind": "words",
     "module": "palettes",
-    "name": "CharacterMenuBackgroundPalette",
-    "file": "src/palettes/charactermenubackgroundpalette_07c920.asm"
+    "name": "CharacterMenuSpritePalette",
+    "file": "src/palettes/charactermenuspritepalette_07c920.asm"
   },
   {
     "start": 510272,
@@ -8420,24 +8829,24 @@
     "end": 519008,
     "kind": "binary",
     "module": "graphics",
-    "name": "CharacterMenuBackgroundTiles",
-    "file": "src/graphics/charactermenubackgroundtiles_07c9a0.asm"
+    "name": "DeceasedStampTiles",
+    "file": "src/graphics/deceasedstamptiles_07c9a0.asm"
   },
   {
     "start": 519008,
     "end": 521248,
     "kind": "words",
     "module": "ui",
-    "name": "CharacterMenuBackgroundTilemap",
-    "file": "src/ui/charactermenubackgroundtilemap_07eb60.asm"
+    "name": "DeceasedStampTilemap",
+    "file": "src/ui/deceasedstamptilemap_07eb60.asm"
   },
   {
     "start": 521248,
     "end": 521280,
     "kind": "words",
     "module": "palettes",
-    "name": "CharacterMenuAccentPalette",
-    "file": "src/palettes/charactermenuaccentpalette_07f420.asm"
+    "name": "DeceasedStampPalette",
+    "file": "src/palettes/deceasedstamppalette_07f420.asm"
   },
   {
     "start": 521280,
@@ -8452,8 +8861,8 @@
     "end": 521440,
     "kind": "binary",
     "module": "graphics",
-    "name": "RetainedMenuTilePixels",
-    "file": "src/graphics/retainedmenutilepixels_07f4a0.asm"
+    "name": "RetainedZtCharacterMenuMarkerTiles",
+    "file": "src/graphics/retainedztcharactermenumarkertiles_07f4a0.asm"
   },
   {
     "start": 521440,
@@ -8627,9 +9036,9 @@
     "start": 531548,
     "end": 532230,
     "kind": "m68k",
-    "module": "video",
-    "name": "loc_081C5C",
-    "file": "src/video/loc_081c5c_081c5c.asm"
+    "module": "ui",
+    "name": "RunOptionsScreen",
+    "file": "src/ui/runoptionsscreen_081c5c.asm"
   },
   {
     "start": 532230,
@@ -8700,8 +9109,8 @@
     "end": 538300,
     "kind": "binary",
     "module": "graphics",
-    "name": "OptionsWindowTilePatterns",
-    "file": "src/graphics/optionswindowtilepatterns_08367c.asm"
+    "name": "OptionsCursorSpriteTiles",
+    "file": "src/graphics/optionscursorspritetiles_08367c.asm"
   },
   {
     "start": 538300,
@@ -9596,8 +10005,8 @@
     "end": 621022,
     "kind": "m68k",
     "module": "environment",
-    "name": "EnvironmentRoutine_097964",
-    "file": "src/environment/environmentroutine_097964_097964.asm"
+    "name": "WriteTrackedCorpseCellAndRemoveActor",
+    "file": "src/environment/writetrackedcorpsecellandremoveactor_097964.asm"
   },
   {
     "start": 621022,
@@ -10292,7 +10701,7 @@
     "end": 1430616,
     "kind": "binary",
     "module": "graphics",
-    "name": "InterfaceGraphicsAfterCompressedTiles",
+    "name": "InterfaceGraphicsBank",
     "file": "src/graphics/interfacegraphicsaftercompressedtiles_14d690.asm"
   },
   {
@@ -10300,7 +10709,7 @@
     "end": 1439160,
     "kind": "binary",
     "module": "graphics",
-    "name": "HeldWeaponGraphics",
+    "name": "UnarmedAttackDmaPrefix",
     "file": "src/graphics/heldweapongraphics_15d458.asm"
   },
   {
@@ -10364,8 +10773,8 @@
     "end": 1460256,
     "kind": "binary",
     "module": "graphics",
-    "name": "InventoryIconBankTail",
-    "file": "src/graphics/inventoryiconbanktail_164148.asm"
+    "name": "InventoryQuantityDigitRows",
+    "file": "src/graphics/inventoryquantitydigitrows_164148.asm"
   },
   {
     "start": 1460256,

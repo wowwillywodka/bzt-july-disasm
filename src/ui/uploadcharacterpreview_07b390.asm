@@ -10,7 +10,7 @@ UploadCharacterPreview:
 ; Character-selection UI helper (five portraits/biographies), not a geometry-episode selector. See docs/GAME_FLOW.md.
         move.w       ramSelectedCharacter.l, d0                    ; $07B390
         lsl.w        #$2, d0                                       ; $07B396
-        lea.l        CharacterMenuPortraitPalettePointers(pc), a0  ; $07B398
+        lea.l        CharacterMenuPortraitTilemapPointers(pc), a0  ; $07B398
         movea.l      (a0, d0.w), a0                                ; $07B39C
         adda.l       #$20, a0                                      ; $07B3A0
         move.w       #$b, d1                                       ; $07B3A6

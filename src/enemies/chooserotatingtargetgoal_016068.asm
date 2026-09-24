@@ -15,7 +15,7 @@ ChooseRotatingTargetGoal:
         andi.w       #$1ff, d0                                     ; $016078
         subi.w       #$100, d0                                     ; $01607C
         lea.l        AngleVectorPairs.w, a4                        ; $016080
-        move.w       -$71ee(a6), d0                                ; $016084
+        move.w       rPlayerFacingAngle(a6), d0                                ; $016084
         add.w        ActorGoalAngle(a0), d0                        ; $016088
         addi.w       #$50, ActorGoalAngle(a0)                      ; $01608C
         andi.w       #$1ff, ActorGoalAngle(a0)                     ; $016092

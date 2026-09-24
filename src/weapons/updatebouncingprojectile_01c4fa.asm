@@ -23,7 +23,7 @@ UpdateBouncingProjectile:
         bne.w        RemoveActorAndSendLink                        ; $01C524
         move.w       #$63, d0                                      ; $01C528
         move.l       a0, -(a7)                                     ; $01C52C
-        jsr          SoundRoutine_00DF64.l                         ; $01C52E
+        jsr          RouteSoundEventByActorFloor.l                         ; $01C52E
         movea.l      (a7)+, a0                                     ; $01C534
         move.w       ActorX(a0), d0                                ; $01C536
         add.w        ActorMotionX(a0), d0                          ; $01C53A

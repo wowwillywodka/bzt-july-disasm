@@ -17,7 +17,7 @@ InitializeOptionsScreen:
         move.w       #$3, d0                                       ; $081F2E
         jsr          LoadPaletteLine.l                             ; $081F32
         move.l       #$55c00002, VDP_CONTROL.l                     ; $081F38
-        lea.l        OptionsWindowTilePatterns.l, a0               ; $081F42
+        lea.l        OptionsCursorSpriteTiles.l, a0               ; $081F42
         move.w       #$f, d7                                       ; $081F48
 
 loc_081F4C:

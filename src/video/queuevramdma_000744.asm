@@ -1,7 +1,8 @@
 ; $000744..$000799 | m68k
 ; Maintained assembly input; no extraction occurs during build.
 ; RESEARCH NOTE (July; semantic claims still require local review):
-; сборка списка команд VDP DMA: из ptr (-0x7fca,A6)→A3 формирует слова регистров $93-$97 (длина/адрес источника DMA) из D4/D6 со сдвигами и масками $7f/$3fff/+$4000/+$80, пишет в (A3)+, сохраняет A3 обратно
+; Appends a seven-word VDP DMA register command at DmaQueueTail and advances
+; that tail. FlushDmaQueue consumes the $FFFFFFFF-terminated queue in VBlank.
         ifne *-$744
         fail "ROM start moved"
         endif

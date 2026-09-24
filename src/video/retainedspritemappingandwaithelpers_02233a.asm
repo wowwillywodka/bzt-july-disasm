@@ -19,7 +19,7 @@ loc_02233E:
         or.w         (a0)+, d1                                     ; $02234A
         addq.w       #$1, d1                                       ; $02234C
         or.w         (a0)+, d4                                     ; $02234E
-        jsr          loc_021FFE(pc)                                ; $022350
+        jsr          WriteHardwareSpriteWordsAtCurrentAddress(pc)                                ; $022350
         addq.w       #$1, a1                                       ; $022354
         add.w        (a0)+, d5                                     ; $022356
         dbra         d0, loc_02233E                                ; $022358
@@ -41,7 +41,7 @@ loc_02233E:
         moveq        #$1, d2                                       ; $022384
         moveq        #$1, d3                                       ; $022386
         moveq        #$0, d4                                       ; $022388
-        jsr          loc_021FFE(pc)                                ; $02238A
+        jsr          WriteHardwareSpriteWordsAtCurrentAddress(pc)                                ; $02238A
         rts                                                        ; $02238E
         move.w       (a0)+, d1                                     ; $022390
         move.w       (a0)+, d0                                     ; $022392

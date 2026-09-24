@@ -9,7 +9,7 @@
 FormatDecimalNumber:
         movem.l      d0-d1/a2-a3, -(a7)                            ; $0038B2
         lea.l        PercentDisplayText(pc), a0                    ; $0038B6
-        lea.l        -$6fdc(a6), a1                                ; $0038BA
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $0038BA
         andi.w       #$1fff, d0                                    ; $0038BE
         cmpi.w       #$a, d0                                       ; $0038C2
         bcs.b        loc_003916                                    ; $0038C6

@@ -17,7 +17,7 @@ RenderElevatorCabinTop:
         move.b       d0, d3                                        ; $0093CE
         lsl.w        #$8, d3                                       ; $0093D0
         move.b       d1, d3                                        ; $0093D2
-        bsr.w        RendererRoutine_0096D4                        ; $0093D4
+        bsr.w        QueueUniqueWallMarker                        ; $0093D4
 
 loc_0093D8:
         clr.w        d3                                            ; $0093D8
@@ -34,7 +34,7 @@ loc_0093DC:
         move.b       d0, d3                                        ; $0093EA
         lsl.w        #$8, d3                                       ; $0093EC
         move.b       d1, d3                                        ; $0093EE
-        bsr.w        EnemiesRoutine_0096CC                         ; $0093F0
+        bsr.w        QueueBackgroundFilledWallMarker                         ; $0093F0
 
 loc_0093F4:
         clr.w        d3                                            ; $0093F4

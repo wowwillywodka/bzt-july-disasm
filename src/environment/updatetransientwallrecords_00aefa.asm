@@ -69,7 +69,7 @@ loc_00AF8A:
         bne.w        loc_00B020                                    ; $00AF8E
         move.w       #$5e, d0                                      ; $00AF92
         move.l       a3, -(a7)                                     ; $00AF96
-        jsr          SoundRoutine_00DF84.l                         ; $00AF98
+        jsr          PlaySoundEventAndMaybeSendLink.l                         ; $00AF98
         movea.l      (a7)+, a3                                     ; $00AF9E
         bra.b        loc_00AFDA                                    ; $00AFA0
 
@@ -93,7 +93,7 @@ loc_00AFBE:
 
 loc_00AFDA:
 ; Write record +7 to the map and commit, then compact queue by 14 bytes. Mode 2 stores zero here; mode 0 stores the original cell.
-        move.w       #$1, -$711e(a6)                               ; $00AFDA
+        move.w       #$1, rWallChangeRefreshFlag(a6)                               ; $00AFDA
         movea.l      (a3), a0                                      ; $00AFE0
         cmpa.l       #$ffa5fa, a0                                  ; $00AFE2
         bcs.b        loc_00AFF2                                    ; $00AFE8

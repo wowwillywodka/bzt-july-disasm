@@ -10,19 +10,20 @@ EnterGreyDummyDeath:
 ; Active death entry: sound$23, state3, corpse callbacks, floor count and optional link command12. AlternateDeathSignal path at $1AA76 remains separately unresolved.
         move.l       a0, -(a7)                                     ; $016BE2
         move.w       #$23, d0                                      ; $016BE4
-        jsr          SoundRoutine_00DF64.l                         ; $016BE8
+        jsr          RouteSoundEventByActorFloor.l                         ; $016BE8
         movea.l      (a7)+, a0                                     ; $016BEE
         tst.b        ActorAlternateDeathSignal(a0)                 ; $016BF0
         bne.w        EnterLegacyEnemyDeathEffect                   ; $016BF4
         andi.w       #$ff2f, ActorFlags(a0)                        ; $016BF8
         move.l       #UpdateGreyDummyCorpse, ActorUpdateCallback(a0) ; $016BFE
-        addq.w       #$1, -$71c8(a6)                               ; $016C06
+        addq.w       #$1, rEnemyDeathsRecorded(a6)                               ; $016C06
         clr.b        ActorUpdateDelay(a0)                          ; $016C0A
+; This is the callback switch from live-hit semantics to corpse recoil/counter semantics.
         move.l       #HitGreyDummyCorpse, ActorHitCallback(a0)     ; $016C0E
-        move.l       #EnvironmentRoutine_01D130, ActorExitCallback(a0) ; $016C16
+        move.l       #PlaceCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $016C16
         tst.b        ActorMarkerTracked(a0)                        ; $016C1E
         beq.b        loc_016C2C                                    ; $016C22
-        move.l       #EnvironmentRoutine_097964, ActorExitCallback(a0) ; $016C24
+        move.l       #WriteTrackedCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $016C24
 
 loc_016C2C:
         move.l       #DrawGreyDummyCorpse, ActorDrawCallback(a0)   ; $016C2C
@@ -43,14 +44,14 @@ loc_016C5C:
 
 loc_016C6A:
         move.l       #$1ef7e, ActorLinkCallback(a0)                ; $016C6A
-        lea.l        -$6fdc(a6), a1                                ; $016C72
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $016C72
         move.b       #$12, (a1)+                                   ; $016C76
         move.b       ActorLinkId(a0), (a1)+                        ; $016C7A
         move.w       ActorFlags(a0), d0                            ; $016C7E
         ori.w        #$20, d0                                      ; $016C82
         move.b       d0, (a1)+                                     ; $016C86
         move.b       ActorFloor(a0), (a1)+                         ; $016C88
-        lea.l        -$6fdc(a6), a0                                ; $016C8C
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $016C8C
         jmp          QueueLinkCommand.l                            ; $016C90
 
 GreyDummyTickWeapon0DDeath:

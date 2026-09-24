@@ -18,7 +18,7 @@ loc_0290EC:
         bra.b        loc_0290EC                                    ; $0290F2
 
 loc_0290F4:
-        lea.l        -$5584(a6), a1                                ; $0290F4
+        lea.l        rRetainedEpisodePasswordText(a6), a1                                ; $0290F4
         move.w       #$8, d2                                       ; $0290F8
 
 loc_0290FC:

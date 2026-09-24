@@ -8,7 +8,7 @@
 
 InitializeNewGameState:
 ; Initialize all five character availability bytes, saved inventory and saved health; normal mode validates password and copies RequestedStartSelection. GeometryEpisode is not cleared here.
-        clr.b        -$5584(a6)                                    ; $000FD0
+        clr.b        rRetainedEpisodePasswordText(a6)                                    ; $000FD0
         clr.b        rLevelSelection(a6)                           ; $000FD4
         move.b       #$64, rSavedHealth(a6)                        ; $000FD8
         move.b       #$1, rCharacterAvailable0(a6)                 ; $000FDE
@@ -28,7 +28,7 @@ InitializeNewGameState:
         clr.b        rSavedInventoryAmount4(a6)                    ; $001020
         tst.w        rDemoMode(a6)                                 ; $001024
         bne.b        loc_00103A                                    ; $001028
-        lea.l        -$7ff6(a6), a0                                ; $00102A
+        lea.l        rPasswordSavedText(a6), a0                                ; $00102A
         jsr          ValidatePasswordAndCheats.l                   ; $00102E
         move.b       rRequestedStartSelection(a6), rLevelSelection(a6) ; $001034
 

@@ -1,7 +1,8 @@
 ; $029C02..$029C0D | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; RESEARCH NOTE (July; semantic claims still require local review):
-; Шифратор байта пароля: eor.b D3 (ключ-LFSR), ror.l #7 + swap прокрутка ключа $56CA2D69, пишет (A2)+ — XOR-обфускация буфера кода игрока
+; JULY LOCAL REVIEW: Same reversible XOR step as DecodePasswordXorByte,
+; operating on the seven-byte encoded buffer through A2. This is a fixed
+; rotating key, not an LFSR.
         ifne *-$29C02
         fail "ROM start moved"
         endif

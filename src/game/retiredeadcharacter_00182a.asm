@@ -21,10 +21,10 @@ RetireDeadCharacter:
         tst.w        rLinkRole(a6)                                 ; $001854
         beq.b        loc_001874                                    ; $001858
         bset.b       #$0, rPauseFlags(a6)                          ; $00185A
-        lea.l        -$6fdc(a6), a0                                ; $001860
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $001860
         move.b       #$14, (a0)                                    ; $001864
         jsr          QueueLinkCommand.l                            ; $001868
-        jsr          InputRoutine_020058.l                         ; $00186E
+        jsr          ServiceLinkUntilTxQueueEmpty.l                         ; $00186E
 
 loc_001874:
         bsr.w        SaveInventoryForSceneRestart                  ; $001874

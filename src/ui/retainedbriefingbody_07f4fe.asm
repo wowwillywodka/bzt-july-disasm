@@ -16,7 +16,7 @@ RetainedBriefingBody:
         jsr          ClearAllVram.l                                ; $07F50A
         jsr          InitializeMenuVdp.l                           ; $07F510
         movea.l      #VDP_CONTROL, a0                              ; $07F516
-        cmpi.w       #$2100, $ff2c66.l                             ; $07F51C
+        cmpi.w       #$2100, ramLinkPortStatusShadow.l                             ; $07F51C
         bne.w        loc_07F530                                    ; $07F524
         move.w       #$8b0b, (a0)                                  ; $07F528
         bra.w        loc_07F534                                    ; $07F52C

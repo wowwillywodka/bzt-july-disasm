@@ -1,18 +1,20 @@
 ; $00DCCA..$00DDF1 | m68k
 ; Maintained assembly input; no extraction occurs during build.
 ; JULY LOCAL REVIEW:
-; Resample two 80-byte background columns around their 40-byte halves. At zero offset copy exactly 160 bytes into the renderer workspace.
+; Resample two 80-byte background columns around their 40-byte halves.
+; Safe input Z is -32..32; at +/-33 one byte crosses into adjacent RAM.
+; See docs/RENDER_BUFFER_BOUNDS.md and audit_render_clipping.py.
         ifne *-$DCCA
         fail "ROM start moved"
         endif
 
 ResampleSceneBackgroundProfile:
 ; Resample two 80-byte background columns around their 40-byte halves. At zero offset copy exactly 160 bytes into the renderer workspace.
-        move.w       d0, -$71d4(a6)                                ; $00DCCA
+        move.w       d0, rBackgroundProfileViewOffsetZ(a6)                                ; $00DCCA
         beq.w        loc_00DD52                                    ; $00DCCE
         bmi.w        loc_00DD6C                                    ; $00DCD2
         movea.l      rActiveSceneBackgroundProfile(a6), a5         ; $00DCD6
-        lea.l        $b4a(a6), a4                                  ; $00DCDA
+        lea.l        rSceneBackgroundColumns(a6), a4                                  ; $00DCDA
         move.w       #$28, d5                                      ; $00DCDE
         lea.l        $50(a5), a3                                   ; $00DCE2
         lea.l        $50(a4), a2                                   ; $00DCE6
@@ -84,7 +86,7 @@ loc_00DD4C:
 loc_00DD52:
         move.w       #$9, d7                                       ; $00DD52
         movea.l      rActiveSceneBackgroundProfile(a6), a5         ; $00DD56
-        lea.l        $b4a(a6), a4                                  ; $00DD5A
+        lea.l        rSceneBackgroundColumns(a6), a4                                  ; $00DD5A
 
 loc_00DD5E:
         move.l       (a5)+, (a4)+                                  ; $00DD5E
@@ -98,7 +100,7 @@ loc_00DD6C:
         move.w       #$28, d5                                      ; $00DD6C
         movea.l      rActiveSceneBackgroundProfile(a6), a5         ; $00DD70
         lea.l        $50(a5), a5                                   ; $00DD74
-        lea.l        $b9a(a6), a4                                  ; $00DD78
+        lea.l        rSceneBackgroundColumn1(a6), a4                                  ; $00DD78
         neg.w        d0                                            ; $00DD7C
         lea.l        $50(a5), a3                                   ; $00DD7E
         lea.l        $50(a4), a2                                   ; $00DD82

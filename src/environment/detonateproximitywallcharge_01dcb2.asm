@@ -15,8 +15,8 @@ DetonateProximityWallCharge:
         bsr.w        GetVisibleMapBase                             ; $01DCBE
         movea.l      a1, a0                                        ; $01DCC2
         movea.l      (a7)+, a1                                     ; $01DCC4
-        move.w       $24(a2), d0                                   ; $01DCC6
-        move.w       $26(a2), d1                                   ; $01DCCA
+        move.w       ActorX(a2), d0                                   ; $01DCC6
+        move.w       ActorY(a2), d1                                   ; $01DCCA
         asr.w        #$8, d0                                       ; $01DCCE
         adda.w       d0, a0                                        ; $01DCD0
         clr.b        d1                                            ; $01DCD2
@@ -25,10 +25,10 @@ DetonateProximityWallCharge:
         clr.w        d3                                            ; $01DCD8
         lea.l        rCellTypeByIndex(a6), a5                      ; $01DCDA
         movea.l      #ActorSpawnCellSelectors, a4                  ; $01DCDE
-        bsr.w        EnemiesRoutine_01DE78                         ; $01DCE4
+        bsr.w        SpawnActorsNearDetonatedWallCharge                         ; $01DCE4
         movea.l      (a7), a2                                      ; $01DCE8
-        move.w       $24(a2), d0                                   ; $01DCEA
-        move.w       $26(a2), d1                                   ; $01DCEE
+        move.w       ActorX(a2), d0                                   ; $01DCEA
+        move.w       ActorY(a2), d1                                   ; $01DCEE
         move.l       a1, -(a7)                                     ; $01DCF2
         movea.l      a2, a0                                        ; $01DCF4
         bsr.w        GetVisibleMapBase                             ; $01DCF6
@@ -44,7 +44,7 @@ DetonateProximityWallCharge:
         bsr.w        OpenWallsInChargeSquare                       ; $01DD0E
         movea.l      (a7), a0                                      ; $01DD12
         move.w       #$67, d0                                      ; $01DD14
-        jsr          SoundRoutine_00DF64.l                         ; $01DD18
+        jsr          RouteSoundEventByActorFloor.l                         ; $01DD18
         movea.l      (a7)+, a0                                     ; $01DD1E
         rts                                                        ; $01DD20
         ifne *-$1DD22

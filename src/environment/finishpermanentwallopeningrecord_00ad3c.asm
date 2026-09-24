@@ -8,7 +8,7 @@
 
 FinishPermanentWallOpeningRecord:
 ; Shared tail: mode 2, current floor and coordinates; publish queue tail, optionally send link command $0A. Not sound or an actor render record.
-        move.w       #$1, -$711e(a6)                               ; $00AD3C
+        move.w       #$1, rWallChangeRefreshFlag(a6)                               ; $00AD3C
         move.w       d0, (a3)+                                     ; $00AD42
         move.w       d1, (a3)+                                     ; $00AD44
         move.b       #$2, (a3)+                                    ; $00AD46

@@ -10,19 +10,19 @@ EnterGunnerDeath:
 ; Sound$1B; installs corpse callbacks and ALWAYS overwrites mode with CB/counter11, including state5/6 special-death entries. Exit delay is armed later by drawing, not here.
         move.l       a0, -(a7)                                     ; $01AD62
         move.w       #$1b, d0                                      ; $01AD64
-        jsr          SoundRoutine_00DF64.l                         ; $01AD68
+        jsr          RouteSoundEventByActorFloor.l                         ; $01AD68
         movea.l      (a7)+, a0                                     ; $01AD6E
         tst.b        ActorAlternateDeathSignal(a0)                 ; $01AD70
         bne.w        EnterLegacyEnemyDeathEffect                   ; $01AD74
         andi.w       #$ff2f, ActorFlags(a0)                        ; $01AD78
         move.l       #UpdateGunnerCorpse, ActorUpdateCallback(a0)  ; $01AD7E
-        addq.w       #$1, -$71c8(a6)                               ; $01AD86
+        addq.w       #$1, rEnemyDeathsRecorded(a6)                               ; $01AD86
         clr.b        ActorUpdateDelay(a0)                          ; $01AD8A
         move.l       #HitGunnerCorpse, ActorHitCallback(a0)        ; $01AD8E
-        move.l       #EnvironmentRoutine_01D130, ActorExitCallback(a0) ; $01AD96
+        move.l       #PlaceCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $01AD96
         tst.b        ActorMarkerTracked(a0)                        ; $01AD9E
         beq.b        loc_01ADAC                                    ; $01ADA2
-        move.l       #EnvironmentRoutine_097964, ActorExitCallback(a0) ; $01ADA4
+        move.l       #WriteTrackedCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $01ADA4
 
 loc_01ADAC:
         move.l       #DrawGunnerCorpse, ActorDrawCallback(a0)      ; $01ADAC
@@ -38,14 +38,14 @@ loc_01ADAC:
 
 loc_01ADDC:
         move.l       #$1ef78, ActorLinkCallback(a0)                ; $01ADDC
-        lea.l        -$6fdc(a6), a1                                ; $01ADE4
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01ADE4
         move.b       #$12, (a1)+                                   ; $01ADE8
         move.b       ActorLinkId(a0), (a1)+                        ; $01ADEC
         move.w       ActorFlags(a0), d0                            ; $01ADF0
         ori.w        #$20, d0                                      ; $01ADF4
         move.b       d0, (a1)+                                     ; $01ADF8
         move.b       ActorFloor(a0), (a1)+                         ; $01ADFA
-        lea.l        -$6fdc(a6), a0                                ; $01ADFE
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $01ADFE
         jmp          QueueLinkCommand.l                            ; $01AE02
 
 GunnerTickWeaponDeath:

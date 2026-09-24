@@ -7,6 +7,7 @@
         endif
 
 ExtractVisibleMapWindow:
+; Direct calls and world-shift fallthrough require D4/D5 window origin; predecessor restores D2/D3 only on episode zero.
 ; In D4/D5=new origin cells. Always copy 32 rows of 32 bytes; source row pitch is floor width, even below 32.
         move.w       rCurrentFloorWidth(a6), d2                    ; $09773A
         ext.l        d2                                            ; $09773E

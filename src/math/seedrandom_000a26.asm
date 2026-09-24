@@ -16,7 +16,7 @@ loc_000A32:
         add.l        d1, d0                                        ; $000A3A
         subq.l       #$1, d2                                       ; $000A3C
         bne.b        loc_000A32                                    ; $000A3E
-        move.l       d0, -$7ffa(a6)                                ; $000A40
+        move.l       d0, rRandomSeed(a6)                                ; $000A40
         rts                                                        ; $000A44
         ifne *-$A46
         fail "ROM end moved"

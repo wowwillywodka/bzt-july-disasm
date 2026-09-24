@@ -21,7 +21,7 @@ DrawWorldFlameTile:
         movea.l      rZoneObjectTiles(a6), a1                      ; $0122AE
         move.w       rGameTick(a6), d3                             ; $0122B2
         andi.w       #$1, d3                                       ; $0122B6
-        move.w       d3, -$6f32(a6)                                ; $0122BA
+        move.w       d3, rSoftwareSpriteMirrorFlag(a6)                                ; $0122BA
         bra.w        ScaleAndDrawSoftwareSpriteTile                ; $0122BE
 
 loc_0122C2:

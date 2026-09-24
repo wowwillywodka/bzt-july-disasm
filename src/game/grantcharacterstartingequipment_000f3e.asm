@@ -20,17 +20,17 @@ loc_000F4E:
         adda.w       d0, a0                                        ; $000F58
         move.w       (a0)+, d0                                     ; $000F5A
         beq.b        loc_000F7A                                    ; $000F5C
-        move.w       (a0)+, -$6fa2(a6)                             ; $000F5E
+        move.w       (a0)+, rItemGrantAmountOverride(a6)                             ; $000F5E
         move.l       a0, -(a7)                                     ; $000F62
-        jsr          UiRoutine_011C78.l                            ; $000F64
+        jsr          GrantInventoryItem.l                            ; $000F64
         movea.l      (a7)+, a0                                     ; $000F6A
         move.w       (a0)+, d0                                     ; $000F6C
         beq.b        loc_000F7A                                    ; $000F6E
-        move.w       (a0)+, -$6fa2(a6)                             ; $000F70
-        jsr          UiRoutine_011C78.l                            ; $000F74
+        move.w       (a0)+, rItemGrantAmountOverride(a6)                             ; $000F70
+        jsr          GrantInventoryItem.l                            ; $000F74
 
 loc_000F7A:
-        clr.w        -$6fa2(a6)                                    ; $000F7A
+        clr.w        rItemGrantAmountOverride(a6)                                    ; $000F7A
         rts                                                        ; $000F7E
 
 loc_000F80:

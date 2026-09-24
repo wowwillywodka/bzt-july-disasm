@@ -10,7 +10,7 @@ CopyFirstSceneLabel:
 ; D1 is explicitly cleared: copies label zero (9 bytes) from $FF2A86 into (A0)+ regardless of incoming D1.
         clr.w        d1                                            ; $028BB6
         move.w       d1, d2                                        ; $028BB8
-        lea.l        -$557a(a6), a1                                ; $028BBA
+        lea.l        rSceneProgressPasswordText(a6), a1                                ; $028BBA
         mulu.w       #$9, d2                                       ; $028BBE
         adda.w       d2, a1                                        ; $028BC2
         move.w       #$8, d2                                       ; $028BC4

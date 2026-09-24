@@ -135,11 +135,11 @@ loc_023B5E:
 loc_023B76:
         cmpi.w       #$0, $ff2a4c.l                                ; $023B76
         beq.w        loc_023B8C                                    ; $023B7E
-        move.w       #$2, $ff0874.l                                ; $023B82
+        move.w       #$2, ramTitleScrollState.l                                ; $023B82
         rts                                                        ; $023B8A
 
 loc_023B8C:
-        move.w       #$1, $ff0874.l                                ; $023B8C
+        move.w       #$1, ramTitleScrollState.l                                ; $023B8C
         clr.w        rDemoMode(a6)                                 ; $023B94
         rts                                                        ; $023B98
 

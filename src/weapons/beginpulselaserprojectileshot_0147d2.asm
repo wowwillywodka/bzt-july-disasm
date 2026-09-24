@@ -12,11 +12,11 @@ BeginPulseLaserProjectileShot:
         bne.b        loc_014800                                    ; $0147D6
         tst.w        rWeaponLoweringOffset(a6)                     ; $0147D8
         bne.b        loc_014800                                    ; $0147DC
-        clr.w        -$55a0(a6)                                    ; $0147DE
-        clr.w        -$559e(a6)                                    ; $0147E2
+        clr.w        rStatusSoundScriptActive(a6)                                    ; $0147DE
+        clr.w        rSoundEffectCooldown(a6)                                    ; $0147E2
         move.w       #$37, d0                                      ; $0147E6
-        jsr          SoundRoutine_00DF84.l                         ; $0147EA
-        move.w       #$14, -$559e(a6)                              ; $0147F0
+        jsr          PlaySoundEventAndMaybeSendLink.l                         ; $0147EA
+        move.w       #$14, rSoundEffectCooldown(a6)                              ; $0147F0
         move.w       #$1, rWeaponActionPhase(a6)                   ; $0147F6
         bsr.w        ConsumeSelectedItemAndUpdateHud               ; $0147FC
 

@@ -10,7 +10,7 @@ RetainedRandomActorDirection:
         asr.l        #$4, d2                                       ; $016158
         andi.w       #$1ff, d2                                     ; $01615A
         lea.l        AngleVectorPairs.w, a4                        ; $01615E
-        move.w       -$71ee(a6), d0                                ; $016162
+        move.w       rPlayerFacingAngle(a6), d0                                ; $016162
         add.w        d2, d0                                        ; $016166
         andi.w       #$1ff, d0                                     ; $016168
         lsl.w        #$2, d0                                       ; $01616C

@@ -6,15 +6,15 @@
         endif
 
 TrackRetainedPanoramaEffectPosition:
-        tst.b        -$6f4e(a6)                                    ; $0027E0
-        beq.b        UiRoutine_002800                              ; $0027E4
-        move.w       -$6f4c(a6), d0                                ; $0027E6
+        tst.b        rRetainedPanoramaMarkerArmed(a6)                                    ; $0027E0
+        beq.b        TickRetainedPanoramaEffectMarker                              ; $0027E4
+        move.w       rSceneShiftOrRetainedPanoramaX(a6), d0                                ; $0027E6
         lsl.w        #$1, d0                                       ; $0027EA
-        add.w        -$6f4c(a6), d0                                ; $0027EC
-        add.w        -$6f50(a6), d0                                ; $0027F0
+        add.w        rSceneShiftOrRetainedPanoramaX(a6), d0                                ; $0027EC
+        add.w        rRetainedPanoramaSpriteScreenX(a6), d0                                ; $0027F0
         asr.w        #$2, d0                                       ; $0027F4
-        move.w       d0, -$6f4c(a6)                                ; $0027F6
-        move.b       #$14, -$6f52(a6)                              ; $0027FA
+        move.w       d0, rSceneShiftOrRetainedPanoramaX(a6)                                ; $0027F6
+        move.b       #$14, rRetainedPanoramaEffectFrame(a6)                              ; $0027FA
         ifne *-$2800
         fail "ROM end moved"
         endif

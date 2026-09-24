@@ -7,6 +7,7 @@
         endif
 
 WriteGemsCommandByte:
+; Direct byte writer: A0=ring index register, A1=Z80 ring base, D1.W=0..63, D0.B=byte. Prefix fallthrough masks D1.B first.
         move.b       d0, (a1, d1.w)                                ; $07A8D4
         addq.b       #$1, d1                                       ; $07A8D8
         andi.b       #$3f, d1                                      ; $07A8DA

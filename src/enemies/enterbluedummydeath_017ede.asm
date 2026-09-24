@@ -10,19 +10,19 @@ EnterBlueDummyDeath:
 ; Sound$10; ordinary state3/modeCB, but no counter initialization. CE ->state4; C8/C9 preserved. Corpse update decrements STATE during CC, not counter.
         move.l       a0, -(a7)                                     ; $017EDE
         move.w       #$10, d0                                      ; $017EE0
-        jsr          SoundRoutine_00DF64.l                         ; $017EE4
+        jsr          RouteSoundEventByActorFloor.l                         ; $017EE4
         movea.l      (a7)+, a0                                     ; $017EEA
         tst.b        ActorAlternateDeathSignal(a0)                 ; $017EEC
         bne.w        EnterLegacyEnemyDeathEffect                   ; $017EF0
         andi.w       #$ff2f, ActorFlags(a0)                        ; $017EF4
         move.l       #UpdateBlueDummyCorpse, ActorUpdateCallback(a0) ; $017EFA
-        addq.w       #$1, -$71c8(a6)                               ; $017F02
+        addq.w       #$1, rEnemyDeathsRecorded(a6)                               ; $017F02
         clr.b        ActorUpdateDelay(a0)                          ; $017F06
         move.l       #HitBlueDummyCorpse, ActorHitCallback(a0)     ; $017F0A
-        move.l       #EnvironmentRoutine_01D130, ActorExitCallback(a0) ; $017F12
+        move.l       #PlaceCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $017F12
         tst.b        ActorMarkerTracked(a0)                        ; $017F1A
         beq.b        loc_017F28                                    ; $017F1E
-        move.l       #EnvironmentRoutine_097964, ActorExitCallback(a0) ; $017F20
+        move.l       #WriteTrackedCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $017F20
 
 loc_017F28:
         move.l       #DrawBlueDummyCorpse, ActorDrawCallback(a0)   ; $017F28
@@ -49,14 +49,14 @@ loc_017F68:
 
 loc_017F76:
         move.l       #$1efa2, ActorLinkCallback(a0)                ; $017F76
-        lea.l        -$6fdc(a6), a1                                ; $017F7E
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $017F7E
         move.b       #$12, (a1)+                                   ; $017F82
         move.b       ActorLinkId(a0), (a1)+                        ; $017F86
         move.w       ActorFlags(a0), d0                            ; $017F8A
         ori.w        #$20, d0                                      ; $017F8E
         move.b       d0, (a1)+                                     ; $017F92
         move.b       ActorFloor(a0), (a1)+                         ; $017F94
-        lea.l        -$6fdc(a6), a0                                ; $017F98
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $017F98
         jmp          QueueLinkCommand.l                            ; $017F9C
 
 loc_017FA2:

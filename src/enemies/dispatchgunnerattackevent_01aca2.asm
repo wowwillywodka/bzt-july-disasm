@@ -18,9 +18,9 @@ DispatchGunnerAttackEvent:
 
 loc_01ACBC:
         move.w       #$5f, d0                                      ; $01ACBC
-        jsr          SoundRoutine_00DF64.l                         ; $01ACC0
+        jsr          RouteSoundEventByActorFloor.l                         ; $01ACC0
         move.w       #$83, d0                                      ; $01ACC6
-        jmp          SoundRoutine_00DF64.l                         ; $01ACCA
+        jmp          RouteSoundEventByActorFloor.l                         ; $01ACCA
 
 GunnerTryHitTarget:
         movea.l      ActorTarget(a0), a3                           ; $01ACD0
@@ -31,7 +31,7 @@ GunnerTryHitTarget:
         bsr.w        TraceFiveRayObstructionInActiveWindow         ; $01ACE4
         bne.w        ChooseGunnerGoalOrDie                         ; $01ACE8
         move.w       #$400, d3                                     ; $01ACEC
-        tst.w        -$71d8(a6)                                    ; $01ACF0
+        tst.w        rPlayerViewOffsetZ(a6)                                    ; $01ACF0
         bpl.b        loc_01AD06                                    ; $01ACF4
         move.w       #$200, d3                                     ; $01ACF6
         tst.w        rSceneColorMode(a6)                           ; $01ACFA
@@ -70,9 +70,9 @@ loc_01AD20:
 
 loc_01AD4C:
         move.w       #$5f, d0                                      ; $01AD4C
-        jsr          SoundRoutine_00DF64.l                         ; $01AD50
+        jsr          RouteSoundEventByActorFloor.l                         ; $01AD50
         move.w       #$83, d0                                      ; $01AD56
-        jsr          SoundRoutine_00DF64.l                         ; $01AD5A
+        jsr          RouteSoundEventByActorFloor.l                         ; $01AD5A
 
 loc_01AD60:
         rts                                                        ; $01AD60

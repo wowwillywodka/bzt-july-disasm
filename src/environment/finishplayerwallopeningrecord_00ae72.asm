@@ -8,7 +8,7 @@
 
 FinishPlayerWallOpeningRecord:
 ; Mode-0 shared tail: coordinates are player X/Y rounded down to a cell in fixed point; sound $5E and optional record packet.
-        move.w       #$1, -$711e(a6)                               ; $00AE72
+        move.w       #$1, rWallChangeRefreshFlag(a6)                               ; $00AE72
         move.w       rPlayerX(a6), d0                              ; $00AE78
         clr.b        d0                                            ; $00AE7C
         move.w       rPlayerY(a6), d1                              ; $00AE7E
@@ -18,7 +18,7 @@ FinishPlayerWallOpeningRecord:
         move.b       #$0, (a3)+                                    ; $00AE88
         move.b       rCurrentFloorLow(a6), (a3)+                   ; $00AE8C
         move.w       #$5e, d0                                      ; $00AE90
-        jsr          SoundRoutine_00DF84.l                         ; $00AE94
+        jsr          PlaySoundEventAndMaybeSendLink.l                         ; $00AE94
         move.l       a3, rTransientCellRecordsEnd(a6)              ; $00AE9A
         suba.w       #$e, a3                                       ; $00AE9E
         tst.w        rLinkRole(a6)                                 ; $00AEA2

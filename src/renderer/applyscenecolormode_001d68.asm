@@ -57,8 +57,8 @@ loc_001D78:
         move.l       d1, (a0)                                      ; $001E1A
         move.l       #WallColumnScalers, rWallColumnScalerTable(a6) ; $001E1C
         move.l       rZoneBackgroundProfile2(a6), rActiveSceneBackgroundProfile(a6) ; $001E24
-        move.w       #$5, -$7122(a6)                               ; $001E2A
-        jmp          loc_00DCB8.l                                  ; $001E30
+        move.w       #$5, rVisibleRayCellRadius(a6)                               ; $001E2A
+        jmp          ForceResampleSceneBackgroundForColorMode.l                                  ; $001E30
 
 loc_001E36:
         move.l       rZoneWallColorRemaps(a6), d1                  ; $001E36
@@ -91,8 +91,8 @@ loc_001E36:
         move.l       d1, (a0)                                      ; $001EB2
         move.l       #WallColumnScalers, rWallColumnScalerTable(a6) ; $001EB4
         move.l       rZoneBackgroundProfile1(a6), rActiveSceneBackgroundProfile(a6) ; $001EBC
-        move.w       #$5, -$7122(a6)                               ; $001EC2
-        jmp          loc_00DCB8.l                                  ; $001EC8
+        move.w       #$5, rVisibleRayCellRadius(a6)                               ; $001EC2
+        jmp          ForceResampleSceneBackgroundForColorMode.l                                  ; $001EC8
 
 loc_001ECE:
 ; Mode 0: sprite remap page 0 and direct-copy wall scalers; background profile 0. Existing wall LUT pointers are not rewritten or consumed by that scaler family.
@@ -103,10 +103,10 @@ loc_001ECE:
         move.l       d1, (a0)+                                     ; $001EDA
         move.l       d1, (a0)+                                     ; $001EDC
         move.l       d1, (a0)                                      ; $001EDE
-        move.l       #AlternateWallColumnScalers, rWallColumnScalerTable(a6) ; $001EE0
+        move.l       #DirectWallColumnScalers, rWallColumnScalerTable(a6) ; $001EE0
         move.l       rZoneBackgroundProfile0(a6), rActiveSceneBackgroundProfile(a6) ; $001EE8
-        move.w       #$10, -$7122(a6)                              ; $001EEE
-        jmp          loc_00DCB8.l                                  ; $001EF4
+        move.w       #$10, rVisibleRayCellRadius(a6)                              ; $001EEE
+        jmp          ForceResampleSceneBackgroundForColorMode.l                                  ; $001EF4
 
 loc_001EFA:
         move.l       rZoneWallColorRemaps(a6), d1                  ; $001EFA
@@ -139,8 +139,8 @@ loc_001EFA:
         move.l       d1, (a0)                                      ; $001F76
         move.l       #WallColumnScalers, rWallColumnScalerTable(a6) ; $001F78
         move.l       rZoneBackgroundProfile3(a6), rActiveSceneBackgroundProfile(a6) ; $001F80
-        move.w       #$c, -$7122(a6)                               ; $001F86
-        jmp          loc_00DCB8.l                                  ; $001F8C
+        move.w       #$c, rVisibleRayCellRadius(a6)                               ; $001F86
+        jmp          ForceResampleSceneBackgroundForColorMode.l                                  ; $001F8C
 
 loc_001F92:
         move.l       rZoneWallColorRemaps(a6), d1                  ; $001F92
@@ -173,8 +173,8 @@ loc_001F92:
         move.l       d1, (a0)                                      ; $00200E
         move.l       #WallColumnScalers, rWallColumnScalerTable(a6) ; $002010
         move.l       rZoneBackgroundProfile4(a6), rActiveSceneBackgroundProfile(a6) ; $002018
-        move.w       #$5, -$7122(a6)                               ; $00201E
-        jmp          loc_00DCB8.l                                  ; $002024
+        move.w       #$5, rVisibleRayCellRadius(a6)                               ; $00201E
+        jmp          ForceResampleSceneBackgroundForColorMode.l                                  ; $002024
         ifne *-$202A
         fail "ROM end moved"
         endif

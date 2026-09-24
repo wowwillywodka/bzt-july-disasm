@@ -9,14 +9,15 @@ RetainedBriefingScrollStep:
         subq.w       #$1, $ff2a4e.l                                ; $07FD70
         move.w       $ff2a4e.l, d5                                 ; $07FD76
         move.w       d5, d0                                        ; $07FD7C
-        jsr          VideoRoutine_021E4A.l                         ; $07FD7E
+        jsr          WriteVerticalScrollToVsram.l                         ; $07FD7E
         rts                                                        ; $07FD84
 
-loc_07FD86:
+; Reviewed call entry (internal-helper): Increments briefing vertical-scroll word and writes it to VSRAM.
+AdvanceRetainedBriefingScroll:
         addq.w       #$1, $ff2a4e.l                                ; $07FD86
         move.w       $ff2a4e.l, d5                                 ; $07FD8C
         move.w       d5, d0                                        ; $07FD92
-        jsr          VideoRoutine_021E4A.l                         ; $07FD94
+        jsr          WriteVerticalScrollToVsram.l                         ; $07FD94
         rts                                                        ; $07FD9A
         ifne *-$7FD9C
         fail "ROM end moved"

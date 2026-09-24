@@ -6,7 +6,14 @@ ActorPoolClearWords equ ActorSize*ActorCapacity/2
 ActorDefinitionSize equ $26
 ActorDeathDefinitionSize equ $1A
 ActorFlagAllocated equ $0001
+ActorFlagAimBelow equ $0008
+ActorFlagProximityTarget equ $0010
 ActorFlagRemote equ $0020
+ActorFlagAimLevel equ $0040
+ActorFlagAimAbove equ $0080
+ActorFlagAimAnyView equ $00C8
+ActorFlagRetainedSeparationMask equ $0014
+ActorFlagSyntheticPlayer equ $00DA
 ActorNext equ $0
 ActorFlags equ $4
 ActorTarget equ $6

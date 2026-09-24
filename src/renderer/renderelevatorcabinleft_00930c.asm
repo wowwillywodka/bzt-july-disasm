@@ -17,7 +17,7 @@ RenderElevatorCabinLeft:
         lsl.w        #$8, d3                                       ; $00931A
         move.b       d1, d3                                        ; $00931C
         addq.b       #$1, d3                                       ; $00931E
-        bsr.w        RendererRoutine_0096D4                        ; $009320
+        bsr.w        QueueUniqueWallMarker                        ; $009320
 
 loc_009324:
         clr.w        d3                                            ; $009324
@@ -34,7 +34,7 @@ loc_009328:
         lsl.w        #$8, d3                                       ; $009336
         move.b       d1, d3                                        ; $009338
         addq.b       #$1, d3                                       ; $00933A
-        bsr.w        EnemiesRoutine_0096CC                         ; $00933C
+        bsr.w        QueueBackgroundFilledWallMarker                         ; $00933C
 
 loc_009340:
         clr.w        d3                                            ; $009340
@@ -53,7 +53,7 @@ loc_009344:
         addq.b       #$1, d3                                       ; $009356
         lsl.w        #$8, d3                                       ; $009358
         move.b       d1, d3                                        ; $00935A
-        bsr.w        RendererRoutine_0096D4                        ; $00935C
+        bsr.w        QueueUniqueWallMarker                        ; $00935C
 
 loc_009360:
         clr.w        d3                                            ; $009360
@@ -72,7 +72,7 @@ loc_009364:
         addq.b       #$1, d3                                       ; $009376
         lsl.w        #$8, d3                                       ; $009378
         move.b       d1, d3                                        ; $00937A
-        bsr.w        EnemiesRoutine_0096CC                         ; $00937C
+        bsr.w        QueueBackgroundFilledWallMarker                         ; $00937C
 
 loc_009380:
         clr.w        d3                                            ; $009380
@@ -89,7 +89,7 @@ loc_009384:
         lsl.w        #$8, d3                                       ; $009392
         move.b       d1, d3                                        ; $009394
         addq.b       #$1, d3                                       ; $009396
-        bsr.w        RendererRoutine_0096D4                        ; $009398
+        bsr.w        QueueUniqueWallMarker                        ; $009398
 
 loc_00939C:
         clr.w        d3                                            ; $00939C
@@ -108,7 +108,7 @@ loc_0093A0:
         lsl.w        #$8, d3                                       ; $0093B2
         move.b       d1, d3                                        ; $0093B4
         addq.b       #$1, d3                                       ; $0093B6
-        bsr.w        EnemiesRoutine_0096CC                         ; $0093B8
+        bsr.w        QueueBackgroundFilledWallMarker                         ; $0093B8
 
 loc_0093BC:
         clr.w        d3                                            ; $0093BC

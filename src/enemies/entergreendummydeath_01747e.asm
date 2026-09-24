@@ -10,19 +10,19 @@ EnterGreenDummyDeath:
 ; ACTIVE death code reached from $171B4 and special-state tails, despite neighboring retained attack body. Sound$13 and Green Dummy corpse callbacks.
         move.l       a0, -(a7)                                     ; $01747E
         move.w       #$13, d0                                      ; $017480
-        jsr          SoundRoutine_00DF64.l                         ; $017484
+        jsr          RouteSoundEventByActorFloor.l                         ; $017484
         movea.l      (a7)+, a0                                     ; $01748A
         tst.b        ActorAlternateDeathSignal(a0)                 ; $01748C
         bne.w        EnterLegacyEnemyDeathEffect                   ; $017490
         andi.w       #$ff2f, ActorFlags(a0)                        ; $017494
         move.l       #UpdateGreenDummyCorpse, ActorUpdateCallback(a0) ; $01749A
-        addq.w       #$1, -$71c8(a6)                               ; $0174A2
+        addq.w       #$1, rEnemyDeathsRecorded(a6)                               ; $0174A2
         clr.b        ActorUpdateDelay(a0)                          ; $0174A6
         move.l       #HitGreenDummyCorpse, ActorHitCallback(a0)    ; $0174AA
-        move.l       #EnvironmentRoutine_01D130, ActorExitCallback(a0) ; $0174B2
+        move.l       #PlaceCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $0174B2
         tst.b        ActorMarkerTracked(a0)                        ; $0174BA
         beq.b        loc_0174C8                                    ; $0174BE
-        move.l       #EnvironmentRoutine_097964, ActorExitCallback(a0) ; $0174C0
+        move.l       #WriteTrackedCorpseCellAndRemoveActor, ActorExitCallback(a0) ; $0174C0
 
 loc_0174C8:
         move.l       #DrawGreenDummyCorpse, ActorDrawCallback(a0)  ; $0174C8
@@ -43,14 +43,14 @@ loc_0174F8:
 
 loc_017506:
         move.l       #$1ef84, ActorLinkCallback(a0)                ; $017506
-        lea.l        -$6fdc(a6), a1                                ; $01750E
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01750E
         move.b       #$12, (a1)+                                   ; $017512
         move.b       ActorLinkId(a0), (a1)+                        ; $017516
         move.w       ActorFlags(a0), d0                            ; $01751A
         ori.w        #$20, d0                                      ; $01751E
         move.b       d0, (a1)+                                     ; $017522
         move.b       ActorFloor(a0), (a1)+                         ; $017524
-        lea.l        -$6fdc(a6), a0                                ; $017528
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $017528
         jmp          QueueLinkCommand.l                            ; $01752C
 
 GreenDummyTickWeapon0DDeath:

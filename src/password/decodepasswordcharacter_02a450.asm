@@ -1,7 +1,7 @@
 ; $02A450..$02A46F | m68k
 ; Maintained assembly input; no extraction occurs during build.
-; RESEARCH NOTE (July; semantic claims still require local review):
-; Таблица символов пароля→индекс: сканирует 64-символьный алфавит (-0x97A,PC), возвращает в D0 позицию введённого символа (или 0x2D при отсутствии) для декодера пароля
+; JULY LOCAL REVIEW: Find the next input character in the 64-byte password
+; code alphabet. Return its six-bit index in D0, or $2D if absent.
         ifne *-$2A450
         fail "ROM start moved"
         endif

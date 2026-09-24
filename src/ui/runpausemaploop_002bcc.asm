@@ -8,8 +8,8 @@
 
 RunPauseMapLoop:
 ; Pause/map loop selected by PauseFlags. It is separate from scene completion and the five-character selection screen.
-        move.w       #$0, -$213c(a6)                               ; $002BCC
-        clr.w        -$7ffe(a6)                                    ; $002BD2
+        move.w       #$0, rRearViewActive(a6)                               ; $002BCC
+        clr.w        rVBlankTransferPhasesRemaining(a6)                                    ; $002BD2
         bsr.w        WaitForVBlank                                 ; $002BD6
         move.w       #$8124, VDP_CONTROL.l                         ; $002BDA
         bsr.w        ResetVerticalScroll                           ; $002BE2
@@ -23,7 +23,7 @@ RunPauseMapLoop:
 ; Decompress pause/map frame tiles to VRAM tile $141; map at PauseMapFrameTilemap, 40x28.
         jsr          DecompressBytePairToVramLong.l                ; $002C10
         lea.l        PauseMapFrameTilemap.l, a0                    ; $002C16
-        movea.l      #UiRoutine_00E000, a1                         ; $002C1C
+        movea.l      #ResolvePlayerHitOrConsumeAlternateSlot, a1                         ; $002C1C
         move.w       #$28, d0                                      ; $002C22
         move.w       #$1c, d1                                      ; $002C26
         move.w       #$40, d2                                      ; $002C2A
@@ -32,10 +32,10 @@ RunPauseMapLoop:
         lea.l        InventoryIconPalettes.l, a0                   ; $002C38
         move.w       #$0, d0                                       ; $002C3E
         jsr          LoadPaletteLine.l                             ; $002C42
-        move.l       #TitleCharacterOrder, -$76ea(a6)              ; $002C48
-        move.l       #$2fb4, -$76e4(a6)                            ; $002C50
+        move.l       #TitleCharacterOrder, rPauseMapCharacterSequencePointer(a6)              ; $002C48
+        move.l       #$2fb4, rPauseMapSecondarySequencePointer(a6)                            ; $002C50
         move.l       #$4e800001, VDP_CONTROL.l                     ; $002C58
-        lea.l        Data_15CA58.l, a0                             ; $002C62
+        lea.l        PauseMapCellTilePattern00.l, a0                             ; $002C62
         move.w       #$97, d7                                      ; $002C68
 
 loc_002C6C:
@@ -87,20 +87,20 @@ loc_002CBE:
 loc_002D0A:
         move.l       #$0, VDP_DATA.l                               ; $002D0A
         dbra         d7, loc_002D0A                                ; $002D14
-        bsr.w        RenderSceneWalls                              ; $002D18
-        lea.l        -$7abc(a6), a0                                ; $002D1C
+        bsr.w        RenderPauseMapCells                              ; $002D18
+        lea.l        rVramDmaCommandQueue(a6), a0                                ; $002D1C
         move.l       #$ffffffff, (a0)                              ; $002D20
         move.l       a0, rDmaQueueTail(a6)                         ; $002D26
-        move.w       #$1, -$7fbe(a6)                               ; $002D2A
-        move.l       #$ff0044, -$7fc2(a6)                          ; $002D30
-        move.w       rLegacyObjectiveFloor(a6), -$6fac(a6)         ; $002D38
-        move.w       -$6fac(a6), d1                                ; $002D3E
+        move.w       #$1, rSpriteAttributeNextLink(a6)                               ; $002D2A
+        move.l       #ramSpriteAttributeTable, rSpriteAttributeTableWritePointer(a6)                          ; $002D30
+        move.w       rLegacyObjectiveFloor(a6), rPauseMapFloorLabelIndex(a6)         ; $002D38
+        move.w       rPauseMapFloorLabelIndex(a6), d1                                ; $002D3E
         jsr          PrintFirstSceneLabel.l                        ; $002D42
-        clr.w        -$6faa(a6)                                    ; $002D48
+        clr.w        rUiRepeatRightTicks(a6)                                    ; $002D48
         move.w       rCurrentFloor(a6), d0                         ; $002D4C
         add.w        d0, d0                                        ; $002D50
         lea.l        TwoDigitCharacterLabels(pc), a1               ; $002D52
-        lea.l        -$6fdc(a6), a0                                ; $002D56
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $002D56
         move.w       (a1, d0.w), (a0)                              ; $002D5A
         move.b       #$0, $2(a0)                                   ; $002D5E
         move.w       #$e000, d0                                    ; $002D64
@@ -113,16 +113,16 @@ loc_002D7A:
         bsr.w        FlushDmaQueue                                 ; $002D7E
         bsr.w        UpdateDemoInput                               ; $002D82
         movem.l      d0-d7/a0-a6, -(a7)                            ; $002D86
-        bsr.w        RenderSceneWalls                              ; $002D8A
+        bsr.w        RenderPauseMapCells                              ; $002D8A
         movem.l      (a7)+, d0-d7/a0-a6                            ; $002D8E
         btst.b       #$2, rControllerState(a6)                     ; $002D92
         beq.b        loc_002DAE                                    ; $002D98
         move.w       rMapWindowOriginX(a6), d1                     ; $002D9A
-        move.w       -$2262(a6), d0                                ; $002D9E
+        move.w       rPauseMapPanX(a6), d0                                ; $002D9E
         neg.w        d0                                            ; $002DA2
         cmp.w        d0, d1                                        ; $002DA4
         beq.b        loc_002DAE                                    ; $002DA6
-        subq.w       #$1, -$2262(a6)                               ; $002DA8
+        subq.w       #$1, rPauseMapPanX(a6)                               ; $002DA8
         bra.b        loc_002DD4                                    ; $002DAC
 
 loc_002DAE:
@@ -131,21 +131,21 @@ loc_002DAE:
         move.w       rCurrentFloorWidth(a6), d0                    ; $002DB6
         sub.w        rMapWindowOriginX(a6), d0                     ; $002DBA
         subi.w       #$20, d0                                      ; $002DBE
-        cmp.w        -$2262(a6), d0                                ; $002DC2
+        cmp.w        rPauseMapPanX(a6), d0                                ; $002DC2
         beq.b        loc_002DD4                                    ; $002DC6
         cmpi.w       #$20, rCurrentFloorWidth(a6)                  ; $002DC8
         ble.b        loc_002DD4                                    ; $002DCE
-        addq.w       #$1, -$2262(a6)                               ; $002DD0
+        addq.w       #$1, rPauseMapPanX(a6)                               ; $002DD0
 
 loc_002DD4:
         btst.b       #$0, rControllerState(a6)                     ; $002DD4
         beq.b        loc_002DEE                                    ; $002DDA
         move.w       rMapWindowOriginY(a6), d1                     ; $002DDC
-        move.w       -$2260(a6), d0                                ; $002DE0
+        move.w       rPauseMapPanY(a6), d0                                ; $002DE0
         neg.w        d0                                            ; $002DE4
         cmp.w        d0, d1                                        ; $002DE6
         beq.b        loc_002DEE                                    ; $002DE8
-        subq.w       #$1, -$2260(a6)                               ; $002DEA
+        subq.w       #$1, rPauseMapPanY(a6)                               ; $002DEA
 
 loc_002DEE:
         btst.b       #$1, rControllerState(a6)                     ; $002DEE
@@ -153,21 +153,21 @@ loc_002DEE:
         move.w       rCurrentFloorHeight(a6), d0                   ; $002DF6
         sub.w        rMapWindowOriginY(a6), d0                     ; $002DFA
         subi.w       #$20, d0                                      ; $002DFE
-        cmp.w        -$2260(a6), d0                                ; $002E02
+        cmp.w        rPauseMapPanY(a6), d0                                ; $002E02
         beq.b        loc_002E14                                    ; $002E06
         cmpi.w       #$20, rCurrentFloorHeight(a6)                 ; $002E08
         ble.b        loc_002E14                                    ; $002E0E
-        addq.w       #$1, -$2260(a6)                               ; $002E10
+        addq.w       #$1, rPauseMapPanY(a6)                               ; $002E10
 
 loc_002E14:
-        move.w       #$1, -$7fbe(a6)                               ; $002E14
-        move.l       #$ff0044, -$7fc2(a6)                          ; $002E1A
-        btst.b       #$4, -$7fff(a6)                               ; $002E22
+        move.w       #$1, rSpriteAttributeNextLink(a6)                               ; $002E14
+        move.l       #ramSpriteAttributeTable, rSpriteAttributeTableWritePointer(a6)                          ; $002E1A
+        btst.b       #$4, rVBlankCounterLow(a6)                               ; $002E22
         beq.b        loc_002E96                                    ; $002E28
-        movea.l      -$7fc2(a6), a2                                ; $002E2A
+        movea.l      rSpriteAttributeTableWritePointer(a6), a2                                ; $002E2A
         move.w       rPlayerY(a6), d0                              ; $002E2E
         asr.w        #$6, d0                                       ; $002E32
-        move.w       -$2260(a6), d1                                ; $002E34
+        move.w       rPauseMapPanY(a6), d1                                ; $002E34
         asl.w        #$2, d1                                       ; $002E38
         neg.w        d1                                            ; $002E3A
         add.w        d1, d0                                        ; $002E3C
@@ -179,7 +179,7 @@ loc_002E14:
         move.w       d0, -(a7)                                     ; $002E4E
         move.w       rPlayerX(a6), d0                              ; $002E50
         asr.w        #$6, d0                                       ; $002E54
-        move.w       -$2262(a6), d1                                ; $002E56
+        move.w       rPauseMapPanX(a6), d1                                ; $002E56
         andi.w       #$fffe, d1                                    ; $002E5A
         asl.w        #$2, d1                                       ; $002E5E
         neg.w        d1                                            ; $002E60
@@ -193,23 +193,23 @@ loc_002E14:
         ble.b        loc_002E96                                    ; $002E76
         subi.w       #$38, d0                                      ; $002E78
         move.w       d0, (a2)+                                     ; $002E7C
-        move.w       -$7fbe(a6), d0                                ; $002E7E
+        move.w       rSpriteAttributeNextLink(a6), d0                                ; $002E7E
         ori.w        #$0, d0                                       ; $002E82
         move.w       d0, (a2)+                                     ; $002E86
-        addq.w       #$1, -$7fbe(a6)                               ; $002E88
+        addq.w       #$1, rSpriteAttributeNextLink(a6)                               ; $002E88
         move.w       #$e276, (a2)+                                 ; $002E8C
         move.w       d1, (a2)+                                     ; $002E90
-        move.l       a2, -$7fc2(a6)                                ; $002E92
+        move.l       a2, rSpriteAttributeTableWritePointer(a6)                                ; $002E92
 
 loc_002E96:
-        movea.l      -$7fc2(a6), a2                                ; $002E96
-        jsr          UiRoutine_0114FA.l                            ; $002E9A
-        move.l       a2, -$7fc2(a6)                                ; $002EA0
+        movea.l      rSpriteAttributeTableWritePointer(a6), a2                                ; $002E96
+        jsr          AppendSpecialInventoryHudSpritesToSat.l                            ; $002E9A
+        move.l       a2, rSpriteAttributeTableWritePointer(a6)                                ; $002EA0
         movea.l      rDmaQueueTail(a6), a0                         ; $002EA4
         move.l       #$ffffffff, (a0)                              ; $002EA8
         bsr.w        ProjectMapObjects                             ; $002EAE
         jsr          UploadSpriteTable.l                           ; $002EB2
-        jsr          loc_002FEC.l                                  ; $002EB8
+        jsr          WaitAndUploadEightInventoryIcons.l                                  ; $002EB8
         tst.w        rLinkRole(a6)                                 ; $002EBE
         beq.b        loc_002ED8                                    ; $002EC2
         cmpi.w       #$1, rLinkRole(a6)                            ; $002EC4
@@ -227,45 +227,45 @@ loc_002ED8:
         btst.b       #$5, rControllerState(a6)                     ; $002EE8
         beq.b        loc_002EFA                                    ; $002EEE
         jsr          RunInventoryStatusLoop.l                      ; $002EF0
-        jmp          UiRoutine_0028C4(pc)                          ; $002EF6
+        jmp          InitializeGameplayVideo(pc)                          ; $002EF6
 
 loc_002EFA:
         tst.b        rControllerState(a6)                          ; $002EFA
         beq.b        loc_002F34                                    ; $002EFE
         move.b       rControllerState(a6), d0                      ; $002F00
-        cmp.b        -$76ec(a6), d0                                ; $002F04
+        cmp.b        rPauseMapCharacterCursorByte(a6), d0                                ; $002F04
         beq.b        loc_002F34                                    ; $002F08
-        move.b       d0, -$76ec(a6)                                ; $002F0A
-        movea.l      -$76ea(a6), a0                                ; $002F0E
+        move.b       d0, rPauseMapCharacterCursorByte(a6)                                ; $002F0A
+        movea.l      rPauseMapCharacterSequencePointer(a6), a0                                ; $002F0E
         move.b       (a0), d0                                      ; $002F12
         btst.b       d0, rControllerState(a6)                      ; $002F14
         beq.b        loc_002F2C                                    ; $002F18
-        addq.l       #$1, -$76ea(a6)                               ; $002F1A
+        addq.l       #$1, rPauseMapCharacterSequencePointer(a6)                               ; $002F1A
         cmpi.b       #$ff, $1(a0)                                  ; $002F1E
         bne.b        loc_002F34                                    ; $002F24
-        eori.b       #$1, -$76eb(a6)                               ; $002F26
+        eori.b       #$1, rPauseMapAndHitFlashToggle(a6)                               ; $002F26
 
 loc_002F2C:
-        move.l       #TitleCharacterOrder, -$76ea(a6)              ; $002F2C
+        move.l       #TitleCharacterOrder, rPauseMapCharacterSequencePointer(a6)              ; $002F2C
 
 loc_002F34:
         tst.b        rControllerState(a6)                          ; $002F34
         beq.b        loc_002F6E                                    ; $002F38
         move.b       rControllerState(a6), d0                      ; $002F3A
-        cmp.b        -$76e6(a6), d0                                ; $002F3E
+        cmp.b        rPauseMapSecondaryCursorByte(a6), d0                                ; $002F3E
         beq.b        loc_002F6E                                    ; $002F42
-        move.b       d0, -$76e6(a6)                                ; $002F44
-        movea.l      -$76e4(a6), a0                                ; $002F48
+        move.b       d0, rPauseMapSecondaryCursorByte(a6)                                ; $002F44
+        movea.l      rPauseMapSecondarySequencePointer(a6), a0                                ; $002F48
         move.b       (a0), d0                                      ; $002F4C
         btst.b       d0, rControllerState(a6)                      ; $002F4E
         beq.b        loc_002F66                                    ; $002F52
-        addq.l       #$1, -$76e4(a6)                               ; $002F54
+        addq.l       #$1, rPauseMapSecondarySequencePointer(a6)                               ; $002F54
         cmpi.b       #$ff, $1(a0)                                  ; $002F58
         bne.b        loc_002F6E                                    ; $002F5E
-        jsr          UiRoutine_011648.l                            ; $002F60
+        jsr          GrantPauseCodeFullLoadout.l                            ; $002F60
 
 loc_002F66:
-        move.l       #$2fb4, -$76e4(a6)                            ; $002F66
+        move.l       #$2fb4, rPauseMapSecondarySequencePointer(a6)                            ; $002F66
 
 loc_002F6E:
         btst.b       #$0, rPauseFlags(a6)                          ; $002F6E
@@ -275,7 +275,7 @@ loc_002F6E:
         btst.b       #$7, rPreviousControllerState(a6)             ; $002F7E
         bne.b        loc_002F9A                                    ; $002F84
         bclr.b       #$0, rPauseFlags(a6)                          ; $002F86
-        lea.l        -$6fdc(a6), a0                                ; $002F8C
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $002F8C
         move.b       #$15, (a0)                                    ; $002F90
         jsr          QueueLinkCommand.l                            ; $002F94
 
@@ -283,7 +283,7 @@ loc_002F9A:
         tst.b        rPauseFlags(a6)                               ; $002F9A
         bne.w        loc_002D7A                                    ; $002F9E
         jsr          ResumeGemsSequences.l                         ; $002FA2
-        bsr.w        UiRoutine_0028C4                              ; $002FA8
+        bsr.w        InitializeGameplayVideo                              ; $002FA8
         rts                                                        ; $002FAC
         ifne *-$2FAE
         fail "ROM end moved"

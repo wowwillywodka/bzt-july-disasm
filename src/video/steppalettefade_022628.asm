@@ -8,24 +8,24 @@
 
 StepPaletteFade:
         clr.w        d0                                            ; $022628
-        bchg.b       #$1, -$7801(a6)                               ; $02262A
+        bchg.b       #$1, rPaletteFadeHalfRateToggle(a6)                               ; $02262A
         bne.w        loc_0226FA                                    ; $022630
-        cmpi.w       #$14, -$7808(a6)                              ; $022634
+        cmpi.w       #$14, rPaletteFadeStableStepCount(a6)                              ; $022634
         beq.w        loc_0226FA                                    ; $02263A
-        lea.l        -$7908(a6), a0                                ; $02263E
-        movea.l      -$7806(a6), a1                                ; $022642
-        addq.b       #$1, -$7802(a6)                               ; $022646
-        cmpi.b       #$3, -$7802(a6)                               ; $02264A
+        lea.l        rPaletteFadeCurrentColors(a6), a0                                ; $02263E
+        movea.l      rPaletteFadeTargetColorsPointer(a6), a1                                ; $022642
+        addq.b       #$1, rPaletteFadeComponentIndex(a6)                               ; $022646
+        cmpi.b       #$3, rPaletteFadeComponentIndex(a6)                               ; $02264A
         bne.b        loc_022656                                    ; $022650
-        clr.b        -$7802(a6)                                    ; $022652
+        clr.b        rPaletteFadeComponentIndex(a6)                                    ; $022652
 
 loc_022656:
         move.w       (a1), d1                                      ; $022656
         move.w       (a0), d2                                      ; $022658
         move.w       d2, d3                                        ; $02265A
-        cmpi.b       #$1, -$7802(a6)                               ; $02265C
+        cmpi.b       #$1, rPaletteFadeComponentIndex(a6)                               ; $02265C
         beq.b        loc_022688                                    ; $022662
-        cmpi.b       #$2, -$7802(a6)                               ; $022664
+        cmpi.b       #$2, rPaletteFadeComponentIndex(a6)                               ; $022664
         beq.b        loc_0226A8                                    ; $02266A
         andi.w       #$e, d1                                       ; $02266C
         andi.w       #$e, d3                                       ; $022670

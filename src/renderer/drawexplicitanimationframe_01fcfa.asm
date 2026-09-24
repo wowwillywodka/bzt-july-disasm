@@ -66,7 +66,7 @@ loc_01FD6E:
         sub.w        d3, d2                                        ; $01FD70
 
 loc_01FD72:
-        clr.w        -$6f32(a6)                                    ; $01FD72
+        clr.w        rSoftwareSpriteMirrorFlag(a6)                                    ; $01FD72
         movea.l      a1, a3                                        ; $01FD76
         addq.w       #$6, a3                                       ; $01FD78
         movea.l      a3, a4                                        ; $01FD7A
@@ -85,7 +85,7 @@ loc_01FD8E:
 
 loc_01FD9A:
         movea.l      a2, a1                                        ; $01FD9A
-        move.b       (a3), -$6f31(a6)                              ; $01FD9C
+        move.b       (a3), rSoftwareSpriteMirrorFlagLow(a6)                              ; $01FD9C
         clr.l        d3                                            ; $01FDA0
         move.w       (a4), d3                                      ; $01FDA2
         lsl.w        #$1, d3                                       ; $01FDA4

@@ -6,11 +6,11 @@
         endif
 
 RetainedScreenSequence:
-        jsr          UiRoutine_021728.l                            ; $021702
+        jsr          InitializeRetainedScreenVideo.l                            ; $021702
         jsr          RetainedUiWaitReturn.l                        ; $021708
-        jsr          loc_02173E.l                                  ; $02170E
-        jsr          UiRoutine_021728.l                            ; $021714
-        jsr          UiRoutine_021746.l                            ; $02171A
+        jsr          RunMissionSelectionFromRetainedUi.l                                  ; $02170E
+        jsr          InitializeRetainedScreenVideo.l                            ; $021714
+        jsr          RunRetainedScreenPresentation.l                            ; $02171A
         jsr          ClearAllVram.l                                ; $021720
         rts                                                        ; $021726
         ifne *-$21728

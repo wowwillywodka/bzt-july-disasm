@@ -16,7 +16,7 @@ InitializeMenuVdp:
         move.w       #$855c, (a0)                                  ; $021D44
         move.w       #$8700, (a0)                                  ; $021D48
         move.w       #$8a00, (a0)                                  ; $021D4C
-        cmpi.w       #$2100, $ff2c66.l                             ; $021D50
+        cmpi.w       #$2100, ramLinkPortStatusShadow.l                             ; $021D50
         bne.w        loc_021D64                                    ; $021D58
         move.w       #$8b08, (a0)                                  ; $021D5C
         bra.w        loc_021D68                                    ; $021D60

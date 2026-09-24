@@ -6,7 +6,7 @@
         endif
 
 RetainedPaletteReadbackCheck:
-        tst.w        -$7ffe(a6)                                    ; $001BB0
+        tst.w        rVBlankTransferPhasesRemaining(a6)                                    ; $001BB0
         bne.b        RetainedPaletteReadbackCheck                  ; $001BB4
         move.w       rGameTick(a6), d0                             ; $001BB6
         andi.w       #$ff, d0                                      ; $001BBA
@@ -36,7 +36,7 @@ loc_001BFC:
 
 loc_001C10:
         bsr.w        WaitForVBlank                                 ; $001C10
-        cmpi.w       #$ffff, -$6f6c(a6)                            ; $001C14
+        cmpi.w       #$ffff, rNightVisionInventorySlotIndex(a6)                            ; $001C14
         bne.b        loc_001C22                                    ; $001C1A
         movea.l      rZoneScenePalette(a6), a0                     ; $001C1C
         bra.b        loc_001C26                                    ; $001C20

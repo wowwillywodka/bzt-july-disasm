@@ -7,6 +7,8 @@
         endif
 
 HitGreyDummy:
+; A0=recipient, D0.w=hit parameter, D3/D4=impulse direction.
+; Assigns reaction state here; corpse callbacks are installed by later update/death code.
 ; Ignores states2/5/6. Hit statistic increments before rejecting distance>$400; accepted damage=$400-D0. Weapon0D/0B force states5/6 even with positive HP.
         cmpi.b       #$2, ActorState(a0)                           ; $017052
         beq.w        loc_017074                                    ; $017058
@@ -20,7 +22,7 @@ loc_017074:
         rts                                                        ; $017074
 
 loc_017076:
-        addq.w       #$1, -$71c2(a6)                               ; $017076
+        addq.w       #$1, rEnemyHitCallbacksRecorded(a6)                               ; $017076
         clr.b        ActorStateCounter(a0)                         ; $01707A
         clr.w        ActorMotionX(a0)                              ; $01707E
         clr.w        ActorMotionY(a0)                              ; $017082
@@ -44,7 +46,7 @@ loc_0170A6:
         sub.w        (a7)+, d0                                     ; $0170AA
         bmi.b        loc_0170E0                                    ; $0170AC
         sub.w        d0, ActorHealth(a0)                           ; $0170AE
-        bsr.w        ActorsRoutine_01D92C                          ; $0170B2
+        bsr.w        SpawnHitParticles                          ; $0170B2
         asr.w        #$3, d0                                       ; $0170B6
         muls.w       d0, d3                                        ; $0170B8
         muls.w       d0, d4                                        ; $0170BA

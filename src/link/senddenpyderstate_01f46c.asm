@@ -8,7 +8,7 @@
 
 SendDenpyderState:
 ; Command0D contains ID/XY/MotionXY; computed animation7 values not serialized. Does not implement local wake or melee animation.
-        lea.l        -$6fdc(a6), a1                                ; $01F46C
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01F46C
         move.b       #$d, (a1)+                                    ; $01F470
         move.b       ActorLinkId(a0), (a1)+                        ; $01F474
         move.w       ActorX(a0), (a1)+                             ; $01F478
@@ -67,7 +67,7 @@ loc_01F4F4:
         move.w       #$3, d2                                       ; $01F4F8
 
 loc_01F4FC:
-        lea.l        -$6fdc(a6), a0                                ; $01F4FC
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $01F4FC
         jmp          QueueLinkCommand.l                            ; $01F500
 
 loc_01F506:
@@ -79,7 +79,7 @@ loc_01F506:
 loc_01F51A:
         move.l       #DenpyderSpriteBank, ActorSpriteBank(a0)      ; $01F51A
         move.w       #$1, d0                                       ; $01F522
-        bra.w        loc_01F844                                    ; $01F526
+        bra.w        SelectActorStateCounterParityFrame                                    ; $01F526
         ifne *-$1F52A
         fail "ROM end moved"
         endif

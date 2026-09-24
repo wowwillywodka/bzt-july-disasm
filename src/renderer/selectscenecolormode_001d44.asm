@@ -9,16 +9,16 @@
 SelectSceneColorMode:
 ; Select scene color mode from floor byte; effect-state flags can route through $011F70. This is not a menu-item selector.
         andi.w       #$ff, d0                                      ; $001D44
-        tst.w        -$6f6c(a6)                                    ; $001D48
+        tst.w        rNightVisionInventorySlotIndex(a6)                                    ; $001D48
         bmi.b        loc_001D58                                    ; $001D4C
         move.w       d0, rSceneColorMode(a6)                       ; $001D4E
-        jmp          UiRoutine_011F70.l                            ; $001D52
+        jmp          ApplyEffectColorPalette.l                            ; $001D52
 
 loc_001D58:
-        tst.w        -$6f6a(a6)                                    ; $001D58
+        tst.w        rFlashlightInventorySlotIndex(a6)                                    ; $001D58
         bmi.b        ApplySceneColorMode                           ; $001D5C
         bsr.b        ApplySceneColorMode                           ; $001D5E
-        move.w       #$10, -$7122(a6)                              ; $001D60
+        move.w       #$10, rVisibleRayCellRadius(a6)                              ; $001D60
         rts                                                        ; $001D66
         ifne *-$1D68
         fail "ROM end moved"

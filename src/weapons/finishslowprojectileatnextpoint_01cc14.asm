@@ -37,8 +37,8 @@ loc_01CC3E:
         movem.l      (a7)+, d0-d1/a0                               ; $01CC64
         clr.w        ActorMotionX(a0)                              ; $01CC68
         clr.w        ActorMotionY(a0)                              ; $01CC6C
-        clr.w        -$55a0(a6)                                    ; $01CC70
-        clr.w        -$559e(a6)                                    ; $01CC74
+        clr.w        rStatusSoundScriptActive(a6)                                    ; $01CC70
+        clr.w        rSoundEffectCooldown(a6)                                    ; $01CC74
         bra.w        RemoveActor                                   ; $01CC78
 
 loc_01CC7C:

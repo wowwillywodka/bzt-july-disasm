@@ -8,10 +8,10 @@
 
 DrawProjectileExplosion:
 ; Zone FireEffect tile01; size=(2*D5)>>ExplosionScaleShifts[EffectCounter], shifts1,0,1,2,3,4. Tick-parity mirror. Drawing does not advance life; no table index guard.
-        move.w       d5, -$6f26(a6)                                ; $01CD1C
+        move.w       d5, rSoftwareSpriteProjectionScale(a6)                                ; $01CD1C
         move.w       d5, d2                                        ; $01CD20
-        move.w       -$71d8(a6), d3                                ; $01CD22
-        sub.w        -$6e4c(a6), d3                                ; $01CD26
+        move.w       rPlayerViewOffsetZ(a6), d3                                ; $01CD22
+        sub.w        rTransitHeightOffset(a6), d3                                ; $01CD26
         sub.w        ActorZ(a0), d3                                ; $01CD2A
         muls.w       d3, d2                                        ; $01CD2E
         asr.l        #$6, d2                                       ; $01CD30
@@ -20,7 +20,7 @@ DrawProjectileExplosion:
         adda.w       #ObjectTileOffset01_FireEffect, a1            ; $01CD3A
         move.w       rGameTick(a6), d0                             ; $01CD3E
         andi.w       #$1, d0                                       ; $01CD42
-        move.w       d0, -$6f32(a6)                                ; $01CD46
+        move.w       d0, rSoftwareSpriteMirrorFlag(a6)                                ; $01CD46
         clr.w        d0                                            ; $01CD4A
         move.b       ActorEffectCounter(a0), d0                    ; $01CD4C
         move.b       ExplosionScaleShifts(pc, d0.w), d4            ; $01CD50

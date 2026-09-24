@@ -14,11 +14,11 @@ UpdateProjectileExplosion:
         bne.b        ExplosionCheckDamageTick                      ; $01CCDE
         tst.w        rLinkRole(a6)                                 ; $01CCE0
         beq.w        RemoveActor                                   ; $01CCE4
-        lea.l        -$6fdc(a6), a1                                ; $01CCE8
+        lea.l        rSharedScratchBuffer(a6), a1                                ; $01CCE8
         move.b       #$5, (a1)+                                    ; $01CCEC
         move.b       ActorLinkId(a0), (a1)+                        ; $01CCF0
         move.l       a0, -(a7)                                     ; $01CCF4
-        lea.l        -$6fdc(a6), a0                                ; $01CCF6
+        lea.l        rSharedScratchBuffer(a6), a0                                ; $01CCF6
         jsr          QueueLinkCommand.l                            ; $01CCFA
         movea.l      (a7)+, a0                                     ; $01CD00
         bra.w        RemoveActor                                   ; $01CD02
